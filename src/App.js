@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import "./App.css";
 import ContentCreatorFlow from "./components/ContentCreatorFlow";
+import Brands from "./components/Brands";
 
 function App() {
   const [loginToggle, setLoginToggle] = useState(false);
@@ -9,18 +11,19 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selectedOption === "contentCreator") {
+    if (selectedOption) {
       setFormSubmitted(true);
     }
   };
+
   const handleRegister = () => {
     setLoginToggle(!loginToggle);
   };
 
-
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
+
   return (
     <div className="App flex min-h-screen">
       <div className="flex flex-col justify-center w-full md:w-2/5 px-6 py-12 lg:px-8">
@@ -31,15 +34,13 @@ function App() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            {formSubmitted ? "Content Creator Onboarding" : "Choose one"}
+            {formSubmitted ? (selectedOption === "contentCreator" ? "Content Creator Onboarding" : "Brand Onboarding") : "Choose one"}
           </h2>
         </div>
 
         {
-          selectedOption === "contentCreator" && <></>
-        }
-        {
-          !formSubmitted && <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          !formSubmitted &&
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 text-center gap-2">
                 <div
@@ -59,15 +60,6 @@ function App() {
               </div>
               {loginToggle && (
                 <>
-                  {/* <div>
-                  <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">Select Role</label>
-                  <div className="mt-2">
-                    <select id="role" name="role" className="block w-full rounded-md border-0 py-2 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:text-sm sm:leading-6">
-                      <option value="contentcreator">Content Creator </option>
-                      <option value="brand">Brand</option>
-                    </select>
-                  </div>
-                </div> */}
                   <div>
                     <label
                       htmlFor="email"
@@ -135,8 +127,12 @@ function App() {
             </p>
           </div>
         }
+
         {
-          formSubmitted && <ContentCreatorFlow  setFormSubmitted={setFormSubmitted}/>
+          formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} />
+        }
+        {
+          formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} />
         }
       </div>
       <div
