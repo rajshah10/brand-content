@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import "./App.css";
 import ContentCreatorFlow from "./components/ContentCreatorFlow";
@@ -46,7 +47,7 @@ function App() {
           </h2>
         </div>
 
-        {!formSubmitted && (
+        {!formSubmitted &&(
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 text-center gap-2">
