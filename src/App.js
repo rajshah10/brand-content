@@ -136,7 +136,7 @@ function App() {
           </div>
         }
         {
-          formSubmitted && <ContentCreatorFlow />
+          formSubmitted && <ContentCreatorFlow  setFormSubmitted={setFormSubmitted}/>
         }
       </div>
       <div
