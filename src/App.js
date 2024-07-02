@@ -3,12 +3,18 @@ import "./App.css";
 
 function App() {
   const [loginToggle, setLoginToggle] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('contentCreator');
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
   const handleRegister = () => {
     setLoginToggle(!loginToggle);
+  };
+
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
   };
   return (
     <div className="App flex min-h-screen">
@@ -27,10 +33,18 @@ function App() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-2 text-center gap-2">
-              <div className="border border-slate-400 py-4 rounded-md cursor-pointer">
+              <div
+                className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'contentCreator' ? 'border-slate-400' : 'border-slate-200'
+                  }`}
+                onClick={() => handleOptionClick('contentCreator')}
+              >
                 <span>Content Creator</span>
               </div>
-              <div className="border border-slate-200 py-4 rounded-md cursor-pointer">
+              <div
+                className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'brand' ? 'border-slate-400' : 'border-slate-200'
+                  }`}
+                onClick={() => handleOptionClick('brand')}
+              >
                 <span>Brand</span>
               </div>
             </div>
