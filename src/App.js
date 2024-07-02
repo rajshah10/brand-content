@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import ContentCreatorFlow from "./components/ContentCreatorFlow";
 import Brands from "./components/Brands";
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function App() {
   const [loginToggle, setLoginToggle] = useState(false);
@@ -27,6 +29,13 @@ function App() {
     <div className="App flex min-h-screen">
       <div className="flex flex-col justify-center w-full md:w-2/5 px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          {formSubmitted && (
+            <div className="flex justify-start mb-4">
+              <IconButton onClick={() => setFormSubmitted(false)} color="primary" aria-label="back">
+                <ArrowBackIcon />
+              </IconButton>
+            </div>
+          )}
           <img
             className="mx-auto h-10 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -37,21 +46,18 @@ function App() {
           </h2>
         </div>
 
-        {
-          !formSubmitted && 
+        {!formSubmitted && (
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 text-center gap-2">
                 <div
-                  className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'contentCreator' ? 'border-slate-400' : 'border-slate-200'
-                    }`}
+                  className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'contentCreator' ? 'border-slate-400' : 'border-slate-200'}`}
                   onClick={() => handleOptionClick('contentCreator')}
                 >
                   <span>Content Creator</span>
                 </div>
                 <div
-                  className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'brand' ? 'border-slate-400' : 'border-slate-200'
-                    }`}
+                  className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'brand' ? 'border-slate-400' : 'border-slate-200'}`}
                   onClick={() => handleOptionClick('brand')}
                 >
                   <span>Brand</span>
@@ -73,7 +79,7 @@ function App() {
                         type="email"
                         autoComplete="email"
                         required
-                        className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -102,7 +108,7 @@ function App() {
                         type="password"
                         autoComplete="current-password"
                         required
-                        className="block px-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                        className="block px-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -125,14 +131,10 @@ function App() {
               </a>
             </p>
           </div>
-        }
+        )}
 
-        {
-          formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} />
-        }
-        {
-          formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} />
-        }
+        {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} />}
+        {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} />}
       </div>
       <div
         className="hidden md:flex w-full md:w-3/5 bg-cover bg-center"

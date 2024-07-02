@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Brands = (props) => {
     const { setFormSubmitted } = props;
@@ -25,7 +27,12 @@ const Brands = (props) => {
     return (
         <div className="flex flex-col justify-center w-full px-6 py-7 lg:px-8">
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                {/* <div className="flex justify-start">
+                    <IconButton onClick={() => setFormSubmitted(false)} color="primary" aria-label="back">
+                        <ArrowBackIcon />
+                    </IconButton>
+                </div> */}
+                <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
                     <div>
                         <label
                             htmlFor="brandName"
@@ -95,11 +102,6 @@ const Brands = (props) => {
                         </button>
                     </div>
                 </form>
-                <p className="mt-4 text-sm text-gray-500">
-                    <a onClick={() => setFormSubmitted(false)} className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500">
-                        {"Back"}
-                    </a>
-                </p>
             </div>
         </div>
     );

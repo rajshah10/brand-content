@@ -123,11 +123,11 @@ const ContentCreatorFlow = (props) => {
                         </button>
                     </div>
                 </form>
-                <p className="mt-4 text-sm text-gray-500">
+                {/* <p className="mt-4 text-sm text-gray-500">
                     <a onClick={() => setFormSubmitted(false)} className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500">
                         {"Back"}
                     </a>
-                </p>
+                </p> */}
             </div>
         </div>
     );
