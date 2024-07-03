@@ -51,6 +51,21 @@ const Influencers = () => {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSed7XOOAyH0ZNkdaMt13e8mgyo_GiVRMnug&s",
                 "https://pictures-ethiopia.jijistatic.com/2274267_NjIwLTYyMC04N2QzOTNkYTMw.webp"
             ]
+        },
+        {
+            title: "Summer Sale 2023, New Product launch - Summer 2023, back to School Sale 2023",
+            description: "Nike is thrilled to announce the launch of our new product line for Summer 2023! This season, we’re introducing innovative designs and cutting-edge technology to enhance your performance and style. Our new collection features advanced materials for ultimate comfort and durability, along with fresh, vibrant colors that capture the spirit of summer. From high-performance running shoes to versatile training gear and stylish athleisure wear, our Summer 2023 launch has something for everyone. Be among the first to experience the latest in sportswear innovation and take your game to the next level with Nike",
+            platform: "Instagram",
+            type: "Paid",
+            timeAgo: "1 hr ago",
+            proposals: "02",
+            creators: "02",
+            status:"Active",
+            hired: "02",
+            images: [
+                "https://www.obeetee.in/cdn/shop/files/s_a52912e1-fe20-4995-966e-833fbfe9ba46_900x.jpg?v=1685786990",
+                "https://ik.imagekit.io/2xkwa8s1i/img/npl_modified_images/tasmania_sofa/sofa_WSFATSNN2FVAM/sofa_WSFATSNN2FVAM_1.jpg"
+            ]
         }
     ];
 
@@ -121,15 +136,15 @@ const Influencers = () => {
                                 </span>
                             </div>
                             <div className="flex gap-2  mt-3 md:mt-0 lg:mt-0">
-                                <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16">
+                                <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16 bg-slate-100">
                                     <span>02</span>
                                     <span className="text-sm  text-slate-500">Proposals</span>
                                 </div>
-                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16">
+                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
                                     <span>02</span>
                                     <span className="text-sm  text-slate-500">Creators</span>
                                 </div>
-                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16">
+                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
                                     <span>02</span>
                                     <span className="text-sm  text-slate-500">Hired</span>
                                 </div>
@@ -180,15 +195,15 @@ const Influencers = () => {
 
                             </div>
                             <div className="flex gap-2  mt-3 md:mt-0 lg:mt-0">
-                                <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16">
+                                <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16 bg-slate-100">
                                     <span>02</span>
                                     <span className="text-sm  text-slate-500">Proposals</span>
                                 </div>
-                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16">
+                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
                                     <span>02</span>
                                     <span className="text-sm  text-slate-500">Creators</span>
                                 </div>
-                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16">
+                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
                                     <span>02</span>
                                     <span className="text-sm  text-slate-500">Hired</span>
                                 </div>
@@ -248,21 +263,21 @@ const Influencers = () => {
 
                                 </div>
                                 <div className="flex gap-2 mt-3 md:mt-0 lg:mt-0">
-                                    <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16">
+                                    <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16 bg-slate-100">
                                         <span>{campaign.proposals}</span>
                                         <span className="text-sm text-slate-500">Proposals</span>
                                     </div>
-                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16">
+                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
                                         <span>{campaign.creators}</span>
                                         <span className="text-sm text-slate-500">Creators</span>
                                     </div>
-                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16">
+                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
                                         <span>{campaign.hired}</span>
                                         <span className="text-sm text-slate-500">Hired</span>
                                     </div>
                                 </div>
                             </div>
-                            <div className="m-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
+                            <div className="m-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 bg-white p-2 rounded-md">
                                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
                                     {campaign.images.map((image, idx) => (
                                         <img key={idx} src={image} className="rounded-md h-32 w-full object-cover" />
