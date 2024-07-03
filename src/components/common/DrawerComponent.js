@@ -21,7 +21,7 @@ const DrawerComponent = (props) => {
         deliverables: '3 Instagram posts, 2 stories, 1 blog article, use of #CampaignHashtag'
     };
     return (
-        <Drawer placement="right" open={openDraw} onClose={closeDrawer} className="p-4">
+        <Drawer placement="right" open={openDraw} onClose={closeDrawer} className="drawer p-4">
             <div className='py-2 px-4'>
                 <div className="flex items-center justify-end">
                     <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
