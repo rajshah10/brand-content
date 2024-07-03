@@ -185,9 +185,9 @@ const ContentCreatorFlow = (props) => {
         <div className="flex flex-col justify-center w-full px-6 py-7 lg:px-8">
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="flex justify-center mb-4 gap-3">
-                    <div className={`w-8 h-8 rounded-full text-center py-0.5 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-0.5 text-white  ${step >= 2 ? "bg-indigo-600" : "bg-slate-400"}`}>2</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-0.5 text-white ${step >= 3 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-indigo-600" : "bg-slate-400"}`}>2</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
                 </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {renderStep()}
