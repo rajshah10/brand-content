@@ -7,3 +7,17 @@
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
+
+.barnd_edit_icon svg{
+  font-size: 0.8rem !important;
+}
+
+.brand_avatar{
+  width: 7rem !important;
+  height: 7rem !important;
+}
+
+.brand_badge{
+  background: white;
+  border-radius: 50%;
+}

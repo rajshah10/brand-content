@@ -44,8 +44,8 @@ const BrandHome = () => {
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
-            top: 0,
-            right: 0,
+        //    background:"white",
+        //    borderRadius:"50%"
         },
     }));
     return (
@@ -85,7 +85,7 @@ const BrandHome = () => {
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Influencers</h6>
                     </div>
-                    <div className="p-4 space-y-4">
+                    <div className="">
                         {influencers.map(influencer => (
                             <div
                                 key={influencer.id}
@@ -100,12 +100,12 @@ const BrandHome = () => {
                                                 horizontal: 'right',
                                             }}
                                             badgeContent={influencer.verified ? (
-                                                <CheckCircleIcon className="text-green-400" />
+                                                <CheckCircleIcon className="text-green-400 brand_badge" />
                                             ) : (
                                                 <HelpOutlineIcon className="text-orange-400" />
                                             )}
                                         >
-                                            <Avatar className="w-30 h-30 rounded-full" src={influencer.image} alt={influencer.name} />
+                                            <Avatar className="brand_avatar rounded-full" src={influencer.image} alt={influencer.name} />
                                         </StyledBadge>
                                     </div>
                                     <div className="flex-1 ml-4 mt-4 md:mt-0 md:ml-4">
@@ -116,7 +116,7 @@ const BrandHome = () => {
                                             )}
                                         </h3>
                                         <p className="text-gray-400">{influencer.description}</p>
-                                        <div className="flex gap-1">
+                                        <div className="flex gap-1 mt-2">
                                             {influencer.interests.map((interest, index) => (
                                                 <div key={index} className="bg-gray-100 px-2 py-1 rounded-md text-xs text-gray-600">
                                                     {interest}
@@ -125,16 +125,16 @@ const BrandHome = () => {
                                         </div>
                                     </div>
                                     <div className="flex gap-4 flex-col md:flex-row md:gap-4 mt-4 md:mt-0">
-                                        <Button variant="outlined" color="success" startIcon={<Done />}>
+                                        {/* <Button variant="outlined" color="success" startIcon={<Done />}>
                                             In selection
                                         </Button>
-                                        <div className="grid bg-gray-100 rounded p-1">
-                                            <div className="flex items-center justify-between">
+                                        <div className="grid bg-gray-100 rounded px-1">
+                                            <div className="flex items-center justify-between gap-4">
                                                 <div className="text-gray-500 text-xs">Price from a blogger</div>
-                                                <div className="text-gray-500 text-xs"><Edit /></div>
+                                                <div className="text-gray-500 barnd_edit_icon"><Edit className="text-gray-500 text-sm/[5px]"/></div>
                                             </div>
                                             <div className="text-gray-500 text-xs">$2050</div>
-                                        </div>
+                                        </div> */}
                                         <Button variant="contained" color="error" startIcon={<ShowChartIcon />}>
                                             Statistics
                                         </Button>
