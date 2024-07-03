@@ -3,6 +3,7 @@ import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import React from 'react'
 import { useNavigate } from 'react-router';
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
@@ -47,8 +48,14 @@ const MenuComponent = (props) => {
                 <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     <AccountCircleOutlined style={{ color: "slategray" }} />My Profile
                 </MenuItem>
-                <MenuItem onClick={()=>navigate("/influencers/1/profile")}  style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <MenuItem onClick={() => navigate("/influencers/1/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon style={{ color: "slategray" }}>
+                        <LockOpenOutlinedIcon/>
+                    </ListItemIcon>
+                    Orders
                 </MenuItem>
                 <Divider />
                 {/* <MenuItem onClick={handleClose}>
@@ -63,6 +70,7 @@ const MenuComponent = (props) => {
                     </ListItemIcon>
                     Logout
                 </MenuItem>
+
             </Menu>
         </div>
     )

@@ -28,9 +28,10 @@ const Influencers = () => {
             platform: "Instagram",
             type: "Paid",
             timeAgo: "1 hr ago",
-            proposals: 2,
-            creators: 2,
-            hired: 2,
+            proposals: "02",
+            creators: "02",
+            hired: "02",
+            status:"Active",
             images: [
                 "https://hips.hearstapps.com/hmg-prod/images/index-bomber-65a839208f31a.jpg?resize=2048:*",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf3Ehqyb83E1sTv48tNl86cfKMRyy0YsTRRA&s"
@@ -42,9 +43,10 @@ const Influencers = () => {
             platform: "Instagram",
             type: "Paid",
             timeAgo: "1 hr ago",
-            proposals: 2,
-            creators: 2,
-            hired: 2,
+            proposals: "02",
+            creators: "02",
+            status:"Active",
+            hired: "02",
             images: [
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSed7XOOAyH0ZNkdaMt13e8mgyo_GiVRMnug&s",
                 "https://pictures-ethiopia.jijistatic.com/2274267_NjIwLTYyMC04N2QzOTNkYTMw.webp"
@@ -175,6 +177,7 @@ const Influencers = () => {
                                     </span>{" "}
                                     . <span className="text-slate-500">1 hr ago</span>
                                 </span>
+
                             </div>
                             <div className="flex gap-2  mt-3 md:mt-0 lg:mt-0">
                                 <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16">
@@ -237,8 +240,12 @@ const Influencers = () => {
                                             <PaidOutlinedIcon style={{ fontSize: "13px", color: "slate" }} />
                                             {campaign.type}
                                         </span>{" "}
-                                        . <span className="text-slate-500">{campaign.timeAgo}</span>
+                                        . <span className="text-slate-500">{campaign.timeAgo}</span> &nbsp;
+                                        <div className="rounded-full border border-green-700 px-2">
+                                            <span className={`text-xs ${campaign.status === "Active" ? "text-green-600":""}`}>{campaign.status}</span>
+                                        </div>
                                     </span>
+
                                 </div>
                                 <div className="flex gap-2 mt-3 md:mt-0 lg:mt-0">
                                     <div className="flex flex-col items-center border border-slate-300 p-2 w-full rounded-md h-16">
