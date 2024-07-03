@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function App() {
   const [loginToggle, setLoginToggle] = useState(false);
+  const [step, setStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -27,12 +28,12 @@ function App() {
   };
 
   return (
-    <div className="App flex min-h-screen">
+    <div className="flex min-h-screen">
       <div className="flex flex-col justify-center w-full md:w-2/5 px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          {formSubmitted && (
-            <div className="flex justify-start mb-4">
-              <IconButton onClick={() => setFormSubmitted(false)} color="primary" aria-label="back">
+        <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
+          {formSubmitted && step === 1 && (
+            <div className="mb-4 ml-4">
+              <IconButton onClick={() => setFormSubmitted(false)} style={{color:"#4F46E5"}} aria-label="back">
                 <ArrowBackIcon />
               </IconButton>
             </div>
@@ -134,7 +135,7 @@ function App() {
           </div>
         )}
 
-        {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} />}
+        {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} step={step} setStep={setStep}/>}
         {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} />}
       </div>
       <div
