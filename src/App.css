@@ -21,3 +21,6 @@
   background: white;
   border-radius: 50%;
 }
+.MuiPaper-root{
+  width: 700px !important;
+}

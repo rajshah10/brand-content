@@ -5,10 +5,26 @@ import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import { Container } from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import MenuComponent from "./common/MenuComponent";
+import DrawerComponent from "./common/DrawerComponent";
 
 const Influencers = () => {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl);
+    const [openDraw, setOpenDrawer] = useState(false);
+    const [selectedData, setSelectedData] = useState({})
+    const [buttonColor, setButtonColor] = useState('bg-indigo-600');
+    const [clickedButtons, setClickedButtons] = useState({});
+
+    const handleButtonClick = (index) => {
+        setClickedButtons((prev) => ({
+            ...prev,
+            [index]: !prev[index]
+        }));
+    };
+
+    const openDrawer = () => setOpenDrawer(true);
+    const closeDrawer = () => setOpenDrawer(false);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -16,7 +32,7 @@ const Influencers = () => {
         setAnchorEl(null);
     };
     const truncateString = (str, num) => {
-        if (str.length <= num) {
+        if (str?.length <= num) {
             return str;
         }
         return str.slice(0, num) + '...';
@@ -31,7 +47,7 @@ const Influencers = () => {
             proposals: "02",
             creators: "02",
             hired: "02",
-            status:"Active",
+            status: "Active",
             images: [
                 "https://hips.hearstapps.com/hmg-prod/images/index-bomber-65a839208f31a.jpg?resize=2048:*",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf3Ehqyb83E1sTv48tNl86cfKMRyy0YsTRRA&s"
@@ -45,7 +61,7 @@ const Influencers = () => {
             timeAgo: "1 hr ago",
             proposals: "02",
             creators: "02",
-            status:"Active",
+            status: "Active",
             hired: "02",
             images: [
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSed7XOOAyH0ZNkdaMt13e8mgyo_GiVRMnug&s",
@@ -60,7 +76,7 @@ const Influencers = () => {
             timeAgo: "1 hr ago",
             proposals: "02",
             creators: "02",
-            status:"Active",
+            status: "Active",
             hired: "02",
             images: [
                 "https://www.obeetee.in/cdn/shop/files/s_a52912e1-fe20-4995-966e-833fbfe9ba46_900x.jpg?v=1685786990",
@@ -68,10 +84,14 @@ const Influencers = () => {
             ]
         }
     ];
-
+    const handleDrawer = (data) => {
+        openDrawer()
+        setSelectedData(data)
+    }
     return (
         <>
             <div>
+                <DrawerComponent openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} />
                 <MenuComponent open={open} anchorEl={anchorEl} handleClose={handleClose} />
                 <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 py-3 flex justify-between">
                     <div>
@@ -244,7 +264,7 @@ const Influencers = () => {
                         </div>
                     </div>
                     {campaigns.map((campaign, index) => (
-                        <div key={index} className="border border-slate-200 my-5 rounded-md bg-slate-100">
+                        <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100">
                             <div className="m-2 p-2 font-medium bg-white rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
                                 <div className="flex flex-col">
                                     <span>{campaign.title}</span>
@@ -257,7 +277,7 @@ const Influencers = () => {
                                         </span>{" "}
                                         . <span className="text-slate-500">{campaign.timeAgo}</span> &nbsp;
                                         <div className="rounded-full border border-green-700 px-2">
-                                            <span className={`text-xs ${campaign.status === "Active" ? "text-green-600":""}`}>{campaign.status}</span>
+                                            <span className={`text-xs ${campaign.status === "Active" ? "text-green-600" : ""}`}>{campaign.status}</span>
                                         </div>
                                     </span>
 
@@ -287,10 +307,19 @@ const Influencers = () => {
                                     <h6 className="text-sm">
                                         {truncateString(campaign.description, 180)}
                                     </h6>
-                                    <div className="flex justify-end">
-                                        <button className="rounded-md bg-indigo-600 px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                            Apply
+                                    <div className="flex justify-end gap-4">
+                                        <div onClick={() => handleDrawer(campaign)} className="flex justify-end">
+                                            <button className="rounded-md  px-6 py-1.5 text-sm font-semibold leading-6 text-slate-600 focus-visible:outline">
+                                                View details
+                                            </button>
+                                        </div>
+                                        <button
+                                            className={`${!clickedButtons[index] ? 'bg-blue-500 text-white' : 'bg-teal-100 text-slate-700'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                                            onClick={() => handleButtonClick(index)}
+                                        >
+                                            {!clickedButtons[index] ? 'Apply Now' : 'Applied'}
                                         </button>
+                                        
                                     </div>
                                 </div>
                             </div>
