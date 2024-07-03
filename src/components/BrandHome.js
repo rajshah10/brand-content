@@ -111,13 +111,13 @@ const BrandHome = () => {
                                         </div>
                                         <div>
                                             <div>
-                                                <h3 className="text-md text-center font-medium text-black-600 flex items-center justify-center md:justify-center lg:justify-start">
+                                                <span className="text-md text-center font-medium text-black-600 flex items-center justify-center md:justify-center lg:justify-start">
                                                     {influencer.name}
                                                     {influencer.verified && (
                                                         <span className="text-xs text-blue-500"><VerifiedIcon /></span>
                                                     )}
-                                                </h3>
-                                                <p className="text-gray-400">{influencer.description}</p>
+                                                </span>
+                                                <p className="text-gray-400 text-center">{influencer.description}</p>
                                                 <div className="flex gap-1 mt-2 justify-center md:justify-center lg:justify-start">
                                                     {influencer.interests.map((interest, index) => (
                                                         <div key={index} className="bg-gray-100 px-2 py-1 rounded-md text-xs text-gray-600">
