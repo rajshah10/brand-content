@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 const ContentCreatorFlow = (props) => {
     const { setStep, step } = props;
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: "",
         niche: "",
@@ -33,11 +35,13 @@ const ContentCreatorFlow = (props) => {
         // Handle form submission logic here
         if (step < 3) {
             setStep(step + 1);
-        } else {
-            // Final form submission logic
+        } else if(step>=3){
+            navigate('/influencers'); 
         }
     };
 
+
+    
     const renderStep = () => {
         switch (step) {
             case 1:
@@ -209,11 +213,6 @@ const ContentCreatorFlow = (props) => {
                         </button>
                     </div>
                 </form>
-                {/* <p className="mt-4 text-sm text-gray-500">
-                    <a onClick={() => setFormSubmitted(false)} className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500">
-                        {"Back"}
-                    </a>
-                </p> */}
             </div>
         </div>
     );

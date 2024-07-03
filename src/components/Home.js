@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
@@ -25,7 +26,7 @@ const Home = () => {
     };
     return (
         <div className="flex min-h-screen">
-            <div className="flex flex-col justify-center w-full md:w-2/5 px-6 py-12 lg:px-8">
+            <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
                     {formSubmitted && step === 1 && (
                         <div className="mb-4 ml-4">

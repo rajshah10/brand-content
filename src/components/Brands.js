@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import { useNavigate } from "react-router";
 const Brands = (props) => {
-    const { setFormSubmitted } = props;
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         brandName: "",
         brandTitle: "",
@@ -21,7 +19,7 @@ const Brands = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
+        navigate("/brands")
     };
 
     return (
@@ -47,7 +45,7 @@ const Brands = (props) => {
                                 type="text"
                                 value={formData.brandName}
                                 onChange={handleChange}
-                                required
+                                // required
                                 className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                             />
                         </div>
@@ -67,7 +65,7 @@ const Brands = (props) => {
                                 type="text"
                                 value={formData.brandTitle}
                                 onChange={handleChange}
-                                required
+                                // required
                                 className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                             />
                         </div>
@@ -87,7 +85,7 @@ const Brands = (props) => {
                                 type="text"
                                 value={formData.brandCategory}
                                 onChange={handleChange}
-                                required
+                                // required
                                 className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                             />
                         </div>
@@ -96,9 +94,9 @@ const Brands = (props) => {
                     <div>
                         <button
                             type="submit"
-                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
-                            Submit
+                            {"Confirm"}
                         </button>
                     </div>
                 </form>
