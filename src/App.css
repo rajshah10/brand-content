@@ -24,3 +24,6 @@
 .drawer .MuiPaper-root{
   width: 700px !important;
 }
+.brand_drawer_close{
+  position: absolute !important;
+}

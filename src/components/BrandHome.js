@@ -1,40 +1,19 @@
 import React, { useState } from 'react';
-import { Button, Container } from '@mui/material';
-import InfoIcon from '@mui/icons-material/Info';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
+import { Container, Badge, Avatar, Drawer, IconButton } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import MenuComponent from "./common/MenuComponent";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import { Done, Edit } from '@mui/icons-material';
-import Badge from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
-
-const influencers = [
-    {
-        id: 1,
-        name: "Aldous Copaland",
-        image: "https://randomuser.me/api/portraits/men/1.jpg",
-        likes: 1200,
-        interests: ["family", "cinema", "news"],
-        description: "aldous * 28 years",
-        subscribers: 50000,
-        postsPerMonth: 30,
-        averageViews: 10000,
-        averageLikes: 2000,
-        likesFromSubscribers: 60, // percentage
-        reachPrice: "$1000",
-        cpmw: "$10",
-        verified: true,
-    }
-];
+import CloseIcon from '@mui/icons-material/Close';
+import { influencers } from './constants';
 
 const BrandHome = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [selectedInfluencer, setSelectedInfluencer] = useState(null);
 
-    const [anchorEl, setAnchorEl] = useState(null)
-    const open = Boolean(anchorEl);
+    const openMenu = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -42,17 +21,21 @@ const BrandHome = () => {
         setAnchorEl(null);
     };
 
-    const StyledBadge = styled(Badge)(({ theme }) => ({
-        '& .MuiBadge-badge': {
-            //    background:"white",
-            //    borderRadius:"50%"
-        },
-    }));
+    const handleDrawerOpen = (influencer) => {
+        setSelectedInfluencer(influencer);
+        setDrawerOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setDrawerOpen(false);
+        setSelectedInfluencer(null);
+    };
+
     return (
         <>
             <div>
-                <MenuComponent open={open} anchorEl={anchorEl} handleClose={handleClose} />
-                <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 py-3 flex justify-between">
+                <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+                <div className="bg-white shadow-sm w-full px-3 sm:px-4 md:px-8 lg:px-8 py-3 flex justify-between">
                     <div>
                         <img
                             className="h-10 w-auto"
@@ -61,7 +44,6 @@ const BrandHome = () => {
                         />
                     </div>
                     <div className="relative">
-
                         <input
                             type="text"
                             placeholder="Search..."
@@ -71,11 +53,10 @@ const BrandHome = () => {
                         <div className="absolute top-1 right-2">
                             <SearchOutlinedIcon style={{ fontSize: "18px", color: "slategray" }} />
                         </div>
-
                     </div>
                     <div>
-                        <div onClick={handleClick} class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-slate-300 cursor-pointer">
-                            <span class="font-medium text-slate-500 ">JL</span>
+                        <div onClick={handleClick} className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-slate-300 cursor-pointer">
+                            <span className="font-medium text-slate-500 ">JL</span>
                         </div>
                     </div>
                 </div>
@@ -89,12 +70,13 @@ const BrandHome = () => {
                         {influencers.map(influencer => (
                             <div
                                 key={influencer.id}
-                                className="bg-white rounded-lg p-4 flex flex-col space-y-4 border border-slate-200"
+                                className="bg-white rounded-lg mt-2 p-4 flex flex-col space-y-4 border border-slate-200 cursor-pointer"
+                                onClick={() => handleDrawerOpen(influencer)}
                             >
-                               <div className="flex justify-center lg:flex md:justify-start lg:justify-start items-center">
+                                <div className="flex justify-center lg:flex md:justify-start lg:justify-start items-center">
                                     <div className="relative flex flex-col sm:flex-row md:flex-row lg:flex-row items-center gap-4">
                                         <div>
-                                            <StyledBadge
+                                            <Badge
                                                 overlap="circular"
                                                 anchorOrigin={{
                                                     vertical: 'top',
@@ -103,11 +85,11 @@ const BrandHome = () => {
                                                 badgeContent={influencer.verified ? (
                                                     <CheckCircleIcon className="text-green-400 brand_badge" />
                                                 ) : (
-                                                    <HelpOutlineIcon className="text-orange-400" />
+                                                    <HelpOutlineIcon className="text-orange-400 brand_badge" />
                                                 )}
                                             >
                                                 <Avatar className="brand_avatar w-40 h-40 rounded-full" src={influencer.image} alt={influencer.name} />
-                                            </StyledBadge>
+                                            </Badge>
                                         </div>
                                         <div>
                                             <div>
@@ -128,12 +110,8 @@ const BrandHome = () => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    
                                 </div>
-
-
-                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 justify-center  gap-4 text-sm text-gray-600 mt-4">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 justify-center gap-4 text-sm text-gray-600 mt-4">
                                     <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-2 px-1 rounded-md">
                                         <span className="text-lg text-black-600">{influencer.subscribers}</span>
                                         <span className="text-xs text-gray-500">Subscribers</span>
@@ -163,12 +141,91 @@ const BrandHome = () => {
                                         <span className="text-xs text-gray-500">CPMW</span>
                                     </div>
                                 </div>
-
                             </div>
                         ))}
                     </div>
                 </div>
             </Container>
+
+            <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
+                <div className="p-4  w-[20rem]">
+                    <IconButton onClick={handleDrawerClose} className="float-right brand_drawer_close">
+                        <CloseIcon />
+                    </IconButton>
+                    {selectedInfluencer && (
+                        <div className="flex flex-col items-center">
+                            <Badge
+                                overlap="circular"
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                badgeContent={selectedInfluencer.verified ? (
+                                    <CheckCircleIcon className="text-green-400 brand_badge" />
+                                ) : (
+                                    <HelpOutlineIcon className="text-orange-400 brand_badge" />
+                                )}
+                            >
+                                <Avatar className="brand_avatar w-40 h-40 rounded-full" src={selectedInfluencer.image} alt={selectedInfluencer.name} />
+                            </Badge>
+                            <h3 className="text-lg font-medium text-black-600 flex items-center mt-4">
+                                {selectedInfluencer.name}
+                                {selectedInfluencer.verified && (
+                                    <span className="ml-1 text-xs text-blue-500"><VerifiedIcon /></span>
+                                )}
+                            </h3>
+                            <p className="text-gray-400 text-center">{selectedInfluencer.description}</p>
+                            <div className="flex gap-1 mt-2 justify-center">
+                                {selectedInfluencer.interests.map((interest, index) => (
+                                    <div key={index} className="bg-gray-100 px-2 py-1 rounded-md text-xs text-gray-600">
+                                        {interest}
+                                    </div>
+                                ))}
+                            </div>
+                            <div>
+                                <p style={{ textIndent: '30px', textAlign: "justify" }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+
+                            <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
+                                <h6 className="font-bold text-lg">Influencers Statestics</h6>
+                            </div>
+                            <table className="min-w-full mt-4 border border-gray-200">
+                                <tbody>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Subscribers:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.subscribers}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Posts per Month:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.postsPerMonth}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Avg. Views:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.averageViews}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Avg. Likes:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.averageLikes}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Likes from Subscribers:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.likesFromSubscribers}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Reach Price:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.reachPrice}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">CPMW:</td>
+                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.cpmw}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
+            </Drawer>
+
         </>
     );
 }
