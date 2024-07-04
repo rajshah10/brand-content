@@ -51,6 +51,9 @@ const MenuComponent = (props) => {
                 <MenuItem onClick={() => navigate("/influencers/1/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
                 </MenuItem>
+                <MenuItem onClick={() => navigate("/campaigncreation")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <EditOutlinedIcon style={{ color: "slategray" }} />Create Campaign
+                </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon style={{ color: "slategray" }}>
                         <LockOpenOutlinedIcon/>

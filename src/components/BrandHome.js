@@ -147,11 +147,29 @@ const BrandHome = () => {
                 </div>
             </Container>
 
-            <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
-                <div className="p-4  w-[20rem]">
-                    <IconButton onClick={handleDrawerClose} className="float-right brand_drawer_close">
+            <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose} className="drawer p-4">
+                <div className="py-2 px-4">
+                    <div className="flex items-center justify-end">
+                        <IconButton variant="text" color="blue-gray" onClick={handleDrawerClose}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2}
+                                stroke="currentColor"
+                                className="h-5 w-5"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </IconButton>
+                    </div>
+                    {/* <IconButton onClick={handleDrawerClose} className="float-right brand_drawer_close">
                         <CloseIcon />
-                    </IconButton>
+                    </IconButton> */}
                     {selectedInfluencer && (
                         <div className="flex flex-col items-center">
                             <Badge
@@ -189,38 +207,45 @@ const BrandHome = () => {
                             <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                                 <h6 className="font-bold text-lg">Influencers Statestics</h6>
                             </div>
-                            <table className="min-w-full mt-4 border border-gray-200">
+                            <table className="min-w-full bg-white border border-slate-300">
+                                <thead className="bg-slate-200">
+                                    <tr>
+                                        <th className="py-2 px-4 border border-slate-200 text-left text-slate-600 font-medium">Detail</th>
+                                        <th className="py-2 px-4 border border-slate-200 text-left text-slate-600 font-medium">Information</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Subscribers:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.subscribers}</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Subscribers:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.subscribers}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Posts per Month:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.postsPerMonth}</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Posts per Month:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.postsPerMonth}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Avg. Views:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.averageViews}</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Avg. Views:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.averageViews}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Avg. Likes:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.averageLikes}</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Avg. Likes:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.averageLikes}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Likes from Subscribers:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.likesFromSubscribers}%</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Likes from Subscribers:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.likesFromSubscribers}%</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">Reach Price:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.reachPrice}</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Reach Price:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.reachPrice}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-2 border border-gray-200 text-gray-600 text-center">CPMW:</td>
-                                        <td className="p-2 border border-gray-200 text-black-600">{selectedInfluencer.cpmw}</td>
+                                    <tr className="hover:bg-gray-50">
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">CPMW:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.cpmw}</td>
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     )}
                 </div>
