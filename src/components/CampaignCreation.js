@@ -75,13 +75,13 @@ const CampaignCreation = () => {
                     <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
 
                     <form onSubmit={handleSubmit} className="space-y-12 mt-10">
-                        <div className="border-b border-gray-900/10 pb-12">
-                            <div className="grid grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div className="">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div class="sm:col-span-3">
                                     <label for="companyName" class="block text-sm font-medium leading-6 text-gray-900">Company Name</label>
                                     <div class="mt-2">
                                         <input type="text" name="companyName" id="first-name" autocomplete="given-name" value={campaign.companyName}
-                                            onChange={handleChange} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
+                                            onChange={handleChange} class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
 
@@ -89,7 +89,7 @@ const CampaignCreation = () => {
                                     <label for="campaignTitle" class="block text-sm font-medium leading-6 text-gray-900">Campaign Title</label>
                                     <div class="mt-2">
                                         <input type="text" name="campaignTitle" id="last-name" autocomplete="family-name" value={campaign.campaignTitle}
-                                            onChange={handleChange} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
+                                            onChange={handleChange} class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
                                 {/* <div className="sm:col-span-3">
@@ -127,7 +127,7 @@ const CampaignCreation = () => {
                                             value={campaign.campaignDescription}
                                             onChange={handleChange}
                                             rows="4"
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         ></textarea>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@ const CampaignCreation = () => {
                                             id="requirements"
                                             value={campaign.requirements}
                                             onChange={handleChange}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         />
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@ const CampaignCreation = () => {
                                             id="deliverables"
                                             value={campaign.deliverables}
                                             onChange={handleChange}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         />
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@ const CampaignCreation = () => {
                                             id="deadlines"
                                             value={campaign.deadlines}
                                             onChange={handleChange}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         />
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@ const CampaignCreation = () => {
                                             id="compensation"
                                             value={campaign.compensation}
                                             onChange={handleChange}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         />
                                     </div>
                                 </div>
@@ -192,14 +192,14 @@ const CampaignCreation = () => {
                                             id="createdDateTime"
                                             value={campaign.createdDateTime}
                                             disabled
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 bg-gray-100 sm:text-sm sm:leading-6 outline-none"
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 bg-gray-100 sm:text-sm sm:leading-6 outline-none"
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <button
-                            className={` bg-blue-500 text-white rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                            className={` bg-indigo-600 rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                         >
                             Create Campaign
                         </button>

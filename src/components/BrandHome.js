@@ -205,7 +205,7 @@ const BrandHome = () => {
 
 
                             <div className="mt-4">
-                                <p className='text-sm text-left'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p className='text-sm text-left'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
                             </div>
 
                             <div className="flex flex-wrap gap-3 md:gap:0 lg:gap-0">
@@ -244,7 +244,7 @@ const BrandHome = () => {
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.reachPrice}</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">CPMW:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">CPMW</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.cpmw}</td>
                                     </tr>
                                 </tbody>

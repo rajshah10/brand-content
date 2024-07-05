@@ -7,6 +7,8 @@ import EditProfile from "./components/Influencers/EditProfile";
 import CampaignCreation from "./components/CampaignCreation";
 import Contact from "./components/Brand/Contact";
 import ManageCampaign from "./components/Brand/ManageCampaign";
+import ManageSubs from "./components/Brand/ManageSubs";
+import Orders from "./components/Brand/Orders";
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="/influencers/:id/profile" element={<EditProfile/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/manage-campaign" element={<ManageCampaign/>}/>
+        <Route path="/manage-subs" element={<ManageSubs/>}/>
+        <Route path="/orders-brand" element={<Orders/>}/>
       </Routes>
     </>
   );

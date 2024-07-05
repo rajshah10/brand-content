@@ -7,6 +7,7 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import PhoneEnabledOutlinedIcon from '@mui/icons-material/PhoneEnabledOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import UnsubscribeOutlinedIcon from '@mui/icons-material/UnsubscribeOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
@@ -64,6 +65,23 @@ const MenuComponent = (props) => {
                         <AddBoxOutlinedIcon style={{ color: "slategray" }} />Create Campaign
                     </MenuItem>
                 }
+
+                {
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/manage-campaign")}>
+                        <ListItemIcon style={{ color: "slategray" }}>
+                            <ManageAccountsOutlinedIcon />
+                        </ListItemIcon>
+                        Manage Campaign
+                    </MenuItem>
+                }
+                {
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/manage-subs")}>
+                        <ListItemIcon style={{ color: "slategray" }}>
+                            <UnsubscribeOutlinedIcon />
+                        </ListItemIcon>
+                        Manage Subscription
+                    </MenuItem>
+                }
                 {
                     getPartner === "contentCreator" && <MenuItem onClick={handleClose}>
                         <ListItemIcon style={{ color: "slategray" }}>
@@ -72,21 +90,22 @@ const MenuComponent = (props) => {
                         Orders
                     </MenuItem>
                 }
+
+                {
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/orders-brand")}>
+                        <ListItemIcon style={{ color: "slategray" }}>
+                            <LockOpenOutlinedIcon />
+                        </ListItemIcon>
+                        Orders
+                    </MenuItem>
+                }
+
                 {
                     getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/contact")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <PhoneEnabledOutlinedIcon />
                         </ListItemIcon>
                         Contact Us
-                    </MenuItem>
-                }
-
-                {
-                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/manage-campaign")}>
-                        <ListItemIcon style={{ color: "slategray" }}>
-                            <ManageAccountsOutlinedIcon />
-                        </ListItemIcon>
-                        Manage Campaign
                     </MenuItem>
                 }
 
