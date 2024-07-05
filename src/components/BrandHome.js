@@ -88,18 +88,18 @@ const BrandHome = () => {
                                                     <HelpOutlineIcon className="text-orange-400 brand_badge" />
                                                 )}
                                             >
-                                                <Avatar className="brand_avatar w-40 h-40 rounded-full" src={influencer.image} alt={influencer.name} />
+                                                <Avatar className="brand_avatar w-32 h-32 rounded-full" src={influencer.image} alt={influencer.name} />
                                             </Badge>
                                         </div>
                                         <div>
                                             <div>
-                                                <span className="text-md text-center font-medium text-black-600 flex items-center justify-center md:justify-center lg:justify-start">
+                                                <span className="text-md text-center gap-2 font-medium text-black-600 flex items-center justify-center md:justify-center lg:justify-start">
                                                     {influencer.name}
                                                     {influencer.verified && (
-                                                        <span className="text-xs text-blue-500"><VerifiedIcon /></span>
+                                                        <span className="text-xs text-indigo-500"><VerifiedIcon /></span>
                                                     )}
                                                 </span>
-                                                <p className="text-gray-400 text-center">{influencer.description}</p>
+                                                <p className="text-gray-400 text-center md:text-left lg:text-left">{influencer.description}</p>
                                                 <div className="flex gap-1 mt-2 justify-center md:justify-center lg:justify-start">
                                                     {influencer.interests.map((interest, index) => (
                                                         <div key={index} className="bg-gray-100 px-2 py-1 rounded-md text-xs text-gray-600">
@@ -112,32 +112,32 @@ const BrandHome = () => {
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 justify-center gap-4 text-sm text-gray-600 mt-4">
-                                    <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-2 px-1 rounded-md">
-                                        <span className="text-lg text-black-600">{influencer.subscribers}</span>
+                                    <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-1 px-1 rounded-md">
+                                        <span className="text-md text-black-600">{influencer.subscribers}</span>
                                         <span className="text-xs text-gray-500">Subscribers</span>
                                     </div>
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-2 px-1 rounded-md bg-slate-100">
-                                        <span className="text-lg text-black-600">{influencer.postsPerMonth}</span>
+                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                        <span className="text-md text-black-600">{influencer.postsPerMonth}</span>
                                         <span className="text-xs text-gray-500">Posts per Month</span>
                                     </div>
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-2 px-1 rounded-md bg-slate-100">
-                                        <span className="text-lg text-black-600">{influencer.averageViews}</span>
+                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                        <span className="text-md text-black-600">{influencer.averageViews}</span>
                                         <span className="text-xs text-gray-500">Avg. Views</span>
                                     </div>
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-2 px-1 rounded-md bg-slate-100">
-                                        <span className="text-lg text-black-600">{influencer.averageLikes}</span>
+                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                        <span className="text-md text-black-600">{influencer.averageLikes}</span>
                                         <span className="text-xs text-gray-500">Avg. Likes</span>
                                     </div>
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-2 px-1 rounded-md bg-slate-100">
-                                        <span className="text-lg text-black-600">{influencer.likesFromSubscribers}%</span>
-                                        <span className="text-xs text-gray-500">Likes from Subscribers</span>
+                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                        <span className="text-md text-black-600">{influencer.likesFromSubscribers}%</span>
+                                        <span className="text-xs text-gray-500">Likes from Subs</span>
                                     </div>
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-2 px-1 rounded-md bg-slate-100">
-                                        <span className="text-lg text-black-600">{influencer.reachPrice}</span>
+                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                        <span className="text-md text-black-600">{influencer.reachPrice}</span>
                                         <span className="text-xs text-gray-500">Reach Price</span>
                                     </div>
                                     <div className="flex flex-col justify-center items-center py-2 px-1 rounded-md bg-slate-100">
-                                        <span className="text-lg text-black-600">{influencer.cpmw}</span>
+                                        <span className="text-md text-black-600">{influencer.cpmw}</span>
                                         <span className="text-xs text-gray-500">CPMW</span>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@ const BrandHome = () => {
 
 
                             <div className="mt-4">
-                                <p style={{ textIndent: '30px', textAlign: "justify" }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p className='text-sm text-left'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                             </div>
 
                             <div className="flex flex-wrap gap-3 md:gap:0 lg:gap-0">
@@ -220,27 +220,27 @@ const BrandHome = () => {
                                 </thead>
                                 <tbody>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Subscribers:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Subscribers</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.subscribers}</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Posts per Month:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Posts per Month</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.postsPerMonth}</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Avg. Views:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Avg. Views</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.averageViews}</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Avg. Likes:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Avg. Likes</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.averageLikes}</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Likes from Subscribers:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Likes from Subscribers</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.likesFromSubscribers}%</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">
-                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Reach Price:</td>
+                                        <td className="py-2 px-4 border border-slate-200 text-slate-800 font-medium text-left">Reach Price</td>
                                         <td className="py-2 px-4 border border-slate-200 text-slate-700">{selectedInfluencer.reachPrice}</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50">

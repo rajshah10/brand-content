@@ -93,7 +93,7 @@ const Influencers = () => {
             <div>
                 <DrawerComponent openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} />
                 <MenuComponent open={open} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick}/>
+                <Header handleClick={handleClick} />
             </div>
             <Container>
                 <div className="my-6 mx-8">
@@ -293,7 +293,7 @@ const Influencers = () => {
                                         >
                                             {!clickedButtons[index] ? 'Apply Now' : 'Applied'}
                                         </button>
-                                        
+
                                     </div>
                                 </div>
                             </div>

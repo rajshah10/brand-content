@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import PhoneEnabledOutlinedIcon from '@mui/icons-material/PhoneEnabledOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
@@ -72,11 +73,20 @@ const MenuComponent = (props) => {
                     </MenuItem>
                 }
                 {
-                    getPartner !== "contentCreator" && <MenuItem onClick={()=>navigate("/contact")}>
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/contact")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <PhoneEnabledOutlinedIcon />
                         </ListItemIcon>
                         Contact Us
+                    </MenuItem>
+                }
+
+                {
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/manage-campaign")}>
+                        <ListItemIcon style={{ color: "slategray" }}>
+                            <ManageAccountsOutlinedIcon />
+                        </ListItemIcon>
+                        Manage Campaign
                     </MenuItem>
                 }
 
