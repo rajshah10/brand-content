@@ -4,6 +4,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import React from 'react'
 import { useNavigate } from 'react-router';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
@@ -52,7 +53,7 @@ const MenuComponent = (props) => {
                     <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
                 </MenuItem>
                 <MenuItem onClick={() => navigate("/campaigncreation")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <EditOutlinedIcon style={{ color: "slategray" }} />Create Campaign
+                    <AddBoxOutlinedIcon style={{ color: "slategray" }} />Create Campaign
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon style={{ color: "slategray" }}>
