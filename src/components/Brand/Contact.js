@@ -75,23 +75,23 @@ const Contact = () => {
                                         <div class="-mx-2 md:items-center md:flex">
                                             <div class="flex-1 px-2">
                                                 <label class="block mb-2 text-sm text-gray-600 ">First Name</label>
-                                                <input type="text" placeholder="John " class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                <input type="text" placeholder="John " class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none outline-none" />
                                             </div>
 
                                             <div class="flex-1 px-2 mt-4 md:mt-0">
                                                 <label class="block mb-2 text-sm text-gray-600 ">Last Name</label>
-                                                <input type="text" placeholder="Doe" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                <input type="text" placeholder="Doe" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none outline-none" />
                                             </div>
                                         </div>
 
                                         <div class="mt-4">
                                             <label class="block mb-2 text-sm text-gray-600 ">Email address</label>
-                                            <input type="email" placeholder="johndoe@example.com" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            <input type="email" placeholder="johndoe@example.com" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none outline-none" />
                                         </div>
 
                                         <div class="w-full mt-4">
                                             <label class="block mb-2 text-sm text-gray-600 ">Message</label>
-                                            <textarea class="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Message"></textarea>
+                                            <textarea class="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:ring-blue-400 focus:outline-none outline-none" placeholder="Message" rows={4}></textarea>
                                         </div>
 
                                         <button class="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg">
