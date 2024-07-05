@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import { Container } from "@mui/material";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import MenuComponent from "./common/MenuComponent";
 import DrawerComponent from "./common/DrawerComponent";
+import Header from "./common/Header";
 
 const Influencers = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -93,33 +93,7 @@ const Influencers = () => {
             <div>
                 <DrawerComponent openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} />
                 <MenuComponent open={open} anchorEl={anchorEl} handleClose={handleClose} />
-                <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 py-3 flex justify-between">
-                    <div>
-                        <img
-                            className="h-10 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
-                        />
-                    </div>
-                    <div className="relative">
-
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            required
-                            className="block xs:w-full sm:w-96 md:w-96 lg:w-96 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
-                        />
-                        <div className="absolute top-1 right-2">
-                            <SearchOutlinedIcon style={{ fontSize: "18px", color: "slategray" }} />
-                        </div>
-
-                    </div>
-                    <div>
-                        <div onClick={handleClick} class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-slate-300 cursor-pointer">
-                            <span class="font-medium text-slate-500 ">JL</span>
-                        </div>
-                    </div>
-                </div>
+                <Header handleClick={handleClick}/>
             </div>
             <Container>
                 <div className="my-6 mx-8">
@@ -314,7 +288,7 @@ const Influencers = () => {
                                             </button>
                                         </div>
                                         <button
-                                            className={`${!clickedButtons[index] ? 'bg-blue-500 text-white' : 'bg-teal-100 text-slate-700'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                                            className={`${!clickedButtons[index] ? 'bg-indigo-600 text-white' : 'bg-teal-100 text-slate-700'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                                             onClick={() => handleButtonClick(index)}
                                         >
                                             {!clickedButtons[index] ? 'Apply Now' : 'Applied'}

@@ -70,26 +70,28 @@ const CampaignCreation = () => {
             </div>
             <Container>
 
-                <div className="my-6 mx-8">
+                <div className="my-6">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Create New Campaign</h2>
-                    <form onSubmit={handleSubmit} className="space-y-12">
+                    <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+
+                    <form onSubmit={handleSubmit} className="space-y-12 mt-10">
                         <div className="border-b border-gray-900/10 pb-12">
                             <div className="grid grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                            <div class="sm:col-span-3">
-                                        <label for="companyName" class="block text-sm font-medium leading-6 text-gray-900">Company Name</label>
-                                        <div class="mt-2">
-                                            <input type="text" name="companyName" id="first-name" autocomplete="given-name" value={campaign.companyName}
+                                <div class="sm:col-span-3">
+                                    <label for="companyName" class="block text-sm font-medium leading-6 text-gray-900">Company Name</label>
+                                    <div class="mt-2">
+                                        <input type="text" name="companyName" id="first-name" autocomplete="given-name" value={campaign.companyName}
                                             onChange={handleChange} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
-                                        </div>
                                     </div>
+                                </div>
 
-                                    <div class="sm:col-span-3">
-                                        <label for="campaignTitle" class="block text-sm font-medium leading-6 text-gray-900">Campaign Title</label>
-                                        <div class="mt-2">
-                                            <input type="text" name="campaignTitle" id="last-name" autocomplete="family-name" value={campaign.campaignTitle}
+                                <div class="sm:col-span-3">
+                                    <label for="campaignTitle" class="block text-sm font-medium leading-6 text-gray-900">Campaign Title</label>
+                                    <div class="mt-2">
+                                        <input type="text" name="campaignTitle" id="last-name" autocomplete="family-name" value={campaign.campaignTitle}
                                             onChange={handleChange} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
-                                        </div>
                                     </div>
+                                </div>
                                 {/* <div className="sm:col-span-3">
                                     <label htmlFor="companyName" className="block text-sm font-medium leading-6 text-gray-900">Company Name</label>
                                     <div className="mt-2 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 sm:max-w-md">

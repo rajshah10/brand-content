@@ -5,6 +5,7 @@ import Influencers from "./components/Influencers";
 import BrandHome from "./components/BrandHome";
 import EditProfile from "./components/Influencers/EditProfile";
 import CampaignCreation from "./components/CampaignCreation";
+import Contact from "./components/Brand/Contact";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/brands" element={<BrandHome/>}/>
         <Route path="/campaigncreation" element={<CampaignCreation/>}/>
         <Route path="/influencers/:id/profile" element={<EditProfile/>}/>
+        <Route path="/contact" element={<Contact/>}/>
       </Routes>
     </>
   );
