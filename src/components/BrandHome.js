@@ -171,41 +171,45 @@ const BrandHome = () => {
                         <CloseIcon />
                     </IconButton> */}
                     {selectedInfluencer && (
-                        <div className="flex flex-col items-center">
-                            <Badge
-                                overlap="circular"
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                badgeContent={selectedInfluencer.verified ? (
-                                    <CheckCircleIcon className="text-green-400 brand_badge" />
-                                ) : (
-                                    <HelpOutlineIcon className="text-orange-400 brand_badge" />
-                                )}
-                            >
-                                <Avatar className="brand_avatar w-40 h-40 rounded-full" src={selectedInfluencer.image} alt={selectedInfluencer.name} />
-                            </Badge>
-                            <h3 className="text-lg font-medium text-black-600 flex items-center mt-4">
-                                {selectedInfluencer.name}
-                                {selectedInfluencer.verified && (
-                                    <span className="ml-1 text-xs text-blue-500"><VerifiedIcon /></span>
-                                )}
-                            </h3>
-                            <p className="text-gray-400 text-center">{selectedInfluencer.description}</p>
-                            <div className="flex gap-1 mt-2 justify-center">
-                                {selectedInfluencer.interests.map((interest, index) => (
-                                    <div key={index} className="bg-gray-100 px-2 py-1 rounded-md text-xs text-gray-600">
-                                        {interest}
-                                    </div>
-                                ))}
+                        <>
+                            <div className="flex flex-col items-center">
+                                <Badge
+                                    overlap="circular"
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    badgeContent={selectedInfluencer.verified ? (
+                                        <CheckCircleIcon className="text-green-400 brand_badge" />
+                                    ) : (
+                                        <HelpOutlineIcon className="text-orange-400 brand_badge" />
+                                    )}
+                                >
+                                    <Avatar className="brand_avatar w-40 h-40 rounded-full" src={selectedInfluencer.image} alt={selectedInfluencer.name} />
+                                </Badge>
+                                <h3 className="text-lg font-medium text-black-600 flex items-center mt-4">
+                                    {selectedInfluencer.name}
+                                    {selectedInfluencer.verified && (
+                                        <span className="ml-1 text-xs text-blue-500"><VerifiedIcon /></span>
+                                    )}
+                                </h3>
+                                <p className="text-gray-400 text-center">{selectedInfluencer.description}</p>
+                                <div className="flex gap-1 mt-2 justify-center">
+                                    {selectedInfluencer.interests.map((interest, index) => (
+                                        <div key={index} className="bg-gray-100 px-2 py-1 rounded-md text-xs text-gray-600">
+                                            {interest}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
+
+
                             <div>
                                 <p style={{ textIndent: '30px', textAlign: "justify" }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                             </div>
 
-                            <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
-                                <h6 className="font-bold text-lg">Influencers Statestics</h6>
+                            <div className="flex flex-wrap gap-3 md:gap:0 lg:gap-0">
+                                <h2 className="text-lg my-4 text-left">Influencers Statestics</h2>
                             </div>
                             <table className="min-w-full bg-white border border-slate-300">
                                 <thead className="bg-slate-200">
@@ -245,8 +249,7 @@ const BrandHome = () => {
                                     </tr>
                                 </tbody>
                             </table>
-
-                        </div>
+                        </>
                     )}
                 </div>
             </Drawer>
