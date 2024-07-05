@@ -23,6 +23,7 @@ const Home = () => {
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
+        localStorage.setItem('selected_partner', option)
     };
     return (
         <div className="flex min-h-screen">

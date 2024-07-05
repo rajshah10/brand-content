@@ -8,6 +8,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
+    const getPartner = localStorage.getItem('selected_partner')
     const navigate = useNavigate()
     return (
         <div>
@@ -46,28 +47,31 @@ const MenuComponent = (props) => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <AccountCircleOutlined style={{ color: "slategray" }} />My Profile
-                </MenuItem>
-                <MenuItem onClick={() => navigate("/influencers/1/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
-                </MenuItem>
-                <MenuItem onClick={() => navigate("/campaigncreation")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <AddBoxOutlinedIcon style={{ color: "slategray" }} />Create Campaign
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon style={{ color: "slategray" }}>
-                        <LockOpenOutlinedIcon/>
-                    </ListItemIcon>
-                    Orders
-                </MenuItem>
+                {
+                    getPartner === "contentCreator" && <>
+                        <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            <AccountCircleOutlined style={{ color: "slategray" }} />My Profile
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate("/influencers/1/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
+                        </MenuItem>
+                    </>
+                }
+                {
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/campaigncreation")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <AddBoxOutlinedIcon style={{ color: "slategray" }} />Create Campaign
+                    </MenuItem>
+                }
+                {
+                    getPartner === "contentCreator" && <MenuItem onClick={handleClose}>
+                        <ListItemIcon style={{ color: "slategray" }}>
+                            <LockOpenOutlinedIcon />
+                        </ListItemIcon>
+                        Orders
+                    </MenuItem>
+                }
+
                 <Divider />
-                {/* <MenuItem onClick={handleClose}>
-                    <ListItemIcon style={{ color: "slategray" }}>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                </MenuItem> */}
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon style={{ color: "slategray" }}>
                         <Logout fontSize="small" />
