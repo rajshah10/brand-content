@@ -27,7 +27,7 @@ const Home = () => {
     };
     return (
         <div className="flex min-h-screen">
-            <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:py-12 lg:px-8">
+            <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
                     {formSubmitted && step === 1 && (
                         <div className="mb-4 ml-4">
@@ -37,17 +37,17 @@ const Home = () => {
                         </div>
                     )}
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        className="mx-auto w-56"
+                        src={require("../assets/images/Logo.png")}
                         alt="Your Company"
                     />
-                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         {formSubmitted ? (selectedOption === "contentCreator" ? "Content Creator Onboarding" : "Brand Onboarding") : "Choose one"}
                     </h2>
                 </div>
 
                 {!formSubmitted && (
-                    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-2 text-center gap-2">
                                 <div

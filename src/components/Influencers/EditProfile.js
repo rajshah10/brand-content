@@ -4,11 +4,11 @@ import React from 'react'
 const EditProfile = () => {
     return (
         <div>
-            <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 py-3 flex justify-between">
+            <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between">
                 <div>
                     <img
-                        className="h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        className="h-24 w-auto"
+                        src={require("../../assets/images/Logo.png")}
                         alt="Your Company"
                     />
                 </div>
