@@ -52,9 +52,9 @@ const MenuComponent = (props) => {
             >
                 {
                     getPartner === "contentCreator" && <>
-                        <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        {/* <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                             <AccountCircleOutlined style={{ color: "slategray" }} />My Profile
-                        </MenuItem>
+                        </MenuItem> */}
                         <MenuItem onClick={() => navigate("/influencers/1/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                             <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
                         </MenuItem>
@@ -83,7 +83,7 @@ const MenuComponent = (props) => {
                     </MenuItem>
                 }
                 {
-                    getPartner === "contentCreator" && <MenuItem onClick={handleClose}>
+                    getPartner === "contentCreator" && <MenuItem onClick={() => navigate("/orders-influencer")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <LockOpenOutlinedIcon />
                         </ListItemIcon>
