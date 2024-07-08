@@ -1,13 +1,23 @@
 import { Container } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../common/Header'
+import MenuComponent from '../common/MenuComponent';
 
 const Contact = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const openMenu = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <>
-            <Header />
+            <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+            <Header handleClick={handleClick} />
             <Container>
-                <div className="my-6 mx-8">
+                <div className="my-12 mx-8">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Contact Us</h6>
                     </div>

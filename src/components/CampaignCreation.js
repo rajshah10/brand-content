@@ -43,7 +43,7 @@ const CampaignCreation = () => {
         <>
             <div>
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header />
+                <Header handleClick={handleClick}/>
             </div>
             <Container>
 
