@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -95,8 +96,74 @@ const Influencers = () => {
                 <MenuComponent open={open} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} />
             </div>
+            <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)` }}>
+                <div className="absolute  flex-col inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <h1 className="text-white text-4xl font-bold text-center">
+                        Content Creator
+                    </h1>
+                    <div className="py-4 px-6 text-slate-300">
+                        <p className="text-lg">
+                            Insert your description of the content creator here. This could include details about their work, achievements, or any other relevant information.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
             <Container>
-                <div className="my-6 mx-8">
+
+
+                <div class="bg-white py-24 sm:py-32">
+                    <div class="mx-auto px-6">
+                        <div class="mx-auto max-w-2xl sm:text-center">
+                            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Join Equellence as Content Creator</h2>
+                            <p class="mt-6 text-lg leading-8 text-gray-600">Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
+                        </div>
+                        <div class="mx-auto mt-16 rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+                            <div class="p-8 sm:p-10 lg:flex-auto">
+                                <p class="mt-6 text-base leading-7 text-gray-600">Here are some ways you can work on your content and grow so that when applications open, you are ready for the club: </p>
+                                <div class="mt-10 flex items-center gap-x-4">
+                                    <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">What’s included</h4>
+                                    <div class="h-px flex-auto bg-gray-100"></div>
+                                </div>
+                                <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-3 sm:gap-6">
+                                    <li class="flex gap-x-3">
+                                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                        </svg>
+                                        Post frequently
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                        </svg>
+                                        Have a common goal or inspire social media.
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                        </svg>
+                                        Good video content
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                        </svg>
+                                        High quality content
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                        </svg>
+                                        Engaging social media presence
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div className="my-6 ">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Trending Campaign</h6>
                         {/* <div className="flex gap-3">

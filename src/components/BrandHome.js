@@ -36,10 +36,24 @@ const BrandHome = () => {
         <>
             <div>
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick}/>
+                <Header handleClick={handleClick} />
+            </div>
+            <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)` }}>
+                <div className="absolute flex flex-col inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <h1 className="text-white text-4xl font-bold text-center">
+                        Brands
+                    </h1>
+                    <div className="py-4 px-6 text-slate-300">
+                        <p className="text-lg">
+                            Insert your description of the content creator here. This could include details about their work, achievements, or any other relevant information.
+                        </p>
+                    </div>
+                </div>
+
             </div>
             <Container>
-                <div className="my-6 mx-8">
+
+                <div className="my-6">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Influencers</h6>
                     </div>

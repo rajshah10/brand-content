@@ -45,10 +45,10 @@ const CampaignCreation = () => {
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick}/>
             </div>
-            <Container>
+            <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
 
-                <div className="my-6">
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">Create New Campaign</h2>
+                <div className="my-12">
+                    <h2 class="font-bold text-lg">Create New Campaign</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
 
                     <form onSubmit={handleSubmit} className="space-y-12 mt-10">
@@ -184,7 +184,7 @@ const CampaignCreation = () => {
                     </form>
                 </div>
 
-            </Container>
+            </div>
         </>
     );
 };

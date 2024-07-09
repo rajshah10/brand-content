@@ -1,24 +1,27 @@
 import { Container } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 const EditProfile = () => {
+    const navigate  = useNavigate()
     return (
         <div>
             <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between">
                 <div>
                     <img
-                        className="h-24 w-auto"
+                        onClick={()=>{navigate("/")}}
+                        className="h-24 w-auto cursor-pointer"
                         src={require("../../assets/images/Logo.png")}
                         alt="Your Company"
                     />
                 </div>
             </div>
-            <Container>
+            <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 <div className='my-6'>
                     <form>
                         <div class="space-y-12">
                             <div class="border-b border-gray-900/10 pb-12">
-                                <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
+                                <h2 class="text-lg font-semibold">Profile</h2>
                                 <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
 
                                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -203,7 +206,7 @@ const EditProfile = () => {
                         </div> */}
                     </form>
                 </div>
-            </Container>
+            </div>
         </div>
     )
 }
