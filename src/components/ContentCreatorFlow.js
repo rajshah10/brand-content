@@ -5,11 +5,12 @@ const ContentCreatorFlow = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        fullName: "",
+        firstName: "",
+        lastName: "",
         niche: "",
         bio: "",
         media: null,
-        socialLinks: "",
+        email: "",
         rateCard: "",
         followerCount: "",
     });
@@ -33,98 +34,159 @@ const ContentCreatorFlow = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission logic here
-        if (step < 3) {
+        if (step < 4) {
             setStep(step + 1);
-        } else if(step>=3){
-            navigate('/influencers'); 
+        } else if (step >= 4) {
+            navigate('/influencers');
         }
     };
 
 
-    
+
     const renderStep = () => {
         switch (step) {
             case 1:
                 return (
                     <>
                         <div>
+                            <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
+                                Equestrian Content Niche
+
+                            </label>
+                            <div className="mt-4">
+
+                                <div className="mt-2 space-y-2">
+                                    <div className="flex items-center">
+                                        <input
+                                            id="paidCampaigns"
+                                            name="campaignTypes"
+                                            type="checkbox"
+                                            value="Paid Campaigns"
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        <label htmlFor="paidCampaigns" className="ml-2 block text-sm text-gray-900">
+                                            Lifestyle
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <input
+                                            id="giftedCampaigns"
+                                            name="campaignTypes"
+                                            type="checkbox"
+                                            value="Gifted Campaigns"
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        <label htmlFor="giftedCampaigns" className="ml-2 block text-sm text-gray-900">
+                                            Comedy
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <input
+                                            id="sponsorships"
+                                            name="campaignTypes"
+                                            type="checkbox"
+                                            value="Sponsorships"
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        <label htmlFor="sponsorships" className="ml-2 block text-sm text-gray-900">
+                                            College/Student Life
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <input
+                                            id="affiliatePrograms"
+                                            name="campaignTypes"
+                                            type="checkbox"
+                                            value="Affiliate Programs"
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        <label htmlFor="affiliatePrograms" className="ml-2 block text-sm text-gray-900">
+                                            Luxury
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <input
+                                            id="pr"
+                                            name="campaignTypes"
+                                            type="checkbox"
+                                            value="PR"
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        <label htmlFor="pr" className="ml-2 block text-sm text-gray-900">
+                                            Fashion
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <input
+                                            id="pr"
+                                            name="campaignTypes"
+                                            type="checkbox"
+                                            value="PR"
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        <label htmlFor="pr" className="ml-2 block text-sm text-gray-900">
+                                            Education
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
                             <label htmlFor="fullName" className="block text-sm font-medium leading-6 text-gray-900">
-                                Full Name
+                                First Name
                             </label>
                             <div className="mt-1">
                                 <input
                                     id="fullName"
                                     name="fullName"
                                     type="text"
-                                    value={formData.fullName}
+                                    value={formData.firstName}
                                     onChange={handleChange}
 
                                     className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="niche" className="block text-sm font-medium leading-6 text-gray-900">
-                                Niche
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    id="niche"
-                                    name="niche"
-                                    type="text"
-                                    value={formData.niche}
-                                    onChange={handleChange}
 
-                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="bio" className="block text-sm font-medium leading-6 text-gray-900">
-                                Bio (no more than 750 words)
-                            </label>
-                            <div className="mt-1">
-                                <textarea
-                                    id="bio"
-                                    name="bio"
-                                    value={formData.bio}
-                                    onChange={handleChange}
-                                    maxLength="750"
 
-                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
+
                     </>
                 );
             case 2:
                 return (
                     <>
                         <div>
-                            <label htmlFor="media" className="block text-sm font-medium leading-6 text-gray-900">
-                                Media
+                            <label htmlFor="fullName" className="block text-sm font-medium leading-6 text-gray-900">
+                                Last Name
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="media"
-                                    name="media"
-                                    type="file"
-                                    onChange={handleFileChange}
-                                    // required
-                                    className="block w-full text-gray-900"
+                                    id="fullName"
+                                    name="fullName"
+                                    type="text"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
+
+                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="socialLinks" className="block text-sm font-medium leading-6 text-gray-900">
-                                Social Links
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                                Email Address
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="socialLinks"
-                                    name="socialLinks"
+                                    id="email"
+                                    name="email"
                                     type="text"
-                                    value={formData.socialLinks}
+                                    value={formData.email}
                                     onChange={handleChange}
                                     // required
                                     className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
@@ -133,7 +195,7 @@ const ContentCreatorFlow = (props) => {
                         </div>
                         <div>
                             <label htmlFor="rateCard" className="block text-sm font-medium leading-6 text-gray-900">
-                                Rate Card
+                                Instagram handle
                             </label>
                             <div className="mt-1">
                                 <input
@@ -154,7 +216,81 @@ const ContentCreatorFlow = (props) => {
                     <>
                         <div>
                             <label htmlFor="followerCount" className="block text-sm font-medium leading-6 text-gray-900">
-                                Follower Count
+                                Follower Count on Instagram
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    id="followerCount"
+                                    name="followerCount"
+                                    type="text"
+                                    value={formData.followerCount}
+                                    onChange={handleChange}
+                                    // required
+                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="followerCount" className="block text-sm font-medium leading-6 text-gray-900">
+                                Link to Instagram
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    id="followerCount"
+                                    name="followerCount"
+                                    type="text"
+                                    value={formData.followerCount}
+                                    onChange={handleChange}
+                                    // required
+                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="followerCount" className="block text-sm font-medium leading-6 text-gray-900">
+                                TikTok Handle (Put N/A if none)
+
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    id="followerCount"
+                                    name="followerCount"
+                                    type="text"
+                                    value={formData.followerCount}
+                                    onChange={handleChange}
+                                    // required
+                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+
+                    </>
+                );
+            case 4:
+                return (
+                    <>
+                        <div>
+                            <label htmlFor="followerCount" className="block text-sm font-medium leading-6 text-gray-900">
+                                Follower Count on TikTok
+
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    id="followerCount"
+                                    name="followerCount"
+                                    type="text"
+                                    value={formData.followerCount}
+                                    onChange={handleChange}
+                                    // required
+                                    className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="followerCount" className="block text-sm font-medium leading-6 text-gray-900">
+                                Link To TikTok
+
+
                             </label>
                             <div className="mt-1">
                                 <input
@@ -192,6 +328,7 @@ const ContentCreatorFlow = (props) => {
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-indigo-600" : "bg-slate-400"}`}>2</div>
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 4 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
                 </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {renderStep()}
@@ -209,7 +346,7 @@ const ContentCreatorFlow = (props) => {
                             type="submit"
                             className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
-                            {step < 3 ? "Next" : "Confirm"}
+                            {step < 4 ? "Next" : "Confirm"}
                         </button>
                     </div>
                 </form>

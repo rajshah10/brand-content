@@ -134,7 +134,7 @@ const Home = () => {
                 )}
 
                 {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
-                {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} />}
+                {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
             </div>
             <div
                 className="hidden md:flex w-full md:w-3/5 bg-cover bg-center"
