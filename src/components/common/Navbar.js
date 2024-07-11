@@ -21,9 +21,9 @@ export default function Navbar(props) {
               (props.transparent ? "text-white" : "text-gray-800") +
               " text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             }
-            href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
+            // href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
           >
-            Tailwind Starter Kit
+            Equellence
           </a>
           <button
             className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
@@ -55,10 +55,9 @@ export default function Navbar(props) {
                     : "text-gray-800 hover:text-gray-600") +
                   " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 }
-                href="#pablo"
               >
 
-                <span className=" inline-block ml-2">Home</span>
+                <span onClick={() => navigate("/")} className=" inline-block ml-2 cursor-pointer">Home</span>
               </a>
             </li>
             <li className="flex items-center">
@@ -71,7 +70,7 @@ export default function Navbar(props) {
                 }
               >
 
-                <span onClick={() => navigate("/join")} className=" inline-block ml-2">Join</span>
+                <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join</span>
               </a>
             </li>
 
@@ -83,10 +82,9 @@ export default function Navbar(props) {
                     : "text-gray-800 hover:text-gray-600") +
                   " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 }
-                href="#pablo"
               >
 
-                <span className="inline-block ml-2">About Us</span>
+                <span onClick={() => navigate("/about")} className="inline-block ml-2 cursor-pointer">About Us</span>
               </a>
             </li>
 
@@ -98,9 +96,8 @@ export default function Navbar(props) {
                     : "text-gray-800 hover:text-gray-600") +
                   " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 }
-                href="#pablo"
               >
-                <span className="inline-block ml-2">Events</span>
+                <span onClick={() => navigate("/events")} className="inline-block ml-2 cursor-pointer">Events</span>
               </a>
             </li>
 

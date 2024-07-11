@@ -12,6 +12,7 @@ import Orders from "./components/Brand/Orders";
 import Landing from "./components/views/Landing";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Join from "./components/Join";
+import AboutUs from "./components/AboutUs";
 // import Landing from "./views/Landing";
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/orders-brand" element={<Orders/>}/>
         <Route path="/orders-influencer" element={<Orders/>}/>
         <Route path="/join" element={<Join/>}/>
+        <Route path="/about" element={<AboutUs/>}/>
       </Routes>
     </>
   );
