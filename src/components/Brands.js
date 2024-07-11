@@ -349,7 +349,7 @@ const Brands = (props) => {
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-indigo-600" : "bg-slate-400"}`}>2</div>
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 4 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 4 ? "bg-indigo-600" : "bg-slate-400"}`}>4</div>
                 </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {renderStep()}
