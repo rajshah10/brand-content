@@ -1,11 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import { useNavigate } from "react-router";
 
 export default function Footer() {
+  const navigate = useNavigate()
   return (
-    <footer className="relative bg-gray-300 pt-8 pb-6">
+    <footer className="relative bg-slate-100 pt-8 pb-6">
       <div
-        className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-        style={{ height: "80px" }}
+        className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden "
+
       >
         <svg
           className="absolute bottom-0 overflow-hidden"
@@ -33,29 +38,18 @@ export default function Footer() {
             </h5>
             <div className="mt-6">
               <button
-                className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                className="bg-white text-pink-400 shadow-sm border  font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
-                <i className="flex fab fa-twitter"></i>
+                <InstagramIcon />
               </button>
               <button
-                className="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                className="bg-white text-blue-600 shadow-sm border  font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
-                <i className="flex fab fa-facebook-square"></i>
+                <FacebookOutlinedIcon />
               </button>
-              <button
-                className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                type="button"
-              >
-                <i className="flex fab fa-dribbble"></i>
-              </button>
-              <button
-                className="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                type="button"
-              >
-                <i className="flex fab fa-github"></i>
-              </button>
+
             </div>
           </div>
           <div className="w-full lg:w-6/12 px-4">
@@ -66,56 +60,29 @@ export default function Footer() {
                 </span>
                 <ul className="list-unstyled">
                   <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation">About Us
+                    <a className="text-gray-700 cursor-pointer hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    >About Us
                     </a>
                   </li>
                   <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com">Blog
+                    <a className="text-gray-700 cursor-pointer hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    >Contact Us
+                    </a>
+                  </li>
+                  <li onClick={() => navigate("/join")}>
+                    <a className="text-gray-700 cursor-pointer hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    >Join
                     </a>
                   </li>
                   <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial">Github
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free">Free Products
+                    <a className="text-gray-700 cursor-pointer hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    >Events
                     </a>
                   </li>
 
                 </ul>
               </div>
-              <div className="w-full lg:w-4/12 px-4">
-                <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                  Other Resources
-                </span>
-                <ul className="list-unstyled">
-                  <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md">MIT License
-                  </a>
-                  </li>
-                  <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms">Terms & Conditions
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy">Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/contact-us">Contact Us
-                    </a>
-                  </li>
-                </ul>
 
-              </div>
             </div>
           </div>
         </div>
@@ -123,12 +90,12 @@ export default function Footer() {
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
             <div className="text-sm text-gray-600 font-semibold py-1">
-              Copyright © {new Date().getFullYear()}{" "}Tailwind Starter Kit by{" "}
+              Copyright © {new Date().getFullYear()}{" "}
               <a
                 href="https://www.creative-tim.com"
                 className="text-gray-600 hover:text-gray-900"
               >
-                Creative Tim
+
               </a>.
             </div>
           </div>

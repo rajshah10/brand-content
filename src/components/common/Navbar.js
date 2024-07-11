@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { useNavigate } from "react-router";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const navigate = useNavigate()
   return (
     <nav
       className={
@@ -42,29 +45,7 @@ export default function Navbar(props) {
           }
           id="example-navbar-warning"
         >
-          <ul className="flex flex-col lg:flex-row list-none mr-auto">
-            <li className="flex items-center">
-              <a
-                className={
-                  (props.transparent
-                    ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                    : "text-gray-800 hover:text-gray-600") +
-                  " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                }
-                href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/landing"
-              >
-                <i
-                  className={
-                    (props.transparent
-                      ? "lg:text-gray-300 text-gray-500"
-                      : "text-gray-500") +
-                    " far fa-file-alt text-lg leading-lg mr-2"
-                  }
-                />{" "}
-                Docs
-              </a>
-            </li>
-          </ul>
+
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
             <li className="flex items-center">
               <a
@@ -76,15 +57,21 @@ export default function Navbar(props) {
                 }
                 href="#pablo"
               >
-                <i
-                  className={
-                    (props.transparent
-                      ? "lg:text-gray-300 text-gray-500"
-                      : "text-gray-500") +
-                    " fab fa-facebook text-lg leading-lg "
-                  }
-                />
-                <span className="lg:hidden inline-block ml-2">Share</span>
+
+                <span className=" inline-block ml-2">Home</span>
+              </a>
+            </li>
+            <li className="flex items-center">
+              <a
+                className={
+                  (props.transparent
+                    ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                    : "text-gray-800 hover:text-gray-600") +
+                  " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                }
+              >
+
+                <span onClick={() => navigate("/join")} className=" inline-block ml-2">Join</span>
               </a>
             </li>
 
@@ -98,15 +85,8 @@ export default function Navbar(props) {
                 }
                 href="#pablo"
               >
-                <i
-                  className={
-                    (props.transparent
-                      ? "lg:text-gray-300 text-gray-500"
-                      : "text-gray-500") +
-                    " fab fa-twitter text-lg leading-lg "
-                  }
-                />
-                <span className="lg:hidden inline-block ml-2">Tweet</span>
+
+                <span className="inline-block ml-2">About Us</span>
               </a>
             </li>
 
@@ -120,15 +100,7 @@ export default function Navbar(props) {
                 }
                 href="#pablo"
               >
-                <i
-                  className={
-                    (props.transparent
-                      ? "lg:text-gray-300 text-gray-500"
-                      : "text-gray-500") +
-                    " fab fa-github text-lg leading-lg "
-                  }
-                />
-                <span className="lg:hidden inline-block ml-2">Star</span>
+                <span className="inline-block ml-2">Events</span>
               </a>
             </li>
 
@@ -143,7 +115,7 @@ export default function Navbar(props) {
                 type="button"
                 style={{ transition: "all .15s ease" }}
               >
-                <i className="fas fa-arrow-alt-circle-down"></i> Download
+                Login
               </button>
             </li>
           </ul>
