@@ -72,7 +72,6 @@ export default function Navbar(props) {
               >
 
                 <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join</span>
-                <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join</span>
               </a>
             </li>
 
