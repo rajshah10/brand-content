@@ -52,35 +52,37 @@ const AboutUs = () => {
                         </svg>
                     </div>
                 </div>
-                <section className="relative py-20 bg-gray-100">
-                    <div className="container mx-auto px-4">
-                        <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-                            <div className="w-full ml-auto mr-auto px-4">
-                                <img
-                                    alt="..."
-                                    className="w-full h-96 rounded-lg shadow-md"
-                                    src="https://t3.ftcdn.net/jpg/02/55/60/02/240_F_255600214_qRD0Mq9euVSOkZR0ljIMFqeYv3IETV9A.jpg"
-                                />
-                            </div>
-                            <div className="w-full ml-auto mr-auto px-4">
-                                <div className="md:pr-12">
-                                    <h3 className="text-3xl font-semibold">
-                                        Our Story
-                                    </h3>
-                                    <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                        Our journey started with a simple idea: to create a platform that fosters excellence in the equestrian world.
-                                    </p>
-                                    <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                        Through hard work and dedication, we've built a community where equestrians can share their stories, connect with each other, and achieve their goals.
-                                    </p>
-                                    <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                        We believe in the power of community and the potential of every individual. Join us in our mission to make equestrian excellence accessible to all.
-                                    </p>
+                <Container>
+                    <section className="relative py-20">
+                        <div className="container mx-auto px-4">
+                            <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div className="w-full ml-auto mr-auto px-4">
+                                    <img
+                                        alt="..."
+                                        className="w-full h-96 rounded-lg shadow-md"
+                                        src="https://t3.ftcdn.net/jpg/02/55/60/02/240_F_255600214_qRD0Mq9euVSOkZR0ljIMFqeYv3IETV9A.jpg"
+                                    />
+                                </div>
+                                <div className="w-full ml-auto mr-auto px-4">
+                                    <div className="md:pr-12">
+                                        <h3 className="text-3xl font-semibold">
+                                            Our Story
+                                        </h3>
+                                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                                            Our journey started with a simple idea: to create a platform that fosters excellence in the equestrian world.
+                                        </p>
+                                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                                            Through hard work and dedication, we've built a community where equestrians can share their stories, connect with each other, and achieve their goals.
+                                        </p>
+                                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                                            We believe in the power of community and the potential of every individual. Join us in our mission to make equestrian excellence accessible to all.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </Container>
                 <section className="relative py-20">
                     <Container>
                         <div className="container mx-auto px-4">
