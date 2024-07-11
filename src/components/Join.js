@@ -140,7 +140,7 @@ const Join = () => {
                 className="hidden md:flex w-full md:w-3/5 bg-cover bg-center"
                 style={{
                     backgroundImage:
-                        "url('https://i0.wp.com/blog.comunitive.com/wp-content/uploads/2021/09/influencer_4-copiar.jpg?fit=2000%2C1022&ssl=1')",
+                        "url('https://www.redpillrebellion.com/wp-content/uploads/2020/09/content-creator.jpg')",
                 }}
             ></div>
         </div>
