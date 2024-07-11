@@ -111,9 +111,7 @@ const Influencers = () => {
             </div>
 
             <Container>
-
-
-                <div class="bg-white py-24 sm:py-32">
+                <div class="bg-white py-24 sm:py-32 mx-5 md:mx-8 lg:mx-8">
                     <div class="mx-auto">
                         <div class="mx-auto max-w-2xl sm:text-center">
                             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Join Equellence as Content Creator</h2>
@@ -163,7 +161,7 @@ const Influencers = () => {
                         </div>
                     </div>
                 </div>
-                <div className="my-6 ">
+                <div className="my-6 mx-4 md:mx-8 lg:mx-8">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Trending Campaign</h6>
                         {/* <div className="flex gap-3">
@@ -290,7 +288,7 @@ const Influencers = () => {
                 </div>
             </Container>
             <Container>
-                <div className="my-12 mx-8">
+                <div className="my-12 mx-4 md:mx-8 lg:mx-8">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">All Campaign</h6>
                         <div className="flex gap-3">
