@@ -47,7 +47,7 @@ export default function Navbar(props) {
         >
 
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li className="flex items-center">
+            <li className="flex items-center cursor-pointer">
               <a
                 className={
                   (props.transparent
@@ -55,6 +55,7 @@ export default function Navbar(props) {
                     : "text-gray-800 hover:text-gray-600") +
                   " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 }
+
               >
 
                 <span onClick={() => navigate("/")} className=" inline-block ml-2 cursor-pointer">Home</span>
@@ -71,10 +72,11 @@ export default function Navbar(props) {
               >
 
                 <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join</span>
+                <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join</span>
               </a>
             </li>
 
-            <li className="flex items-center">
+            <li className="flex items-center cursor-pointer">
               <a
                 className={
                   (props.transparent
@@ -82,13 +84,14 @@ export default function Navbar(props) {
                     : "text-gray-800 hover:text-gray-600") +
                   " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 }
+
               >
 
                 <span onClick={() => navigate("/about")} className="inline-block ml-2 cursor-pointer">About Us</span>
               </a>
             </li>
 
-            <li className="flex items-center">
+            <li className="flex items-center cursor-pointer">
               <a
                 className={
                   (props.transparent
@@ -96,12 +99,13 @@ export default function Navbar(props) {
                     : "text-gray-800 hover:text-gray-600") +
                   " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 }
+
               >
                 <span onClick={() => navigate("/events")} className="inline-block ml-2 cursor-pointer">Events</span>
               </a>
             </li>
 
-            <li className="flex items-center">
+            <li onClick={() => navigate("/join")} className="flex items-center">
               <button
                 className={
                   (props.transparent
