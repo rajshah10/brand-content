@@ -59,7 +59,7 @@ const FAQ = () => {
                         <div className="container mx-auto px-4 text-center">
                             <div className="w-full mx-auto px-4">
                                 <div className="md:pr-12">
-                                    <h3 className="text-3xl font-semibold">
+                                    <h3 className="text-3xl mb-8 font-semibold">
                                         Frequently Asked Questions
                                     </h3>
                                     <Accordion className="mt-3">
