@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 export default function Footer() {
   const navigate = useNavigate()
   return (
-    <footer class="bg-slate-100 dark:bg-gray-900">
+    <footer class="bg-slate-50">
       <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
@@ -16,8 +16,8 @@ export default function Footer() {
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">Resources</h2>
+              <ul class="text-gray-500  font-medium">
                 <li class="mb-4 cursor-pointer">
                   <a class="hover:underline">About Us</a>
                 </li>
@@ -33,8 +33,8 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">Follow us</h2>
+              <ul class="text-gray-500  font-medium">
                 <li class="mb-4 flex gap-2 items-center cursor-pointer">
                   <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                     <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd" />
@@ -56,7 +56,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Subscribe</h2>
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">Subscribe</h2>
               <form action="#">
                 <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row md:items-center lg:items-center gap-3">
 

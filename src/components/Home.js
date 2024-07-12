@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
-
+import horse1 from "../assets/images/horse1.jpg"
 
 
 import Navbar from './common/Navbar';
@@ -16,11 +16,11 @@ const Home = () => {
                     style={{
                         minHeight: "75vh"
                     }}>
-                    <div className="absolute top-0 w-full h-full bg-center bg-cover"
+                    <div className="absolute top-0 w-full h-full bg-cover"
                         style={{
-                            backgroundImage: "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')"
+                            backgroundImage: `url('${horse1}')`
                         }}>
-                        <span id="blackOverlay" className="w-full h-full absolute opacity-75 bg-black"></span>
+                        <span id="blackOverlay" className="w-full h-full absolute opacity-50 bg-black"></span>
                     </div>
                     <div className="container relative mx-auto">
                         <div className="items-center flex flex-wrap">
@@ -86,8 +86,8 @@ const Home = () => {
                                 <div className="w-full  ml-auto mr-auto px-4">
                                     <img
                                         alt="..."
-                                        className="w-full h-96 rounded-lg shadow-md"
-                                        src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                                        className="w-full h-96 rounded-lg shadow-md object-cover"
+                                        src="https://img.freepik.com/premium-photo/woman-riding-gray-horse-field-sunset-walking-horseback-riding-rental-beautiful-background-nature-outdoor-equestrian-sport-training-copy-space-love-animal-friendship_287527-1193.jpg"
                                     />
                                 </div>
                                 <div className="w-full ml-auto mr-auto px-4">
@@ -102,40 +102,11 @@ const Home = () => {
 
                                             Equellence fosters Equestrian Excellence through content creation.
                                         </p>
-                                        <ul className="list-none mt-6">
-                                            <li className="py-2">
-                                                <div className="flex items-center">
-                                                    <div>
-
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="text-gray-600">
-                                                            Carefully crafted components
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li className="py-2">
-                                                <div className="flex items-center">
-                                                    <div>
-
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="text-gray-600">Amazing page examples</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li className="py-2">
-                                                <div className="flex items-center">
-                                                    <div>
-
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="text-gray-600">Dynamic components</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <ul className='list-disc text-gray-600 text-left ml-10 mt-6'>
+                                            <li>Network with industry professionals and peers to expand your opportunities.</li>
+                                            <li>Engage with your audience to build a loyal following and enhance your personal brand.</li>
                                         </ul>
+
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +116,7 @@ const Home = () => {
             </main>
 
 
-            <div className='mt-16'> <Footer /></div>
+            <div className='mt-4'> <Footer /></div>
         </div>
     )
 }

@@ -172,9 +172,8 @@ const Join = () => {
 
             </div>
             <div className="relative w-full h-full md:w-3/5 lg:w-3/5 md:h-auto lg:h-auto bg-cover bg-center"
-                style={{
-                    backgroundImage:
-                        "url('https://c0.wallpaperflare.com/preview/866/596/942/man-riding-horse-near-plant-during-daytime.jpg')",
+                style={{backgroundImage:
+                        selectedOption === "brand" ? "url('https://c0.wallpaperflare.com/preview/943/758/422/person-recreation-jumping-horse.jpg')" :"url('https://www.itl.cat/pngfile/big/210-2106332_photo-wallpaper-rider-horse-horse-riding-horse-riding.jpg",
                 }}>
                 {
                     selectedOption === "brand" &&
