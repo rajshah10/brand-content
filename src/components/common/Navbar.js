@@ -111,6 +111,19 @@ export default function Navbar(props) {
                 <span onClick={() => navigate("/events")} className="inline-block ml-2 cursor-pointer">Events</span>
               </a>
             </li>
+            <li className="flex items-center cursor-pointer">
+              <a
+                className={
+                  (props.transparent
+                    ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                    : "text-gray-800 hover:text-gray-600") +
+                  " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                }
+
+              >
+                <span onClick={() => navigate("/faq")} className="inline-block ml-2 cursor-pointer">FAQ</span>
+              </a>
+            </li>
 
             <li onClick={() => navigate("/join", { state: { name: "login" } })} className="flex items-center">
               <button
