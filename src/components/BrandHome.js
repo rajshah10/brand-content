@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Container, Avatar, Badge, Accordion, AccordionSummary, AccordionDetails, Typography, Checkbox, FormControlLabel, Drawer, IconButton } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Container, Badge, Avatar, Drawer, IconButton } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import MenuComponent from "./common/MenuComponent";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import CloseIcon from '@mui/icons-material/Close';
 import { influencers } from './constants';
 import Header from './common/Header';
-import MenuComponent from './common/MenuComponent';
 
 const BrandHome = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -31,67 +32,6 @@ const BrandHome = () => {
         setSelectedInfluencer(null);
     };
 
-    const [filteredInfluencers, setFilteredInfluencers] = useState(influencers);
-    const [filters, setFilters] = useState({
-        verified: false,
-        subscribers: [],
-        likes: [],
-        reachPrice: [],
-    });
-
-
-    const handleFilterChange = (event) => {
-        const { name, value, type, checked } = event.target;
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            [name]: type === 'checkbox' ? checked : value,
-        }));
-    };
-
-    const handleCheckboxChange = (event, category) => {
-        const { value, checked } = event.target;
-        setFilters((prevFilters) => {
-            const updatedCategory = checked
-                ? [...prevFilters[category], value]
-                : prevFilters[category].filter(item => item !== value);
-            return {
-                ...prevFilters,
-                [category]: updatedCategory,
-            };
-        });
-    };
-
-    const applyFilters = () => {
-        let updatedInfluencers = influencers;
-
-        if (filters.verified) {
-            updatedInfluencers = updatedInfluencers.filter(influencer => influencer.verified);
-        }
-        if (filters.subscribers.length) {
-            updatedInfluencers = updatedInfluencers.filter(influencer =>
-                filters.subscribers.some(subscriber => influencer.subscribers >= parseInt(subscriber))
-            );
-        }
-        if (filters.likes.length) {
-            updatedInfluencers = updatedInfluencers.filter(influencer =>
-                filters.likes.some(like => influencer.likes >= parseInt(like))
-            );
-        }
-        if (filters.reachPrice.length) {
-            updatedInfluencers = updatedInfluencers.filter(influencer =>
-                filters.reachPrice.some(price => influencer.reachPrice >= parseInt(price))
-            );
-        }
-
-        setFilteredInfluencers(updatedInfluencers);
-    };
-
-    React.useEffect(() => {
-        applyFilters();
-    }, [filters]);
-
-    const uniqueValues = (key) => [...new Set(influencers.map(influencer => influencer[key]))];
-
     return (
         <>
             <div>
@@ -109,87 +49,16 @@ const BrandHome = () => {
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <Container className="mt-10 flex">
+            </div>
+            <Container>
+
                 <div className="my-6">
-                    <h6 className="font-bold text-lg mb-4">filters</h6>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                            <Typography>Verified</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <FormControlLabel
-                                control={<Checkbox checked={filters.verified} onChange={handleFilterChange} name="verified" />}
-                                label="Verified"
-                            />
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                            <Typography>Subscribers</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {uniqueValues('subscribers').map(value => (
-                                <FormControlLabel
-                                    key={value}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.subscribers.includes(String(value))}
-                                            onChange={(e) => handleCheckboxChange(e, 'subscribers')}
-                                            value={String(value)}
-                                        />
-                                    }
-                                    label={`${value}+`}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
-                            <Typography>Likes</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {uniqueValues('likes').map(value => (
-                                <FormControlLabel
-                                    key={value}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.likes.includes(String(value))}
-                                            onChange={(e) => handleCheckboxChange(e, 'likes')}
-                                            value={String(value)}
-                                        />
-                                    }
-                                    label={`${value}+`}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
-                            <Typography>Reach Price</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {uniqueValues('reachPrice').map(value => (
-                                <FormControlLabel
-                                    key={value}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.reachPrice.includes(String(value))}
-                                            onChange={(e) => handleCheckboxChange(e, 'reachPrice')}
-                                            value={String(value)}
-                                        />
-                                    }
-                                    label={`$${value}+`}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
-                </div>
-                <div className="my-6">
-                    <h6 className="font-bold text-lg mb-4">Influencers</h6>
-                    <div>
-                        {filteredInfluencers.map(influencer => (
+                    <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
+                        <h6 className="font-bold text-lg">Influencers</h6>
+                    </div>
+                    <div className="my-5">
+                        {influencers.map(influencer => (
                             <div
                                 key={influencer.id}
                                 className="bg-white rounded-lg mt-2 p-4 flex flex-col space-y-4 border border-slate-200 cursor-pointer"
@@ -233,8 +102,8 @@ const BrandHome = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center">
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 justify-center gap-4 text-sm text-gray-600 mt-4">
+                                    <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-1 px-1 rounded-md">
                                         <span className="text-md text-black-600">{influencer.subscribers}</span>
                                         <span className="text-xs text-gray-500">Subscribers</span>
                                     </div>
@@ -255,7 +124,7 @@ const BrandHome = () => {
                                         <span className="text-xs text-gray-500">Likes from Subs</span>
                                     </div>
                                     <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
-                                        <span className="text-md text-black-600">${influencer.reachPrice}</span>
+                                        <span className="text-md text-black-600">{influencer.reachPrice}</span>
                                         <span className="text-xs text-gray-500">Reach Price</span>
                                     </div>
                                     <div className="flex flex-col justify-center items-center py-2 px-1 rounded-md bg-slate-100">
@@ -268,6 +137,7 @@ const BrandHome = () => {
                     </div>
                 </div>
             </Container>
+
             <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose} className="drawer p-4">
                 <div className="py-2 px-4">
                     <div className="flex items-center justify-end">
@@ -288,6 +158,9 @@ const BrandHome = () => {
                             </svg>
                         </IconButton>
                     </div>
+                    {/* <IconButton onClick={handleDrawerClose} className="float-right brand_drawer_close">
+                        <CloseIcon />
+                    </IconButton> */}
                     {selectedInfluencer && (
                         <>
                             <div className="flex flex-col items-center">
@@ -320,11 +193,14 @@ const BrandHome = () => {
                                     ))}
                                 </div>
                             </div>
+
+
                             <div className="mt-4">
                                 <p className='text-sm text-left'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
                             </div>
-                            <div className="flex flex-wrap gap-3 md:gap:0 lg:gap:0">
-                                <h2 className="text-lg my-4 text-left">Influencer Statistics</h2>
+
+                            <div className="flex flex-wrap gap-3 md:gap:0 lg:gap-0">
+                                <h2 className="text-lg my-4 text-left">Influencers Statestics</h2>
                             </div>
                             <table className="min-w-full bg-white border border-slate-300">
                                 <thead className="bg-slate-200">
@@ -368,6 +244,7 @@ const BrandHome = () => {
                     )}
                 </div>
             </Drawer>
+
         </>
     );
 }
