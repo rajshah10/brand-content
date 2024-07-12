@@ -104,7 +104,7 @@ export default function Navbar(props) {
               </a>
             </li>
 
-            <li onClick={() => navigate("/join")} className="flex items-center">
+            <li onClick={() => navigate("/join", { state: { name: "login" } })} className="flex items-center">
               <button
                 className={
                   (props.transparent

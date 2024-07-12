@@ -48,24 +48,25 @@ const Brands = (props) => {
                 return (
                     <>
                         <div>
-                            <label htmlFor="fullName" className="block text-sm font-medium leading-6 text-gray-900">
-                                Full Name
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                                Email
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="fullName"
-                                    name="fullName"
+                                    id="email"
+                                    name="email"
                                     type="text"
-                                    value={formData.fullName}
+                                    value={formData.email}
                                     onChange={handleChange}
 
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
+
                         <div>
                             <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">
-                                Role in Brand
+                                Password
                             </label>
                             <div className="mt-1">
                                 <input
@@ -80,15 +81,15 @@ const Brands = (props) => {
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                                Contact Email
+                            <label htmlFor="fullName" className="block text-sm font-medium leading-6 text-gray-900">
+                                Full Name
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="email"
-                                    name="email"
+                                    id="fullName"
+                                    name="fullName"
                                     type="text"
-                                    value={formData.email}
+                                    value={formData.fullName}
                                     onChange={handleChange}
 
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
@@ -244,7 +245,7 @@ const Brands = (props) => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         {/* <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900">
                                 Confirmation
@@ -257,13 +258,13 @@ const Brands = (props) => {
                         </div> */}
                     </>
                 );
-                case 4:
+            case 4:
                 return (
                     <>
                         <div>
                             <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
-                            Type of Equellence collaboration (Check all that apply)
-                            *
+                                Type of Equellence collaboration (Check all that apply)
+                                *
                             </label>
                             <div className="mt-4">
 
@@ -291,7 +292,7 @@ const Brands = (props) => {
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="giftedCampaigns" className="ml-2 block text-sm text-gray-900">
-                                        Partnership (for non-profits/Horse Shows only)
+                                            Partnership (for non-profits/Horse Shows only)
                                         </label>
                                     </div>
                                     <div className="flex items-center">
@@ -320,11 +321,11 @@ const Brands = (props) => {
                                             Vendor at Equfest
                                         </label>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900">
                                 Confirmation

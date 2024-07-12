@@ -1,14 +1,20 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { IconButton } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Join = () => {
     const [loginToggle, setLoginToggle] = useState(false);
     const [step, setStep] = useState(1);
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState('contentCreator');
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { name } = location.state || {};
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,14 +25,21 @@ const Join = () => {
 
     const handleRegister = () => {
         setLoginToggle(!loginToggle);
+        navigate(location.pathname, { state: {} });
     };
+    useEffect(() => {
+        // Check if the location state is 'login' and update states accordingly
+        if (name === "login") {
+            setLoginToggle(true);
+        }
+    }, [location.state]);
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         localStorage.setItem('selected_partner', option)
     };
     return (
-        <div className="flex min-h-screen">
+        <div className="flex flex-col md:flex-row lg:flex-row h-screen">
             <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
                     {formSubmitted && step === 1 && (
@@ -46,103 +59,153 @@ const Join = () => {
                     </h2>
                 </div>
 
-                {!formSubmitted && (
-                    <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-2 text-center gap-2">
-                                <div
-                                    className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'contentCreator' ? 'border-slate-400' : 'border-slate-200'}`}
-                                    onClick={() => handleOptionClick('contentCreator')}
-                                >
-                                    <span>Content Creator</span>
-                                </div>
-                                <div
-                                    className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'brand' ? 'border-slate-400' : 'border-slate-200'}`}
-                                    onClick={() => handleOptionClick('brand')}
-                                >
-                                    <span>Brand</span>
-                                </div>
-                            </div>
-                            {loginToggle && (
-                                <>
-                                    <div>
-                                        <label
-                                            htmlFor="email"
-                                            className="block text-sm font-medium leading-6 text-gray-900"
+                {
+                    <>
+                        {!formSubmitted && (
+                            <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
+                                <form onSubmit={handleSubmit} className="space-y-6">
+                                    <div className="grid grid-cols-2 text-center gap-2">
+                                        <div
+                                            className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'contentCreator' ? 'border-slate-400' : 'border-slate-200'}`}
+                                            onClick={() => handleOptionClick('contentCreator')}
                                         >
-                                            Email address
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                autoComplete="email"
-                                                required
-                                                className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                            />
+                                            <span>Content Creator</span>
+                                        </div>
+                                        <div
+                                            className={`border py-4 rounded-md cursor-pointer ${selectedOption === 'brand' ? 'border-slate-400' : 'border-slate-200'}`}
+                                            onClick={() => handleOptionClick('brand')}
+                                        >
+                                            <span>Brand</span>
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <div className="flex items-center justify-between">
-                                            <label
-                                                htmlFor="password"
-                                                className="block text-sm font-medium leading-6 text-gray-900"
-                                            >
-                                                Password
-                                            </label>
-                                            <div className="text-sm">
-                                                <a
-                                                    href="#"
-                                                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                                    {(loginToggle || name === "login") && (
+                                        <>
+                                            <div>
+                                                <label
+                                                    htmlFor="email"
+                                                    className="block text-sm font-medium leading-6 text-gray-900"
                                                 >
-                                                    Forgot password?
-                                                </a>
+                                                    Email address
+                                                </label>
+                                                <div className="mt-2">
+                                                    <input
+                                                        id="email"
+                                                        name="email"
+                                                        type="email"
+                                                        autoComplete="email"
+                                                        required
+                                                        className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="mt-2">
-                                            <input
-                                                id="password"
-                                                name="password"
-                                                type="password"
-                                                autoComplete="current-password"
-                                                required
-                                                className="block px-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                </>
-                            )}
 
-                            <div>
-                                <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                    Next
-                                </button>
+                                            <div>
+                                                <div className="flex items-center justify-between">
+                                                    <label
+                                                        htmlFor="password"
+                                                        className="block text-sm font-medium leading-6 text-gray-900"
+                                                    >
+                                                        Password
+                                                    </label>
+                                                    <div className="text-sm">
+                                                        <a
+                                                            href="#"
+                                                            className="font-semibold text-indigo-600   hover:text-indigo-500"
+                                                        >
+                                                            Forgot password?
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div className="mt-2">
+                                                    <input
+                                                        id="password"
+                                                        name="password"
+                                                        type="password"
+                                                        autoComplete="current-password"
+                                                        required
+                                                        className="block px-2 outline-none  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+
+                                    {
+                                        (!loginToggle) && <div>
+                                            <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                Next
+                                            </button>
+                                        </div>
+                                    }
+
+                                    {
+                                        (name === "login" || loginToggle) && <div>
+                                            <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                Login
+                                            </button>
+                                        </div>
+                                    }
+                                </form>
+
+                                <p className="mt-4 text-sm text-gray-500">
+                                    <a
+                                        onClick={handleRegister}
+                                        className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500"
+                                    >
+                                        {(!loginToggle && name !== "login") ? <>
+                                            <span className='text-slate-800 font-medium'>Already a member? </span>Login
+                                        </> : "Back"}
+                                    </a>
+                                </p>
                             </div>
-                        </form>
+                        )}
 
-                        <p className="mt-4 text-sm text-gray-500">
-                            <a
-                                onClick={handleRegister}
-                                className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500"
-                            >
-                                {!loginToggle ? "Login" : "Back"}
-                            </a>
-                        </p>
-                    </div>
-                )}
+                    </>
+                }
+                {
+                    name !== "login" &&
+                    <>
+                        {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
+                        {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
+                    </>
+                }
 
-                {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
-                {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
             </div>
-            <div
-                className="hidden md:flex w-full md:w-3/5 bg-cover bg-center"
+            <div className="relative w-full h-full md:w-3/5 lg:w-3/5 md:h-auto lg:h-auto bg-cover bg-center"
                 style={{
                     backgroundImage:
-                        "url('https://www.redpillrebellion.com/wp-content/uploads/2020/09/content-creator.jpg')",
-                }}
-            ></div>
+                        "url('https://c0.wallpaperflare.com/preview/866/596/942/man-riding-horse-near-plant-during-daytime.jpg')",
+                }}>
+                {
+                    selectedOption === "brand" &&
+                    <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col px-8 flex flex-col justify-center">
+                        <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
+                            <h1 className="text-white text-4xl">Brands & Organizations</h1>
+                            <p className='text-slate-200 text-lg'>Are you a brand or an organization looking to work with Equellence? Please fill out your brand/company organization information out below</p>
+                            <p className='text-slate-200 text-left'>We hope we can satisfy your brand's needs!</p>
+                        </div>
+                    </div>
+                }
+                {
+                    selectedOption === "contentCreator" &&
+                    <div className="absolute inset-0 bg-black bg-opacity-30 px-8 flex flex-col justify-center">
+                        <div className='bg-slate-800 rounded-md bg-opacity-50 flex flex-col justify-center gap-4  py-4 px-4'>
+                            <h1 className="text-white text-4xl">Join Equellence</h1>
+                            <p className='text-slate-200 text-lg'>EQUELLENCE APPLICATIONS ARE BACK OPEN! You can apply</p>
+                            <p className='text-slate-200 text-left'>Here are some ways you can work on your content and grow so that when applications open, you are ready for the club: </p>
+                            <ul className='list-disc text-slate-200 text-left ml-10'>
+                                <li>Post frequently</li>
+                                <li>Have a common goal or inspiring social media message</li>
+                                <li>Good video content</li>
+                                <li>High quality content </li>
+                                <li>Engaging social media presence</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
         </div>
     )
 }
