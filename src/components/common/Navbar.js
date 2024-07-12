@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { useNavigate } from "react-router";
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -25,18 +27,24 @@ export default function Navbar(props) {
           >
             Equellence
           </a>
-          <button
+          {
+            !navbarOpen && <button
             className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
-            <i
-              className={
-                (props.transparent ? "text-white" : "text-gray-800") +
-                " fas fa-bars"
-              }
-            ></i>
+            <MenuOutlinedIcon sx={{color:"white"}}/>
           </button>
+          }
+          {
+            navbarOpen && <button
+            className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            type="button"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <CloseOutlinedIcon sx={{color:"white"}}/>
+          </button>
+          }
         </div>
         <div
           className={

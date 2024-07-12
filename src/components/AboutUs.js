@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from './common/Navbar';
 import Footer from './common/Footer';
 import { Container } from '@mui/material';
-
+import horse2 from "../assets/images/horse2.jpg"
+import horse3 from "../assets/images/horse3.jpg"
 const AboutUs = () => {
     return (
         <div className="relative">
@@ -14,7 +15,7 @@ const AboutUs = () => {
                     }}>
                     <div className="absolute top-0 w-full h-full bg-center bg-cover"
                         style={{
-                            backgroundImage: "url('https://images.unsplash.com/photo-1497493292307-31c376b6e479?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')"
+                            backgroundImage: `url('${horse2}')`
                         }}>
                         <span id="blackOverlay" className="w-full h-full absolute opacity-75 bg-black"></span>
                     </div>
@@ -54,81 +55,110 @@ const AboutUs = () => {
                 </div>
                 <Container>
                     <section className="relative py-20">
-                        <div className="container mx-auto px-4">
+                        <div className="container mx-auto">
                             <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <img
                                         alt="..."
                                         className="w-full h-96 rounded-lg shadow-md"
-                                        src="https://t3.ftcdn.net/jpg/02/55/60/02/240_F_255600214_qRD0Mq9euVSOkZR0ljIMFqeYv3IETV9A.jpg"
+                                        src={horse3}
                                     />
                                 </div>
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <div className="md:pr-12">
                                         <h3 className="text-3xl font-semibold">
-                                            Our Story
+                                            What is Equellence ?
                                         </h3>
                                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                            Our journey started with a simple idea: to create a platform that fosters excellence in the equestrian world.
+                                            Started in 2024, Equellence is a social media agency-like group that connects equestrian content creators with brands, events, and opportunities.
                                         </p>
                                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                            Through hard work and dedication, we've built a community where equestrians can share their stories, connect with each other, and achieve their goals.
+                                            The main objective of Equellence is to bridge the gap between the equestrian and the non-horse world by connecting equestrians, brands, barns, and events while promoting individual content creation and social media through a specifically curated equestrian network.
                                         </p>
-                                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                            We believe in the power of community and the potential of every individual. Join us in our mission to make equestrian excellence accessible to all.
-                                        </p>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </Container>
+                <Container>
+                    <div className='px-4'>
+                        <p className=" text-lg leading-relaxed text-gray-600">
+                            We help our members excel through the sport in a non-conventional way. Equellence provides them with both equestrian and non-equestrian related opportunities. Equellence fosters a culture of creativity through content creation, and features a broad range of Equestrians content creators making waves and changing the industry one by one through passion, talent, and activism. Equellence also focuses on an emphasis of partnering with non-equestrian related brands specifically, as not only does it provide an inside look to others that are not part of the horse world, but also helps solidify a longterm career for our content creators within any industry.
+                        </p>
+                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                            Equellence assists equestrian content creators by landing them paid brand deals, PR collateral, and sponsorship opportunities, as well as connecting them with unique and exclusive events around the world.
+                        </p>
+                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                            Equellence is changing the standards of the equestrian Industry. What once was a world where privilege was the main contributor to success and reach the top of this sport, now anyone with a strong voice, genuine talent, passion, and creativity can achieve their goals.
+                        </p>
+                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                            Equellence fosters diversity by accepting all equestrians from all walks of life, countries, and origins. Our diverse network truly showcases a new vision for the equestrian world. Our members originate from all cultures, ethnicities, and nationalities, which will enable a unique collaboration network across the world and help all types of riders from all backgrounds to get to the top of the sport through a long-term career outlet.
+                        </p>
+                    </div>
+                </Container>
                 <section className="relative py-20">
                     <Container>
-                        <div className="container mx-auto px-4">
+                        <div className="container mx-auto">
                             <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <div className="md:pr-12">
                                         <h3 className="text-3xl font-semibold">
-                                            Meet Our Team
+                                            Meet the Founder
                                         </h3>
                                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                            Our team is composed of passionate individuals who are dedicated to fostering equestrian excellence.
+                                            NANA SARFO
                                         </p>
-                                        <ul className="list-none mt-6">
-                                            <li className="py-2">
-                                                <div className="flex items-center">
-                                                    <div>
-                                                        <h4 className="text-gray-600">
-                                                            John Doe - Founder & CEO
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li className="py-2">
-                                                <div className="flex items-center">
-                                                    <div>
-                                                        <h4 className="text-gray-600">Jane Smith - Head of Marketing</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li className="py-2">
-                                                <div className="flex items-center">
-                                                    <div>
-                                                        <h4 className="text-gray-600">Emily Johnson - Community Manager</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <p className="mt-4 text-lg  text-gray-600">
+                                            Nana Sarfo is a 20-year-old Ghanaian-American Equestrian, Entrepreneur, Influencer, and advocate. She first sat on a pony at nine and quickly caught the horse bug. She started officially taking riding lessons just before her 13th birthday and has been riding ever since. Nana has classical training in the Hunter/jumper discipline and has ridden mainly on the California circuit. Nana has also gotten international training in Fermo, Italy. She has recently started her career as a show jumper with her new horse, Santiago.
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="w-full  ml-auto mr-auto px-4">
                                     <img
                                         alt="..."
                                         className="w-full h-96 rounded-lg shadow-md"
-                                        src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+                                        src="http://www.equellence.com/uploads/4/0/0/4/40049961/rni-films-img-682d4af5-353d-499a-b12f-4650294f7df0_orig.jpg"
                                     />
                                 </div>
+                            </div>
+                        </div>
+                    </Container>
+                </section>
+                <Container>
+                    <div className='px-4'>
+                        <p className="text-lg  text-gray-600">
+                            Nana has always had a knack for entrepreneurship. She started her first business at just thirteen years old called LPSCon, an annual convention for Littlest Pet Shop enthusiasts that attracts 900 attendees yearly. She has been running this event ever since.
+                        </p>
+                        <p className="mt-4 text-lg  text-gray-600">
+                            At nineteen, Nana decided to start taking Equestrian content creation seriously. She explores the industry's issues on her social media through comedy and inspires other Equestrians and non-horse enthusiasts to join the sport.
+                        </p>
+                        <p className='mt-4 text-lg  text-gray-600'>
+                                            Diversity and inclusion is also a topic Nana explores on her social media and is highly passionate about. As Ghanaian immigrants, Nana's parents knew absolutely nothing about horses. It was a foreign concept to them, so obtaining knowledge and opportunity in the sport was tough. Furthermore, she quickly realized she was the only black rider in the Nevadan Hunter/Jumper circuit and one of only a handful in the California circuit. Nana advocates for diversity through her social media and fosters groups and platforms for POC Equestrians to connect and prosper.
+                                        </p>
+                    </div>
+
+                </Container>
+                <section className="relative py-20">
+                    <Container>
+                        <div className="container mx-auto">
+                            <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div className="w-full  ml-auto mr-auto px-4">
+                                    <img
+                                        alt="..."
+                                        className="w-full h-96 rounded-lg shadow-md"
+                                        src="http://www.equellence.com/uploads/4/0/0/4/40049961/4aa56a43-1720-4192-840a-67543ce563fd_orig.jpg"
+                                    />
+                                </div>
+                                <div className="w-full ml-auto mr-auto px-4">
+                                    <div className="md:pr-12">
+                                        <p className='mt-4 text-lg  text-gray-600'>
+                                        Nana’s long-term goals as an Equestrian are to become an industry professional, open her stable, and compete at the Grand prix level. Nana also plans to open a nonprofit to help Ghanaian Equestrians succeed through horses, handwork, and passion. Nana also has dreams in the fashion, acting, modeling, and influencer world. Nana also has big ambitions and wants to create an environment where every rider can succeed through talent and passion, so Equellence was formed. She has over 137K followers across all her social platforms and is committed to diversifying the horse world one hoof at a time.
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </Container>
