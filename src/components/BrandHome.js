@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Container, Avatar, Badge, Accordion, AccordionSummary, AccordionDetails, Typography, Checkbox, FormControlLabel, Drawer, IconButton } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Container, Badge, Avatar, Drawer, IconButton } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import MenuComponent from "./common/MenuComponent";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import CloseIcon from '@mui/icons-material/Close';
 import { influencers } from './constants';
 import Header from './common/Header';
-import MenuComponent from './common/MenuComponent';
 
 const BrandHome = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -31,177 +32,33 @@ const BrandHome = () => {
         setSelectedInfluencer(null);
     };
 
-    const [filteredInfluencers, setFilteredInfluencers] = useState(influencers);
-    const [filters, setFilters] = useState({
-        verified: false,
-        subscribers: [],
-        likes: [],
-        reachPrice: [],
-    });
-
-
-    const handleFilterChange = (event) => {
-        const { name, value, type, checked } = event.target;
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            [name]: type === 'checkbox' ? checked : value,
-        }));
-    };
-
-    const handleCheckboxChange = (event, category) => {
-        const { value, checked } = event.target;
-        setFilters((prevFilters) => {
-            const updatedCategory = checked
-                ? [...prevFilters[category], value]
-                : prevFilters[category].filter(item => item !== value);
-            return {
-                ...prevFilters,
-                [category]: updatedCategory,
-            };
-        });
-    };
-
-    const applyFilters = () => {
-        let updatedInfluencers = influencers;
-
-        if (filters.verified) {
-            updatedInfluencers = updatedInfluencers.filter(influencer => influencer.verified);
-        }
-        if (filters.subscribers.length) {
-            updatedInfluencers = updatedInfluencers.filter(influencer =>
-                filters.subscribers.some(subscriber => influencer.subscribers >= parseInt(subscriber))
-            );
-        }
-        if (filters.likes.length) {
-            updatedInfluencers = updatedInfluencers.filter(influencer =>
-                filters.likes.some(like => influencer.likes >= parseInt(like))
-            );
-        }
-        if (filters.reachPrice.length) {
-            updatedInfluencers = updatedInfluencers.filter(influencer =>
-                filters.reachPrice.some(price => influencer.reachPrice >= parseInt(price))
-            );
-        }
-
-        setFilteredInfluencers(updatedInfluencers);
-    };
-
-    React.useEffect(() => {
-        applyFilters();
-    }, [filters]);
-
-    const uniqueValues = (key) => [...new Set(influencers.map(influencer => influencer[key]))];
-
     return (
         <>
             <div>
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} />
             </div>
-            <div className="relative pt-16 pb-32 flex content-center items-center justify-center"
-                    style={{
-                        minHeight: "58vh"
-                    }}>
-                    <div className="absolute top-0 w-full h-full bg-center bg-cover"
-                        style={{
-                            backgroundImage: `url('https://images.unsplash.com/photo-1590102426080-52ecff3affeb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
-                        }}>
-                        <span id="blackOverlay" className="w-full h-full absolute opacity-75 bg-black"></span>
-                    </div>
-                    <div className="container relative mx-auto">
-                        <div className="items-center flex flex-wrap">
-                            <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                                <div className="pr-12">
-                                    <h1 className="text-white font-semibold text-5xl">
-                                        Brands
-                                    </h1>
-                                    <p className="mt-4 text-lg text-gray-300">
-                                        Learn more about our journey and our team.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-                        style={{ height: "70px" }}
-                    >
-                        <svg
-                            className="absolute bottom-0 overflow-hidden"
-                            xmlns="http://www.w3.org/2000/svg"
-                            preserveAspectRatio="none"
-                            version="1.1"
-                            viewBox="0 0 2560 100"
-                            x="0"
-                            y="0"
-                        >
-                            <polygon
-                                className="text-white fill-current"
-                                points="2560 0 2560 100 0 100"
-                            ></polygon>
-                        </svg>
+            <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)` }}>
+                <div className="absolute flex flex-col inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <h1 className="text-white text-4xl font-bold text-center">
+                        Brands
+                    </h1>
+                    <div className="py-4 px-6 text-slate-300">
+                        <p className="text-lg">
+                            Insert your description of the content creator here. This could include details about their work, achievements, or any other relevant information.
+                        </p>
                     </div>
                 </div>
 
-            <Container className="mt-10 flex">
-                <div className='bg-slate-50 p-3 text-gray-600 mx-4'>
-                    <div className="grid grid-cols-3 gap-2">
-                        <div className="mb-4">
-                            <h6 className="font-normal mb-2">Subscribers</h6>
-                            <select
+            </div>
+            <Container>
 
-                                value={filters.subscribers}
-                                className="block w-full outline-none border rounded-md p-2 text-gray-900"
-                            >
-                                <option value="100k">100k+</option>
-                                <option value="200k">200k+</option>
-                                <option value="300k">300k+</option>
-                            </select>
-                        </div>
-
-                        <div className="mb-4">
-                            <h6 className="font-normal mb-2">Likes</h6>
-                            <select
-
-                                value={filters.likes}
-                                // onChange={(e) => handleLikesChange(e.target.selectedOptions)}
-                                className="block w-full outline-none border rounded-md p-2 text-gray-900"
-                            >
-                                {uniqueValues('likes').map(value => (
-                                    <option key={value} value={String(value)}>
-                                        {`${value}+`}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className="mb-4">
-                            <h6 className="font-normal mb-2">Reach Price</h6>
-                            <select
-
-                                value={filters.reachPrice}
-                                // onChange={(e) => handleReachPriceChange(e.target.selectedOptions)}
-                                className="block w-full outline-none border rounded-md p-2 text-gray-900"
-                            >
-                                {uniqueValues('reachPrice').map(value => (
-                                    <option key={value} value={String(value)}>
-                                        {`$${value}+`}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                <div className="my-6">
+                    <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
+                        <h6 className="font-bold text-lg">Influencers</h6>
                     </div>
-                    <div class="mt-2 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
-                        <button class="rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none ">Reset</button>
-                        <button class="rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none ">Search</button>
-
-                    </div>
-                </div>
-
-                <div className="my-12 mx-4">
-                    <h6 className="font-bold text-lg mb-4">Influencers</h6>
-                    <div>
-                        {filteredInfluencers.map(influencer => (
+                    <div className="my-5">
+                        {influencers.map(influencer => (
                             <div
                                 key={influencer.id}
                                 className="bg-white rounded-lg mt-2 p-4 flex flex-col space-y-4 border border-slate-200 cursor-pointer"
@@ -245,8 +102,8 @@ const BrandHome = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-7 justify-between items-center">
-                                    <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 justify-center gap-4 text-sm text-gray-600 mt-4">
+                                    <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-1 px-1 rounded-md">
                                         <span className="text-md text-black-600">{influencer.subscribers}</span>
                                         <span className="text-xs text-gray-500">Subscribers</span>
                                     </div>
@@ -267,7 +124,7 @@ const BrandHome = () => {
                                         <span className="text-xs text-gray-500">Likes from Subs</span>
                                     </div>
                                     <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
-                                        <span className="text-md text-black-600">${influencer.reachPrice}</span>
+                                        <span className="text-md text-black-600">{influencer.reachPrice}</span>
                                         <span className="text-xs text-gray-500">Reach Price</span>
                                     </div>
                                     <div className="flex flex-col justify-center items-center py-2 px-1 rounded-md bg-slate-100">
@@ -280,6 +137,7 @@ const BrandHome = () => {
                     </div>
                 </div>
             </Container>
+
             <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose} className="drawer p-4">
                 <div className="py-2 px-4">
                     <div className="flex items-center justify-end">
@@ -300,6 +158,9 @@ const BrandHome = () => {
                             </svg>
                         </IconButton>
                     </div>
+                    {/* <IconButton onClick={handleDrawerClose} className="float-right brand_drawer_close">
+                        <CloseIcon />
+                    </IconButton> */}
                     {selectedInfluencer && (
                         <>
                             <div className="flex flex-col items-center">
@@ -332,11 +193,14 @@ const BrandHome = () => {
                                     ))}
                                 </div>
                             </div>
+
+
                             <div className="mt-4">
                                 <p className='text-sm text-left'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
                             </div>
-                            <div className="flex flex-wrap gap-3 md:gap:0 lg:gap:0">
-                                <h2 className="text-lg my-4 text-left">Influencer Statistics</h2>
+
+                            <div className="flex flex-wrap gap-3 md:gap:0 lg:gap-0">
+                                <h2 className="text-lg my-4 text-left">Influencers Statestics</h2>
                             </div>
                             <table className="min-w-full bg-white border border-slate-300">
                                 <thead className="bg-slate-200">
@@ -380,6 +244,7 @@ const BrandHome = () => {
                     )}
                 </div>
             </Drawer>
+
         </>
     );
 }
