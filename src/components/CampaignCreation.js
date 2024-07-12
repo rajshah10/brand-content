@@ -160,7 +160,7 @@ const CampaignCreation = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="col-span-full">
+                                {/* <div className="col-span-full">
                                     <label htmlFor="createdDateTime" className="block text-sm font-medium leading-6 text-gray-900">Created DateTime</label>
                                     <div className="mt-2">
                                         <input
@@ -172,7 +172,7 @@ const CampaignCreation = () => {
                                             className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 bg-gray-100 sm:text-sm sm:leading-6 outline-none"
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <button
