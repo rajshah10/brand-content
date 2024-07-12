@@ -112,81 +112,7 @@ const BrandHome = () => {
             </div>
 
             <Container className="mt-10 flex">
-                <div className="my-6">
-                    <h6 className="font-bold text-lg mb-4">filters</h6>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                            <Typography>Verified</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <FormControlLabel
-                                control={<Checkbox checked={filters.verified} onChange={handleFilterChange} name="verified" />}
-                                label="Verified"
-                            />
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                            <Typography>Subscribers</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {uniqueValues('subscribers').map(value => (
-                                <FormControlLabel
-                                    key={value}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.subscribers.includes(String(value))}
-                                            onChange={(e) => handleCheckboxChange(e, 'subscribers')}
-                                            value={String(value)}
-                                        />
-                                    }
-                                    label={`${value}+`}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
-                            <Typography>Likes</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {uniqueValues('likes').map(value => (
-                                <FormControlLabel
-                                    key={value}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.likes.includes(String(value))}
-                                            onChange={(e) => handleCheckboxChange(e, 'likes')}
-                                            value={String(value)}
-                                        />
-                                    }
-                                    label={`${value}+`}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
-                            <Typography>Reach Price</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {uniqueValues('reachPrice').map(value => (
-                                <FormControlLabel
-                                    key={value}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.reachPrice.includes(String(value))}
-                                            onChange={(e) => handleCheckboxChange(e, 'reachPrice')}
-                                            value={String(value)}
-                                        />
-                                    }
-                                    label={`$${value}+`}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
-                </div>
-                <div className="my-6">
+                <div className="my-6 mx-4">
                     <h6 className="font-bold text-lg mb-4">Influencers</h6>
                     <div>
                         {filteredInfluencers.map(influencer => (
@@ -233,7 +159,7 @@ const BrandHome = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 justify-between items-center">
                                     <div className="flex flex-col justify-center items-center border border-black-600 py-1 px-1 rounded-md bg-slate-100">
                                         <span className="text-md text-black-600">{influencer.subscribers}</span>
                                         <span className="text-xs text-gray-500">Subscribers</span>
