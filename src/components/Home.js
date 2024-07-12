@@ -102,7 +102,7 @@ const Home = () => {
 
                                             Equellence fosters Equestrian Excellence through content creation.
                                         </p>
-                                        <ul className='list-disc text-gray-600 text-left ml-10 mt-6'>
+                                        <ul className='list-disc text-gray-600 text-left ml-10 mt-6 text-lg'>
                                             <li>Network with industry professionals and peers to expand your opportunities.</li>
                                             <li>Engage with your audience to build a loyal following and enhance your personal brand.</li>
                                         </ul>

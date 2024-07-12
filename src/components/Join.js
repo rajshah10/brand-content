@@ -181,7 +181,7 @@ const Join = () => {
                         <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
                             <h1 className="text-white text-4xl">Brands & Organizations</h1>
                             <p className='text-slate-200 text-lg'>Are you a brand or an organization looking to work with Equellence? Please fill out your brand/company organization information out below</p>
-                            <p className='text-slate-200 text-left'>We hope we can satisfy your brand's needs!</p>
+                            <p className='text-slate-200 text-left text-lg'>We hope we can satisfy your brand's needs!</p>
                         </div>
                     </div>
                 }
@@ -191,8 +191,8 @@ const Join = () => {
                         <div className='bg-slate-800 rounded-md bg-opacity-50 flex flex-col justify-center gap-4  py-4 px-4'>
                             <h1 className="text-white text-4xl">Join Equellence</h1>
                             <p className='text-slate-200 text-lg'>EQUELLENCE APPLICATIONS ARE BACK OPEN! You can apply</p>
-                            <p className='text-slate-200 text-left'>Here are some ways you can work on your content and grow so that when applications open, you are ready for the club: </p>
-                            <ul className='list-disc text-slate-200 text-left ml-10'>
+                            <p className='text-slate-200 text-left text-lg'>Here are some ways you can work on your content and grow so that when applications open, you are ready for the club: </p>
+                            <ul className='list-disc text-slate-200 text-left ml-10 text-lg'>
                                 <li>Post frequently</li>
                                 <li>Have a common goal or inspiring social media message</li>
                                 <li>Good video content</li>
