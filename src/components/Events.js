@@ -58,10 +58,10 @@ const Events = () => {
                 </div>
                 <Container>
                     <section className="relative py-20">
-                        <div className="container mx-auto px-4 text-center">
+                        <div className="container mx-auto px-4 ">
                             <div className="w-full mx-auto px-4">
                                 <div className="md:pr-12">
-                                    <h3 className="text-3xl font-semibold">
+                                    <h3 className="text-3xl font-semibold text-center">
                                         EQUFEST
                                     </h3>
                                     <p className="mt-4 text-lg leading-relaxed text-gray-600">
@@ -79,15 +79,15 @@ const Events = () => {
                                     <p className="mt-4 text-lg leading-relaxed text-gray-600">
                                         Equfest 2024 will be at:
                                     </p>
-                                    <h4 className="text-2xl font-semibold mt-4">
+                                    <h4 className="text-2xl font-semibold mt-4 text-center">
                                         LAS VEGAS
                                     </h4>
                                     <img
                                         alt="Las Vegas"
-                                        className="w-full h-96 rounded-lg shadow-md mx-auto my-4"
-                                        src={las_vagas}
+                                        className="w-50 h-96 rounded-lg shadow-md mx-auto my-4"
+                                        src='https://content.paulreiffer.com/wp-content/uploads/2023/02/Featured-Image-Las-Vegas-Strip-Bellagio-Fountains-Paris-Hotel-Ballys-PH-High-Roller-Night-Cityscape-Viewpoint-Location-Paul-Reiffer-Nevada@2x.jpg'
                                     />
-                                    <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                                    <p className="mt-4 text-lg leading-relaxed text-gray-600 text-center">
                                         To learn more about Equfest and to find out how to attend, please visit the Equfest website (Coming soon).
                                     </p>
                                 </div>
