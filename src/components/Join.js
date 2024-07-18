@@ -5,6 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Join = () => {
     const [loginToggle, setLoginToggle] = useState(false);
@@ -13,6 +14,8 @@ const Join = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const { name } = location.state || {};
 
 
@@ -23,21 +26,36 @@ const Join = () => {
         }
     };
 
-    const handleRegister = () => {
-        setLoginToggle(!loginToggle);
-        navigate(location.pathname, { state: {} });
-    };
-    useEffect(() => {
-        // Check if the location state is 'login' and update states accordingly
-        if (name === "login") {
-            setLoginToggle(true);
-        }
-    }, [location.state]);
-
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         localStorage.setItem('selected_partner', option)
     };
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        setError('');
+
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const type = selectedOption
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/influencers/login', { email, password, type });
+            const { token } = response.data;
+            if (token) {
+                navigate(`/${type}`)
+            }
+            localStorage.setItem('token', token);
+        } catch (error) {
+            setError(error.response ? error.response.data.message : 'Login failed. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+
     return (
         <div className="flex flex-col md:flex-row lg:flex-row h-screen">
             <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
@@ -78,83 +96,28 @@ const Join = () => {
                                             <span>Brand</span>
                                         </div>
                                     </div>
-                                    {(loginToggle || name === "login") && (
-                                        <>
-                                            <div>
-                                                <label
-                                                    htmlFor="email"
-                                                    className="block text-sm font-medium leading-6 text-gray-900"
-                                                >
-                                                    Email address
-                                                </label>
-                                                <div className="mt-2">
-                                                    <input
-                                                        id="email"
-                                                        name="email"
-                                                        type="email"
-                                                        autoComplete="email"
-                                                        required
-                                                        className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                                    />
-                                                </div>
-                                            </div>
 
-                                            <div>
-                                                <div className="flex items-center justify-between">
-                                                    <label
-                                                        htmlFor="password"
-                                                        className="block text-sm font-medium leading-6 text-gray-900"
-                                                    >
-                                                        Password
-                                                    </label>
-                                                    <div className="text-sm">
-                                                        <a
-                                                            href="#"
-                                                            className="font-semibold text-indigo-600   hover:text-indigo-500"
-                                                        >
-                                                            Forgot password?
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div className="mt-2">
-                                                    <input
-                                                        id="password"
-                                                        name="password"
-                                                        type="password"
-                                                        autoComplete="current-password"
-                                                        required
-                                                        className="block px-2 outline-none  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </>
-                                    )}
 
                                     {
-                                        (!loginToggle) && <div>
+                                        <div>
                                             <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                                 Next
                                             </button>
                                         </div>
                                     }
 
-                                    {
-                                        (name === "login" || loginToggle) && <div>
-                                            <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                                Login
-                                            </button>
-                                        </div>
-                                    }
+
                                 </form>
+                                {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
 
                                 <p className="mt-4 text-sm text-gray-500">
                                     <a
-                                        onClick={handleRegister}
+                                        onClick={() => navigate("/login")}
                                         className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500"
                                     >
-                                        {(!loginToggle && name !== "login") ? <>
-                                            <span className='text-slate-800 font-medium'>Already a member? </span>Login
-                                        </> : "Back"}
+
+                                        <span className='text-slate-800 font-medium'>Already a member? </span>Login
+
                                     </a>
                                 </p>
                             </div>
@@ -163,7 +126,7 @@ const Join = () => {
                     </>
                 }
                 {
-                    name !== "login" &&
+
                     <>
                         {formSubmitted && selectedOption === "contentCreator" && <ContentCreatorFlow setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
                         {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
@@ -172,12 +135,13 @@ const Join = () => {
 
             </div>
             <div className="relative w-full h-full md:w-3/5 lg:w-3/5 md:h-auto lg:h-auto bg-cover bg-center"
-                style={{backgroundImage:
-                        selectedOption === "brand" ? "url('https://c0.wallpaperflare.com/preview/943/758/422/person-recreation-jumping-horse.jpg')" :"url('https://www.itl.cat/pngfile/big/210-2106332_photo-wallpaper-rider-horse-horse-riding-horse-riding.jpg",
+                style={{
+                    backgroundImage:
+                        selectedOption === "brand" ? "url('https://c0.wallpaperflare.com/preview/943/758/422/person-recreation-jumping-horse.jpg')" : "url('https://www.itl.cat/pngfile/big/210-2106332_photo-wallpaper-rider-horse-horse-riding-horse-riding.jpg",
                 }}>
                 {
                     selectedOption === "brand" &&
-                    <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col px-8 flex flex-col justify-center">
+                    <div className="md:absolute lg:absolute inset-0 py-24  md:py-0lg:py-0 bg-black bg-opacity-30 flex flex-col px-8 flex flex-col justify-center">
                         <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
                             <h1 className="text-white text-4xl">Brands & Organizations</h1>
                             <p className='text-slate-200 text-lg'>Are you a brand or an organization looking to work with Equellence? Please fill out your brand/company organization information out below</p>
@@ -187,7 +151,7 @@ const Join = () => {
                 }
                 {
                     selectedOption === "contentCreator" &&
-                    <div className="absolute inset-0 bg-black bg-opacity-30 px-8 flex flex-col justify-center">
+                    <div className="md:absolute lg:absolute inset-0 py-24  md:py-0lg:py-0 bg-black bg-opacity-30 px-8 flex flex-col justify-center">
                         <div className='bg-slate-800 rounded-md bg-opacity-50 flex flex-col justify-center gap-4  py-4 px-4'>
                             <h1 className="text-white text-4xl">Join Equellence</h1>
                             <p className='text-slate-200 text-lg'>EQUELLENCE APPLICATIONS ARE BACK OPEN! You can apply</p>

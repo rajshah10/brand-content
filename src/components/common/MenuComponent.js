@@ -13,6 +13,10 @@ const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
     const getPartner = localStorage.getItem('selected_partner')
     const navigate = useNavigate()
+    const handleLogout=()=>{
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
     return (
         <div>
             <Menu
@@ -111,7 +115,7 @@ const MenuComponent = (props) => {
 
 
                 <Divider />
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleLogout}>
                     <ListItemIcon style={{ color: "slategray" }}>
                         <Logout fontSize="small" />
                     </ListItemIcon>

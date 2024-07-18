@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-
+import toast, { Toaster } from 'react-hot-toast';
+import axios from "axios";
+import { CircularProgress } from "@mui/material";
 const Brands = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         fullName: "",
-        role: "",
+        // role: "",
         email: "",
-        company: null,
-        address: "",
-        phoneNumber: "",
-        description: "",
+        password:"",
+        companyName: "",
+        phone: "",
+        brandDescription: "",
+        influencerType:[],
+        brandAddress:"",
+        collaborationType:"",
+        subscriptionType:"Gold"
     });
 
 
@@ -23,24 +30,68 @@ const Brands = (props) => {
         });
     };
 
-    const handleFileChange = (e) => {
-        setFormData({
-            ...formData,
-            media: e.target.files[0],
+    const handleInfluencerType = (e) => {
+        const { value, checked } = e.target;
+        setFormData((prevState) => {
+            if (checked) {
+                return {
+                    ...prevState,
+                    influencerType: [...prevState.influencerType, value],
+                };
+            } else {
+                return {
+                    ...prevState,
+                    influencerType: prevState.influencerType.filter((influencerType) => influencerType !== value),
+                };
+            }
+        });
+    };
+    const handleCollaborationType = (e) => {
+        const { value, checked } = e.target;
+        setFormData((prevState) => {
+            if (checked) {
+                return {
+                    ...prevState,
+                    collaborationType: [...prevState.collaborationType, value],
+                };
+            } else {
+                return {
+                    ...prevState,
+                    collaborationType: prevState.collaborationType.filter((collaborationType) => collaborationType !== value),
+                };
+            }
         });
     };
 
-    const handleSubmit = (e) => {
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        if (step < 4) {
-            setStep(step + 1);
-        } else if (step >= 4) {
-            navigate('/brands');
+        try {
+
+            if (step < 4) {
+                setStep(step + 1);
+            } else if (step >= 4) {
+                setLoading(true);
+                const response = await axios.post('http://localhost:5000/api/brands', formData);
+                if (response.status === 201) {
+                    toast.success('Form submitted successfully!');
+                    setLoading(false);
+                    setTimeout(() => {
+                        navigate("/login");
+                    }, 3000);
+                }
+
+            }
+
+        } catch (error) {
+            console.error('Error submitting the form:', error);
+            setLoading(false);
         }
     };
 
 
+    console.log("Formdara",formData)
 
     const renderStep = () => {
         switch (step) {
@@ -58,24 +109,24 @@ const Brands = (props) => {
                                     type="text"
                                     value={formData.email}
                                     onChange={handleChange}
-
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                 Password
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="role"
-                                    name="role"
-                                    type="text"
-                                    value={formData.role}
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    value={formData.password}
                                     onChange={handleChange}
-
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -91,7 +142,7 @@ const Brands = (props) => {
                                     type="text"
                                     value={formData.fullName}
                                     onChange={handleChange}
-
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -102,49 +153,49 @@ const Brands = (props) => {
                 return (
                     <>
                         <div>
-                            <label htmlFor="company" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="companyName" className="block text-sm font-medium leading-6 text-gray-900">
                                 Company/Organization Name
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="company"
-                                    name="company"
+                                    id="companyName"
+                                    name="companyName"
                                     type="text"
-                                    value={formData.company}
+                                    value={formData.companyName}
                                     onChange={handleChange}
-                                    // required
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="address" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="brandAddress" className="block text-sm font-medium leading-6 text-gray-900">
                                 Brand Address
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="address"
-                                    name="address"
+                                    id="brandAddress"
+                                    name="brandAddress"
                                     type="text"
-                                    value={formData.address}
+                                    value={formData.brandAddress}
                                     onChange={handleChange}
-                                    // required
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="phoneNumber" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
                                 Brand Phone Number
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="phoneNumber"
-                                    name="phoneNumber"
+                                    id="phone"
+                                    name="phone"
                                     type="text"
-                                    value={formData.phoneNumber}
+                                    value={formData.phone}
                                     onChange={handleChange}
-                                    // required
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -155,17 +206,17 @@ const Brands = (props) => {
                 return (
                     <>
                         <div>
-                            <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="brandDescription" className="block text-sm font-medium leading-6 text-gray-900">
                                 Brand Description
                             </label>
                             <div className="mt-1">
                                 <input
-                                    id="description"
-                                    name="description"
+                                    id="brandDescription"
+                                    name="brandDescription"
                                     type="text"
-                                    value={formData.description}
+                                    value={formData.brandDescription}
                                     onChange={handleChange}
-                                    // required
+                                    required
                                     className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -180,10 +231,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="paidCampaigns"
-                                            name="campaignTypes"
+                                            name="influencerType"
                                             type="checkbox"
                                             value="Paid Campaigns"
-                                            onChange={handleChange}
+                                            onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="paidCampaigns" className="ml-2 block text-sm text-gray-900">
@@ -193,10 +244,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="giftedCampaigns"
-                                            name="campaignTypes"
+                                            name="influencerType"
                                             type="checkbox"
                                             value="Gifted Campaigns"
-                                            onChange={handleChange}
+                                            onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="giftedCampaigns" className="ml-2 block text-sm text-gray-900">
@@ -206,10 +257,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="sponsorships"
-                                            name="campaignTypes"
+                                            name="influencerType"
                                             type="checkbox"
                                             value="Sponsorships"
-                                            onChange={handleChange}
+                                            onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="sponsorships" className="ml-2 block text-sm text-gray-900">
@@ -219,10 +270,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="affiliatePrograms"
-                                            name="campaignTypes"
+                                            name="influencerType"
                                             type="checkbox"
                                             value="Affiliate Programs"
-                                            onChange={handleChange}
+                                            onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="affiliatePrograms" className="ml-2 block text-sm text-gray-900">
@@ -232,10 +283,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="pr"
-                                            name="campaignTypes"
+                                            name="influencerType"
                                             type="checkbox"
                                             value="PR"
-                                            onChange={handleChange}
+                                            onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="pr" className="ml-2 block text-sm text-gray-900">
@@ -272,10 +323,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="paidCampaigns"
-                                            name="campaignTypes"
+                                            name="collaborationType"
                                             type="checkbox"
                                             value="Paid Campaigns"
-                                            onChange={handleChange}
+                                            onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="paidCampaigns" className="ml-2 block text-sm text-gray-900">
@@ -285,10 +336,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="giftedCampaigns"
-                                            name="campaignTypes"
+                                            name="collaborationType"
                                             type="checkbox"
                                             value="Gifted Campaigns"
-                                            onChange={handleChange}
+                                            onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="giftedCampaigns" className="ml-2 block text-sm text-gray-900">
@@ -298,10 +349,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="sponsorships"
-                                            name="campaignTypes"
+                                            name="collaborationType"
                                             type="checkbox"
                                             value="Sponsorships"
-                                            onChange={handleChange}
+                                            onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="sponsorships" className="ml-2 block text-sm text-gray-900">
@@ -311,10 +362,10 @@ const Brands = (props) => {
                                     <div className="flex items-center">
                                         <input
                                             id="affiliatePrograms"
-                                            name="campaignTypes"
+                                            name="collaborationType"
                                             type="checkbox"
                                             value="Affiliate Programs"
-                                            onChange={handleChange}
+                                            onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
                                         <label htmlFor="affiliatePrograms" className="ml-2 block text-sm text-gray-900">
@@ -368,7 +419,7 @@ const Brands = (props) => {
                             type="submit"
                             className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
-                            {step < 4 ? "Next" : "Confirm"}
+                            {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} />: step < 4 ? "Next" : "Confirm"}
                         </button>
                     </div>
                 </form>
