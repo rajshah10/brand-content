@@ -11,10 +11,11 @@ import UnsubscribeOutlinedIcon from '@mui/icons-material/UnsubscribeOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
-    const getPartner = localStorage.getItem('selected_partner')
+    const getPartner = localStorage.getItem('type')
     const navigate = useNavigate()
-    const handleLogout=()=>{
+    const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem('selected_partner')
         navigate("/login");
     }
     return (
@@ -59,7 +60,7 @@ const MenuComponent = (props) => {
                         {/* <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                             <AccountCircleOutlined style={{ color: "slategray" }} />My Profile
                         </MenuItem> */}
-                        <MenuItem onClick={() => navigate("/influencers/1/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <MenuItem onClick={() => navigate("/influencers/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                             <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
                         </MenuItem>
                     </>
