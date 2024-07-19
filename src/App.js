@@ -16,20 +16,33 @@ import AboutUs from "./components/AboutUs";
 import Events from "./components/Events";
 import FAQ from "./components/FAQ";
 import Login from "./components/Login";
-import { useEffect } from "react";
-// import Landing from "./views/Landing";
+import { useEffect, useState } from "react";
+import ProtectedRoute from "./components/Route/ProtectedRoute";
 
-function isAuthenticated() {
+function getTokenData() {
   const token = localStorage.getItem("token");
-  return !!token;
+  if (!token) return null;
+
+  const tokenParts = token.split('.');
+  if (tokenParts.length !== 3) return null;
+
+  try {
+    const payload = JSON.parse(atob(tokenParts[1]));
+    const type = payload.type;
+    localStorage.setItem('type', type);
+    return type;
+  } catch (e) {
+    console.error("Invalid token:", e);
+    return null;
+  }
 }
 
-
+function isAuthenticated() {
+  return localStorage.getItem('token');
+}
 
 function App() {
-  useEffect(()=>{
-    isAuthenticated()
-  },[isAuthenticated()])
+  
 
   return (
     <>
@@ -37,18 +50,18 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/contentCreator" element={isAuthenticated() ? <Influencers /> : <Navigate to="/join" />} />
-        <Route path="/brands" element={isAuthenticated() ? <BrandHome />:<Navigate to="/join" />}/>
-        <Route path="/campaigncreation" element={isAuthenticated() ? <CampaignCreation /> : <Navigate to="/join" />} />
-        <Route path="/influencers/:id/profile" element={isAuthenticated() ? <EditProfile /> : <Navigate to="/join" />} />
-        <Route path="/contact" element={isAuthenticated() ? <Contact /> : <Navigate to="/join" />} />
-        <Route path="/manage-campaign" element={isAuthenticated() ? <ManageCampaign /> : <Navigate to="/join" />} />
-        <Route path="/manage-subs" element={isAuthenticated() ? <ManageSubs /> : <Navigate to="/join" />} />
-        <Route path="/orders-brand" element={isAuthenticated() ? <Orders /> : <Navigate to="/join" />} />
-        <Route path="/orders-influencer" element={isAuthenticated() ? <Orders /> : <Navigate to="/join" />} />
-        <Route path="/about" element={<AboutUs /> } />
-        <Route path="/events" element={ <Events /> } />
-        <Route path="/faq" element={ <FAQ /> } />
+        <Route path="/contentCreator" element={<Influencers />} />
+        <Route path="/brands" element={ <BrandHome />} />
+        <Route path="/campaigncreation" element={<CampaignCreation />} />
+        <Route path="/influencers/:id/profile" element={<EditProfile />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/manage-campaign" element={<ManageCampaign />} />
+        <Route path="/manage-subs" element={<ManageSubs />} />
+        <Route path="/orders-brand" element={<Orders />} />
+        <Route path="/orders-influencer" element={<Orders />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
     </>
   );
