@@ -16,15 +16,20 @@ const Header = (props) => {
                 />
             </div>
             <div className="relative">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    required
-                    className="block w-full sm:w-96 md:w-96 lg:w-96 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
-                />
-                <div className="absolute top-1 right-2">
-                    <SearchOutlinedIcon style={{ fontSize: "18px", color: "slategray" }} />
-                </div>
+                {
+                    props.search === false ? <> </> : <>
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            required
+                            className="block w-full sm:w-96 md:w-96 lg:w-96 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                        />
+                        <div className="absolute top-1 right-2">
+                            <SearchOutlinedIcon style={{ fontSize: "18px", color: "slategray" }} />
+                        </div>
+                    </>
+                }
+
             </div>
             <div>
                 <div onClick={handleClick} className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-slate-300 cursor-pointer">

@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import toast, { Toaster } from 'react-hot-toast';
+import MenuComponent from '../common/MenuComponent';
+import Header from '../common/Header';
 
 const EditProfile = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const openMenu = Boolean(anchorEl);
     const [formData, setFormData] = useState({
         bio: '',
         collaborationCount: '',
@@ -109,6 +113,12 @@ const EditProfile = () => {
             setLoading(false);
         }
     };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <div>
@@ -116,16 +126,8 @@ const EditProfile = () => {
                 position="top-right"
                 reverseOrder={false}
             />
-            <div className=" bg-white shadow-sm  w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between">
-                <div>
-                    <img
-                        onClick={() => { navigate("/") }}
-                        className="h-24 w-auto cursor-pointer"
-                        src={require("../../assets/images/Logo.png")}
-                        alt="Your Company"
-                    />
-                </div>
-            </div>
+            <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+            <Header handleClick={handleClick}  search={false}/>
             <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 <div className='my-6'>
                     <form onSubmit={handleSubmit}>

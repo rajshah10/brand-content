@@ -159,15 +159,15 @@ const Login = () => {
                             </form>
                             {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
                             <p className="mt-4 text-sm text-gray-500">
-                                    <a
-                                        onClick={() => navigate("/join")}
-                                        className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500"
-                                    >
+                                <a
+                                    onClick={() => navigate("/join")}
+                                    className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500"
+                                >
 
-                                        <span className='text-slate-800 font-medium'>Yet to register? </span>Join
+                                    <span className='text-slate-800 font-medium'>Yet to register? </span>Join
 
-                                    </a>
-                                </p>
+                                </a>
+                            </p>
 
                         </div>
 
