@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { CircularProgress, IconButton } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import React, { useState } from 'react'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const Login = () => {
-    const [step, setStep] = useState(1);
     const [selectedOption, setSelectedOption] = useState('contentCreator');
-    const [formSubmitted, setFormSubmitted] = useState(false);
-    const location = useLocation();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -33,6 +30,11 @@ const Login = () => {
             const response = await axios.post('http://localhost:5000/api/influencers/login', { email, password, type });
             const { token } = response.data;
             if (token) {
+                const tokenParts = token.split('.');
+                if (tokenParts.length !== 3) return null;
+                const payload = JSON.parse(atob(tokenParts[1]));
+                const type = payload.type;
+                localStorage.setItem('type', type);
                 navigate(`/contentCreator`)
             }
             localStorage.setItem('token', token);
@@ -42,6 +44,7 @@ const Login = () => {
             setLoading(false);
         }
     };
+
     const handleLoginForBrands = async (event) => {
         event.preventDefault();
         setLoading(true);
@@ -55,6 +58,11 @@ const Login = () => {
             const response = await axios.post('http://localhost:5000/api/brands/login', { email, password, type });
             const { token } = response.data;
             if (token) {
+                const tokenParts = token.split('.');
+                if (tokenParts.length !== 3) return null;
+                const payload = JSON.parse(atob(tokenParts[1]));
+                const type = payload.type;
+                localStorage.setItem('type', type);
                 navigate(`/brands`)
             }
             localStorage.setItem('token', token);

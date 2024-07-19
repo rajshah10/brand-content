@@ -16,6 +16,7 @@ const MenuComponent = (props) => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem('selected_partner')
+        localStorage.removeItem('type')
         navigate("/login");
     }
     return (

@@ -16,34 +16,12 @@ import AboutUs from "./components/AboutUs";
 import Events from "./components/Events";
 import FAQ from "./components/FAQ";
 import Login from "./components/Login";
-import { useEffect, useState } from "react";
-import ProtectedRoute from "./components/Route/ProtectedRoute";
 
-function getTokenData() {
-  const token = localStorage.getItem("token");
-  if (!token) return null;
 
-  const tokenParts = token.split('.');
-  if (tokenParts.length !== 3) return null;
 
-  try {
-    const payload = JSON.parse(atob(tokenParts[1]));
-    const type = payload.type;
-    localStorage.setItem('type', type);
-    return type;
-  } catch (e) {
-    console.error("Invalid token:", e);
-    return null;
-  }
-}
 
-function isAuthenticated() {
-  return localStorage.getItem('token');
-}
 
 function App() {
-  
-
   return (
     <>
       <Routes>
@@ -51,7 +29,7 @@ function App() {
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contentCreator" element={<Influencers />} />
-        <Route path="/brands" element={ <BrandHome />} />
+        <Route path="/brands" element={<BrandHome />} />
         <Route path="/campaigncreation" element={<CampaignCreation />} />
         <Route path="/influencers/profile" element={<EditProfile />} />
         <Route path="/contact" element={<Contact />} />

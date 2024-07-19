@@ -4,11 +4,13 @@ import { useNavigate } from "react-router";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
+
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const token = localStorage.getItem('token');
   const type = localStorage.getItem('type');
   const navigate = useNavigate()
+ 
   return (
     <nav
       className={
