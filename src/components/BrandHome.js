@@ -73,7 +73,7 @@ const BrandHome = () => {
         return <LinkIcon fontSize="inherit" />; // Default icon if no match
     };
 
-    console.log("influenced", influencerdata)
+  
 
     const handleNicheChange = (niche) => {
         setSelectedNiches((prevNiches) =>
@@ -261,7 +261,7 @@ const BrandHome = () => {
                                                     <HelpOutlineIcon className="text-orange-400 brand_badge" />
                                                 )}
                                             >
-                                                <Avatar onClick={() => handleDrawerOpen(influencer)} className="brand_avatar w-32 h-32 rounded-full" src={influencer.image} alt={influencer.name} />
+                                                <Avatar onClick={() => handleDrawerOpen(influencer)} className="brand_avatar w-32 h-32 rounded-full" src={influencer.media} alt={influencer.name} />
                                             </Badge>
                                         </div>
                                         <div>
@@ -377,7 +377,7 @@ const BrandHome = () => {
                                         <HelpOutlineIcon className="text-orange-400 brand_badge" />
                                     )}
                                 >
-                                    <Avatar className="brand_avatar w-40 h-40 rounded-full" src={selectedInfluencer.image} alt={selectedInfluencer.name} />
+                                    <Avatar className="brand_avatar w-40 h-40 rounded-full" src={selectedInfluencer.media} alt={selectedInfluencer.media} />
                                 </Badge>
                                 <h3 className="text-lg font-medium text-black-600 flex items-center mt-4">
                                     {selectedInfluencer.firstName} - {selectedInfluencer.lastName} -&nbsp; <span className='text-sm text-gray-600'> {selectedInfluencer.email}</span>

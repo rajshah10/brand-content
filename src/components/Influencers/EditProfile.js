@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-undef */
 import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
@@ -13,7 +15,7 @@ const EditProfile = () => {
     const [loading, setLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
-    const [formData, setFormData] = useState({
+    const [formDatas, setFormData] = useState({
         bio: '',
         collaborationCount: '',
         dateJoined: '',
@@ -24,10 +26,12 @@ const EditProfile = () => {
         phoneNumber: '',
         socialMediaLinks: [{ id: 1, link: '', followerCount: '' }],
         status: '',
+        media: ''
     });
     const [newNiche, setNewNiche] = useState('');
     const [isAdding, setIsAdding] = useState(false);
     const [isAddingSM, setIsAddingSM] = useState(false);
+    const [file, setFile] = useState(null);
     const [newSocialMediaLink, setNewSocialMediaLink] = useState({ link: '', followerCount: '' });
 
     const handleChange = (e) => {
@@ -37,7 +41,12 @@ const EditProfile = () => {
             [name]: value
         }));
     };
-
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFile(file)
+        }
+    };
     useEffect(() => {
         const fetchInfluencerData = async () => {
             try {
@@ -55,7 +64,6 @@ const EditProfile = () => {
 
         fetchInfluencerData();
     }, []);
-
     const handleAddNiche = () => {
         if (newNiche.trim() !== '') {
             setFormData(prevState => ({
@@ -97,22 +105,43 @@ const EditProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
         try {
-            const token = localStorage.getItem('token'); // Assuming you store the token in local storage
-            await axios.put('http://localhost:5000/api/influencers/profile/edit', formData, {
+            const token = localStorage.getItem('token');
+            const formData = new FormData();
+
+            // Append all fields except for socialMediaLinks as usual
+            for (const key in formDatas) {
+                if (formDatas.hasOwnProperty(key) && key !== 'socialMediaLinks') {
+                    formData.append(key, formDatas[key]);
+                }
+            }
+
+            // Append socialMediaLinks as a JSON string
+            formData.append('socialMediaLinks', JSON.stringify(formDatas.socialMediaLinks));
+
+            // Append the file if it exists
+            if (file) {
+                formData.append('file', file);
+            }
+
+            const response = await axios.put('http://localhost:5000/api/influencers/profile/edit', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 }
             });
+            setFormData(response.data);
+
             toast.success('Profile updated successfully!');
             setLoading(false);
-            navigate('/influencers/profile'); // Redirect to profile page after successful update
+            navigate('/influencers/profile');
         } catch (error) {
             console.error('Error updating influencer data:', error);
             setLoading(false);
         }
     };
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -127,7 +156,7 @@ const EditProfile = () => {
                 reverseOrder={false}
             />
             <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-            <Header handleClick={handleClick}  search={false}/>
+            <Header handleClick={handleClick} search={false} />
             <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                 <div className='my-6'>
                     <form onSubmit={handleSubmit}>
@@ -146,7 +175,7 @@ const EditProfile = () => {
                                                     type="text"
                                                     name="firstName"
                                                     id="firstName"
-                                                    value={formData.firstName}
+                                                    value={formDatas.firstName}
                                                     className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 outline-none sm:text-sm sm:leading-6"
                                                     placeholder="Jane"
                                                 />
@@ -162,7 +191,7 @@ const EditProfile = () => {
                                                     type="text"
                                                     name="lastName"
                                                     id="lastName"
-                                                    value={formData.lastName}
+                                                    value={formDatas.lastName}
                                                     className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 outline-none sm:text-sm sm:leading-6"
                                                     placeholder="Smith"
                                                 />
@@ -175,7 +204,7 @@ const EditProfile = () => {
                                         <div className="mt-2">
                                             <textarea
                                                 onChange={handleChange}
-                                                value={formData.bio}
+                                                value={formDatas.bio}
                                                 id="bio"
                                                 name="bio"
                                                 rows="3"
@@ -185,13 +214,22 @@ const EditProfile = () => {
                                         <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
                                     </div>
 
-                                    <div className="col-span-full">
-                                        <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">Photo</label>
-                                        <div className="mt-2 flex items-center gap-x-3">
-                                            <svg className="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                                <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
-                                            </svg>
-                                            <button type="button" className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
+                                    <div className="sm:col-span-4">
+                                        <label htmlFor="media" className="block text-sm font-medium leading-6 text-gray-900">Photo</label>
+                                        <div className="mt-2">
+                                            <div className="flex items-center">
+                                                <input
+                                                    onChange={handleFileChange}
+                                                    type="file"
+                                                    name="media"
+                                                    id="media"
+                                                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                                                    accept="image/*"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className='my-4'>
+                                            <img src={formDatas.media}  className='rounded-full h-24 w-24' />
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +242,7 @@ const EditProfile = () => {
                                         <div className="mt-2">
                                             <input
                                                 onChange={handleChange}
-                                                value={formData.email}
+                                                value={formDatas.email}
                                                 id="email"
                                                 name="email"
                                                 type="email"
@@ -218,7 +256,7 @@ const EditProfile = () => {
                                         <div className="mt-2">
                                             <input
                                                 onChange={handleChange}
-                                                value={formData.phoneNumber}
+                                                value={formDatas.phoneNumber}
                                                 type="tel"
                                                 name="phoneNumber"
                                                 id="phoneNumber"
@@ -230,7 +268,7 @@ const EditProfile = () => {
                                     <div className="col-span-full">
                                         <label htmlFor="niche" className="block text-sm font-medium leading-6 text-gray-900">Niche</label>
                                         <div className="mt-2">
-                                            {formData.niche.map((niche, index) => (
+                                            {formDatas.niche.map((niche, index) => (
                                                 <div key={index} className="flex items-center gap-x-3">
                                                     <span>{niche}</span>
                                                     <button
@@ -269,7 +307,7 @@ const EditProfile = () => {
                                     <div className="col-span-full">
                                         <label htmlFor="socialMediaLinks" className="block text-sm font-medium leading-6 text-gray-900">Social Media Links</label>
                                         <div className="mt-2">
-                                            {formData.socialMediaLinks.map((link) => (
+                                            {formDatas.socialMediaLinks.map((link) => (
                                                 <div key={link.id} className="flex items-center gap-x-3">
                                                     <a href={link.link} className="text-blue-500" target="_blank" rel="noopener noreferrer">{link.link}</a>
                                                     <span className="text-gray-500">{link.followerCount}</span>
