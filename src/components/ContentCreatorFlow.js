@@ -344,7 +344,7 @@ const ContentCreatorFlow = (props) => {
     return (
         <div className="flex flex-col justify-center w-full px-6 lg:px-8">
             <Toaster
-                position="top-center"
+                position="top-right"
                 reverseOrder={false}
             />
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">

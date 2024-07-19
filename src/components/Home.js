@@ -7,6 +7,7 @@ import Navbar from './common/Navbar';
 import { Container } from '@mui/material';
 import Footer from './common/Footer';
 const Home = () => {
+    
 
     return (
         <div className='relative'>

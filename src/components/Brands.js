@@ -396,6 +396,10 @@ const Brands = (props) => {
 
     return (
         <div className="flex flex-col justify-center w-full px-6 lg:px-8">
+             <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="flex justify-center mb-4 gap-3">
                     <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
