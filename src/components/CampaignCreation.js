@@ -3,6 +3,9 @@ import MenuComponent from "./common/MenuComponent";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Container } from '@mui/material';
 import Header from './common/Header';
+import toast, { Toaster } from 'react-hot-toast';
+
+import axios from 'axios';
 
 const CampaignCreation = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -23,7 +26,7 @@ const CampaignCreation = () => {
         deliverables: '',
         deadlines: '',
         compensation: '',
-        createdDateTime: new Date().toISOString()
+        // createdDateTime: new Date().toISOString()
     });
 
     const handleChange = (e) => {
@@ -33,17 +36,29 @@ const CampaignCreation = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle the campaign data submission
-        console.log('Campaign Details:', campaign);
+        try {
+
+
+            const response = await axios.post('http://localhost:5001/api/campaign', campaign);
+            // console.log("response",response)
+            if (response.status === 200) {
+                toast.success('Form submitted successfully!');
+                // alert("successfully submitted..!")
+            }
+
+        } catch (error) {
+            console.error('Error submitting the form:', error);
+        }
     };
 
     return (
         <>
             <div>
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick}/>
+                <Header handleClick={handleClick} />
             </div>
             <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
 
