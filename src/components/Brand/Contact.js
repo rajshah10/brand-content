@@ -1,19 +1,45 @@
-import { Container } from '@mui/material'
-import React, { useState } from 'react'
+import { CircularProgress, Container } from '@mui/material'
+import React, { useRef, useState } from 'react'
 import Header from '../common/Header'
 import MenuComponent from '../common/MenuComponent';
+import emailjs from '@emailjs/browser'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Contact = () => {
+    const form = useRef();
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
+    const [loading, setLoading] = useState(false);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        emailjs.sendForm('service_5x9p46j', 'template_f2bmz86', form.current, '0XPOiHoM1DL0BaJFZ').then((result) => {
+            console.log(result.text);
+            toast.success('Email sent successfully!');
+            setLoading(false);
+
+
+        }, (error) => {
+            console.log(error.text)
+            setLoading(false);
+
+        });
+    };
     return (
         <>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
             <Header handleClick={handleClick} />
             <Container>
@@ -51,7 +77,7 @@ const Contact = () => {
 
                                         <h2 class="mt-4 text-base font-medium text-gray-800 ">Live chat</h2>
                                         <p class="mt-2 text-sm text-gray-500">Our friendly team is here to help.</p>
-                                     
+
                                     </div>
 
                                     <div>
@@ -81,32 +107,39 @@ const Contact = () => {
                                 </div>
 
                                 <div class="p-4 py-6 rounded-lg bg-slate-100 md:p-8">
-                                    <form>
+                                    <form ref={form} onSubmit={handleSubmit}>
                                         <div class="-mx-2 md:items-center md:flex">
                                             <div class="flex-1 px-2">
                                                 <label class="block mb-2 text-sm text-gray-600 ">First Name</label>
-                                                <input type="text" placeholder="John " class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none outline-none" />
+                                                <input type="text" name="fname" placeholder="John " class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none outline-none" />
                                             </div>
 
                                             <div class="flex-1 px-2 mt-4 md:mt-0">
                                                 <label class="block mb-2 text-sm text-gray-600 ">Last Name</label>
-                                                <input type="text" placeholder="Doe" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none outline-none" />
+                                                <input type="text" name='lname' placeholder="Doe" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600  focus:ring-blue-400 focus:outline-none outline-none" />
                                             </div>
                                         </div>
 
                                         <div class="mt-4">
                                             <label class="block mb-2 text-sm text-gray-600 ">Email address</label>
-                                            <input type="email" placeholder="johndoe@example.com" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none outline-none" />
+                                            <input type="email" name='email' placeholder="johndoe@example.com" class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none outline-none" />
                                         </div>
 
                                         <div class="w-full mt-4">
                                             <label class="block mb-2 text-sm text-gray-600 ">Message</label>
-                                            <textarea class="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:ring-blue-400 focus:outline-none outline-none" placeholder="Message" rows={4}></textarea>
+                                            <textarea class="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg  focus:ring-blue-400 focus:outline-none outline-none" name='message' placeholder="Message" rows={4}></textarea>
                                         </div>
 
-                                        <button class="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg">
-                                            Send message
+                                        <button
+                                            type="submit"
+                                            className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg"
+                                        >
+                                            {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : "Send message"}
                                         </button>
+
+                                        {/* <button type='submit' class="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg">
+                                            Send message
+                                        </button> */}
                                     </form>
                                 </div>
                             </div>
