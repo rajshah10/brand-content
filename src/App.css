@@ -32,3 +32,22 @@
    border: 1px solid rgb(211, 211, 211);
    border-radius: 10px !important;
 }
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Scrollbar Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: gray;
+}
+
+/* Scrollbar Thumb */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: silver;
+  border-radius: 10px; /* Make the scrollbar thumb rounded */
+}
+
+/* Scrollbar Width */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
