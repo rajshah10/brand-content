@@ -81,7 +81,8 @@ const CampaignCreation = () => {
                                 <div className="sm:col-span-3">
                                     <label htmlFor="companyName" className="block text-sm font-medium leading-6 text-gray-900">Company Name</label>
                                     <div className="mt-2">
-                                        <input type="text" name="companyName" id="first-name" autoComplete="given-name" value={campaign.companyName}
+                                        <input
+                                        required type="text" name="companyName" id="first-name" autoComplete="given-name" value={campaign.companyName}
                                             onChange={handleChange} className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
@@ -89,7 +90,8 @@ const CampaignCreation = () => {
                                 <div className="sm:col-span-3">
                                     <label htmlFor="campaignTitle" className="block text-sm font-medium leading-6 text-gray-900">Campaign Title</label>
                                     <div className="mt-2">
-                                        <input type="text" name="campaignTitle" id="last-name" autoComplete="family-name" value={campaign.campaignTitle}
+                                        <input
+                                        required type="text" name="campaignTitle" id="last-name" autoComplete="family-name" value={campaign.campaignTitle}
                                             onChange={handleChange} className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
@@ -110,6 +112,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="requirements" className="block text-sm font-medium leading-6 text-gray-900">Requirements</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="requirements"
                                             id="requirements"
@@ -123,6 +126,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="deliverables" className="block text-sm font-medium leading-6 text-gray-900">Deliverables</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="deliverables"
                                             id="deliverables"
@@ -136,6 +140,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="deadlines" className="block text-sm font-medium leading-6 text-gray-900">Deadlines</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="deadlines"
                                             id="deadlines"
@@ -149,6 +154,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="compensation" className="block text-sm font-medium leading-6 text-gray-900">Compensation</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="compensation"
                                             id="compensation"
@@ -162,6 +168,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="brand" className="block text-sm font-medium leading-6 text-gray-900">Brand</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="brand"
                                             id="brand"
@@ -175,6 +182,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="COEmail" className="block text-sm font-medium leading-6 text-gray-900">Campaign Owner Email</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="COEmail"
                                             id="COEmail"
@@ -188,6 +196,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="createdDateTime" className="block text-sm font-medium leading-6 text-gray-900">Created DateTime</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="text"
                                             name="createdDateTime"
                                             id="createdDateTime"
