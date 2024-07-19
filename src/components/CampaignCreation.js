@@ -45,7 +45,7 @@ const CampaignCreation = () => {
         setLoading(true);
         // Handle the campaign data submission
         try {
-            const response = await axios.post('http://localhost:5001/api/campaign', campaign);
+            const response = await axios.post('http://localhost:5000/api/campaign', campaign);
             // console.log("response",response)
             if (response.status === 200) {
                 toast.success('Form submitted successfully!');
