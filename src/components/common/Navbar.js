@@ -10,7 +10,7 @@ export default function Navbar(props) {
   const token = localStorage.getItem('token');
   const type = localStorage.getItem('type');
   const navigate = useNavigate()
- 
+
   return (
     <nav
       className={
@@ -143,7 +143,7 @@ export default function Navbar(props) {
                 Login
               </button>
             </li>}
-            {token && <li onClick={() => navigate(`/${type}`)} className="flex items-center">
+            {token && <li onClick={() => navigate(`/${type === "brand" ? "brands" : type}`)} className="flex items-center">
               <button
                 className={
                   (props.transparent
