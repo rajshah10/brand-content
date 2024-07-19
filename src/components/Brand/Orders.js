@@ -37,7 +37,7 @@ const Orders = () => {
         <>
             <div>
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick} />
+                <Header handleClick={handleClick} search={false}/>
             </div>
             <Container>
                 <div className="my-12 mx-8">
