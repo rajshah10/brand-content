@@ -16,6 +16,7 @@ import AboutUs from "./components/AboutUs";
 import Events from "./components/Events";
 import FAQ from "./components/FAQ";
 import Login from "./components/Login";
+import OrdersInfluencers from "./components/Influencers/OrdersInfluencers";
 
 
 
@@ -35,8 +36,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/manage-campaign" element={<ManageCampaign />} />
         <Route path="/manage-subs" element={<ManageSubs />} />
-        <Route path="/orders-brand" element={<Orders />} />
+        <Route path="/orders-brand" element={<OrdersInfluencers />} />
         <Route path="/orders-influencer" element={<Orders />} />
+       
         <Route path="/about" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/faq" element={<FAQ />} />

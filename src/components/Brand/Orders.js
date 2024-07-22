@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { Container } from "@mui/material";
+import { Container, Skeleton } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import { useNavigate } from "react-router";
@@ -13,7 +13,7 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [influencerId, setInfluencerId] = useState('')
+    const [influencerId, setInfluencerId] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const Orders = () => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                setInfluencerId(response.data?._id)
+                setInfluencerId(response.data?._id);
 
             } catch (error) {
                 console.error('Error fetching influencer data:', error);
@@ -63,10 +63,11 @@ const Orders = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-   
+
     const handleCampaignClick = (campaignId) => {
         navigate('/contentCreator', { state: { campaignId } });
     };
+
     return (
         <>
             <div>
@@ -79,48 +80,73 @@ const Orders = () => {
                         <h6 className="font-bold text-lg">Orders</h6>
                     </div>
 
-                    {loading && <p>Loading...</p>}
+                    {loading && (
+                        <div className="relative overflow-x-auto my-6">
+                            <table className="w-full text-sm text-left text-gray-500 table-auto">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3">Email</th>
+                                        <th scope="col" className="px-6 py-3">Company Name</th>
+                                        <th scope="col" className="px-6 py-3">Price</th>
+                                        <th scope="col" className="px-6 py-3">Compensation</th>
+                                        <th scope="col" className="px-6 py-3">Deadlines</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[...Array(5)].map((_, index) => (
+                                        <tr className="bg-white border-b" key={index}>
+                                            <td className="px-6 py-4">
+                                                <Skeleton width="100px" height={20} />
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <Skeleton width="150px" height={20} />
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <Skeleton width="80px" height={20} />
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <Skeleton width="100px" height={20} />
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <Skeleton width="120px" height={20} />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                    
                     {error && <p className="text-red-500">{error}</p>}
 
-                    <div className="relative overflow-x-auto my-6">
-                        <table className="w-full text-sm text-left text-gray-500 table-auto">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
-                                <tr>
-                                    <th scope="col" className="px-6 py-3">Email</th>
-                                    <th scope="col" className="px-6 py-3">Company Name</th>
-                                    <th scope="col" className="px-6 py-3">Price</th>
-                                    <th scope="col" className="px-6 py-3">Compensation</th>
-                                    <th scope="col" className="px-6 py-3">Deadlines</th>
-                                    {/* <th scope="col" className="px-6 py-3">Actions</th> */}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {orders.map((order, index) => (
-                                    <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order._id)}>
-                                        <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
-                                            {order.COEmail}
-                                        </td>
-                                        <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
-                                        <td className="px-6 py-4 text-slate-500">{order.price}</td>
-                                        <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
-                                        <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
-                                        {/* <td className="px-6 py-4 text-slate-500 text-center">
-                                            <div className="flex justify-center gap-2">
-                                                <button className="flex gap-2 items-center">
-                                                    <EditOutlinedIcon style={{ fontSize: "16px" }} />
-                                                    Edit
-                                                </button>
-                                                <button className="flex gap-2 items-center">
-                                                    <DeleteOutlineOutlinedIcon style={{ fontSize: "16px" }} />
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </td> */}
+                    {!loading && (
+                        <div className="relative overflow-x-auto my-6">
+                            <table className="w-full text-sm text-left text-gray-500 table-auto">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3">Email</th>
+                                        <th scope="col" className="px-6 py-3">Company Name</th>
+                                        <th scope="col" className="px-6 py-3">Price</th>
+                                        <th scope="col" className="px-6 py-3">Compensation</th>
+                                        <th scope="col" className="px-6 py-3">Deadlines</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {orders.map((order, index) => (
+                                        <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order._id)}>
+                                            <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
+                                                {order.COEmail}
+                                            </td>
+                                            <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
+                                            <td className="px-6 py-4 text-slate-500">{order.price}</td>
+                                            <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
+                                            <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
                 </div>
             </Container>
         </>

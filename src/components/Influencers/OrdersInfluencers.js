@@ -7,7 +7,7 @@ import { Container } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 
-const Orders = () => {
+const OrdersInfluencers = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
     const [activeTab, setActiveTab] = useState('Active');
@@ -58,7 +58,7 @@ const Orders = () => {
                             </thead>
                             <tbody>
                                 {getFilteredData(activeTab).map((influencer, index) => (
-                                    <tr className="bg-white border-b cursor-pointer" key={index}>
+                                    <tr className="bg-white border-b" key={index}>
                                         <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">1</th>
                                         <th scope="row" className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
                                             {influencer.name}
@@ -87,4 +87,4 @@ const Orders = () => {
     );
 };
 
-export default Orders;
+export default OrdersInfluencers;
