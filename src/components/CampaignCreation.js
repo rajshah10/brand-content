@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MenuComponent from "./common/MenuComponent";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { CircularProgress, Container } from '@mui/material';
@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const CampaignCreation = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [buttonColor, setButtonColor] = useState('bg-indigo-600');
+    const [influencerData, setInfluencerData] = useState([])
     const [loading, setLoading] = useState(false);
 
     const openMenu = Boolean(anchorEl);
@@ -32,7 +32,8 @@ const CampaignCreation = () => {
         brand: '',
         price: 'Paid',
         social_media: 'Instagram',
-        images: []
+        images: [],
+        influencerdata: ""
         // createdDateTime: new Date().toISOString()
     });
 
@@ -48,10 +49,8 @@ const CampaignCreation = () => {
         e.preventDefault();
         setLoading(true);
 
-        // Create a new FormData object
         const formData = new FormData();
 
-        // Append form fields to the FormData object
         Object.keys(campaign).forEach(key => {
             if (key === 'images') {
                 // Append each file in the images array to FormData
@@ -88,8 +87,17 @@ const CampaignCreation = () => {
         });
     };
 
-
-
+    const getInfluencerData = async () => {
+        const response = await axios.get('http://localhost:5000/api/influencers')
+        if (response.data) {
+            setInfluencerData(response.data);
+        }
+    }
+    useEffect(() => {
+        getInfluencerData()
+    }, [])
+    console.log("InfluencerData", influencerData)
+    console.log("formData", campaign)
     return (
         <>
             <Toaster
@@ -240,21 +248,25 @@ const CampaignCreation = () => {
                                         </select>
                                     </div>
                                 </div>
+
                                 <div className="col-span-full">
-                                    <label htmlFor="social_media" className="block text-sm font-medium leading-6 text-gray-900">Social Media</label>
+                                    <label htmlFor="influencerdata" className="block text-sm font-medium leading-6 text-gray-900">Social Media</label>
                                     <div className="mt-2">
                                         <select
                                             required
                                             type="text"
-                                            name="social_media"
-                                            id="social_media"
-                                            value={campaign.social_media}
+                                            name="influencerdata"
+                                            id="influencerdata"
+                                            value={campaign.influencerdata}
                                             onChange={handleChange}
                                             className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         >
-                                            <option name="Facebook">Facebook</option>
-                                            <option name="Instagram">Instagram</option>
-                                            <option name="Twitter">Twitter</option>
+                                            {
+                                                influencerData?.map((data, index) => (
+                                                    <option key={data._id} value={data._id}>{data.firstName} - {data.lastName}</option>
+
+                                                ))
+                                            }
                                         </select>
                                     </div>
                                 </div>
