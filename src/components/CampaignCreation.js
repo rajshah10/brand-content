@@ -30,8 +30,12 @@ const CampaignCreation = () => {
         compensation: '',
         COEmail: '',
         brand: '',
+        price: 'Paid',
+        social_media: 'Instagram',
+        images: []
         // createdDateTime: new Date().toISOString()
     });
+
 
     const handleChange = (e) => {
         setCampaign({
@@ -43,13 +47,31 @@ const CampaignCreation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // Handle the campaign data submission
+
+        // Create a new FormData object
+        const formData = new FormData();
+
+        // Append form fields to the FormData object
+        Object.keys(campaign).forEach(key => {
+            if (key === 'images') {
+                // Append each file in the images array to FormData
+                for (let i = 0; i < campaign.images.length; i++) {
+                    formData.append('images', campaign.images[i]);
+                }
+            } else {
+                formData.append(key, campaign[key]);
+            }
+        });
+
         try {
-            const response = await axios.post('http://localhost:5000/api/campaign', campaign);
-            // console.log("response",response)
+            const response = await axios.post('http://localhost:5000/api/campaign', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
             if (response.status === 200) {
                 toast.success('Form submitted successfully!');
-                // alert("successfully submitted..!")
                 setLoading(false);
             }
 
@@ -59,9 +81,18 @@ const CampaignCreation = () => {
         }
     };
 
+    const handleFileChange = (e) => {
+        setCampaign({
+            ...campaign,
+            images: e.target.files  // Update state with selected files
+        });
+    };
+
+
+
     return (
         <>
-          <Toaster
+            <Toaster
                 position="top-right"
                 reverseOrder={false}
             />
@@ -82,7 +113,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="companyName" className="block text-sm font-medium leading-6 text-gray-900">Company Name</label>
                                     <div className="mt-2">
                                         <input
-                                        required type="text" name="companyName" id="first-name" autoComplete="given-name" value={campaign.companyName}
+                                            required type="text" name="companyName" id="first-name" autoComplete="given-name" value={campaign.companyName}
                                             onChange={handleChange} className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
@@ -91,7 +122,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="campaignTitle" className="block text-sm font-medium leading-6 text-gray-900">Campaign Title</label>
                                     <div className="mt-2">
                                         <input
-                                        required type="text" name="campaignTitle" id="last-name" autoComplete="family-name" value={campaign.campaignTitle}
+                                            required type="text" name="campaignTitle" id="last-name" autoComplete="family-name" value={campaign.campaignTitle}
                                             onChange={handleChange} className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
@@ -112,7 +143,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="requirements" className="block text-sm font-medium leading-6 text-gray-900">Requirements</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="text"
                                             name="requirements"
                                             id="requirements"
@@ -126,7 +157,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="deliverables" className="block text-sm font-medium leading-6 text-gray-900">Deliverables</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="text"
                                             name="deliverables"
                                             id="deliverables"
@@ -140,7 +171,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="deadlines" className="block text-sm font-medium leading-6 text-gray-900">Deadlines</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="text"
                                             name="deadlines"
                                             id="deadlines"
@@ -154,7 +185,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="compensation" className="block text-sm font-medium leading-6 text-gray-900">Compensation</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="text"
                                             name="compensation"
                                             id="compensation"
@@ -168,7 +199,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="brand" className="block text-sm font-medium leading-6 text-gray-900">Brand</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="text"
                                             name="brand"
                                             id="brand"
@@ -182,7 +213,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="COEmail" className="block text-sm font-medium leading-6 text-gray-900">Campaign Owner Email</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="text"
                                             name="COEmail"
                                             id="COEmail"
@@ -190,6 +221,57 @@ const CampaignCreation = () => {
                                             onChange={handleChange}
                                             className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                                         />
+                                    </div>
+                                </div>
+                                <div className="col-span-full">
+                                    <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">Pricing</label>
+                                    <div className="mt-2">
+                                        <select
+                                            required
+                                            type="text"
+                                            name="price"
+                                            id="price"
+                                            value={campaign.price}
+                                            onChange={handleChange}
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                        >
+                                            <option name="Unpaid">Unpaid</option>
+                                            <option name="Paid">Paid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-span-full">
+                                    <label htmlFor="social_media" className="block text-sm font-medium leading-6 text-gray-900">Social Media</label>
+                                    <div className="mt-2">
+                                        <select
+                                            required
+                                            type="text"
+                                            name="social_media"
+                                            id="social_media"
+                                            value={campaign.social_media}
+                                            onChange={handleChange}
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                        >
+                                            <option name="Facebook">Facebook</option>
+                                            <option name="Instagram">Instagram</option>
+                                            <option name="Twitter">Twitter</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                    {/* Other input fields */}
+                                    <div className="col-span-full">
+                                        <label htmlFor="images" className="block text-sm font-medium leading-6 text-gray-900">Campaign Images</label>
+                                        <div className="mt-2">
+                                            <input
+                                                type="file"
+                                                name="images"
+                                                id="images"
+                                                multiple
+                                                onChange={handleFileChange}
+                                                className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 {/* <div className="col-span-full">
@@ -212,7 +294,7 @@ const CampaignCreation = () => {
                             type="submit"
                             className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
-                            {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} />: " Create Campaign"}
+                            {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : " Create Campaign"}
                         </button>
 
                     </form>
