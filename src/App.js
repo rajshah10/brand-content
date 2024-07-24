@@ -36,9 +36,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/manage-campaign" element={<ManageCampaign />} />
         <Route path="/manage-subs" element={<ManageSubs />} />
-        <Route path="/orders-brand" element={<OrdersInfluencers />} />
-        <Route path="/orders-influencer" element={<Orders />} />
-       
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders-influencer" element={<OrdersInfluencers />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/faq" element={<FAQ />} />

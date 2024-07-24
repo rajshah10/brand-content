@@ -89,7 +89,7 @@ const MenuComponent = (props) => {
                     </MenuItem>
                 }
                 {
-                    getPartner === "contentCreator" && <MenuItem onClick={() => navigate("/orders-influencer")}>
+                    getPartner === "contentCreator" && <MenuItem onClick={() => navigate("/orders")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <LockOpenOutlinedIcon />
                         </ListItemIcon>
@@ -98,7 +98,7 @@ const MenuComponent = (props) => {
                 }
 
                 {
-                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/orders-brand")}>
+                    getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/orders-influencer")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <LockOpenOutlinedIcon />
                         </ListItemIcon>

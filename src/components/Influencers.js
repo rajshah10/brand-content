@@ -24,10 +24,10 @@ const Influencers = () => {
     const [filterPlatform, setFilterPlatform] = useState('');
     const [influencerId, setInfluencerId] = useState('');
     const [loading, setLoading] = useState(true);
-    const [campaignId, setCampaignId] = useState(''); // State to manage highlighted campaign
+    const [campaignId, setCampaignId] = useState(''); 
 
     const location = useLocation();
-    const navigate = useNavigate();
+ 
 
     useEffect(() => {
         const fetchInfluencerData = async () => {
@@ -49,7 +49,6 @@ const Influencers = () => {
     }, []);
 
     useEffect(() => {
-        // Clear campaignId when the component mounts or refreshes
         setCampaignId(location.state?.campaignId || '');
     }, [location.state?.campaignId]);
 
@@ -57,18 +56,18 @@ const Influencers = () => {
         try {
             if (influencerId) {
                 const response = await axios.get(`http://localhost:5000/api/campaign/${campaignId}/influencer/${influencerId}/status`);
-    
+
                 if (response.data.hasApplied) {
                     toast.error('You have already applied to this campaign.');
+                    return
                 } else {
                     await axios.post(`http://localhost:5000/api/campaign/${campaignId}/influencer/${influencerId}`);
                     toast.success('Application successful!');
                 }
-    
-                // Update the button state to reflect the application status
+
                 setClickedButtons((prev) => ({
                     ...prev,
-                    [campaignId]: !prev[campaignId] // Toggle the state based on application
+                    [campaignId]: !prev[campaignId]
                 }));
             }
         } catch (error) {
@@ -263,11 +262,11 @@ const Influencers = () => {
                                                         </button>
                                                     </div>
                                                     <button
-    className={`${!clickedButtons[camp._id] ? 'bg-indigo-600 text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-    onClick={() => handleButtonClick(camp._id, influencerId)}
->
-    {!clickedButtons[camp._id] ? 'Apply Now' : 'Applied'}
-</button>
+                                                        className={`${!clickedButtons[camp._id] ? 'bg-indigo-600 text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                                                        onClick={() => handleButtonClick(camp._id, influencerId)}
+                                                    >
+                                                        {!clickedButtons[camp._id] ? 'Apply Now' : 'Applied'}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
