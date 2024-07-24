@@ -5,7 +5,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
 const DrawerComponent = (props) => {
-    const { openDraw, closeDrawer, selectedData } = props;
+    const { openDraw, closeDrawer, selectedData,hiredCounts } = props;
+    const hiredCount = hiredCounts.find(count => count.campaignTitle === selectedData.campaignTitle)?.hiredCount || 0;
     const truncateString = (str, num) => {
         if (str?.length <= num) {
             return str;
@@ -67,7 +68,7 @@ const DrawerComponent = (props) => {
                             <span className="text-sm text-slate-500">Creators</span>
                         </div>
                         <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
-                            <span>{selectedData.hired || 0}</span>
+                            <span>{hiredCount || 0}</span>
                             <span className="text-sm text-slate-500">Hired</span>
                         </div>
                     </div>
