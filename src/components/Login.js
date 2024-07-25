@@ -83,7 +83,7 @@ const Login = () => {
     const handleForgetpassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:6001/forgot-password", { email:fpemail });
+            const response = await axios.post("http://localhost:5000/api/brands/forgot-password", { email:fpemail });
             console.log(response.data);
         } catch (error) {
             console.error(error);
