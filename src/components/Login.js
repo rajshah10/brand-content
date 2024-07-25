@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, DialogContent, Dialog, DialogTitle } from '@mui/material';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -9,8 +9,15 @@ const Login = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [open, setOpen] = useState(false);
+    const [fpemail, setEmail] = useState('');
 
-
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
@@ -70,6 +77,16 @@ const Login = () => {
             setError(error.response ? error.response.data.message : 'Login failed. Please try again.');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleForgetpassword = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:6001/forgot-password", { email:fpemail });
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -139,11 +156,45 @@ const Login = () => {
                                             </label>
                                             <div className="text-sm">
                                                 <a
-                                                    href="#"
                                                     className="font-semibold text-indigo-600   hover:text-indigo-500"
+                                                    onClick={handleClickOpen}
                                                 >
                                                     Forgot password?
                                                 </a>
+                                                <Dialog
+                                                    onClose={handleClose}
+                                                    open={open}
+                                                    maxWidth="lg"
+                                                    fullWidth
+                                                    sx={{ '& .MuiDialog-paper': { width: '30%' } }}
+                                                >
+                                                    <DialogTitle>Reset Password</DialogTitle>
+                                                    <DialogContent>
+                                                        <div>
+                                                            <label
+                                                                htmlFor="forgetPEmail"
+                                                                className="block text-sm font-medium leading-6 text-gray-900"
+                                                            >
+                                                                Email address
+                                                            </label>
+                                                            <div className="mt-2">
+                                                                <input
+                                                                    id="forgetPEmail"
+                                                                    name="forgetPEmail"
+                                                                    type="email"
+                                                                    value={fpemail}
+                                                                    onChange={(e) => setEmail(e.target.value)}
+                                                                    required
+                                                                    className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                                                />
+                                                            </div>
+                                                            <button onClick={handleForgetpassword} className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-2">
+                                                                Submit
+                                                            </button>
+                                                        </div>
+                                                    </DialogContent>
+
+                                                </Dialog>
                                             </div>
                                         </div>
                                         <div className="mt-2">
