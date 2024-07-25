@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Avatar, Button, Drawer, IconButton, Typography } from "@mui/material";
-import React from "react";
+import { Avatar, Drawer, IconButton } from '@mui/material'
+import React from 'react'
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
-const DrawerComponent = (props) => {
-    const { openDraw, closeDrawer, selectedData,hiredCounts } = props;
+const DrawerForInfluencers = ({ openDraw, closeDrawer, selectedData, hiredCounts }) => {
+    console.log("Selected", selectedData)
     const hiredCount = hiredCounts.find(count => count.campaignTitle === selectedData.campaignTitle)?.hiredCount || 0;
     const truncateString = (str, num) => {
         if (str?.length <= num) {
@@ -138,9 +138,26 @@ const DrawerComponent = (props) => {
 
                     {
                         selectedData?.influencers?.length > 0 && <div className="my-6 bg-white rounded-lg">
-                            <h2 className="text-lg mb-4">Influencer Details</h2>
+                            <h2 className="text-lg mb-4">Creators</h2>
                             <div className="grid grid-cols-5 gap-2">
                                 {selectedData?.influencers?.map((image, idx) => (
+                                    <div className=" flex flex-col items-center gap-1">
+                                        <Avatar
+                                            sx={{ height: "70px", width: "70px" }}
+                                            className="w-full h-full object-cover rounded-md"
+                                            src={image?.influencerId?.media}
+                                        />
+                                        <span className="text-sm">{image?.influencerId?.firstName}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    }
+                    {
+                        selectedData?.influencers?.filter(d => d?.status === "Hired")?.length > 0 && <div className="my-6 bg-white rounded-lg">
+                            <h2 className="text-lg mb-4">Hired Creators</h2>
+                            <div className="grid grid-cols-5 gap-2">
+                                {selectedData?.influencers?.filter(d => d?.status === "Hired").map((image, idx) => (
                                     <div className=" flex flex-col items-center gap-1">
                                         <Avatar
                                             sx={{ height: "70px", width: "70px" }}
@@ -156,7 +173,7 @@ const DrawerComponent = (props) => {
                 </div>
             </div>
         </Drawer>
-    );
-};
+    )
+}
 
-export default DrawerComponent;
+export default DrawerForInfluencers

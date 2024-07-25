@@ -270,22 +270,22 @@ const CampaignCreation = () => {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                                    {/* Other input fields */}
-                                    <div className="col-span-full">
-                                        <label htmlFor="images" className="block text-sm font-medium leading-6 text-gray-900">Campaign Images</label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="file"
-                                                name="images"
-                                                id="images"
-                                                multiple
-                                                onChange={handleFileChange}
-                                                className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none"
-                                            />
-                                        </div>
+
+                                {/* Other input fields */}
+                                <div className="col-span-full">
+                                    <label htmlFor="images" className="block text-sm font-medium leading-6 text-gray-900">Campaign Images</label>
+                                    <div className="mt-2">
+                                        <input
+                                            type="file"
+                                            name="images"
+                                            id="images"
+                                            multiple
+                                            onChange={handleFileChange}
+                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none"
+                                        />
                                     </div>
                                 </div>
+
                                 {/* <div className="col-span-full">
                                     <label htmlFor="createdDateTime" className="block text-sm font-medium leading-6 text-gray-900">Created DateTime</label>
                                     <div className="mt-2">

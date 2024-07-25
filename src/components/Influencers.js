@@ -24,10 +24,21 @@ const Influencers = () => {
     const [filterPlatform, setFilterPlatform] = useState('');
     const [influencerId, setInfluencerId] = useState('');
     const [loading, setLoading] = useState(true);
-    const [campaignId, setCampaignId] = useState(''); // State to manage highlighted campaign
+    const [campaignId, setCampaignId] = useState('');
 
     const location = useLocation();
-    const navigate = useNavigate();
+
+    const [hiredCounts, setHiredCounts] = useState([]);
+
+    const countHiredInfluencers = (campaigns) => {
+        return campaigns.map(campaign => {
+            const hiredCount = campaign.influencers.filter(influencer => influencer.status === "Hired").length;
+            return {
+                campaignTitle: campaign.campaignTitle,
+                hiredCount: hiredCount
+            };
+        });
+    };
 
     useEffect(() => {
         const fetchInfluencerData = async () => {
@@ -49,7 +60,6 @@ const Influencers = () => {
     }, []);
 
     useEffect(() => {
-        // Clear campaignId when the component mounts or refreshes
         setCampaignId(location.state?.campaignId || '');
     }, [location.state?.campaignId]);
 
@@ -57,18 +67,18 @@ const Influencers = () => {
         try {
             if (influencerId) {
                 const response = await axios.get(`http://localhost:5000/api/campaign/${campaignId}/influencer/${influencerId}/status`);
-    
+
                 if (response.data.hasApplied) {
                     toast.error('You have already applied to this campaign.');
+                    return
                 } else {
                     await axios.post(`http://localhost:5000/api/campaign/${campaignId}/influencer/${influencerId}`);
                     toast.success('Application successful!');
                 }
-    
-                // Update the button state to reflect the application status
+
                 setClickedButtons((prev) => ({
                     ...prev,
-                    [campaignId]: !prev[campaignId] // Toggle the state based on application
+                    [campaignId]: !prev[campaignId]
                 }));
             }
         } catch (error) {
@@ -113,6 +123,7 @@ const Influencers = () => {
             });
             if (response.data) {
                 setCampaign(response.data);
+                setHiredCounts(countHiredInfluencers(response.data));
             }
         } catch (error) {
             console.error('Error fetching campaigns:', error);
@@ -130,11 +141,14 @@ const Influencers = () => {
         setSelectedData(data);
     };
 
+
+
+
     return (
         <>
             <div>
                 <Toaster position="top-right" reverseOrder={false} />
-                <DrawerComponent openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} />
+                <DrawerComponent openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} hiredCounts={hiredCounts} />
                 <MenuComponent open={Boolean(anchorEl)} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} />
             </div>
@@ -220,59 +234,63 @@ const Influencers = () => {
                                         </select>
                                     </div>
                                 </div>
-                                {campaign?.length > 0 && campaign?.map((camp, index) => (
-                                    <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100" style={{ border: camp?._id === campaignId ? "2px solid #D3D3D3" : "" }}>
-                                        <div className="m-2 p-2 font-medium bg-white rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-                                            <div className="flex flex-col">
-                                                <span>{camp.campaignTitle}</span>
-                                                <span className="text-sm mt-2 flex items-center gap-1">
-                                                    {camp?.social_media === "Instagram" ? <InstagramIcon style={{ fontSize: "13px", color: "maroon" }} /> : <Facebook style={{ fontSize: "13px", color: "blue" }} />}
-                                                    {camp.social_media} .{" "}
-                                                    <span className="text-slate-500 flex items-center gap-1">
-                                                        <PaidOutlinedIcon style={{ fontSize: "13px", color: "slate" }} />
-                                                        {camp.price}
-                                                    </span>{" "}
-                                                    <span className="text-slate-500">{camp.timeAgo}</span> &nbsp;
-                                                </span>
-                                            </div>
-                                            <div className="flex gap-2 mt-3 md:mt-0 lg:mt-0">
-                                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
-                                                    <span>{camp?.influencers?.length}</span>
-                                                    <span className="text-sm text-slate-500">Creators</span>
+                                {campaign?.length > 0 && campaign?.map((camp, index) => {
+                                    const hiredCount = hiredCounts.find(count => count.campaignTitle === camp.campaignTitle)?.hiredCount || 0;
+                                    return (
+                                        <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100" style={{ border: camp?._id === campaignId ? "2px solid #D3D3D3" : "" }}>
+                                            <div className="m-2 p-2 font-medium bg-white rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+                                                <div className="flex flex-col">
+                                                    <span>{camp.campaignTitle}</span>
+                                                    <span className="text-sm mt-2 flex items-center gap-1">
+                                                        {camp?.social_media === "Instagram" ? <InstagramIcon style={{ fontSize: "13px", color: "maroon" }} /> : <Facebook style={{ fontSize: "13px", color: "blue" }} />}
+                                                        {camp.social_media} .{" "}
+                                                        <span className="text-slate-500 flex items-center gap-1">
+                                                            <PaidOutlinedIcon style={{ fontSize: "13px", color: "slate" }} />
+                                                            {camp.price}
+                                                        </span>{" "}
+                                                        <span className="text-slate-500">{camp.timeAgo}</span> &nbsp;
+                                                    </span>
                                                 </div>
-                                                <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
-                                                    <span>{camp?.hired || 0}</span>
-                                                    <span className="text-sm text-slate-500">Hired</span>
+                                                <div className="flex gap-2 mt-3 md:mt-0 lg:mt-0">
+                                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
+                                                        <span>{camp?.influencers?.length}</span>
+                                                        <span className="text-sm text-slate-500">Creators</span>
+                                                    </div>
+                                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
+                                                        <span>{hiredCount || 0}</span>
+                                                        <span className="text-sm text-slate-500">Hired</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="m-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 bg-white p-2 rounded-md">
-                                            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
-                                                {camp?.images?.map((cmp, index) => (
-                                                    <img className="rounded-md h-32 w-full object-cover" key={index} src={cmp} />
-                                                ))}
-                                            </div>
-                                            <div className="w-full flex flex-col justify-between">
-                                                <h6 className="text-sm">
-                                                    {truncateString(camp?.campaignDescription, 180)}
-                                                </h6>
-                                                <div className="flex justify-end gap-4">
-                                                    <div onClick={() => handleDrawer(camp)} className="flex justify-end">
-                                                        <button className="rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-slate-600 focus-visible:outline">
-                                                            View details
+                                            <div className="m-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 bg-white p-2 rounded-md">
+                                                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
+                                                    {camp?.images?.map((cmp, index) => (
+                                                        <img className="rounded-md h-32 w-full object-cover" key={index} src={cmp} />
+                                                    ))}
+                                                </div>
+                                                <div className="w-full flex flex-col justify-between">
+                                                    <h6 className="text-sm">
+                                                        {truncateString(camp?.campaignDescription, 180)}
+                                                    </h6>
+                                                    <div className="flex justify-end gap-4">
+                                                        <div onClick={() => handleDrawer(camp)} className="flex justify-end">
+                                                            <button className="rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-slate-600 focus-visible:outline">
+                                                                View details
+                                                            </button>
+                                                        </div>
+                                                        <button
+                                                            className={`${!clickedButtons[camp._id] ? 'bg-indigo-600 text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                                                            onClick={() => handleButtonClick(camp._id, influencerId)}
+                                                        >
+                                                            {!clickedButtons[camp._id] ? 'Apply Now' : 'Applied'}
                                                         </button>
                                                     </div>
-                                                    <button
-    className={`${!clickedButtons[camp._id] ? 'bg-indigo-600 text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-    onClick={() => handleButtonClick(camp._id, influencerId)}
->
-    {!clickedButtons[camp._id] ? 'Apply Now' : 'Applied'}
-</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    )
+
+                                })}
                             </div>
                         </>
                 }
