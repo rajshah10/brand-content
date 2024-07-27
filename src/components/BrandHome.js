@@ -87,7 +87,7 @@ const BrandHome = () => {
     }
     useEffect(() => {
         getInfluencerData()
-    }, [influencerdata?.length])
+    }, [])
 
     useEffect(() => {
         getAllCampaigns()
@@ -121,8 +121,7 @@ const BrandHome = () => {
                 : [...prevFollowers, followerRange]
         );
     };
-    console.log("Selected followers", selectedFollowers)
-    console.log("selectedNiches", selectedNiches)
+ 
 
     const parseFollowersCount = (count) => {
         const number = parseFloat(count.replace(/[^0-9.]/g, ''));
@@ -130,10 +129,12 @@ const BrandHome = () => {
         if (count.includes('k')) return number * 1_000;
         return number;
     };
-
+   
     const filterInfluencers = (data) => {
         return data.filter((influencer) => {
-            const nicheMatch = selectedNiches.length === 0 || influencer.niche.some((niche) => selectedNiches.includes(niche));
+            const nicheMatch = selectedNiches.length === 0 || influencer.niche.some((niche) =>
+                selectedNiches.map(n => n.toLowerCase()).includes(niche.toLowerCase())
+            );
             const followersMatch = selectedFollowers.length === 0 || influencer.socialMediaLinks.some((link) => {
                 const followersCount = parseFollowersCount(link.followerCount);
 

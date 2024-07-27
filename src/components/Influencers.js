@@ -22,9 +22,9 @@ const Influencers = () => {
     const [clickedButtons, setClickedButtons] = useState({});
     const [filterType, setFilterType] = useState('');
     const [filterPlatform, setFilterPlatform] = useState('');
-    const [influencerId, setInfluencerId] = useState('');
     const [loading, setLoading] = useState(true);
     const [campaignId, setCampaignId] = useState('');
+    const influencerId = localStorage.getItem('id')
 
     const location = useLocation();
 
@@ -40,24 +40,7 @@ const Influencers = () => {
         });
     };
 
-    useEffect(() => {
-        const fetchInfluencerData = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/api/influencers/profile', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                setInfluencerId(response.data?._id);
-
-            } catch (error) {
-                console.error('Error fetching influencer data:', error);
-            }
-        };
-
-        fetchInfluencerData();
-    }, []);
+    
 
     useEffect(() => {
         setCampaignId(location.state?.campaignId || '');

@@ -2,49 +2,15 @@ import React, { useEffect, useState } from 'react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import { useProfile } from '../Context/ProfileContext';
 
 
 const Header = (props) => {
     const { handleClick } = props;
     const navigate = useNavigate()
-    const token = localStorage.getItem('token');
-    const type = localStorage.getItem('type')
-    const [formData, setFormData] = useState([])
-    const fetchInfluencerData = async () => {
-        try {
-            const token = localStorage.getItem('token'); // Assuming you store the token in local storage
-            const response = await axios.get('http://localhost:5000/api/influencers/profile', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            setFormData(response.data);
-        } catch (error) {
-            console.error('Error fetching influencer data:', error);
-        }
-    };
-    const fetchBrandsData = async () => {
-        try {
-            const token = localStorage.getItem('token'); // Assuming you store the token in local storage
-            const response = await axios.get('http://localhost:5000/api/brands/profile', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            setFormData(response.data);
-        } catch (error) {
-            console.error('Error fetching influencer data:', error);
-        }
-    };
-    useEffect(() => {
-        if (type === "brand") {
-            fetchBrandsData()
-        } else {
-            fetchInfluencerData();
-        }
-
-
-    }, [token,type]);
+    const profileData = useProfile();
+    console.log("Profile Data",profileData)
+    
     return (
         <div className="bg-white shadow-sm w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between items-center">
             <div>
@@ -73,7 +39,7 @@ const Header = (props) => {
             </div>
             <div>
                 <div onClick={handleClick} className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-slate-300 cursor-pointer">
-                    <span className="font-medium text-slate-500">{(formData?.firstName || formData?.fullName)?.substring(0, 2)?.toUpperCase()}</span>
+                    <span className="font-medium text-slate-500">{(profileData?.firstName || profileData?.fullName)?.substring(0, 2)?.toUpperCase()}</span>
                 </div>
             </div>
         </div>

@@ -13,28 +13,8 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [influencerId, setInfluencerId] = useState('');
+    const influencerId = localStorage.getItem('id')
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchInfluencerData = async () => {
-            try {
-                const token = localStorage.getItem('token'); // Assuming you store the token in local storage
-                const response = await axios.get('http://localhost:5000/api/influencers/profile', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                setInfluencerId(response.data?._id);
-
-            } catch (error) {
-                console.error('Error fetching influencer data:', error);
-            }
-        };
-
-        fetchInfluencerData();
-    }, []);
-  
     const openMenu = Boolean(anchorEl);
 
     useEffect(() => {
@@ -54,7 +34,7 @@ const Orders = () => {
         };
 
         fetchOrders();
-    }, [activeTab, influencerId]);
+    }, [influencerId]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
