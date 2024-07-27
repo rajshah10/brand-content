@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Container, Skeleton } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
@@ -10,7 +8,6 @@ import { api_url } from "../../constants";
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [activeTab, setActiveTab] = useState('Active');
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -66,9 +63,9 @@ const Orders = () => {
                             <table className="w-full text-sm text-left text-gray-500 table-auto">
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                                     <tr>
+                                        <th scope="col" className="px-6 py-3">Order Id</th>
                                         <th scope="col" className="px-6 py-3">Email</th>
                                         <th scope="col" className="px-6 py-3">Company Name</th>
-                                        <th scope="col" className="px-6 py-3">Price</th>
                                         <th scope="col" className="px-6 py-3">Compensation</th>
                                         <th scope="col" className="px-6 py-3">Deadlines</th>
                                     </tr>
@@ -97,7 +94,7 @@ const Orders = () => {
                             </table>
                         </div>
                     )}
-                    
+
                     {error && <p className="text-red-500">{error}</p>}
 
                     {!loading && (
@@ -105,9 +102,9 @@ const Orders = () => {
                             <table className="w-full text-sm text-left text-gray-500 table-auto">
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                                     <tr>
+                                        <th scope="col" className="px-6 py-3">Order Id</th>
                                         <th scope="col" className="px-6 py-3">Email</th>
                                         <th scope="col" className="px-6 py-3">Company Name</th>
-                                        <th scope="col" className="px-6 py-3">Price</th>
                                         <th scope="col" className="px-6 py-3">Compensation</th>
                                         <th scope="col" className="px-6 py-3">Deadlines</th>
                                     </tr>
@@ -115,11 +112,12 @@ const Orders = () => {
                                 <tbody>
                                     {orders.map((order, index) => (
                                         <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order._id)}>
+                                            <td className="px-6 py-4 text-slate-500">{order._id}</td>
                                             <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
                                                 {order.COEmail}
                                             </td>
+
                                             <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
-                                            <td className="px-6 py-4 text-slate-500">{order.price}</td>
                                             <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
                                             <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
                                         </tr>

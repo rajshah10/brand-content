@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate } from 'react-router';
 import { useProfile } from '../Context/ProfileContext';
@@ -8,6 +8,9 @@ const Header = (props) => {
     const { handleClick } = props;
     const navigate = useNavigate()
     const profileData = useProfile();
+    useEffect(()=>{
+        localStorage.setItem('id',profileData?._id)
+    },[profileData?._id])
    
     return (
         <div className="bg-white shadow-sm w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between items-center">

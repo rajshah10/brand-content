@@ -26,7 +26,6 @@ export const ProfileProvider = ({ children }) => {
                 }
             });
             setProfileData(response.data);
-            localStorage.setItem('id', response.data._id)
         } catch (error) {
             console.error('Error fetching profile data:', error);
         }
