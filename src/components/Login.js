@@ -239,6 +239,15 @@ const Login = () => {
                             </div>
                             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
                         </form>
+                        <p className="mt-4 text-sm text-gray-500">
+                            <a
+                                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                            >
+
+                                <span className='text-slate-800 font-medium'>Yet to Register? </span><span className='cursor-pointer' onClick={() => navigate("/join")}>Join</span>
+
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <div className="relative w-full h-screen md:w-2/4">

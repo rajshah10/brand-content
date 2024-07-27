@@ -83,11 +83,10 @@ const Join = () => {
 
                                 <p className="mt-4 text-sm text-gray-500">
                                     <a
-                                        onClick={() => navigate("/login")}
-                                        className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500"
+                                        className="font-semibold  leading-6 text-indigo-600 hover:text-indigo-500"
                                     >
 
-                                        <span className='text-slate-800 font-medium'>Already a member? </span>Login
+                                        <span className='text-slate-800 font-medium'>Already a member? </span><span onClick={() => navigate("/login")} className='cursor-pointer'>Login</span>
 
                                     </a>
                                 </p>
