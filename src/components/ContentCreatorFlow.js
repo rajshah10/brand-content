@@ -5,6 +5,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { CircularProgress } from "@mui/material";
+import { api_url } from "../constants";
 const ContentCreatorFlow = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ const ContentCreatorFlow = (props) => {
                 setStep(step + 1);
             } else if (step >= 3) {
                 setLoading(true);
-                const response = await axios.post('http://localhost:5000/api/influencers', formData); // Update the API endpoint accordingly
+                const response = await axios.post(`${api_url}/api/influencers`, formData); // Update the API endpoint accordingly
                 if (response.status === 201) {
                     toast.success('Form submitted successfully!');
                     setLoading(false);

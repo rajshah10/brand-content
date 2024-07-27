@@ -17,6 +17,7 @@ const MenuComponent = (props) => {
         localStorage.removeItem("token");
         localStorage.removeItem('selected_partner')
         localStorage.removeItem('type')
+        localStorage.removeItem('id')
         navigate("/login");
     }
     return (

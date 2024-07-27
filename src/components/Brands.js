@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import { api_url } from "../constants";
 const Brands = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
@@ -74,7 +75,7 @@ const Brands = (props) => {
                 setStep(step + 1);
             } else if (step >= 4) {
                 setLoading(true);
-                const response = await axios.post('http://localhost:5000/api/brands', formData);
+                const response = await axios.post(`${api_url}/api/brands`, formData);
                 if (response.status === 201) {
                     toast.success('Form submitted successfully!');
                     setLoading(false);

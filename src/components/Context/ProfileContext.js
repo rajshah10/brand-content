@@ -1,6 +1,7 @@
 // ProfileContext.js
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { api_url } from '../../constants';
 
 const ProfileContext = createContext();
 
@@ -16,8 +17,8 @@ export const ProfileProvider = ({ children }) => {
     const fetchProfileData = async () => {
         try {
             const endpoint = type === 'brand'
-                ? 'http://localhost:5000/api/brands/profile'
-                : 'http://localhost:5000/api/influencers/profile';
+                ? `${api_url}/api/brands/profile`
+                : `${api_url}/api/influencers/profile`;
 
             const response = await axios.get(endpoint, {
                 headers: {

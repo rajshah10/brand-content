@@ -1,3 +1,5 @@
+export const api_url = "http://localhost:5000"
+
 export const niches = [
     { id: 'niche1', name: 'Fashion' },
     { id: 'niche2', name: 'Technology' },

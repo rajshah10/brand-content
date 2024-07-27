@@ -8,6 +8,7 @@ import { Facebook } from "@mui/icons-material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import DrawerForInfluencers from "../common/DrawerForInfluencers";
+import { api_url } from "../../constants";
 
 const ManageCampaign = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -43,7 +44,7 @@ const ManageCampaign = () => {
     const getAllCampaigns = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/campaign', {
+            const response = await axios.get(`${api_url}/api/campaign`, {
                 params: {
                     type: filterType,
                     platform: filterPlatform,

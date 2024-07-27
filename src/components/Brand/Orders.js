@@ -6,6 +6,7 @@ import { Container, Skeleton } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import { useNavigate } from "react-router";
+import { api_url } from "../../constants";
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -23,7 +24,7 @@ const Orders = () => {
             setError(null);
 
             try {
-                const response = await axios.get(`http://localhost:5000/api/campaign/${influencerId}/campaigns`);
+                const response = await axios.get(`${api_url}/api/campaign/${influencerId}/campaigns`);
                 setOrders(response.data);
             } catch (error) {
                 setError('Error fetching data');

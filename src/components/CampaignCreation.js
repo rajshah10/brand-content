@@ -6,6 +6,7 @@ import Header from './common/Header';
 import toast, { Toaster } from 'react-hot-toast';
 
 import axios from 'axios';
+import { api_url } from '../constants';
 
 const CampaignCreation = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -63,7 +64,7 @@ const CampaignCreation = () => {
         });
 
         try {
-            const response = await axios.post('http://localhost:5000/api/campaign', formData, {
+            const response = await axios.post(`${api_url}/api/campaign`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -88,7 +89,7 @@ const CampaignCreation = () => {
     };
 
     const getInfluencerData = async () => {
-        const response = await axios.get('http://localhost:5000/api/influencers')
+        const response = await axios.get(`${api_url}/api/influencers`)
         if (response.data) {
             setInfluencerData(response.data);
         }

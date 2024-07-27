@@ -6,6 +6,7 @@ import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { api_url } from '../constants';
 
 const Join = () => {
     const [loginToggle, setLoginToggle] = useState(false);
@@ -41,7 +42,7 @@ const Join = () => {
         const type = selectedOption
 
         try {
-            const response = await axios.post('http://localhost:5000/api/influencers/login', { email, password, type });
+            const response = await axios.post(`${api_url}/api/influencers/login`, { email, password, type });
             const { token } = response.data;
             if (token) {
                 navigate(`/${type}`)

@@ -12,6 +12,7 @@ import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { Facebook } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router";
+import { api_url } from "../constants";
 
 const Influencers = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -49,13 +50,13 @@ const Influencers = () => {
     const handleButtonClick = async (campaignId, influencerId) => {
         try {
             if (influencerId) {
-                const response = await axios.get(`http://localhost:5000/api/campaign/${campaignId}/influencer/${influencerId}/status`);
+                const response = await axios.get(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}/status`);
 
                 if (response.data.hasApplied) {
                     toast.error('You have already applied to this campaign.');
                     return
                 } else {
-                    await axios.post(`http://localhost:5000/api/campaign/${campaignId}/influencer/${influencerId}`);
+                    await axios.post(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}`);
                     toast.success('Application successful!');
                 }
 
@@ -98,7 +99,7 @@ const Influencers = () => {
     const getAllCampaigns = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/campaign', {
+            const response = await axios.get(`${api_url}/api/campaign`, {
                 params: {
                     type: filterType,
                     platform: filterPlatform,

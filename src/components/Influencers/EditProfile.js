@@ -9,6 +9,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import toast, { Toaster } from 'react-hot-toast';
 import MenuComponent from '../common/MenuComponent';
 import Header from '../common/Header';
+import { api_url } from '../../constants';
 
 const EditProfile = () => {
     const navigate = useNavigate()
@@ -51,7 +52,7 @@ const EditProfile = () => {
         const fetchInfluencerData = async () => {
             try {
                 const token = localStorage.getItem('token'); // Assuming you store the token in local storage
-                const response = await axios.get('http://localhost:5000/api/influencers/profile', {
+                const response = await axios.get(`${api_url}/api/influencers/profile`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -125,7 +126,7 @@ const EditProfile = () => {
                 formData.append('file', file);
             }
 
-            const response = await axios.put('http://localhost:5000/api/influencers/profile/edit', formData, {
+            const response = await axios.put(`${api_url}/api/influencers/profile/edit`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'

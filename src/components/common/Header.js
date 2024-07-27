@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
 import { useProfile } from '../Context/ProfileContext';
 
 
@@ -9,8 +8,7 @@ const Header = (props) => {
     const { handleClick } = props;
     const navigate = useNavigate()
     const profileData = useProfile();
-    console.log("Profile Data",profileData)
-    
+   
     return (
         <div className="bg-white shadow-sm w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between items-center">
             <div>

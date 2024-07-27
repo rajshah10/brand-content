@@ -1,13 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { useEffect, useState } from 'react';
-import { Container, Badge, Avatar, Drawer, IconButton, Grid, Skeleton } from '@mui/material';
+import { Container, Badge, Avatar, Drawer, IconButton, Skeleton } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import MenuComponent from "./common/MenuComponent";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import CloseIcon from '@mui/icons-material/Close';
-import { influencers } from './constants';
 import Header from './common/Header';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
@@ -17,7 +14,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkIcon from '@mui/icons-material/Link';
-import { follower, niches } from '../constants';
+import { api_url, follower, niches } from '../constants';
 
 const BrandHome = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -30,7 +27,6 @@ const BrandHome = () => {
     const [selectedFollowers, setSelectedFollowers] = useState([]);
     const [filterType, setFilterType] = useState('');
     const [filterPlatform, setFilterPlatform] = useState('');
-    const [buttonColor, setButtonColor] = useState('bg-indigo-600');
     const [expandedSections, setExpandedSections] = useState({
         category: true,
         followers: true
@@ -63,7 +59,7 @@ const BrandHome = () => {
     const getAllCampaigns = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/campaign', {
+            const response = await axios.get(`${api_url}/api/campaign`, {
                 params: {
                     type: filterType,
                     platform: filterPlatform,
@@ -80,7 +76,7 @@ const BrandHome = () => {
     };
 
     const getInfluencerData = async () => {
-        const response = await axios.get('http://localhost:5000/api/influencers')
+        const response = await axios.get(`${api_url}/api/influencers`)
         if (response.data) {
             setInfluencerData(response.data);
         }
@@ -121,7 +117,7 @@ const BrandHome = () => {
                 : [...prevFollowers, followerRange]
         );
     };
- 
+
 
     const parseFollowersCount = (count) => {
         const number = parseFloat(count.replace(/[^0-9.]/g, ''));
@@ -129,7 +125,7 @@ const BrandHome = () => {
         if (count.includes('k')) return number * 1_000;
         return number;
     };
-   
+
     const filterInfluencers = (data) => {
         return data.filter((influencer) => {
             const nicheMatch = selectedNiches.length === 0 || influencer.niche.some((niche) =>
@@ -175,13 +171,13 @@ const BrandHome = () => {
     const handleButtonClick = async (influencerId) => {
         try {
             if (selectedCampaign?._id) {
-                const response = await axios.get(`http://localhost:5000/api/campaign/${selectedCampaign?._id}/influencer/${influencerId}/status`);
+                const response = await axios.get(`${api_url}/api/campaign/${selectedCampaign?._id}/influencer/${influencerId}/status`);
 
                 if (response.data.hasApplied) {
                     toast.error('Already assigned to this campaign.');
                     return
                 } else {
-                    await axios.post(`http://localhost:5000/api/campaign/${selectedCampaign?._id}/influencer/${influencerId}`);
+                    await axios.post(`${api_url}/api/campaign/${selectedCampaign?._id}/influencer/${influencerId}`);
                     toast.success('Assigned successful!');
                 }
             }
