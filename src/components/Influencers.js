@@ -11,7 +11,7 @@ import Header from "./common/Header";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { Facebook } from "@mui/icons-material";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
 import { api_url } from "../constants";
 
 
@@ -20,7 +20,7 @@ const Influencers = () => {
     const [campaign, setCampaign] = useState([]);
     const [openDraw, setOpenDrawer] = useState(false);
     const [selectedData, setSelectedData] = useState({});
-    const [buttonColor, setButtonColor] = useState('bg-indigo-600');
+    const buttonColor = 'bg-indigo-600';
     const [clickedButtons, setClickedButtons] = useState({});
     const [filterType, setFilterType] = useState('');
     const [filterPlatform, setFilterPlatform] = useState('');

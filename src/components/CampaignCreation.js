@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MenuComponent from "./common/MenuComponent";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { CircularProgress, Container } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import Header from './common/Header';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -35,7 +34,6 @@ const CampaignCreation = () => {
         social_media: 'Instagram',
         images: [],
         influencerdata: ""
-        // createdDateTime: new Date().toISOString()
     });
 
 
@@ -54,7 +52,6 @@ const CampaignCreation = () => {
 
         Object.keys(campaign).forEach(key => {
             if (key === 'images') {
-                // Append each file in the images array to FormData
                 for (let i = 0; i < campaign.images.length; i++) {
                     formData.append('images', campaign.images[i]);
                 }
@@ -84,7 +81,7 @@ const CampaignCreation = () => {
     const handleFileChange = (e) => {
         setCampaign({
             ...campaign,
-            images: e.target.files  // Update state with selected files
+            images: e.target.files 
         });
     };
 
@@ -123,7 +120,7 @@ const CampaignCreation = () => {
                                     <div className="mt-2">
                                         <input
                                             required type="text" name="companyName" id="first-name" autoComplete="given-name" value={campaign.companyName}
-                                            onChange={handleChange} className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
+                                            onChange={handleChange} className="block w-full  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
 
@@ -132,7 +129,7 @@ const CampaignCreation = () => {
                                     <div className="mt-2">
                                         <input
                                             required type="text" name="campaignTitle" id="last-name" autoComplete="family-name" value={campaign.campaignTitle}
-                                            onChange={handleChange} className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
+                                            onChange={handleChange} className="block w-full  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none  sm:text-sm sm:leading-6 px-2" />
                                     </div>
                                 </div>
                                 <div className="col-span-full">

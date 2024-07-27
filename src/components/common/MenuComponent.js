@@ -1,5 +1,5 @@
-import { AccountCircleOutlined, Logout, PersonAdd, Settings } from '@mui/icons-material'
-import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
+import { Logout } from '@mui/icons-material'
+import { Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import React from 'react'
 import { useNavigate } from 'react-router';

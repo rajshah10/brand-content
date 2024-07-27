@@ -25,8 +25,6 @@ const BrandHome = () => {
     const [influencerdata, setInfluencerData] = useState([]);
     const [selectedNiches, setSelectedNiches] = useState([]);
     const [selectedFollowers, setSelectedFollowers] = useState([]);
-    const [filterType, setFilterType] = useState('');
-    const [filterPlatform, setFilterPlatform] = useState('');
     const [expandedSections, setExpandedSections] = useState({
         category: true,
         followers: true
@@ -59,12 +57,7 @@ const BrandHome = () => {
     const getAllCampaigns = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${api_url}/api/campaign`, {
-                params: {
-                    type: filterType,
-                    platform: filterPlatform,
-                },
-            });
+            const response = await axios.get(`${api_url}/api/campaign`);
             if (response.data) {
                 setCampaign(response.data);
             }
@@ -89,7 +82,6 @@ const BrandHome = () => {
         getAllCampaigns()
     }, [])
 
-    console.log("Campaigns", campaign)
 
     const getIconComponent = (url) => {
         if (url.includes('instagram.com')) return <InstagramIcon fontSize="inherit" />;
@@ -195,7 +187,7 @@ const BrandHome = () => {
                 <Header handleClick={handleClick} />
             </div>
             <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)` }}>
-                <div className="absolute flex flex-col inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="absolute flex flex-col inset-0 bg-black bg-opacity-50 items-center justify-center">
                     <h1 className="text-white text-4xl font-bold text-center">
                         Brands
                     </h1>

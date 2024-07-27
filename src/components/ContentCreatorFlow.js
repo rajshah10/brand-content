@@ -116,7 +116,7 @@ const ContentCreatorFlow = (props) => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block outline-none  w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -132,7 +132,7 @@ const ContentCreatorFlow = (props) => {
                                     value={formData.password}
                                     onChange={handleChange}
                                     required
-                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block outline-none  w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -148,7 +148,7 @@ const ContentCreatorFlow = (props) => {
                                     value={formData.firstName}
                                     onChange={handleChange}
                                     required
-                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block outline-none  w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -169,7 +169,7 @@ const ContentCreatorFlow = (props) => {
                                     value={formData.lastName}
                                     onChange={handleChange}
                                     required
-                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -185,7 +185,7 @@ const ContentCreatorFlow = (props) => {
                                     value={formData.phoneNumber}
                                     onChange={handleChange}
                                     required
-                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block outline-none px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -362,14 +362,14 @@ const ContentCreatorFlow = (props) => {
                             <button
                                 type="button"
                                 onClick={() => setStep(step - 1)}
-                                className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-slate-600 bg-slate-200 hover:bg-slate-300 focus:outline-none px-2 focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
+                                className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-slate-600 bg-slate-200 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                             >
                                 Back
                             </button>
                         )}
                         <button
                             type="submit"
-                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none px-2 focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
+                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
                             {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : step < 3 ? "Next" : "Confirm"}
                         </button>

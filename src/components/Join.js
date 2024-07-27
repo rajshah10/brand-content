@@ -1,23 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from 'axios';
-import { api_url } from '../constants';
+import { useNavigate } from "react-router-dom";
+
 
 const Join = () => {
-    const [loginToggle, setLoginToggle] = useState(false);
+
     const [step, setStep] = useState(1);
     const [selectedOption, setSelectedOption] = useState('contentCreator');
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const location = useLocation();
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const { name } = location.state || {};
 
 
     const handleSubmit = (event) => {
@@ -31,31 +26,6 @@ const Join = () => {
         setSelectedOption(option);
         localStorage.setItem('selected_partner', option)
     };
-
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        setLoading(true);
-        setError('');
-
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        const type = selectedOption
-
-        try {
-            const response = await axios.post(`${api_url}/api/influencers/login`, { email, password, type });
-            const { token } = response.data;
-            if (token) {
-                navigate(`/${type}`)
-            }
-            localStorage.setItem('token', token);
-        } catch (error) {
-            setError(error.response ? error.response.data.message : 'Login failed. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
 
     return (
         <div className="flex flex-col md:flex-row lg:flex-row h-screen">
@@ -109,7 +79,7 @@ const Join = () => {
 
 
                                 </form>
-                                {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+                                {/* {error && <p className="mt-2 text-sm text-red-600">{error}</p>} */}
 
                                 <p className="mt-4 text-sm text-gray-500">
                                     <a
@@ -142,7 +112,7 @@ const Join = () => {
                 }}>
                 {
                     selectedOption === "brand" &&
-                    <div className="md:absolute lg:absolute inset-0 py-24  md:py-0lg:py-0 bg-black bg-opacity-30 flex flex-col px-8 flex flex-col justify-center">
+                    <div className="md:absolute lg:absolute inset-0 py-24  md:py-0lg:py-0 bg-black bg-opacity-30 flex flex-col px-8  justify-center">
                         <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
                             <h1 className="text-white text-4xl">Brands & Organizations</h1>
                             <p className='text-slate-200 text-lg'>Are you a brand or an organization looking to work with Equellence? Please fill out your brand/company organization information out below</p>

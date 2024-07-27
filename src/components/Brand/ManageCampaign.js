@@ -15,7 +15,6 @@ const ManageCampaign = () => {
     const openMenu = Boolean(anchorEl);
     const [openDraw, setOpenDrawer] = useState(false);
     const [selectedData, setSelectedData] = useState({});
-    const [clickedButtons, setClickedButtons] = useState({});
     const [filterType, setFilterType] = useState('');
     const [filterPlatform, setFilterPlatform] = useState('');
     const [loading, setLoading] = useState(true);
@@ -63,6 +62,7 @@ const ManageCampaign = () => {
 
     useEffect(() => {
         getAllCampaigns();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterType, filterPlatform]);
 
     console.log("Campaign", hiredCounts);
