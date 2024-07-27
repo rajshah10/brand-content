@@ -8,10 +8,11 @@ const Header = (props) => {
     const { handleClick } = props;
     const navigate = useNavigate()
     const profileData = useProfile();
-    useEffect(()=>{
-        localStorage.setItem('id',profileData?._id)
-    },[profileData?._id])
-   
+
+    useEffect(() => {
+        localStorage.setItem('id', profileData?._id)
+    }, [profileData?._id, navigate])
+
     return (
         <div className="bg-white shadow-sm w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between items-center">
             <div>
