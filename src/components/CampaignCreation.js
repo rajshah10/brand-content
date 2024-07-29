@@ -69,6 +69,21 @@ const CampaignCreation = () => {
 
             if (response.status === 200) {
                 toast.success('Form submitted successfully!');
+                setCampaign({
+                    companyName: '',
+                    campaignTitle: '',
+                    campaignDescription: '',
+                    requirements: '',
+                    deliverables: '',
+                    deadlines: '',
+                    compensation: '',
+                    COEmail: '',
+                    brand: '',
+                    price: 'Paid',
+                    social_media: 'Instagram',
+                    images: [],
+                    influencerdata: ""
+                })
                 setLoading(false);
             }
 
@@ -81,7 +96,7 @@ const CampaignCreation = () => {
     const handleFileChange = (e) => {
         setCampaign({
             ...campaign,
-            images: e.target.files 
+            images: e.target.files
         });
     };
 
@@ -94,8 +109,7 @@ const CampaignCreation = () => {
     useEffect(() => {
         getInfluencerData()
     }, [])
-    console.log("InfluencerData", influencerData)
-    console.log("formData", campaign)
+
     return (
         <>
             <Toaster

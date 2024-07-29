@@ -35,8 +35,8 @@ export const ProfileProvider = ({ children }) => {
         if (token && type) {
             fetchProfileData();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token, type]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token, type, api_url]);
 
     return (
         <ProfileContext.Provider value={profileData}>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
@@ -10,6 +11,7 @@ const ContentCreatorFlow = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [loadingCode, setLoadingCode] = useState(false)
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -18,7 +20,8 @@ const ContentCreatorFlow = (props) => {
         email: "",
         socialMediaLinks: [{ id: 1, link: "", followerCount: '' }],
         phoneNumber: "",
-        password: ""
+        password: "",
+        auth: ""
     });
 
     const handleButtonClick = () => {
@@ -71,6 +74,7 @@ const ContentCreatorFlow = (props) => {
                 setStep(step + 1);
             } else if (step >= 3) {
                 setLoading(true);
+
                 const response = await axios.post(`${api_url}/api/influencers`, formData); // Update the API endpoint accordingly
                 if (response.status === 201) {
                     toast.success('Form submitted successfully!');
@@ -83,7 +87,9 @@ const ContentCreatorFlow = (props) => {
             }
 
         } catch (error) {
-            console.error('Error submitting the form:', error);
+            if (error.response && error.response.data && error.response.data.message === "Invalid authentication code") {
+                toast.error('Invalid authentication code. Please try again.');
+            }
             setLoading(false);
         }
     };
@@ -97,6 +103,21 @@ const ContentCreatorFlow = (props) => {
             socialMediaLinks: updatedLinks,
         });
     };
+
+    const handleSendCode = async () => {
+        setLoadingCode(true)
+        try {
+            const response = await axios.post(`${api_url}/api/influencers/sendcode`, formData);
+            if (response) {
+                toast.success(response.data);
+                setLoadingCode(false)
+            }
+        } catch (error) {
+            setLoadingCode(false);
+            toast.error("Invalid Email Address");
+
+        }
+    }
 
 
     const renderStep = () => {
@@ -324,10 +345,28 @@ const ContentCreatorFlow = (props) => {
                                 />
                             </div>
                         </div>
+
                         <div>
-                            <label className="block text-sm font-medium leading-6 text-gray-900">
-                                Confirmation
-                            </label>
+                            <div>
+                                <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Auth Code <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> - {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : "Send code"}</a>
+                                </label>
+                                <div className="mt-1">
+                                    <input
+                                        id="auth"
+                                        name="auth"
+                                        type="text"
+                                        value={formData.auth}
+                                        onChange={handleChange}
+                                        required
+                                        className="block outline-none px-2 w-full rounded-md border-0 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+
                             <div className="mt-1">
                                 <p className="text-slate-900 text-sm">
                                     Please review all the information you have provided.

@@ -8,6 +8,7 @@ const Header = (props) => {
     const { handleClick } = props;
     const navigate = useNavigate()
     const profileData = useProfile();
+    console.log("Profile",profileData)
 
     useEffect(() => {
         localStorage.setItem('id', profileData?._id)

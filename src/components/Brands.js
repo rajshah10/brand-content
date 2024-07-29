@@ -1,4 +1,5 @@
-import React, {  useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
@@ -8,21 +9,23 @@ const Brands = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [loadingCode, setLoadingCode] = useState(false)
     const [formData, setFormData] = useState({
         fullName: "",
         // role: "",
         email: "",
-        password:"",
+        password: "",
         companyName: "",
         phone: "",
         brandDescription: "",
-        influencerType:[],
-        brandAddress:"",
-        collaborationType:"",
-        subscriptionType:"Gold"
+        influencerType: [],
+        brandAddress: "",
+        collaborationType: "",
+        subscriptionType: "Gold",
+        auth: ''
     });
 
-   
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,13 +90,30 @@ const Brands = (props) => {
             }
 
         } catch (error) {
-            console.error('Error submitting the form:', error);
+            if (error.response && error.response.data && error.response.data.message === "Invalid authentication code") {
+                toast.error('Invalid authentication code. Please try again.');
+            }
             setLoading(false);
         }
     };
 
 
-    console.log("Formdara",formData)
+    const handleSendCode = async () => {
+        setLoadingCode(true)
+        try {
+            const response = await axios.post(`${api_url}/api/influencers/sendcode`, formData);
+            if (response) {
+                toast.success(response.data);
+                setLoadingCode(false)
+            }
+        } catch (error) {
+            setLoadingCode(false);
+            toast.error("Invalid Email Address");
+
+        }
+    }
+
+
 
     const renderStep = () => {
         switch (step) {
@@ -299,6 +319,7 @@ const Brands = (props) => {
                             </div>
                         </div>
 
+
                         {/* <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900">
                                 Confirmation
@@ -378,6 +399,24 @@ const Brands = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div>
+                                <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Auth Code <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> - {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : "Send code"}</a>
+                                </label>
+                                <div className="mt-1">
+                                    <input
+                                        id="auth"
+                                        name="auth"
+                                        type="text"
+                                        value={formData.auth}
+                                        onChange={handleChange}
+                                        required
+                                        className="block outline-none px-2 w-full rounded-md border-0 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -398,7 +437,7 @@ const Brands = (props) => {
 
     return (
         <div className="flex flex-col justify-center w-full px-6 lg:px-8">
-             <Toaster
+            <Toaster
                 position="top-right"
                 reverseOrder={false}
             />
@@ -425,7 +464,7 @@ const Brands = (props) => {
                             type="submit"
                             className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
-                            {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} />: step < 4 ? "Next" : "Confirm"}
+                            {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : step < 4 ? "Next" : "Confirm"}
                         </button>
                     </div>
                 </form>
