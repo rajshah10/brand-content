@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Container, Skeleton } from "@mui/material";
 import MenuComponent from "./common/MenuComponent";
 import DrawerComponent from "./common/DrawerComponent";
@@ -26,6 +27,7 @@ const Influencers = () => {
     const [filterPlatform, setFilterPlatform] = useState('');
     const [loading, setLoading] = useState(true);
     const [campaignId, setCampaignId] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
     const influencerId = localStorage.getItem('id')
 
     const location = useLocation();
@@ -42,7 +44,7 @@ const Influencers = () => {
         });
     };
 
-    
+
 
     useEffect(() => {
         setCampaignId(location.state?.campaignId || '');
@@ -126,6 +128,10 @@ const Influencers = () => {
         setSelectedData(data);
     };
 
+    const filteredCampaigns = campaign.filter(camp =>
+        camp.campaignTitle.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
 
 
 
@@ -149,17 +155,32 @@ const Influencers = () => {
                             <div className="pr-12">
                                 <h1 className="text-white font-semibold text-5xl">Influencers</h1>
                                 <p className="mt-4 text-lg text-gray-300">Learn more about our journey and our team.</p>
+                                <div className="mx-4 md:mx-8 lg:mx-8 my-6">
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            placeholder="Search Campaigns ... "
+                                            required
+                                            className="block w-full bg-white rounded-full border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                        />
+                                        <div className="absolute top-2.5 right-4">
+                                            <SearchOutlinedIcon style={{ fontSize: "18px", color: "slategray" }} />
+                                        </div>
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden" style={{ height: "70px" }}>
-                    <svg className="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-                        <polygon className="text-white fill-current" points="2560 0 2560 100 0 100"></polygon>
-                    </svg>
-                </div>
+
             </div>
+
             <Container>
+
                 {
                     loading ?
                         <>
@@ -219,7 +240,7 @@ const Influencers = () => {
                                         </select>
                                     </div>
                                 </div>
-                                {campaign?.length > 0 && campaign?.map((camp, index) => {
+                                {filteredCampaigns?.length > 0 && filteredCampaigns?.map((camp, index) => {
                                     const hiredCount = hiredCounts.find(count => count.campaignTitle === camp.campaignTitle)?.hiredCount || 0;
                                     return (
                                         <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100" style={{ border: camp?._id === campaignId ? "2px solid #D3D3D3" : "" }}>

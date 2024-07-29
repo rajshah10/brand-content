@@ -229,9 +229,11 @@ const EditProfile = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className='my-4'>
+                                        {
+                                            formDatas?.media && <div className='my-4'>
                                             <img src={formDatas.media}  className='rounded-full h-24 w-24' />
                                         </div>
+                                        }
                                     </div>
                                 </div>
                             </div>

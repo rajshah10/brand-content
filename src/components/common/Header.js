@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { api_url } from '../../constants';
@@ -46,7 +45,7 @@ const Header = (props) => {
                     onClick={() => navigate('/')}
                 />
             </div>
-            <div className="relative">
+            {/* <div className="relative">
                 {
                     props.search === false ? <> </> : <>
                         <input
@@ -61,7 +60,7 @@ const Header = (props) => {
                     </>
                 }
 
-            </div>
+            </div> */}
             <div>
                 <div onClick={handleClick} className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-slate-300 cursor-pointer">
                     <span className="font-medium text-slate-500">{(profile?.firstName || profile?.fullName)?.substring(0, 2)?.toUpperCase()}</span>
