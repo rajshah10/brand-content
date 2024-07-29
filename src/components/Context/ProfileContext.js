@@ -26,6 +26,9 @@ export const ProfileProvider = ({ children }) => {
                 }
             });
             setProfileData(response.data);
+            if (response) {
+                localStorage.setItem('id', response?.data?._id)
+            }
         } catch (error) {
             console.error('Error fetching profile data:', error);
         }
@@ -36,7 +39,7 @@ export const ProfileProvider = ({ children }) => {
             fetchProfileData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token, type, api_url]);
+    }, [token, type]);
 
     return (
         <ProfileContext.Provider value={profileData}>

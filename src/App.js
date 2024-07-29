@@ -16,7 +16,7 @@ import Events from "./components/Events";
 import FAQ from "./components/FAQ";
 import Login from "./components/Login";
 import OrdersInfluencers from "./components/Influencers/OrdersInfluencers";
-import { ProfileProvider } from "./components/Context/ProfileContext";
+
 
 
 
@@ -25,7 +25,7 @@ import { ProfileProvider } from "./components/Context/ProfileContext";
 function App() {
   return (
     <>
-      <ProfileProvider>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/join" element={<Join />} />
@@ -43,7 +43,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/faq" element={<FAQ />} />
         </Routes>
-      </ProfileProvider>
+    
     </>
   );
 }
