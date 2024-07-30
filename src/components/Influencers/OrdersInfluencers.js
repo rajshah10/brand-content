@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField } from "@mui/material";
+import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import axios from "axios";
@@ -14,8 +14,9 @@ const OrdersInfluencers = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [campaigns, setCampaigns] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState(''); // State for message input
-    const [sending, setSending] = useState(false); // State for sending status
+    const [message, setMessage] = useState('');
+    const [sending, setSending] = useState(false);
+    const [selectedCampaigns, setSelectedCampaigns] = useState([]); // State for selected campaign IDs
     const id = localStorage.getItem('id');
 
     const handleClick = (event) => {
@@ -62,11 +63,13 @@ const OrdersInfluencers = () => {
         setSending(true);
         try {
             await axios.post(`${api_url}/api/messages/send`, {
-                from :id,
+                from: selectedCampaigns,
                 to: selectedInfluencer._id,
-                content:message,
+                content: message,
+                campaignIds: selectedCampaigns, // Send selected campaign IDs
             });
             setMessage(''); // Clear message input
+            setSelectedCampaigns([]); // Clear selected campaigns
             setDialogOpen(false); // Close dialog on success
             alert('Message sent successfully!');
         } catch (error) {
@@ -92,6 +95,11 @@ const OrdersInfluencers = () => {
         setSelectedInfluencer(null);
     };
 
+    const handleCheckboxChange = (campaignId) => {
+        setSelectedCampaigns(prev => (prev === campaignId ? null : campaignId));
+    };
+
+    console.log("Selec",selectedCampaigns)
 
     return (
         <>
@@ -129,7 +137,7 @@ const OrdersInfluencers = () => {
                                             {influencer.socialMediaLinks.map(link => (
                                                 <div key={link.id} className="flex items-center gap-2 mb-2">
                                                     <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                                                        {link.link.split('/')[2]} {/* Extracting the social media platform name */}
+                                                        {link.link.split('/')[2]}
                                                     </a>
                                                     <span className="text-gray-500">{link.followerCount}</span>
                                                 </div>
@@ -157,7 +165,7 @@ const OrdersInfluencers = () => {
                                             <TableBody>
                                                 <TableRow>
                                                     <TableCell><strong>Photo:</strong></TableCell>
-                                                    <TableCell><img className="w-48 h-48" src={selectedInfluencer.media} /></TableCell>
+                                                    <TableCell><img className="w-48 h-48" src={selectedInfluencer.media} alt="Influencer" /></TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell><strong>Name:</strong></TableCell>
@@ -179,7 +187,6 @@ const OrdersInfluencers = () => {
                                                     <TableCell><strong>Phone Number:</strong></TableCell>
                                                     <TableCell>{selectedInfluencer.phoneNumber}</TableCell>
                                                 </TableRow>
-
                                                 <TableRow>
                                                     <TableCell><strong>Social Media Links:</strong></TableCell>
                                                     <TableCell>
@@ -199,52 +206,52 @@ const OrdersInfluencers = () => {
                                     </TableContainer>
 
                                     {/* Display campaigns related to the selected influencer */}
-                                    <div className="mt-6">
-                                        <Typography variant="h6">Associated Campaigns</Typography>
-                                        <TableContainer component={Paper}>
-                                            <Table>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Campaign Title</TableCell>
-                                                        <TableCell>Description</TableCell>
-                                                        <TableCell>Brand</TableCell>
-                                                        <TableCell>Compensation</TableCell>
+                                    <div className="mt-4">
+                                        <Typography variant="h6" gutterBottom>Campaigns</Typography>
+                                        <Table>
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>Select</TableCell>
+                                                    <TableCell>Campaign Name</TableCell>
+                                                    <TableCell>Details</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {getCampaignsForInfluencer(selectedInfluencer._id).map(campaign => (
+                                                    <TableRow key={campaign._id}>
+                                                        <TableCell>
+                                                            <Checkbox
+                                                                checked={selectedCampaigns?.includes(campaign._id)}
+                                                                onChange={() => handleCheckboxChange(campaign._id)}
+                                                            />
+                                                        </TableCell>
+                                                        <TableCell>{campaign.campaignTitle}</TableCell>
+                                                        <TableCell>{campaign.campaignDescription}</TableCell>
                                                     </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {getCampaignsForInfluencer(selectedInfluencer._id).map(campaign => (
-                                                        <TableRow key={campaign._id}>
-                                                            <TableCell>{campaign.campaignTitle}</TableCell>
-                                                            <TableCell>{campaign.campaignDescription}</TableCell>
-                                                            <TableCell>{campaign.brand}</TableCell>
-                                                            <TableCell>{campaign.compensation}</TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
                                     </div>
 
-                                    {/* Message Input */}
-                                    <div className="mt-6">
-                                        <TextField
-                                            fullWidth
-                                            multiline
-                                            rows={4}
-                                            variant="outlined"
-                                            label="Write a message"
-                                            value={message}
-                                            onChange={(e) => setMessage(e.target.value)}
-                                        />
-                                    </div>
+                                    {/* Message Form */}
+                                    <TextField
+                                        label="Message"
+                                        multiline
+                                        rows={4}
+                                        fullWidth
+                                        variant="outlined"
+                                        margin="normal"
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                    />
                                 </>
                             )}
                         </DialogContent>
                         <DialogActions>
+                            <Button onClick={handleCloseDialog} color="primary">Close</Button>
                             <Button onClick={handleSendMessage} color="primary" disabled={sending}>
                                 {sending ? 'Sending...' : 'Send Message'}
                             </Button>
-                            <Button onClick={handleCloseDialog} color="secondary">Close</Button>
                         </DialogActions>
                     </Dialog>
                 </div>

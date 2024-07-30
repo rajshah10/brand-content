@@ -35,12 +35,12 @@ const Orders = () => {
         }
     };
 
-    const fetchMessages = async (influencerId) => {
+    const fetchMessages = async (influencerId,campaignId) => {
         setLoading(true);
         setError(null);
 
         try {
-            const response = await axios.get(`${api_url}/api/messages/message-influencer/${influencerId}`);
+            const response = await axios.get(`${api_url}/api/messages/message-influencer/${influencerId}/${campaignId}`);
             setMessages(response.data);
         } catch (error) {
             setError('Error fetching messages');
@@ -50,6 +50,7 @@ const Orders = () => {
         }
     };
 
+    console.log("Messages",messages)
 
     useEffect(() => {
         fetchOrders();
@@ -65,7 +66,7 @@ const Orders = () => {
 
     const handleCampaignClick = (campaign) => {
         setSelectedCampaign(campaign);
-        fetchMessages(influencerId);
+        fetchMessages(influencerId,campaign?._id);
         setDialogOpen(true);
     };
 
@@ -118,7 +119,6 @@ const Orders = () => {
                         </div>
                     )}
 
-                    {error && <p className="text-red-500">{error}</p>}
 
                     {!loading && (
                         <div className="relative overflow-x-auto my-6">
@@ -191,8 +191,8 @@ const Orders = () => {
                                         <div>
                                             <h6>Messages</h6>
                                             <div className="mt-2 flex flex-col gap-2">
-                                                {messages.length > 0 ? (
-                                                    messages.map((message, index) => (
+                                                {messages?.messages?.length > 0 ? (
+                                                    messages?.messages?.map((message, index) => (
                                                         <div className="bg-green-200 w-full p-1 px-2 rounded-sm" key={index}>
                                                             <h6>{message.content}</h6>
                                                         </div>
