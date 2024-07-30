@@ -6,6 +6,7 @@ import MenuComponent from "../common/MenuComponent";
 import { useNavigate } from "react-router";
 import { api_url } from "../../constants";
 import CloseIcon from "@mui/icons-material/Close";
+import NoFound from "../common/NoFound";
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -35,7 +36,7 @@ const Orders = () => {
         }
     };
 
-    const fetchMessages = async (influencerId,campaignId) => {
+    const fetchMessages = async (influencerId, campaignId) => {
         setLoading(true);
         setError(null);
 
@@ -50,7 +51,7 @@ const Orders = () => {
         }
     };
 
-    console.log("Messages",messages)
+    console.log("Messages", messages)
 
     useEffect(() => {
         fetchOrders();
@@ -66,7 +67,7 @@ const Orders = () => {
 
     const handleCampaignClick = (campaign) => {
         setSelectedCampaign(campaign);
-        fetchMessages(influencerId,campaign?._id);
+        fetchMessages(influencerId, campaign?._id);
         setDialogOpen(true);
     };
 
@@ -133,16 +134,25 @@ const Orders = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {orders.map((order, index) => (
-                                        <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order)}>
-                                            <td className="px-6 py-4 text-slate-500">{order._id}</td>
-                                            <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{order.COEmail}</td>
-                                            <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
-                                            <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
-                                            <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
+                                    {orders?.length > 0 ? (
+                                        orders.map((order, index) => (
+                                            <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order)}>
+                                                <td className="px-6 py-4 text-slate-500">{order._id}</td>
+                                                <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{order.COEmail}</td>
+                                                <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
+                                                <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
+                                                <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="5" className="text-black">
+                                                <NoFound />
+                                            </td>
                                         </tr>
-                                    ))}
+                                    )}
                                 </tbody>
+
                             </table>
                         </div>
                     )}
@@ -220,12 +230,12 @@ const Orders = () => {
                             )}
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleSendMessage} color="primary" >
+                            <button className="px-4 py-1 bg-[#4F46E5] text-white rounded-md" onClick={handleSendMessage} color="primary" >
                                 {'Send Message'}
-                            </Button>
-                            <Button onClick={handleDialogClose} color="primary">
+                            </button>
+                            <button className="px-4 py-1 bg-slate-200 text-black rounded-md" onClick={handleDialogClose} color="primary">
                                 Close
-                            </Button>
+                            </button>
                         </DialogActions>
 
                     </Dialog>
