@@ -269,7 +269,7 @@ const OrdersInfluencers = () => {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleCloseDialog} color="primary">Close</Button>
-                            <Button onClick={handleSendMessage} color="primary" disabled={sending}>
+                            <Button onClick={handleSendMessage} color="primary" disabled={(sending) || (!selectedCampaigns || message?.length === 0)}>
                                 {sending ? 'Sending...' : 'Send Message'}
                             </Button>
                         </DialogActions>
