@@ -187,28 +187,24 @@ const Orders = () => {
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
-                                    <TableContainer component={Paper} style={{ marginTop: '16px' }}>
-                                        <Table>
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell><strong>Message</strong></TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
+                                    <div className="mt-6 mx-1 grid grid-cols-2">
+                                        <div>
+                                            <h6>Messages</h6>
+                                            <div className="mt-2 flex flex-col gap-2">
                                                 {messages.length > 0 ? (
                                                     messages.map((message, index) => (
-                                                        <TableRow key={index}>
-                                                            <TableCell>{message.content}</TableCell>
-                                                        </TableRow>
+                                                        <div className="bg-green-200 w-full p-1 px-2 rounded-sm" key={index}>
+                                                            <h6>{message.content}</h6>
+                                                        </div>
                                                     ))
                                                 ) : (
-                                                    <TableRow>
-                                                        <TableCell>No messages found</TableCell>
-                                                    </TableRow>
+                                                    <div>
+                                                        <h6>No messages found</h6>
+                                                    </div>
                                                 )}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="mt-6">
                                         <TextField
                                             fullWidth
