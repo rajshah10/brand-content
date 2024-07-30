@@ -65,7 +65,7 @@ const ManageCampaign = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterType, filterPlatform]);
 
-    console.log("Campaign", hiredCounts);
+   
 
 
 
@@ -73,7 +73,7 @@ const ManageCampaign = () => {
         try {
             const response = await axios.post(`http://localhost:5000/api/campaign/${campaignId}/hire`, { influencerId });
             if (response.data.success) {
-                getAllCampaigns(); // Refresh the campaign list after hiring
+                getAllCampaigns(); 
             }
         } catch (error) {
             console.error('Error hiring influencer:', error);

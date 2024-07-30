@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox } from "@mui/material";
+import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import axios from "axios";
 import { api_url } from "../../constants";
+import toast, { Toaster } from "react-hot-toast";
 
 const OrdersInfluencers = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -16,8 +17,12 @@ const OrdersInfluencers = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [sending, setSending] = useState(false);
+    const [statusFilter, setStatusFilter] = useState('');
     const [selectedCampaigns, setSelectedCampaigns] = useState([]); // State for selected campaign IDs
-    const id = localStorage.getItem('id');
+
+    const handleFilterChange = (event) => {
+        setStatusFilter(event.target.value);
+    };
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -71,14 +76,14 @@ const OrdersInfluencers = () => {
             setMessage(''); // Clear message input
             setSelectedCampaigns([]); // Clear selected campaigns
             setDialogOpen(false); // Close dialog on success
-            alert('Message sent successfully!');
+            toast.success('Message sent successfully!');
         } catch (error) {
             console.error('Error sending message:', error);
-            alert('Failed to send message');
         } finally {
             setSending(false);
         }
     };
+    console.log("Orders", influencerData)
 
     useEffect(() => {
         getInfluencerData();
@@ -99,11 +104,14 @@ const OrdersInfluencers = () => {
         setSelectedCampaigns(prev => (prev === campaignId ? null : campaignId));
     };
 
-    console.log("Selec",selectedCampaigns)
+    const filteredInfluencers = statusFilter
+        ? influencerData.filter(influencer => influencer.status === statusFilter)
+        : influencerData;
 
     return (
         <>
             <div>
+                <Toaster position="top-right" reverseOrder={false} />
                 <MenuComponent open={Boolean(anchorEl)} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} />
             </div>
@@ -111,6 +119,18 @@ const OrdersInfluencers = () => {
                 <div className="my-12 mx-8">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Influencers</h6>
+                        <div className="flex gap-2 items-center">
+                                <h6>Status:</h6>
+                            <select
+                                value={statusFilter}
+                                onChange={handleFilterChange}
+                                className="border px-2 py-1 rounded-md"
+                            >
+                                <option value="">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="Hired">Hired</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div className="relative overflow-x-auto my-6">
@@ -125,7 +145,7 @@ const OrdersInfluencers = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {influencerData.map((influencer) => (
+                                {filteredInfluencers.map((influencer) => (
                                     <tr className="bg-white border-b cursor-pointer" key={influencer._id} onClick={() => handleRowClick(influencer)}>
                                         <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</th>
                                         <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
