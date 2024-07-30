@@ -1,36 +1,57 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Skeleton } from "@mui/material";
+import { Container, Skeleton, Dialog, DialogTitle, DialogContent, IconButton, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, DialogActions, TextField } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import { useNavigate } from "react-router";
 import { api_url } from "../../constants";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [orders, setOrders] = useState([]);
+    const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const influencerId = localStorage.getItem('id')
+    const [selectedCampaign, setSelectedCampaign] = useState(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const influencerId = localStorage.getItem('id');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate();
     const openMenu = Boolean(anchorEl);
 
+    const fetchOrders = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.get(`${api_url}/api/campaign/${influencerId}/campaigns`);
+            setOrders(response.data);
+        } catch (error) {
+            setError('Error fetching data');
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchMessages = async (influencerId) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.get(`${api_url}/api/messages/message-influencer/${influencerId}`);
+            setMessages(response.data);
+        } catch (error) {
+            setError('Error fetching messages');
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     useEffect(() => {
-        const fetchOrders = async () => {
-            setLoading(true);
-            setError(null);
-
-            try {
-                const response = await axios.get(`${api_url}/api/campaign/${influencerId}/campaigns`);
-                setOrders(response.data);
-            } catch (error) {
-                setError('Error fetching data');
-                console.error(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchOrders();
     }, [influencerId]);
 
@@ -42,8 +63,20 @@ const Orders = () => {
         setAnchorEl(null);
     };
 
-    const handleCampaignClick = (campaignId) => {
-        navigate('/contentCreator', { state: { campaignId } });
+    const handleCampaignClick = (campaign) => {
+        setSelectedCampaign(campaign);
+        fetchMessages(influencerId);
+        setDialogOpen(true);
+    };
+
+    const handleDialogClose = () => {
+        setDialogOpen(false);
+        setSelectedCampaign(null);
+        setMessages([]);
+    };
+
+    const handleSendMessage = async () => {
+
     };
 
     return (
@@ -61,7 +94,7 @@ const Orders = () => {
                     {loading && (
                         <div className="relative overflow-x-auto my-6">
                             <table className="w-full text-sm text-left text-gray-500 table-auto">
-                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">Order Id</th>
                                         <th scope="col" className="px-6 py-3">Email</th>
@@ -73,21 +106,11 @@ const Orders = () => {
                                 <tbody>
                                     {[...Array(5)].map((_, index) => (
                                         <tr className="bg-white border-b" key={index}>
-                                            <td className="px-6 py-4">
-                                                <Skeleton width="100px" height={20} />
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <Skeleton width="150px" height={20} />
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <Skeleton width="80px" height={20} />
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <Skeleton width="100px" height={20} />
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <Skeleton width="120px" height={20} />
-                                            </td>
+                                            <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="150px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="80px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="120px" height={20} /></td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -100,7 +123,7 @@ const Orders = () => {
                     {!loading && (
                         <div className="relative overflow-x-auto my-6">
                             <table className="w-full text-sm text-left text-gray-500 table-auto">
-                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">Order Id</th>
                                         <th scope="col" className="px-6 py-3">Email</th>
@@ -111,12 +134,9 @@ const Orders = () => {
                                 </thead>
                                 <tbody>
                                     {orders.map((order, index) => (
-                                        <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order._id)}>
+                                        <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order)}>
                                             <td className="px-6 py-4 text-slate-500">{order._id}</td>
-                                            <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
-                                                {order.COEmail}
-                                            </td>
-
+                                            <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{order.COEmail}</td>
                                             <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
                                             <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
                                             <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
@@ -126,6 +146,93 @@ const Orders = () => {
                             </table>
                         </div>
                     )}
+
+                    <Dialog open={dialogOpen} onClose={handleDialogClose} fullWidth maxWidth="md">
+                        <DialogTitle>
+                            Campaign Details
+                        </DialogTitle>
+                        <DialogContent >
+                            {selectedCampaign && (
+                                <div>
+                                    <TableContainer component={Paper}>
+                                        <Table>
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell colSpan={2} align="left">
+                                                        <h4>Campaign Details</h4>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell><strong>Order Id:</strong></TableCell>
+                                                    <TableCell>{selectedCampaign._id}</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell><strong>Email:</strong></TableCell>
+                                                    <TableCell>{selectedCampaign.COEmail}</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell><strong>Company Name:</strong></TableCell>
+                                                    <TableCell>{selectedCampaign.companyName}</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell><strong>Compensation:</strong></TableCell>
+                                                    <TableCell>{selectedCampaign.compensation}</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell><strong>Deadlines:</strong></TableCell>
+                                                    <TableCell>{selectedCampaign.deadlines}</TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                    <TableContainer component={Paper} style={{ marginTop: '16px' }}>
+                                        <Table>
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell><strong>Message</strong></TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {messages.length > 0 ? (
+                                                    messages.map((message, index) => (
+                                                        <TableRow key={index}>
+                                                            <TableCell>{message.content}</TableCell>
+                                                        </TableRow>
+                                                    ))
+                                                ) : (
+                                                    <TableRow>
+                                                        <TableCell>No messages found</TableCell>
+                                                    </TableRow>
+                                                )}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                    <div className="mt-6">
+                                        <TextField
+                                            fullWidth
+                                            multiline
+                                            rows={4}
+                                            variant="outlined"
+                                            label="Write a message"
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleSendMessage} color="primary" >
+                                {'Send Message'}
+                            </Button>
+                            <Button onClick={handleDialogClose} color="primary">
+                                Close
+                            </Button>
+                        </DialogActions>
+
+                    </Dialog>
                 </div>
             </Container>
         </>
