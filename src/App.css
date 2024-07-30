@@ -51,3 +51,6 @@
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px;
 }
+.MuiPaper-root{
+  border-radius: 0px !important;
+}

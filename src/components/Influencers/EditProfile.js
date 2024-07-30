@@ -110,22 +110,16 @@ const EditProfile = () => {
         try {
             const token = localStorage.getItem('token');
             const formData = new FormData();
-
-            // Append all fields except for socialMediaLinks as usual
             for (const key in formDatas) {
-                if (formDatas.hasOwnProperty(key) && key !== 'socialMediaLinks') {
+                if (formDatas.hasOwnProperty(key) && key !== 'socialMediaLinks' && key !== 'messages') {
                     formData.append(key, formDatas[key]);
                 }
             }
-
-            // Append socialMediaLinks as a JSON string
             formData.append('socialMediaLinks', JSON.stringify(formDatas.socialMediaLinks));
 
-            // Append the file if it exists
             if (file) {
                 formData.append('file', file);
             }
-
             const response = await axios.put(`${api_url}/api/influencers/profile/edit`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -299,7 +293,7 @@ const EditProfile = () => {
                                                     <button
                                                         type="button"
                                                         onClick={handleAddNiche}
-                                                        className="my-1 px-4 h-full w-32 py-1.5 bg-blue-500 text-white rounded-md"
+                                                        className="my-1 px-4  w-32 py-1 bg-[#4F46E5] text-white rounded-md"
                                                     >
                                                         Add Niche
                                                     </button>
@@ -346,7 +340,7 @@ const EditProfile = () => {
                                                     <button
                                                         type="button"
                                                         onClick={handleAddSocialMediaLink}
-                                                        className="my-1 px-4 h-full w-32 py-1.5 bg-blue-500 text-white rounded-md"
+                                                        className="my-1 px-4 h-full w-32 py-1 bg-[#4F46E5] text-white rounded-md"
                                                     >
                                                         Add Link
                                                     </button>

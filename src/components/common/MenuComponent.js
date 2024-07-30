@@ -58,14 +58,11 @@ const MenuComponent = (props) => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 {
-                    getPartner === "contentCreator" && <>
-                        {/* <MenuItem style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <AccountCircleOutlined style={{ color: "slategray" }} />My Profile
-                        </MenuItem> */}
+                    getPartner === "contentCreator" &&
                         <MenuItem onClick={() => navigate("/influencers/profile")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                             <EditOutlinedIcon style={{ color: "slategray" }} />Edit Profile
                         </MenuItem>
-                    </>
+                   
                 }
                 {
                     getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/campaigncreation")} style={{ display: "flex", alignItems: "center", gap: "10px" }}>

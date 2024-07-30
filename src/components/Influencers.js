@@ -14,6 +14,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Facebook } from "@mui/icons-material";
 import { useLocation } from "react-router";
 import { api_url } from "../constants";
+import NoFound from "../components/common/NoFound"
 
 
 const Influencers = () => {
@@ -60,7 +61,7 @@ const Influencers = () => {
                     return
                 } else {
                     await axios.post(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}`);
-                    toast.success('Application successful!');
+                    toast.success('Application submitted successfully. Please wait for brands to hire you.!');
                 }
 
                 setClickedButtons((prev) => ({
@@ -227,11 +228,6 @@ const Influencers = () => {
                                 <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                                     <h6 className="font-bold text-lg">All Campaign</h6>
                                     <div className="flex gap-3">
-                                        <select value={filterType} onChange={handleFilterTypeChange} className="block rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none">
-                                            <option value="">All Types</option>
-                                            <option value="Paid">Paid</option>
-                                            <option value="Unpaid">Unpaid</option>
-                                        </select>
                                         <select value={filterPlatform} onChange={handleFilterPlatformChange} className="block rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none">
                                             <option value="">All Platforms</option>
                                             <option value="Instagram">Instagram</option>
@@ -240,7 +236,7 @@ const Influencers = () => {
                                         </select>
                                     </div>
                                 </div>
-                                {filteredCampaigns?.length > 0 && filteredCampaigns?.map((camp, index) => {
+                                {filteredCampaigns?.length > 0 ? filteredCampaigns?.map((camp, index) => {
                                     const hiredCount = hiredCounts.find(count => count.campaignTitle === camp.campaignTitle)?.hiredCount || 0;
                                     return (
                                         <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100" style={{ border: camp?._id === campaignId ? "2px solid #D3D3D3" : "" }}>
@@ -296,7 +292,10 @@ const Influencers = () => {
                                         </div>
                                     )
 
-                                })}
+                                }) :
+                                    <>
+                                        <NoFound />
+                                    </>}
                             </div>
                         </>
                 }
