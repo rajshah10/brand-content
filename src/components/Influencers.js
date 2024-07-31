@@ -22,7 +22,7 @@ const Influencers = () => {
     const [campaign, setCampaign] = useState([]);
     const [openDraw, setOpenDrawer] = useState(false);
     const [selectedData, setSelectedData] = useState({});
-    const buttonColor = 'bg-indigo-600';
+    const buttonColor = 'bg-[#4F46E5]';
     const [clickedButtons, setClickedButtons] = useState({});
     const [filterType, setFilterType] = useState('');
     const [filterPlatform, setFilterPlatform] = useState('');
@@ -281,7 +281,7 @@ const Influencers = () => {
                                                             </button>
                                                         </div>
                                                         <button
-                                                            className={`${!clickedButtons[camp._id] ? 'bg-indigo-600 text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                                                            className={`${!clickedButtons[camp._id] ? 'bg-[#4F46E5] text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                                                             onClick={() => handleButtonClick(camp._id, influencerId)}
                                                         >
                                                             {!clickedButtons[camp._id] ? 'Apply Now' : 'Applied'}

@@ -389,9 +389,9 @@ const ContentCreatorFlow = (props) => {
             />
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="flex justify-center mb-4 gap-3">
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-indigo-600" : "bg-slate-400"}`}>2</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>1</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>2</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>3</div>
 
                 </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
@@ -408,7 +408,7 @@ const ContentCreatorFlow = (props) => {
                         )}
                         <button
                             type="submit"
-                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
+                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#4F46E5]  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
                             {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : step < 3 ? "Next" : "Confirm"}
                         </button>

@@ -21,7 +21,8 @@ const Brands = (props) => {
         influencerType: [],
         brandAddress: "",
         collaborationType: "",
-        subscriptionType: "Gold",
+        subscription: "",
+        payment: false,
         auth: ''
     });
 
@@ -417,6 +418,20 @@ const Brands = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <select
+                                required
+                                name="subscription"
+                                id="subscription"
+                                onChange={handleChange}
+                                className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                            >
+                                <option value="">Select Campaign</option>
+                                <option value="small-business">Small Business</option>
+                                <option value="standard-business">Standard Business</option>
+                                <option value="premium-business">Premium Business</option>
+                            </select>
+                        </div>
 
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -443,10 +458,10 @@ const Brands = (props) => {
             />
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="flex justify-center mb-4 gap-3">
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-indigo-600" : "bg-slate-400"}`}>1</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-indigo-600" : "bg-slate-400"}`}>2</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-indigo-600" : "bg-slate-400"}`}>3</div>
-                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 4 ? "bg-indigo-600" : "bg-slate-400"}`}>4</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 1 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>1</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white  ${step >= 2 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>2</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 3 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>3</div>
+                    <div className={`w-8 h-8 rounded-full text-center py-1 text-white ${step >= 4 ? "bg-[#4F46E5]" : "bg-slate-400"}`}>4</div>
                 </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {renderStep()}
@@ -462,7 +477,7 @@ const Brands = (props) => {
                         )}
                         <button
                             type="submit"
-                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
+                            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#4F46E5]  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-100"
                         >
                             {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : step < 4 ? "Next" : "Confirm"}
                         </button>

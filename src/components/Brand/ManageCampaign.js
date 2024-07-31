@@ -238,7 +238,7 @@ const ManageCampaign = () => {
                                                                     </button>
                                                                 </> : <>
                                                                     <button
-                                                                        className={`rounded-md px-6 py-1.5 cursor-not-allowed text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${data?.status === "Applied" ? "bg-indigo-300 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700"
+                                                                        className={`rounded-md px-6 py-1.5 cursor-not-allowed text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${data?.status === "Applied" ? "bg-indigo-300 cursor-not-allowed" : "bg-[#4F46E5] "
                                                                             }`}
 
                                                                         disabled={data?.status === "Applied"}

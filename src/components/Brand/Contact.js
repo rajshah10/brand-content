@@ -132,12 +132,12 @@ const Contact = () => {
 
                                         <button
                                             type="submit"
-                                            className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg"
+                                            className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#4F46E5] rounded-lg"
                                         >
                                             {loading ? <CircularProgress size={"22px"} sx={{ color: "white" }} /> : "Send message"}
                                         </button>
 
-                                        {/* <button type='submit' class="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg">
+                                        {/* <button type='submit' class="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#4F46E5] rounded-lg">
                                             Send message
                                         </button> */}
                                     </form>

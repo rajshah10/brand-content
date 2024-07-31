@@ -406,7 +406,7 @@ const BrandHome = () => {
 
                                                         </select>
                                                         <button
-                                                            className="bg-indigo-600 text-white'  rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${buttonColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                            className="bg-[#4F46E5] text-white'  rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                                             onClick={() => handleButtonClick(influencer?._id)}
                                                         >
                                                             Assign Now
