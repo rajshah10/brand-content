@@ -62,7 +62,7 @@ const FAQ = () => {
                                     <h3 className="text-3xl mb-8 font-semibold">
                                         Frequently Asked Questions
                                     </h3>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1a-content"
@@ -76,7 +76,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel2a-content"
@@ -90,7 +90,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel3a-content"
@@ -115,7 +115,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel4a-content"
@@ -133,7 +133,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel5a-content"
@@ -147,7 +147,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel6a-content"
@@ -161,7 +161,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel7a-content"
@@ -175,7 +175,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3">
+                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel8a-content"
@@ -194,6 +194,69 @@ const FAQ = () => {
                         </div>
                     </section>
                 </Container>
+              
+                <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-8">Choose Your Subscription Plan</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Small Business Plan */}
+          <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-500 flex flex-col">
+            <div className="flex-grow">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Small Business</h3>
+              <p className="text-2xl font-semibold text-gray-800 mb-4">$79.99</p>
+              <p className="text-gray-600 mb-4">Best for small businesses, startups, or companies with a limited budget.</p>
+              <ul className="text-gray-600 space-y-2 mb-4">
+                <li>✔️ Paid campaigns</li>
+                <li>✔️ Work with 3 Influencer Campaigns per month</li>
+                <li>✔️ Assigned Influencer per Campaign</li>
+              </ul>
+            </div>
+            <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+              Choose Plan
+            </button>
+          </div>
+
+          {/* Standard Business Plan */}
+          <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-green-500 flex flex-col">
+            <div className="flex-grow">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Standard Business</h3>
+              <p className="text-2xl font-semibold text-gray-800 mb-4">$199.99</p>
+              <p className="text-gray-600 mb-4">Best for all types of Businesses looking to expand their outreach.</p>
+              <ul className="text-gray-600 space-y-2 mb-4">
+                <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
+                <li>✔️ Gifted Campaigns</li>
+                <li>✔️ PR Campaigns</li>
+                <li>✔️ 2 Influencer Campaigns per month</li>
+                <li>✔️ Ability to select up to 3 Influencers per Campaign</li>
+              </ul>
+            </div>
+            <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+              Choose Plan
+            </button>
+          </div>
+
+          {/* Professionals Business Plan */}
+          <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-indigo-500 flex flex-col">
+            <div className="flex-grow">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Professionals Business</h3>
+              <p className="text-2xl font-semibold text-gray-800 mb-4">$399.99</p>
+              <p className="text-gray-600 mb-4">Best for Corporations or big companies looking to expand their outreach.</p>
+              <ul className="text-gray-600 space-y-2 mb-4">
+                <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
+                <li>✔️ PR Campaigns</li>
+                <li>✔️ Gifted Campaigns</li>
+                <li>✔️ Unlimited Influencer Campaigns per month</li>
+                <li>✔️ Ability to select Influencer per Campaign</li>
+              </ul>
+            </div>
+            <button className="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded">
+              Choose Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+              
             </main>
             <Footer />
         </div>

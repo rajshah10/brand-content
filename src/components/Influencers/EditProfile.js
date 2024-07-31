@@ -210,24 +210,36 @@ const EditProfile = () => {
                                     </div>
 
                                     <div className="sm:col-span-4">
-                                        <label htmlFor="media" className="block text-sm font-medium leading-6 text-gray-900">Photo</label>
-                                        <div className="mt-2">
-                                            <div className="flex items-center">
-                                                <input
-                                                    onChange={handleFileChange}
-                                                    type="file"
-                                                    name="media"
-                                                    id="media"
-                                                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-                                                    accept="image/*"
-                                                />
+                                        <label htmlFor="media" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Profile Picture
+                                        </label>
+                                        <div className="mt-2 flex flex-col items-center">
+                                            <div className="relative flex items-center justify-center w-24 h-24 border border-gray-300 rounded-full overflow-hidden bg-gray-50">
+                                                {formDatas?.media ? (
+                                                    <img
+                                                        src={formDatas.media}
+                                                        alt="Profile Preview"
+                                                        className="rounded-full h-full w-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <div className="text-gray-400 text-sm">No Image</div>
+                                                )}
                                             </div>
+                                            <label
+                                                htmlFor="media"
+                                                className="mt-4 cursor-pointer bg-[#4F46E5] text-white py-2 px-4 rounded-lg text-sm"
+                                            >
+                                                Change Profile Picture
+                                            </label>
+                                            <input
+                                                id="media"
+                                                name="media"
+                                                type="file"
+                                                className="hidden"
+                                                accept="image/*"
+                                                onChange={handleFileChange}
+                                            />
                                         </div>
-                                        {
-                                            formDatas?.media && <div className='my-4'>
-                                            <img src={formDatas.media}  className='rounded-full h-24 w-24' />
-                                        </div>
-                                        }
                                     </div>
                                 </div>
                             </div>

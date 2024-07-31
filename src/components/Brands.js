@@ -429,7 +429,7 @@ const Brands = (props) => {
                                 <option value="">Select Campaign</option>
                                 <option value="small-business">Small Business</option>
                                 <option value="standard-business">Standard Business</option>
-                                <option value="premium-business">Premium Business</option>
+                                <option value="Professionals-business">Professionals Business</option>
                             </select>
                         </div>
 
