@@ -18,6 +18,7 @@ const OrdersInfluencers = () => {
     const [message, setMessage] = useState('');
     const [sending, setSending] = useState(false);
     const [statusFilter, setStatusFilter] = useState('');
+    const [error, setError] = useState(null);
     const [messages, setMessages] = useState([]);
     const [selectedCampaigns, setSelectedCampaigns] = useState([]); // State for selected campaign IDs
 
@@ -63,8 +64,6 @@ const OrdersInfluencers = () => {
         return influencer ? influencer.campaigns : [];
     };
 
-    console.log("selectedInfluencer", selectedInfluencer)
-    console.log("selectedCampaigns", selectedCampaigns)
 
     const handleSendMessage = async () => {
         if (!selectedInfluencer || !message.trim()) return;
@@ -75,11 +74,11 @@ const OrdersInfluencers = () => {
                 from: selectedCampaigns,
                 to: selectedInfluencer._id,
                 content: message,
-                campaignIds: selectedCampaigns, // Send selected campaign IDs
+                campaignIds: selectedCampaigns,
             });
-            setMessage(''); // Clear message input
-            setSelectedCampaigns([]); // Clear selected campaigns
-            setDialogOpen(false); // Close dialog on success
+            setMessage(''); 
+            setSelectedCampaigns([]); 
+            setDialogOpen(false); 
             toast.success('Message sent successfully!');
         } catch (error) {
             console.error('Error sending message:', error);
@@ -87,29 +86,27 @@ const OrdersInfluencers = () => {
             setSending(false);
         }
     };
-    console.log("Orders", influencerData)
-
     useEffect(() => {
         getInfluencerData();
         getAllCampaigns();
     }, []);
 
-    const influencerIdLocalStorage = localStorage.getItem("id")
-
     const handleRowClick = (influencer) => {
         setSelectedInfluencer(influencer);
-        console.log("influencer", influencer)
         setDialogOpen(true);
-        fetchMessages( influencer?._id)
     };
 
     const handleCloseDialog = () => {
         setDialogOpen(false);
         setSelectedInfluencer(null);
+        setSelectedCampaigns([])
+        setMessages([])
     };
 
     const handleCheckboxChange = (campaignId) => {
         setSelectedCampaigns(prev => (prev === campaignId ? null : campaignId));
+        setMessages([])
+        fetchMessages(selectedInfluencer?._id, campaignId)
     };
 
     const filteredInfluencers = statusFilter
@@ -117,15 +114,15 @@ const OrdersInfluencers = () => {
         : influencerData;
 
 
-    const fetchMessages = async (influencerId) => {
+    const fetchMessages = async (influencerId, campaignId) => {
         setLoading(true);
-        // setError(null);
+        setError(null);
 
         try {
-            const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}`);
+            const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}/${campaignId}`);
             setMessages(response.data);
         } catch (error) {
-            // setError('Error fetching messages');
+            setError('No Messages Found');
             console.error(error);
         } finally {
             setLoading(false);
@@ -276,6 +273,31 @@ const OrdersInfluencers = () => {
                                                 ))}
                                             </TableBody>
                                         </Table>
+                                    </div>
+                                    <div className="mt-6 mx-1 grid grid-cols-2">
+                                        <div>
+                                            <h6>Messages</h6>
+                                            <div className="mt-2 flex flex-col gap-2">
+
+                                                {error ? (
+                                                    <div>
+                                                        <h6>{error}</h6>
+                                                    </div>
+                                                ) : (
+                                                    messages?.messages?.length > 0 ? (
+                                                        messages?.messages?.map((message, index) => (
+                                                            <div className="bg-green-200 w-full p-1 px-2 rounded-sm" key={index}>
+                                                                <h6>{message.content}</h6>
+                                                            </div>
+                                                        ))
+                                                    ) : (
+                                                        <div>
+                                                            <h6>No messages found</h6>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {/* Message Form */}

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { api_url } from "../../constants";
 import CloseIcon from "@mui/icons-material/Close";
 import NoFound from "../common/NoFound";
+import toast, { Toaster } from "react-hot-toast";
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -87,12 +88,11 @@ const Orders = () => {
                 from: fromId,
                 to: selectedCampaign._id,
                 content: message,
-                campaignIds: null, // Send selected campaign IDs
+                campaignIds: null,
             });
-            // setMessage(''); // Clear message input
-            // setSelectedCampaigns([]); // Clear selected campaigns
-            setDialogOpen(false); // Close dialog on success
-            // toast.success('Message sent successfully!');
+            setMessage('');
+            setDialogOpen(false);
+            toast.success('Message sent successfully!');
         } catch (error) {
             console.error('Error sending message:', error);
         } finally {
@@ -103,6 +103,7 @@ const Orders = () => {
     return (
         <>
             <div>
+                <Toaster position="top-right" reverseOrder={false} />
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} search={false} />
             </div>
