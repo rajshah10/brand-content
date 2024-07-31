@@ -194,12 +194,12 @@ const FAQ = () => {
                         </div>
                     </section>
                 </Container>
-              
+{/*               
                 <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-8">Choose Your Subscription Plan</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Small Business Plan */}
+
           <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-500 flex flex-col">
             <div className="flex-grow">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Small Business</h3>
@@ -216,7 +216,7 @@ const FAQ = () => {
             </button>
           </div>
 
-          {/* Standard Business Plan */}
+       
           <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-green-500 flex flex-col">
             <div className="flex-grow">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Standard Business</h3>
@@ -235,7 +235,7 @@ const FAQ = () => {
             </button>
           </div>
 
-          {/* Professionals Business Plan */}
+     
           <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-indigo-500 flex flex-col">
             <div className="flex-grow">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Professionals Business</h3>
@@ -255,7 +255,7 @@ const FAQ = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
               
             </main>
             <Footer />

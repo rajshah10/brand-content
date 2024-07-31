@@ -3,13 +3,21 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { api_url } from "../constants";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import CloseIcon from '@mui/icons-material/Close';
+
 const Brands = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [loadingCode, setLoadingCode] = useState(false)
+    const [subscripnDialog, setSubscripnDialog] = useState(false)
     const [formData, setFormData] = useState({
         fullName: "",
         // role: "",
@@ -26,7 +34,13 @@ const Brands = (props) => {
         auth: ''
     });
 
+    const handleSubscription = () => {
+        setSubscripnDialog(true)
+    }
 
+    const handleCloseSubscription = () => {
+        setSubscripnDialog(false);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -419,6 +433,9 @@ const Brands = (props) => {
                             </div>
                         </div>
                         <div>
+                            <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
+                                Subscription - <span className="cursor-pointer text-blue-700" onClick={handleSubscription}>View Subscripn Plans</span>
+                            </label>
                             <select
                                 required
                                 name="subscription"
@@ -426,11 +443,89 @@ const Brands = (props) => {
                                 onChange={handleChange}
                                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                             >
-                                <option value="">Select Campaign</option>
+                                <option value="">Select Subscription</option>
                                 <option value="small-business">Small Business</option>
                                 <option value="standard-business">Standard Business</option>
                                 <option value="Professionals-business">Professionals Business</option>
                             </select>
+                            <Dialog
+                                open={subscripnDialog}
+                                onClose={handleCloseSubscription}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                                maxWidth='lg'
+                            >
+                                <DialogTitle id="alert-dialog-title">
+                                    <div className="flex justify-between">
+                                    <Typography>Subscriptions</Typography>
+                                    <Typography onClick={handleCloseSubscription} className="cursor-pointer"><CloseIcon/></Typography>
+                                    </div>
+                                </DialogTitle>
+                                <DialogContent>
+
+                                    <div className="py-3 bg-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+                                        <div className="max-w-7xl mx-auto">
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                                                <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-500 flex flex-col">
+                                                    <div className="flex-grow">
+                                                        <h3 className="text-xl font-bold text-gray-800 mb-2">Small Business</h3>
+                                                        <p className="text-2xl font-semibold text-gray-800 mb-4">$79.99</p>
+                                                        <p className="text-gray-600 mb-4">Best for small businesses, startups, or companies with a limited budget.</p>
+                                                        <ul className="text-gray-600 space-y-2 mb-4">
+                                                            <li>✔️ Paid campaigns</li>
+                                                            <li>✔️ Work with 3 Influencer Campaigns per month</li>
+                                                            <li>✔️ Assigned Influencer per Campaign</li>
+                                                        </ul>
+                                                    </div>
+                                                    {/* <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                                                        Choose Plan
+                                                    </button> */}
+                                                </div>
+
+
+                                                <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-green-500 flex flex-col">
+                                                    <div className="flex-grow">
+                                                        <h3 className="text-xl font-bold text-gray-800 mb-2">Standard Business</h3>
+                                                        <p className="text-2xl font-semibold text-gray-800 mb-4">$199.99</p>
+                                                        <p className="text-gray-600 mb-4">Best for all types of Businesses looking to expand their outreach.</p>
+                                                        <ul className="text-gray-600 space-y-2 mb-4">
+                                                            <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
+                                                            <li>✔️ Gifted Campaigns</li>
+                                                            <li>✔️ PR Campaigns</li>
+                                                            <li>✔️ 2 Influencer Campaigns per month</li>
+                                                            <li>✔️ Ability to select up to 3 Influencers per Campaign</li>
+                                                        </ul>
+                                                    </div>
+                                                    {/* <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+                                                        Choose Plan
+                                                    </button> */}
+                                                </div>
+
+
+                                                <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-indigo-500 flex flex-col">
+                                                    <div className="flex-grow">
+                                                        <h3 className="text-xl font-bold text-gray-800 mb-2">Professionals Business</h3>
+                                                        <p className="text-2xl font-semibold text-gray-800 mb-4">$399.99</p>
+                                                        <p className="text-gray-600 mb-4">Best for Corporations or big companies looking to expand their outreach.</p>
+                                                        <ul className="text-gray-600 space-y-2 mb-4">
+                                                            <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
+                                                            <li>✔️ PR Campaigns</li>
+                                                            <li>✔️ Gifted Campaigns</li>
+                                                            <li>✔️ Unlimited Influencer Campaigns per month</li>
+                                                            <li>✔️ Ability to select Influencer per Campaign</li>
+                                                        </ul>
+                                                    </div>
+                                                    {/* <button className="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded">
+                                                        Choose Plan
+                                                    </button> */}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </DialogContent>
+
+                            </Dialog>
                         </div>
 
                         <div>

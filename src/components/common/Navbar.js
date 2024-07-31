@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import logo from '../../assets/images/Logo.png'
 
 
 export default function Navbar(props) {
@@ -17,7 +18,7 @@ export default function Navbar(props) {
         (props.transparent
           ? "top-0 absolute z-50 w-full"
           : "relative bg-white shadow-lg") +
-        " flex flex-wrap items-center justify-between px-2 py-3 "
+        " flex flex-wrap items-center justify-between px-2"
       }
     >
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -25,11 +26,11 @@ export default function Navbar(props) {
           <a
             className={
               (props.transparent ? "text-white" : "text-gray-800") +
-              " text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+              " text-sm font-bold leading-relaxed inline-block mr-4 whitespace-nowrap uppercase"
             }
           // href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
           >
-            Equellence
+            <img src={logo} alt='...' style={{height:"5rem"}}/>
           </a>
           {
             !navbarOpen && <button

@@ -14,7 +14,7 @@ export default function Footer() {
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
             <a class="flex items-center">
-              <img src={require("../../assets/images/Logo.png")} class="h-40 me-3" alt="FlowBite Logo" />
+              <img src={require("../../assets/images/Logo.png")} class="h-[7rem] me-3" alt="FlowBite Logo" />
             </a>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-3">
