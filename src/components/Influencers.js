@@ -232,7 +232,7 @@ const Influencers = () => {
                                             <option value="">All Platforms</option>
                                             <option value="Instagram">Instagram</option>
                                             <option value="Facebook">Facebook</option>
-                                            <option value="Twitter">Twitter</option>
+                                            {/* <option value="Twitter">Twitter</option> */}
                                         </select>
                                     </div>
                                 </div>

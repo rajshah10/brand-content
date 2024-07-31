@@ -114,7 +114,7 @@ const ContentCreatorFlow = (props) => {
             }
         } catch (error) {
             setLoadingCode(false);
-            toast.error("Invalid Email Address");
+            toast.error("Please enter proper Email Id");
 
         }
     }
@@ -133,7 +133,7 @@ const ContentCreatorFlow = (props) => {
                                 <input
                                     id="email"
                                     name="email"
-                                    type="text"
+                                    type="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
@@ -202,7 +202,7 @@ const ContentCreatorFlow = (props) => {
                                 <input
                                     id="phoneNumber"
                                     name="phoneNumber"
-                                    type="text"
+                                    type="number"
                                     value={formData.phoneNumber}
                                     onChange={handleChange}
                                     required
@@ -224,6 +224,7 @@ const ContentCreatorFlow = (props) => {
                                             name="niche"
                                             type="checkbox"
                                             value="Lifestyle"
+                                            checked={formData.niche.includes("Lifestyle")}
                                             onChange={handleNicheChange}
                                             className="h-4 w-4 outline-none px-2 text-indigo-600 border-gray-300 rounded "
                                         />
@@ -237,6 +238,7 @@ const ContentCreatorFlow = (props) => {
                                             name="niche"
                                             type="checkbox"
                                             value="Comedy"
+                                            checked={formData.niche.includes("Comedy")}
                                             onChange={handleNicheChange}
                                             className="h-4 w-4 outline-none px-2 text-indigo-600 border-gray-300 rounded "
                                         />
@@ -250,6 +252,7 @@ const ContentCreatorFlow = (props) => {
                                             name="niche"
                                             type="checkbox"
                                             value="College/Student"
+                                            checked={formData.niche.includes("College/Student")}
                                             onChange={handleNicheChange}
                                             className="h-4 w-4 outline-none px-2 text-indigo-600 border-gray-300 rounded "
                                         />
@@ -263,6 +266,7 @@ const ContentCreatorFlow = (props) => {
                                             name="niche"
                                             type="checkbox"
                                             value="Affiliate Programs"
+                                            checked={formData.niche.includes("Affiliate Programs")}
                                             onChange={handleNicheChange}
                                             className="h-4 w-4 outline-none px-2 text-indigo-600 border-gray-300 rounded "
                                         />
@@ -277,6 +281,7 @@ const ContentCreatorFlow = (props) => {
                                             name="niche"
                                             type="checkbox"
                                             value="education"
+                                            checked={formData.niche.includes("education")}
                                             onChange={handleNicheChange}
                                             className="h-4 w-4 outline-none px-2 text-indigo-600 border-gray-300 rounded "
                                         />
@@ -349,7 +354,7 @@ const ContentCreatorFlow = (props) => {
                         <div>
                             <div>
                                 <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Auth Code <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> - {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : "Send code"}</a>
+                                    Auth Code {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> Send code</a>}
                                 </label>
                                 <div className="mt-1">
                                     <input
