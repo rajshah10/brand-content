@@ -18,6 +18,7 @@ const OrdersInfluencers = () => {
     const [message, setMessage] = useState('');
     const [sending, setSending] = useState(false);
     const [statusFilter, setStatusFilter] = useState('');
+    const [messages, setMessages] = useState([]);
     const [selectedCampaigns, setSelectedCampaigns] = useState([]); // State for selected campaign IDs
 
     const handleFilterChange = (event) => {
@@ -62,6 +63,9 @@ const OrdersInfluencers = () => {
         return influencer ? influencer.campaigns : [];
     };
 
+    console.log("selectedInfluencer", selectedInfluencer)
+    console.log("selectedCampaigns", selectedCampaigns)
+
     const handleSendMessage = async () => {
         if (!selectedInfluencer || !message.trim()) return;
 
@@ -90,9 +94,13 @@ const OrdersInfluencers = () => {
         getAllCampaigns();
     }, []);
 
+    const influencerIdLocalStorage = localStorage.getItem("id")
+
     const handleRowClick = (influencer) => {
         setSelectedInfluencer(influencer);
+        console.log("influencer", influencer)
         setDialogOpen(true);
+        fetchMessages( influencer?._id)
     };
 
     const handleCloseDialog = () => {
@@ -108,6 +116,23 @@ const OrdersInfluencers = () => {
         ? influencerData.filter(influencer => influencer.status === statusFilter)
         : influencerData;
 
+
+    const fetchMessages = async (influencerId) => {
+        setLoading(true);
+        // setError(null);
+
+        try {
+            const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}`);
+            setMessages(response.data);
+        } catch (error) {
+            // setError('Error fetching messages');
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    console.log("messages", messages)
+
     return (
         <>
             <div>
@@ -120,7 +145,7 @@ const OrdersInfluencers = () => {
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Influencers</h6>
                         <div className="flex gap-2 items-center">
-                                <h6>Status:</h6>
+                            <h6>Status:</h6>
                             <select
                                 value={statusFilter}
                                 onChange={handleFilterChange}

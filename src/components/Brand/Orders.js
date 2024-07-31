@@ -77,8 +77,27 @@ const Orders = () => {
         setMessages([]);
     };
 
+    const fromId = localStorage.getItem("id")
     const handleSendMessage = async () => {
+        if (!selectedCampaign || !message.trim()) return;
 
+        // setSending(true);
+        try {
+            await axios.post(`${api_url}/api/messages/sendbrand`, {
+                from: fromId,
+                to: selectedCampaign._id,
+                content: message,
+                campaignIds: null, // Send selected campaign IDs
+            });
+            // setMessage(''); // Clear message input
+            // setSelectedCampaigns([]); // Clear selected campaigns
+            setDialogOpen(false); // Close dialog on success
+            // toast.success('Message sent successfully!');
+        } catch (error) {
+            console.error('Error sending message:', error);
+        } finally {
+            // setSending(false);
+        }
     };
 
     return (
@@ -134,7 +153,7 @@ const Orders = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {orders?.length > 0 ? (
+                                    {orders?.length > 2 ? (
                                         orders.map((order, index) => (
                                             <tr className="bg-white border-b cursor-pointer" key={index} onClick={() => handleCampaignClick(order)}>
                                                 <td className="px-6 py-4 text-slate-500">{order._id}</td>
