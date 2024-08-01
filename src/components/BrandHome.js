@@ -440,11 +440,9 @@ const BrandHome = () => {
 
                                         </div>
                                     ))) : (
-                                    <tr>
-                                        <td colSpan="5" className="text-black">
-                                            <NoFound />
-                                        </td>
-                                    </tr>)}
+
+                                    <NoFound />
+                                )}
                             </>)}
 
                     </div>
