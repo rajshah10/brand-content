@@ -7,6 +7,7 @@ import MenuComponent from "../common/MenuComponent";
 import axios from "axios";
 import { api_url } from "../../constants";
 import toast, { Toaster } from "react-hot-toast";
+import NoFound from "../common/NoFound";
 
 const OrdersInfluencers = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -167,26 +168,32 @@ const OrdersInfluencers = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredInfluencers.map((influencer) => (
-                                    <tr className="bg-white border-b cursor-pointer" key={influencer._id} onClick={() => handleRowClick(influencer)}>
-                                        <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</th>
-                                        <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
-                                            {influencer.firstName} {influencer.lastName}
+                                {filteredInfluencers?.length > 0 ? (
+                                    filteredInfluencers.map((influencer) => (
+                                        <tr className="bg-white border-b cursor-pointer" key={influencer._id} onClick={() => handleRowClick(influencer)}>
+                                            <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</th>
+                                            <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
+                                                {influencer.firstName} {influencer.lastName}
+                                            </td>
+                                            <td className="px-6 py-4 text-slate-500">{influencer.email}</td>
+                                            <td className="px-6 py-4 text-slate-500">{influencer.niche.join(', ')}</td>
+                                            <td className="px-6 py-4 text-slate-500">
+                                                {influencer.socialMediaLinks.map(link => (
+                                                    <div key={link.id} className="flex items-center gap-2 mb-2">
+                                                        <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                                            {link.link.split('/')[2]}
+                                                        </a>
+                                                        <span className="text-gray-500">{link.followerCount}</span>
+                                                    </div>
+                                                ))}
+                                            </td>
+                                        </tr>
+                                    ))) : (
+                                    <tr>
+                                        <td colSpan="5" className="text-black">
+                                            <NoFound />
                                         </td>
-                                        <td className="px-6 py-4 text-slate-500">{influencer.email}</td>
-                                        <td className="px-6 py-4 text-slate-500">{influencer.niche.join(', ')}</td>
-                                        <td className="px-6 py-4 text-slate-500">
-                                            {influencer.socialMediaLinks.map(link => (
-                                                <div key={link.id} className="flex items-center gap-2 mb-2">
-                                                    <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                                                        {link.link.split('/')[2]}
-                                                    </a>
-                                                    <span className="text-gray-500">{link.followerCount}</span>
-                                                </div>
-                                            ))}
-                                        </td>
-                                    </tr>
-                                ))}
+                                    </tr>)}
                             </tbody>
                         </table>
                     </div>
@@ -317,8 +324,8 @@ const OrdersInfluencers = () => {
                         <DialogActions>
                             <button
                                 className={`px-4 py-1 rounded-md ${sending || !selectedCampaigns || message?.length === 0
-                                        ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-[#4F46E5] text-white'
+                                    ? 'bg-gray-400 cursor-not-allowed'
+                                    : 'bg-[#4F46E5] text-white'
                                     }`}
                                 onClick={handleSendMessage}
                                 disabled={sending || !selectedCampaigns || message?.length === 0}

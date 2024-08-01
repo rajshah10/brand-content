@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { CircularProgress, DialogContent, Dialog, DialogTitle } from '@mui/material';
+import { CircularProgress, DialogContent, Dialog, DialogTitle,Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -9,6 +9,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import horse6 from "../assets/images/horse6.jpeg"
 import horse7 from "../assets/images/horse7.jpeg"
 import { api_url } from '../constants';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const Login = () => {
     const [selectedOption, setSelectedOption] = useState('contentCreator');
@@ -57,7 +59,7 @@ const Login = () => {
             const { token } = response.data;
             if (token) {
                 const tokenParts = token.split('.');
-                console.log("Tokenparts",tokenParts)
+                console.log("Tokenparts", tokenParts)
                 if (tokenParts.length !== 3) return null;
                 const payload = JSON.parse(atob(tokenParts[1]));
                 const type = payload.type;
@@ -190,7 +192,12 @@ const Login = () => {
                                             fullWidth
                                             sx={{ '& .MuiDialog-paper': { width: '30%' } }}
                                         >
-                                            <DialogTitle>Reset Password</DialogTitle>
+                                            <DialogTitle>
+                                                <div className="flex justify-between">
+                                                    <Typography>Reset Password</Typography>
+                                                    <Typography onClick={handleClose} className="cursor-pointer"><CloseIcon /></Typography>
+                                                </div>
+                                            </DialogTitle>
                                             <DialogContent>
                                                 <div>
                                                     <label
