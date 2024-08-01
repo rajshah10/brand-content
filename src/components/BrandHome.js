@@ -227,7 +227,7 @@ const BrandHome = () => {
                                 {expandedSections.category &&
                                     <div class="pt-6" id="filter-section-mobile-0">
                                         <div class="space-y-6 overflow-y-auto h-32 custom-scrollbar">
-                                            {niches?.length > 0 ? (
+                                            {
                                                 niches?.map((niche, index) => (
                                                     <div class="flex items-center">
                                                         <input checked={selectedNiches.includes(niche.name)}
@@ -235,12 +235,7 @@ const BrandHome = () => {
                                                             id="filter-mobile-color-0" name="color[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for="filter-mobile-color-0" class="ml-3 min-w-0 flex-1 text-gray-500">{niche.name}</label>
                                                     </div>
-                                                ))) : (
-                                                <tr>
-                                                    <td colSpan="5" className="text-black">
-                                                        <NoFound />
-                                                    </td>
-                                                </tr>)
+                                                ))
                                             }
 
                                         </div>
@@ -269,19 +264,14 @@ const BrandHome = () => {
                                 {expandedSections.followers &&
                                     <div class="pt-6" id="filter-section-mobile-0">
                                         <div class="space-y-6 overflow-y-auto h-32 custom-scrollbar">
-                                            {follower?.length > 0 ? (
+                                            {
                                                 follower?.map((niche, index) => (
                                                     <div class="flex items-center">
                                                         <input checked={selectedFollowers.includes(niche.name)}
                                                             onChange={() => handleFollowersChange(niche.name)} id="filter-mobile-color-0" name="color[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for="filter-mobile-color-0" class="ml-3 min-w-0 flex-1 text-gray-500">{niche.name}</label>
                                                     </div>
-                                                ))) : (
-                                                <tr>
-                                                    <td colSpan="5" className="text-black">
-                                                        <NoFound />
-                                                    </td>
-                                                </tr>)
+                                                ))
                                             }
 
                                         </div>
@@ -352,103 +342,107 @@ const BrandHome = () => {
                             </>
                         ) : (
                             <>
-                                {filteredInfluencers && filteredInfluencers.map(influencer => (
-                                    <div
-                                        key={influencer.id}
-                                        className="bg-white rounded-lg mt-2 p-4 flex flex-col space-y-4 border border-slate-200 cursor-pointer"
+                                {filteredInfluencers?.length > 0 ? (
+                                    filteredInfluencers?.map(influencer => (
+                                        <div
+                                            key={influencer.id}
+                                            className="bg-white rounded-lg mt-2 p-4 flex flex-col space-y-4 border border-slate-200 cursor-pointer"
 
-                                    >
-                                        <div className="flex justify-center lg:flex md:justify-start lg:justify-start items-center">
-                                            <div className="relative w-full flex justify-between flex-col sm:flex-row md:flex-row lg:flex-row items-center gap-4">
-                                                <div className='flex items-center gap-4'>
-                                                    <div>
-                                                        <Badge
-                                                            overlap="circular"
-                                                            anchorOrigin={{
-                                                                vertical: 'top',
-                                                                horizontal: 'right',
-                                                            }}
-                                                            badgeContent={influencer.verified ? (
-                                                                <CheckCircleIcon className="text-green-400 brand_badge" />
-                                                            ) : (
-                                                                <HelpOutlineIcon className="text-orange-400 brand_badge" />
-                                                            )}
-                                                        >
-                                                            <Avatar onClick={() => handleDrawerOpen(influencer)} className="brand_avatar w-32 h-32 rounded-full" src={influencer.media} alt={influencer.name} />
-                                                        </Badge>
-                                                    </div>
-                                                    <div>
+                                        >
+                                            <div className="flex justify-center lg:flex md:justify-start lg:justify-start items-center">
+                                                <div className="relative w-full flex justify-between flex-col sm:flex-row md:flex-row lg:flex-row items-center gap-4">
+                                                    <div className='flex items-center gap-4'>
                                                         <div>
-                                                            <span className="text-md text-center gap-2 font-medium text-black-600 flex items-center justify-center md:justify-center lg:justify-start">
-                                                                {influencer.firstName} - {influencer.lastName} - <span className='text-sm text-gray-600'>{influencer.email}</span>
-                                                                {influencer.verified && (
-                                                                    <span className="text-xs text-indigo-500"><VerifiedIcon /></span>
+                                                            <Badge
+                                                                overlap="circular"
+                                                                anchorOrigin={{
+                                                                    vertical: 'top',
+                                                                    horizontal: 'right',
+                                                                }}
+                                                                badgeContent={influencer.verified ? (
+                                                                    <CheckCircleIcon className="text-green-400 brand_badge" />
+                                                                ) : (
+                                                                    <HelpOutlineIcon className="text-orange-400 brand_badge" />
                                                                 )}
-                                                            </span>
-                                                            <p className="text-gray-400 text-center md:text-left lg:text-left">{influencer.description}</p>
-                                                            <div className="flex gap-1 mt-2 justify-center md:justify-center lg:justify-start">
-                                                                {influencer.niche.map((interest, index) => (
-                                                                    <div key={index} className="bg-gray-200 px-2 py-1 rounded-md text-xs text-gray-600">
-                                                                        {interest}
-                                                                    </div>
-                                                                ))}
+                                                            >
+                                                                <Avatar onClick={() => handleDrawerOpen(influencer)} className="brand_avatar w-32 h-32 rounded-full" src={influencer.media} alt={influencer.name} />
+                                                            </Badge>
+                                                        </div>
+                                                        <div>
+                                                            <div>
+                                                                <span className="text-md text-center gap-2 font-medium text-black-600 flex items-center justify-center md:justify-center lg:justify-start">
+                                                                    {influencer.firstName} - {influencer.lastName} - <span className='text-sm text-gray-600'>{influencer.email}</span>
+                                                                    {influencer.verified && (
+                                                                        <span className="text-xs text-indigo-500"><VerifiedIcon /></span>
+                                                                    )}
+                                                                </span>
+                                                                <p className="text-gray-400 text-center md:text-left lg:text-left">{influencer.description}</p>
+                                                                <div className="flex gap-1 mt-2 justify-center md:justify-center lg:justify-start">
+                                                                    {influencer.niche.map((interest, index) => (
+                                                                        <div key={index} className="bg-gray-200 px-2 py-1 rounded-md text-xs text-gray-600">
+                                                                            {interest}
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-span-full">
-                                                    {/* <label htmlFor="influencerdata" className="block text-sm font-medium leading-6 text-gray-900">Select Campaign</label> */}
-                                                    <div className="mt-2 flex flex-col gap-2 ">
-                                                        <select
-                                                            required
-                                                            type="text"
-                                                            name="influencerdata"
-                                                            id="influencerdata"
-                                                            // value={campaign.influencerdata}
-                                                            onChange={(e) => handleChange(e, influencer?._id)}
-                                                            className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
-                                                        >
-                                                            <option>Select Campaign</option>
-                                                            {
-                                                                campaign?.map((d, index) => (
-                                                                    <option value={JSON.stringify(d)} key={index}>{d?.campaignTitle}</option>
-                                                                ))
-                                                            }
+                                                    <div className="col-span-full">
+                                                        {/* <label htmlFor="influencerdata" className="block text-sm font-medium leading-6 text-gray-900">Select Campaign</label> */}
+                                                        <div className="mt-2 flex flex-col gap-2 ">
+                                                            <select
+                                                                required
+                                                                type="text"
+                                                                name="influencerdata"
+                                                                id="influencerdata"
+                                                                // value={campaign.influencerdata}
+                                                                onChange={(e) => handleChange(e, influencer?._id)}
+                                                                className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
+                                                            >
+                                                                <option>Select Campaign</option>
+                                                                {
+                                                                    campaign?.map((d, index) => (
+                                                                        <option value={JSON.stringify(d)} key={index}>{d?.campaignTitle}</option>
+                                                                    ))
+                                                                }
 
-                                                        </select>
-                                                        <button
-                                                            className="bg-[#4F46E5] text-white'  rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                                            onClick={() => handleButtonClick(influencer?._id)}
-                                                        >
-                                                            Assign Now
-                                                        </button>
+                                                            </select>
+                                                            <button
+                                                                className="bg-[#4F46E5] text-white'  rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                                onClick={() => handleButtonClick(influencer?._id)}
+                                                            >
+                                                                Assign Now
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className='text-sm text-gray-600'>
-                                            {influencer?.bio}
-                                        </div>
-                                        <div className='grid grid-cols-4 gap-3'>
-                                            {influencer?.socialMediaLinks?.map((link, index) => (
-                                                <Link to={`${link.link}`}>
-                                                    <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-1 px-1 rounded-md">
-                                                        <div>
-                                                            {getIconComponent(link.link)}
+                                            <div className='text-sm text-gray-600'>
+                                                {influencer?.bio}
+                                            </div>
+                                            <div className='grid grid-cols-4 gap-3'>
+                                                {influencer?.socialMediaLinks?.map((link, index) => (
+                                                    <Link to={`${link.link}`}>
+                                                        <div className="flex flex-col justify-center items-center border bg-slate-100 border-black-600 py-1 px-1 rounded-md">
+                                                            <div>
+                                                                {getIconComponent(link.link)}
+                                                            </div>
+                                                            <div className='flex gap-1 items-center'>
+                                                                <span className="text-md text-black-600">{link.followerCount}</span>
+                                                                <span className="text-xs text-gray-500">Followers</span>
+                                                            </div>
                                                         </div>
-                                                        <div className='flex gap-1 items-center'>
-                                                            <span className="text-md text-black-600">{link.followerCount}</span>
-                                                            <span className="text-xs text-gray-500">Followers</span>
-                                                        </div>
-                                                    </div>
-                                                </Link>
+                                                    </Link>
 
-                                            ))}
+                                                ))}
+                                            </div>
+
+
                                         </div>
+                                    ))) : (
 
-
-                                    </div>
-                                ))}
+                                    <NoFound />
+                                )}
                             </>)}
 
                     </div>

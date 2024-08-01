@@ -271,11 +271,9 @@ const ManageCampaign = () => {
                                     </>
                                 )
                             })) : (
-                                <tr>
-                                    <td colSpan="5" className="text-black">
+                               
                                         <NoFound />
-                                    </td>
-                                </tr>)}
+                                   )}
                         </div>
                 }
             </Container>
