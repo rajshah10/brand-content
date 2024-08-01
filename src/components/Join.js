@@ -39,7 +39,8 @@ const Join = () => {
                         </div>
                     )}
                     <img
-                        className="mx-auto w-56"
+                        onClick={()=>navigate("/")}
+                        className="mx-auto w-48 cursor-pointer"
                         src={require("../assets/images/Logo.png")}
                         alt="Your Company"
                     />

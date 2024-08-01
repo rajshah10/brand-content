@@ -104,14 +104,14 @@ const MenuComponent = (props) => {
                     </MenuItem>
                 }
 
-                {
+                {/* {
                     getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/contact")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <PhoneEnabledOutlinedIcon />
                         </ListItemIcon>
                         Contact Us
                     </MenuItem>
-                }
+                } */}
 
 
                 <Divider />

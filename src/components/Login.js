@@ -125,7 +125,8 @@ const Login = () => {
                 <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
                     <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
                         <img
-                            className="mx-auto w-56"
+                            onClick={()=>navigate("/")}
+                            className="mx-auto w-48 cursor-pointer"
                             src={require("../assets/images/Logo.png")}
                             alt="Your Company"
                         />
