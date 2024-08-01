@@ -14,6 +14,7 @@ const Orders = () => {
     const [sending, setSending] = useState(false);
     const [orders, setOrders] = useState([]);
     const [messages, setMessages] = useState([]);
+    const [messagesOther, setMessagesOther] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedCampaign, setSelectedCampaign] = useState(null);
@@ -70,6 +71,7 @@ const Orders = () => {
     const handleCampaignClick = (campaign) => {
         setSelectedCampaign(campaign);
         fetchMessages(influencerId, campaign?._id);
+        fetchMessagesOther(influencerId, campaign?._id)
         setDialogOpen(true);
     };
 
@@ -77,6 +79,7 @@ const Orders = () => {
         setDialogOpen(false);
         setSelectedCampaign(null);
         setMessages([]);
+        setMessagesOther()
     };
 
     const fromId = localStorage.getItem("id")
@@ -100,6 +103,23 @@ const Orders = () => {
             setSending(false);
         }
     };
+    const fetchMessagesOther = async (influencerId, campaignId) => {
+
+        setError(null);
+
+        try {
+            const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}/${campaignId}`);
+            setMessagesOther(response.data);
+        } catch (error) {
+            setError('No Messages Found');
+            console.error(error);
+        }
+    };
+
+    const combinedMessages = [
+        ...(Array.isArray(messages?.messages) ? messages.messages : []),
+        ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
+    ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
     return (
         <>
@@ -218,13 +238,17 @@ const Orders = () => {
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
-                                    <div className="mt-6 mx-1 grid grid-cols-2">
+                                    <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
                                         <div>
                                             <h6>Messages</h6>
                                             <div className="mt-2 flex flex-col gap-2">
-                                                {messages?.messages?.length > 0 ? (
-                                                    messages?.messages?.map((message, index) => (
-                                                        <div className="bg-green-200 w-full p-1 px-2 rounded-sm" key={index}>
+                                                {combinedMessages.length > 0 ? (
+                                                    combinedMessages.map((message, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className={`p-2 rounded-md ${message.from === "66a74f1c4b79b26ecd5589ef" ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
+                                                        >
+                                                            <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
                                                             <h6>{message.content}</h6>
                                                         </div>
                                                     ))
