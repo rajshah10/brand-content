@@ -10,6 +10,7 @@ import MenuComponent from "../common/MenuComponent";
 import DrawerForInfluencers from "../common/DrawerForInfluencers";
 import { api_url } from "../../constants";
 import toast, { Toaster } from "react-hot-toast";
+import NoFound from "../common/NoFound";
 
 const ManageCampaign = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -188,7 +189,8 @@ const ManageCampaign = () => {
                                     </select>
                                 </div>
                             </div>
-                            {campaign?.map((camp, index) => {
+                            { campaign?.length > 0 ? ( 
+                                campaign?.map((camp, index) => {
                                 const hiredCount = hiredCounts.find(count => count.campaignTitle === camp.campaignTitle)?.hiredCount || 0;
                                 return (
                                     <>
@@ -268,7 +270,12 @@ const ManageCampaign = () => {
 
                                     </>
                                 )
-                            })}
+                            })) : (
+                                <tr>
+                                    <td colSpan="5" className="text-black">
+                                        <NoFound />
+                                    </td>
+                                </tr>)}
                         </div>
                 }
             </Container>

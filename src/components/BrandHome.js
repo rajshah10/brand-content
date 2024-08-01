@@ -15,6 +15,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkIcon from '@mui/icons-material/Link';
 import { api_url, follower, niches } from '../constants';
+import NoFound from './common/NoFound';
 
 const BrandHome = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -226,7 +227,7 @@ const BrandHome = () => {
                                 {expandedSections.category &&
                                     <div class="pt-6" id="filter-section-mobile-0">
                                         <div class="space-y-6 overflow-y-auto h-32 custom-scrollbar">
-                                            {
+                                            {niches?.length > 0 ? (
                                                 niches?.map((niche, index) => (
                                                     <div class="flex items-center">
                                                         <input checked={selectedNiches.includes(niche.name)}
@@ -234,7 +235,12 @@ const BrandHome = () => {
                                                             id="filter-mobile-color-0" name="color[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for="filter-mobile-color-0" class="ml-3 min-w-0 flex-1 text-gray-500">{niche.name}</label>
                                                     </div>
-                                                ))
+                                                ))) : (
+                                                <tr>
+                                                    <td colSpan="5" className="text-black">
+                                                        <NoFound />
+                                                    </td>
+                                                </tr>)
                                             }
 
                                         </div>
@@ -263,14 +269,19 @@ const BrandHome = () => {
                                 {expandedSections.followers &&
                                     <div class="pt-6" id="filter-section-mobile-0">
                                         <div class="space-y-6 overflow-y-auto h-32 custom-scrollbar">
-                                            {
+                                            {follower?.length > 0 ? (
                                                 follower?.map((niche, index) => (
                                                     <div class="flex items-center">
                                                         <input checked={selectedFollowers.includes(niche.name)}
                                                             onChange={() => handleFollowersChange(niche.name)} id="filter-mobile-color-0" name="color[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for="filter-mobile-color-0" class="ml-3 min-w-0 flex-1 text-gray-500">{niche.name}</label>
                                                     </div>
-                                                ))
+                                                ))) : (
+                                                <tr>
+                                                    <td colSpan="5" className="text-black">
+                                                        <NoFound />
+                                                    </td>
+                                                </tr>)
                                             }
 
                                         </div>

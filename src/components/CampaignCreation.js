@@ -288,6 +288,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="images" className="block text-sm font-medium leading-6 text-gray-900">Campaign Images</label>
                                     <div className="mt-2">
                                         <input
+                                        required
                                             type="file"
                                             name="images"
                                             id="images"
