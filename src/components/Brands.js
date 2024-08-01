@@ -143,7 +143,7 @@ const Brands = (props) => {
                                 <input
                                     id="email"
                                     name="email"
-                                    type="text"
+                                    type="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
@@ -229,7 +229,7 @@ const Brands = (props) => {
                                 <input
                                     id="phone"
                                     name="phone"
-                                    type="text"
+                                    type="number"
                                     value={formData.phone}
                                     onChange={handleChange}
                                     required
@@ -271,6 +271,7 @@ const Brands = (props) => {
                                             name="influencerType"
                                             type="checkbox"
                                             value="Paid Campaigns"
+                                            checked={formData.influencerType.includes("Paid Campaigns")}
                                             onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
@@ -284,6 +285,7 @@ const Brands = (props) => {
                                             name="influencerType"
                                             type="checkbox"
                                             value="Gifted Campaigns"
+                                            checked={formData.influencerType.includes("Gifted Campaigns")}
                                             onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
@@ -297,6 +299,7 @@ const Brands = (props) => {
                                             name="influencerType"
                                             type="checkbox"
                                             value="Sponsorships"
+                                            checked={formData.influencerType.includes("Sponsorships")}
                                             onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
@@ -310,6 +313,7 @@ const Brands = (props) => {
                                             name="influencerType"
                                             type="checkbox"
                                             value="Affiliate Programs"
+                                            checked={formData.influencerType.includes("Affiliate Programs")}
                                             onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
@@ -323,6 +327,7 @@ const Brands = (props) => {
                                             name="influencerType"
                                             type="checkbox"
                                             value="PR"
+                                            checked={formData.influencerType.includes("PR")}
                                             onChange={handleInfluencerType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
@@ -360,27 +365,29 @@ const Brands = (props) => {
                                 <div className="mt-2 space-y-2">
                                     <div className="flex items-center">
                                         <input
-                                            id="paidCampaigns"
+                                            id="Roster"
                                             name="collaborationType"
                                             type="checkbox"
-                                            value="Paid Campaigns"
+                                            value="Roster"
+                                            checked={formData.collaborationType.includes("Roster")}
                                             onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
-                                        <label htmlFor="paidCampaigns" className="ml-2 block text-sm text-gray-900">
+                                        <label htmlFor="Roster" className="ml-2 block text-sm text-gray-900">
                                             Roster
                                         </label>
                                     </div>
                                     <div className="flex items-center">
                                         <input
-                                            id="giftedCampaigns"
+                                            id="partnership"
                                             name="collaborationType"
                                             type="checkbox"
-                                            value="Gifted Campaigns"
+                                            value="Partnership"
+                                            checked={formData.collaborationType.includes("Partnership")}
                                             onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
-                                        <label htmlFor="giftedCampaigns" className="ml-2 block text-sm text-gray-900">
+                                        <label htmlFor="partnership" className="ml-2 block text-sm text-gray-900">
                                             Partnership (for non-profits/Horse Shows only)
                                         </label>
                                     </div>
@@ -390,6 +397,7 @@ const Brands = (props) => {
                                             name="collaborationType"
                                             type="checkbox"
                                             value="Sponsorships"
+                                            checked={formData.collaborationType.includes("Sponsorships")}
                                             onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
@@ -399,14 +407,15 @@ const Brands = (props) => {
                                     </div>
                                     <div className="flex items-center">
                                         <input
-                                            id="affiliatePrograms"
+                                            id="vendor"
                                             name="collaborationType"
                                             type="checkbox"
-                                            value="Affiliate Programs"
+                                            value="Vendor at Equfest"
+                                            checked={formData.collaborationType.includes("Vendor at Equfest")}
                                             onChange={handleCollaborationType}
                                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                                         />
-                                        <label htmlFor="affiliatePrograms" className="ml-2 block text-sm text-gray-900">
+                                        <label htmlFor="vendor" className="ml-2 block text-sm text-gray-900">
                                             Vendor at Equfest
                                         </label>
                                     </div>
@@ -417,7 +426,7 @@ const Brands = (props) => {
                         <div>
                             <div>
                                 <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Auth Code <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> - {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : "Send code"}</a>
+                                    Auth Code {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> Send code</a>}
                                 </label>
                                 <div className="mt-1">
                                     <input
@@ -457,8 +466,8 @@ const Brands = (props) => {
                             >
                                 <DialogTitle id="alert-dialog-title">
                                     <div className="flex justify-between">
-                                    <Typography>Subscriptions</Typography>
-                                    <Typography onClick={handleCloseSubscription} className="cursor-pointer"><CloseIcon/></Typography>
+                                        <Typography>Subscriptions</Typography>
+                                        <Typography onClick={handleCloseSubscription} className="cursor-pointer"><CloseIcon /></Typography>
                                     </div>
                                 </DialogTitle>
                                 <DialogContent>

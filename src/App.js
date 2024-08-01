@@ -36,7 +36,7 @@ function App() {
           <Route path="/influencers/profile" element={<EditProfile />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/manage-campaign" element={<ManageCampaign />} />
-          <Route path="/manage-subs" element={<ManageSubs />} />
+          {/* <Route path="/manage-subs" element={<ManageSubs />} /> */}
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders-influencer" element={<OrdersInfluencers />} />
           <Route path="/about" element={<AboutUs />} />

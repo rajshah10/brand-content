@@ -78,14 +78,14 @@ const MenuComponent = (props) => {
                         Manage Campaign
                     </MenuItem>
                 }
-                {
+                {/* {
                     getPartner !== "contentCreator" && <MenuItem onClick={() => navigate("/manage-subs")}>
                         <ListItemIcon style={{ color: "slategray" }}>
                             <UnsubscribeOutlinedIcon />
                         </ListItemIcon>
                         Manage Subscription
                     </MenuItem>
-                }
+                } */}
                 {
                     getPartner === "contentCreator" && <MenuItem onClick={() => navigate("/orders")}>
                         <ListItemIcon style={{ color: "slategray" }}>

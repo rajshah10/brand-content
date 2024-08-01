@@ -11,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [sending, setSending] = useState(false);
     const [orders, setOrders] = useState([]);
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -82,7 +83,7 @@ const Orders = () => {
     const handleSendMessage = async () => {
         if (!selectedCampaign || !message.trim()) return;
 
-        // setSending(true);
+        setSending(true);
         try {
             await axios.post(`${api_url}/api/messages/sendbrand`, {
                 from: fromId,
@@ -96,7 +97,7 @@ const Orders = () => {
         } catch (error) {
             console.error('Error sending message:', error);
         } finally {
-            // setSending(false);
+            setSending(false);
         }
     };
 
@@ -250,8 +251,11 @@ const Orders = () => {
                             )}
                         </DialogContent>
                         <DialogActions>
-                            <button className="px-4 py-1 bg-[#4F46E5] text-white rounded-md" onClick={handleSendMessage} color="primary" >
-                                {'Send Message'}
+                            <button className={`px-4 py-1 rounded-md ${sending || message?.length === 0
+                                ? 'bg-gray-400 cursor-not-allowed'
+                                : 'bg-[#4F46E5] text-white'
+                                }`} onClick={handleSendMessage} color="primary" >
+                                {sending ? 'Sending...' : 'Send Message'}
                             </button>
                             <button className="px-4 py-1 bg-slate-200 text-black rounded-md" onClick={handleDialogClose} color="primary">
                                 Close

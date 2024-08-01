@@ -76,9 +76,9 @@ const OrdersInfluencers = () => {
                 content: message,
                 campaignIds: selectedCampaigns,
             });
-            setMessage(''); 
-            setSelectedCampaigns([]); 
-            setDialogOpen(false); 
+            setMessage('');
+            setSelectedCampaigns([]);
+            setDialogOpen(false);
             toast.success('Message sent successfully!');
         } catch (error) {
             console.error('Error sending message:', error);
@@ -146,7 +146,7 @@ const OrdersInfluencers = () => {
                             <select
                                 value={statusFilter}
                                 onChange={handleFilterChange}
-                                className="border px-2 py-1 rounded-md"
+                                className="block rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                             >
                                 <option value="">All</option>
                                 <option value="pending">Pending</option>
@@ -315,10 +315,19 @@ const OrdersInfluencers = () => {
                             )}
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleCloseDialog} color="primary">Close</Button>
-                            <Button onClick={handleSendMessage} color="primary" disabled={(sending) || (!selectedCampaigns || message?.length === 0)}>
+                            <button
+                                className={`px-4 py-1 rounded-md ${sending || !selectedCampaigns || message?.length === 0
+                                        ? 'bg-gray-400 cursor-not-allowed'
+                                        : 'bg-[#4F46E5] text-white'
+                                    }`}
+                                onClick={handleSendMessage}
+                                disabled={sending || !selectedCampaigns || message?.length === 0}
+                            >
                                 {sending ? 'Sending...' : 'Send Message'}
-                            </Button>
+                            </button>
+                            <button className="px-4 py-1 bg-slate-200 text-black rounded-md" onClick={handleCloseDialog} color="primary">
+                                Close
+                            </button>
                         </DialogActions>
                     </Dialog>
                 </div>

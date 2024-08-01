@@ -9,6 +9,7 @@ import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import DrawerForInfluencers from "../common/DrawerForInfluencers";
 import { api_url } from "../../constants";
+import toast, { Toaster } from "react-hot-toast";
 
 const ManageCampaign = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -62,10 +63,10 @@ const ManageCampaign = () => {
 
     useEffect(() => {
         getAllCampaigns();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterType, filterPlatform]);
 
-   
+
 
 
 
@@ -73,7 +74,8 @@ const ManageCampaign = () => {
         try {
             const response = await axios.post(`http://localhost:5000/api/campaign/${campaignId}/hire`, { influencerId });
             if (response.data.success) {
-                getAllCampaigns(); 
+                getAllCampaigns();
+                toast.success('Hired successfully!');
             }
         } catch (error) {
             console.error('Error hiring influencer:', error);
@@ -98,6 +100,7 @@ const ManageCampaign = () => {
     return (
         <>
             <div>
+                <Toaster position="top-right" reverseOrder={false} />
                 <DrawerForInfluencers openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} hiredCounts={hiredCounts} />
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} />
@@ -107,7 +110,7 @@ const ManageCampaign = () => {
                     loading ?
                         <>
                             {
-                                Array.from({ length:1 }).map((_, index) => (
+                                Array.from({ length: 1 }).map((_, index) => (
                                     <div className="my-12 mx-8">
                                         <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                                             <h6 className="font-bold text-lg">
@@ -261,7 +264,7 @@ const ManageCampaign = () => {
                                                 ))}
                                             </div>
                                         </div>
-                                        
+
 
                                     </>
                                 )
