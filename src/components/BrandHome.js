@@ -192,11 +192,11 @@ const BrandHome = () => {
                     <h1 className="text-white text-4xl font-bold text-center">
                         Brands
                     </h1>
-                    <div className="py-4 px-6 text-slate-300">
+                    {/* <div className="py-4 px-6 text-slate-300">
                         <p className="text-lg">
                             Insert your description of the content creator here. This could include details about their work, achievements, or any other relevant information.
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Container>
