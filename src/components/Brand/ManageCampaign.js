@@ -41,7 +41,7 @@ const ManageCampaign = () => {
             };
         });
     };
-
+    const id = localStorage.getItem('id')
     const getAllCampaigns = async () => {
         setLoading(true);
         try {
@@ -49,6 +49,7 @@ const ManageCampaign = () => {
                 params: {
                     type: filterType,
                     platform: filterPlatform,
+                    brandid:id
                 },
             });
             if (response.data) {
@@ -189,91 +190,93 @@ const ManageCampaign = () => {
                                     </select>
                                 </div>
                             </div>
-                            { campaign?.length > 0 ? ( 
+                            {campaign?.length > 0 ? (
                                 campaign?.map((camp, index) => {
-                                const hiredCount = hiredCounts.find(count => count.campaignTitle === camp.campaignTitle)?.hiredCount || 0;
-                                return (
-                                    <>
-                                        <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100">
-                                            <div className="m-2 p-2 font-medium bg-white rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-                                                <div className="flex flex-col">
-                                                    <span onClick={() => handleDrawer(camp)}>{camp.campaignTitle}</span>
-                                                    <span className="text-sm mt-2 flex items-center gap-1">
-                                                        {camp?.social_media === "Instagram" ? <InstagramIcon style={{ fontSize: "13px", color: "maroon" }} /> : <Facebook style={{ fontSize: "13px", color: "blue" }} />}
-                                                        {camp.social_media} .{" "}
-                                                        <span className="text-slate-500 flex items-center gap-1">
-                                                            <PaidOutlinedIcon style={{ fontSize: "13px", color: "slate" }} />
-                                                            {camp.price}
-                                                        </span>{" "}
-                                                        <span className="text-slate-500">{camp.timeAgo}</span> &nbsp;
+                                    const hiredCount = hiredCounts.find(count => count.campaignTitle === camp.campaignTitle)?.hiredCount || 0;
+                                    return (
+                                        <>
+                                            <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100">
+                                                <div className="m-2 p-2 font-medium bg-white rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+                                                    <div className="flex flex-col">
+                                                        <span onClick={() => handleDrawer(camp)}>{camp.campaignTitle}</span>
+                                                        <span className="text-sm mt-2 flex items-center gap-1">
+                                                            {camp?.social_media === "Instagram" ? <InstagramIcon style={{ fontSize: "13px", color: "maroon" }} /> : <Facebook style={{ fontSize: "13px", color: "blue" }} />}
+                                                            {camp.social_media} .{" "}
+                                                            <span className="text-slate-500 flex items-center gap-1">
+                                                                <PaidOutlinedIcon style={{ fontSize: "13px", color: "slate" }} />
+                                                                {camp.price}
+                                                            </span>{" "}
+                                                            <span className="text-slate-500">{camp.timeAgo}</span> &nbsp;
 
-                                                    </span>
-                                                </div>
-                                                <div className="flex gap-2 mt-3 md:mt-0 lg:mt-0">
-                                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
-                                                        <span>{camp?.influencers?.length}</span>
-                                                        <span className="text-sm text-slate-500">Creators</span>
+                                                        </span>
                                                     </div>
-                                                    <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
-                                                        <span>{hiredCount || 0}</span>
-                                                        <span className="text-sm text-slate-500">Hired</span>
+                                                    <div className="flex gap-2 mt-3 md:mt-0 lg:mt-0">
+                                                        <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
+                                                            <span>{camp?.influencers?.length}</span>
+                                                            <span className="text-sm text-slate-500">Creators</span>
+                                                        </div>
+                                                        <div className="flex flex-col items-center border border-slate-300 p-2 rounded-md w-full h-16 bg-slate-100">
+                                                            <span>{hiredCount || 0}</span>
+                                                            <span className="text-sm text-slate-500">Hired</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="py-2 px-2 mx-2 rounded-md bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                {camp?.influencers?.map((data, index) => (
-                                                    <div key={index} className="border border-slate-200 py-2 px-2 rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
-                                                        <div className="flex flex-col items-center gap-1">
-                                                            <img className="w-full h-24 object-cover rounded-md" src={data?.influencerId?.media} />
-                                                            <span className="text-sm">{data?.influencerId?.firstName} - {data?.influencerId?.lastName}</span>
-                                                        </div>
-                                                        <div className="flex flex-col gap-2">
-                                                            <span className="text-sm">{data?.influencerId?.email}</span>
-                                                            <span className="text-sm">{data?.influencerId?.niche}</span>
-                                                        </div>
-                                                        <div className="flex items-center gap-2">
-                                                            {
-                                                                data?.status === "Hired" ? <>
-                                                                    <button
-                                                                        className={` bg-teal-500 hover:bg-teal-500 cursor-not-allowed rounded-md px-6 py-1.5 text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 `}
-                                                                        onClick={() => handleButtonClick(camp._id, data.influencerId._id)}
-
-                                                                    >
-                                                                        Hired
-                                                                    </button>
-                                                                </> : <>
-                                                                    <button
-                                                                        className={`rounded-md px-6 py-1.5 cursor-not-allowed text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${data?.status === "Applied" ? "bg-indigo-300 cursor-not-allowed" : "bg-[#4F46E5] "
-                                                                            }`}
-
-                                                                        disabled={data?.status === "Applied"}
-                                                                    >
-                                                                        {data?.status === "Applied" ? "Applied" : "Not Applied"}
-                                                                    </button>
+                                                {
+                                                    camp?.influencers?.length > 0 && <div className="py-2 px-2 mx-2 rounded-md bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                                        {camp?.influencers?.map((data, index) => (
+                                                            <div key={index} className="border border-slate-200 py-2 px-2 rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
+                                                                <div className="flex flex-col items-center gap-1">
+                                                                    <img className="w-full h-24 object-cover rounded-md" src={data?.influencerId?.media} />
+                                                                    <span className="text-sm">{data?.influencerId?.firstName} - {data?.influencerId?.lastName}</span>
+                                                                </div>
+                                                                <div className="flex flex-col gap-2">
+                                                                    <span className="text-sm">{data?.influencerId?.email}</span>
+                                                                    <span className="text-sm">{data?.influencerId?.niche}</span>
+                                                                </div>
+                                                                <div className="flex items-center gap-2">
                                                                     {
-                                                                        data?.status !== "Not Applied" && <button
-                                                                            className={` bg-teal-700 hover:bg-teal-600 cursor-pointer rounded-md px-6 py-1.5 text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 `}
-                                                                            onClick={() => handleButtonClick(camp._id, data.influencerId._id)}
+                                                                        data?.status === "Hired" ? <>
+                                                                            <button
+                                                                                className={` bg-teal-500 hover:bg-teal-500 cursor-not-allowed rounded-md px-6 py-1.5 text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 `}
+                                                                                onClick={() => handleButtonClick(camp._id, data.influencerId._id)}
 
-                                                                        >
-                                                                            Hire
-                                                                        </button>
+                                                                            >
+                                                                                Hired
+                                                                            </button>
+                                                                        </> : <>
+                                                                            <button
+                                                                                className={`rounded-md px-6 py-1.5 cursor-not-allowed text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${data?.status === "Applied" ? "bg-indigo-300 cursor-not-allowed" : "bg-[#4F46E5] "
+                                                                                    }`}
+
+                                                                                disabled={data?.status === "Applied"}
+                                                                            >
+                                                                                {data?.status === "Applied" ? "Applied" : "Not Applied"}
+                                                                            </button>
+                                                                            {
+                                                                                data?.status !== "Not Applied" && <button
+                                                                                    className={` bg-teal-700 hover:bg-teal-600 cursor-pointer rounded-md px-6 py-1.5 text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 `}
+                                                                                    onClick={() => handleButtonClick(camp._id, data.influencerId._id)}
+
+                                                                                >
+                                                                                    Hire
+                                                                                </button>
+                                                                            }
+                                                                        </>
                                                                     }
-                                                                </>
-                                                            }
-                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                ))}
+                                                }
                                             </div>
-                                        </div>
 
 
-                                    </>
-                                )
-                            })) : (
-                               
-                                        <NoFound />
-                                   )}
+                                        </>
+                                    )
+                                })) : (
+
+                                <NoFound />
+                            )}
                         </div>
                 }
             </Container>

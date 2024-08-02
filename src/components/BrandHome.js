@@ -55,10 +55,13 @@ const BrandHome = () => {
         setDrawerOpen(false);
         setSelectedInfluencer(null);
     };
+    const id = localStorage.getItem('id')
     const getAllCampaigns = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${api_url}/api/campaign`);
+            const response = await axios.get(`${api_url}/api/campaign`,{
+                brandid:id
+            });
             if (response.data) {
                 setCampaign(response.data);
             }

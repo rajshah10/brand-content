@@ -20,6 +20,8 @@ const CampaignCreation = () => {
         setAnchorEl(null);
     };
 
+    const id = localStorage.getItem('id')
+
     const [campaign, setCampaign] = useState({
         companyName: '',
         campaignTitle: '',
@@ -33,7 +35,8 @@ const CampaignCreation = () => {
         price: 'Paid',
         social_media: 'Instagram',
         images: [],
-        influencerdata: ""
+        influencerdata: "",
+        brandid:id
     });
 
 
@@ -43,7 +46,6 @@ const CampaignCreation = () => {
             [e.target.name]: e.target.value
         });
     };
-    console.log("Influencer data",influencerData,campaign)
     useEffect(() => {
         if (influencerData && influencerData.length > 0) {
           setCampaign(prevState => ({
@@ -93,7 +95,7 @@ const CampaignCreation = () => {
                     images: [],
                     influencerdata: ""
                 })
-                await axios.post(`${api_url}/api/campaign/${response?.data?._id}/influencer/${influencerData[0]._id}`);
+                // await axios.post(`${api_url}/api/campaign/${response?.data?._id}/influencer/${influencerData[0]._id}`);
                 setLoading(false);
             }
            
@@ -271,7 +273,7 @@ const CampaignCreation = () => {
                                     </div>
                                 </div>
 
-                                <div className="col-span-full">
+                                {/* <div className="col-span-full">
                                     <label htmlFor="influencerdata" className="block text-sm font-medium leading-6 text-gray-900">Social Media</label>
                                     <div className="mt-2">
                                         <select
@@ -291,7 +293,7 @@ const CampaignCreation = () => {
                                             }
                                         </select>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 {/* Other input fields */}
                                 <div className="col-span-full">

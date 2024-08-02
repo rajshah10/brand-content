@@ -99,7 +99,6 @@ const Influencers = () => {
         }
         return str.slice(0, num) + '...';
     };
-
     const getAllCampaigns = async () => {
         setLoading(true);
         try {

@@ -150,6 +150,7 @@ const OrdersInfluencers = () => {
     ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
     console.log("COmbined messages: ", selectedInfluencer)
+    const id = localStorage.getItem('id')
 
     return (
         <>
@@ -291,6 +292,7 @@ const OrdersInfluencers = () => {
                                                         <TableRow key={campaign._id}>
                                                             <TableCell>
                                                                 <Checkbox
+                                                                    disabled={campaign.brandid !== id}
                                                                     checked={selectedCampaigns?.includes(campaign._id)}
                                                                     onChange={() => handleCheckboxChange(campaign._id)}
                                                                 />
@@ -356,12 +358,12 @@ const OrdersInfluencers = () => {
 
                         <DialogActions>
                             <button
-                                className={`px-4 py-1 rounded-md ${sending || !selectedCampaigns || message?.length === 0
+                                className={`px-4 py-1 rounded-md ${sending || selectedCampaigns?.length === 0 || message?.length === 0
                                     ? 'bg-gray-400 cursor-not-allowed'
                                     : 'bg-[#4F46E5] text-white'
                                     }`}
                                 onClick={handleSendMessage}
-                                disabled={sending || !selectedCampaigns || message?.length === 0}
+                                disabled={sending || selectedCampaigns?.length === 0 || message?.length === 0}
                             >
                                 {sending ? 'Sending...' : 'Send Message'}
                             </button>
