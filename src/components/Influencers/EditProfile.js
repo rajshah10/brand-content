@@ -45,7 +45,12 @@ const EditProfile = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setFile(file)
+            const imageUrl = URL.createObjectURL(file);
+            setFormData((prev) => ({
+                ...prev,
+                media: imageUrl,
+            }));
+            setFile(file); // Assuming setFile is used for uploading or other purposes
         }
     };
     useEffect(() => {
