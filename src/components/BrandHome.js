@@ -113,9 +113,10 @@ const BrandHome = () => {
 
 
     const parseFollowersCount = (count) => {
-        const number = parseFloat(count.replace(/[^0-9.]/g, ''));
-        if (count.includes('M')) return number * 1_000_000;
-        if (count.includes('k')) return number * 1_000;
+        const normalizedCount = count.toLowerCase();
+        const number = parseFloat(normalizedCount.replace(/[^0-9.]/g, ''));
+        if (normalizedCount.includes('m')) return number * 1_000_000;
+        if (normalizedCount.includes('k')) return number * 1_000;
         return number;
     };
 
@@ -145,6 +146,9 @@ const BrandHome = () => {
                             return followersCount > 600000 && followersCount <= 700000;
                         case "700k-800k":
                             return followersCount > 700000 && followersCount <= 800000;
+                        case "800k+":
+                            console.log("Followers count", followersCount)
+                            return followersCount > 800000;
                         default:
                             return false;
                     }

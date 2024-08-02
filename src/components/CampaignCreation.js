@@ -43,6 +43,15 @@ const CampaignCreation = () => {
             [e.target.name]: e.target.value
         });
     };
+    console.log("Influencer data",influencerData,campaign)
+    useEffect(() => {
+        if (influencerData && influencerData.length > 0) {
+          setCampaign(prevState => ({
+            ...prevState,
+            influencerdata: influencerData[0]._id
+          }));
+        }
+      }, [influencerData]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,9 +93,10 @@ const CampaignCreation = () => {
                     images: [],
                     influencerdata: ""
                 })
+                await axios.post(`${api_url}/api/campaign/${response?.data?._id}/influencer/${influencerData[0]._id}`);
                 setLoading(false);
             }
-
+           
         } catch (error) {
             console.error('Error submitting the form:', error);
             setLoading(false);

@@ -246,7 +246,7 @@ const Orders = () => {
                                                     combinedMessages.map((message, index) => (
                                                         <div
                                                             key={index}
-                                                            className={`p-2 rounded-md ${message.from === "66a74f1c4b79b26ecd5589ef" ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
+                                                            className={`p-2 rounded-md ${message.from === selectedCampaign?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
                                                         >
                                                             <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
                                                             <h6>{message.content}</h6>

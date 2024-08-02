@@ -47,5 +47,8 @@ export const follower=[
     },
     {
         name:"700k-800k"
+    },
+    {
+        name:"800k+"
     }
 ]

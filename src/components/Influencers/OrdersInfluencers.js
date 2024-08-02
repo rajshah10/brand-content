@@ -149,6 +149,8 @@ const OrdersInfluencers = () => {
         ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
     ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
+    console.log("COmbined messages: ", selectedInfluencer)
+
     return (
         <>
             <div>
@@ -273,69 +275,85 @@ const OrdersInfluencers = () => {
                                     </TableContainer>
 
                                     {/* Display campaigns related to the selected influencer */}
-                                    <div className="mt-4">
-                                        <Typography variant="h6" gutterBottom>Campaigns</Typography>
-                                        <Table>
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Select</TableCell>
-                                                    <TableCell>Campaign Name</TableCell>
-                                                    <TableCell>Details</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {getCampaignsForInfluencer(selectedInfluencer._id).map(campaign => (
-                                                    <TableRow key={campaign._id}>
-                                                        <TableCell>
-                                                            <Checkbox
-                                                                checked={selectedCampaigns?.includes(campaign._id)}
-                                                                onChange={() => handleCheckboxChange(campaign._id)}
-                                                            />
-                                                        </TableCell>
-                                                        <TableCell>{campaign.campaignTitle}</TableCell>
-                                                        <TableCell>{campaign.campaignDescription}</TableCell>
+                                    {
+                                        selectedInfluencer?.status !== "pending" && <div className="mt-4">
+                                            <Typography variant="h6" gutterBottom>Campaigns</Typography>
+                                            <Table>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Select</TableCell>
+                                                        <TableCell>Campaign Name</TableCell>
+                                                        <TableCell>Details</TableCell>
                                                     </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </div>
-                                    <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
-                                        <div>
-                                            <h6>Messages</h6>
-                                            <div className="mt-2 flex flex-col gap-2">
-                                                {combinedMessages.length > 0 ? (
-                                                    combinedMessages.map((message, index) => (
-                                                        <div
-                                                            key={index}
-                                                            className={`p-2 rounded-md ${message.from === "66a74f1c4b79b26ecd5589ef" ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
-                                                        >
-                                                            <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
-                                                            <h6>{message.content}</h6>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {getCampaignsForInfluencer(selectedInfluencer._id).map(campaign => (
+                                                        <TableRow key={campaign._id}>
+                                                            <TableCell>
+                                                                <Checkbox
+                                                                    checked={selectedCampaigns?.includes(campaign._id)}
+                                                                    onChange={() => handleCheckboxChange(campaign._id)}
+                                                                />
+                                                            </TableCell>
+                                                            <TableCell>{campaign.campaignTitle}</TableCell>
+                                                            <TableCell>{campaign.campaignDescription}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </div>
+                                    }
+                                    {
+                                        selectedInfluencer?.status !== "pending" && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
+                                            <div>
+                                                <h6>Messages</h6>
+                                                <div className="mt-2 flex flex-col gap-2">
+                                                    {combinedMessages.length > 0 ? (
+                                                        combinedMessages.map((message, index) => (
+                                                            <div
+                                                                key={index}
+                                                                className={`p-2 rounded-md ${message.from === selectedInfluencer?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
+                                                            >
+                                                                <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
+                                                                <h6>{message.content}</h6>
+                                                            </div>
+                                                        ))
+                                                    ) : (
+                                                        <div>
+                                                            <h6>No messages found</h6>
                                                         </div>
-                                                    ))
-                                                ) : (
-                                                    <div>
-                                                        <h6>No messages found</h6>
-                                                    </div>
-                                                )}
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    }
 
                                     {/* Message Form */}
-                                    <TextField
-                                        label="Message"
-                                        multiline
-                                        rows={4}
-                                        fullWidth
-                                        variant="outlined"
-                                        margin="normal"
-                                        value={message}
-                                        onChange={(e) => setMessage(e.target.value)}
-                                    />
+                                    {
+                                        selectedInfluencer?.status !== "pending" &&
+                                        <TextField
+                                            label="Message"
+                                            multiline
+                                            rows={4}
+                                            fullWidth
+                                            variant="outlined"
+                                            margin="normal"
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                        />
+
+                                    }
+
+                                    {
+                                        selectedInfluencer?.status === "pending" && 
+                                        <Typography sx={{ margin: "10px 0px" }}>
+                                            Messages can be sent to Hired Influencers only
+                                        </Typography>
+                                    }
                                 </>
                             )}
                         </DialogContent>
+
                         <DialogActions>
                             <button
                                 className={`px-4 py-1 rounded-md ${sending || !selectedCampaigns || message?.length === 0
