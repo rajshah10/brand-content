@@ -16,7 +16,7 @@ const EditProfile = () => {
     const [loading, setLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
-    const [formDatas, setFormData] = useState({
+    const [formDatas, setFormDatas] = useState({
         bio: '',
         collaborationCount: '',
         dateJoined: '',
@@ -45,7 +45,12 @@ const EditProfile = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setFile(file)
+            const imageUrl = URL.createObjectURL(file);
+            setFormDatas((prev) => ({
+                ...prev,
+                media: imageUrl,
+            }));
+            setFile(file); // Assuming setFile is used for uploading or other purposes
         }
     };
     useEffect(() => {
@@ -241,6 +246,7 @@ const EditProfile = () => {
                                             />
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 
