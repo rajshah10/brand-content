@@ -306,28 +306,28 @@ const OrdersInfluencers = () => {
                                         </div>
                                     }
                                     {
-                                        selectedInfluencer?.status !== "pending" && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
-                                            <div>
-                                                <h6>Messages</h6>
-                                                <div className="mt-2 flex flex-col gap-2">
-                                                    {combinedMessages.length > 0 ? (
-                                                        combinedMessages.map((message, index) => (
-                                                            <div
-                                                                key={index}
-                                                                className={`p-2 rounded-md ${message.from === selectedInfluencer?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
-                                                            >
-                                                                <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
-                                                                <h6>{message.content}</h6>
-                                                            </div>
-                                                        ))
-                                                    ) : (
-                                                        <div>
-                                                            <h6>No messages found</h6>
+                                        combinedMessages?.length > 0 && selectedInfluencer?.status !== "pending" && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
+                                        <div>
+                                            <h6>Messages</h6>
+                                            <div className="mt-2 flex flex-col gap-2">
+                                                {combinedMessages.length > 0 ? (
+                                                    combinedMessages.map((message, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className={`p-2 rounded-md ${message.from === selectedInfluencer?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
+                                                        >
+                                                            <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
+                                                            <h6>{message.content}</h6>
                                                         </div>
-                                                    )}
-                                                </div>
+                                                    ))
+                                                ) : (
+                                                    <div>
+                                                        <h6>No messages found</h6>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
+                                    </div>
                                     }
 
                                     {/* Message Form */}
