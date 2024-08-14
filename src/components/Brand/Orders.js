@@ -147,7 +147,7 @@ const Orders = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {[...Array(5)].map((_, index) => (
+                                    {[...Array(1)].map((_, index) => (
                                         <tr className="bg-white border-b" key={index}>
                                             <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="150px" height={20} /></td>

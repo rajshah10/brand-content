@@ -147,7 +147,7 @@ const ManageCampaign = () => {
                                                     </div>
                                                 </div>
                                                 <div className="py-2 px-2 mx-2 rounded-md bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                    {Array.from({ length: 3 }).map((_, idx) => (
+                                                    {Array.from({ length: 2 }).map((_, idx) => (
                                                         <div key={idx} className="border border-slate-200 py-2 px-2 rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
                                                             <div className="flex flex-col items-center gap-1">
                                                                 <Skeleton variant="rectangular" width={100} height={96} />
@@ -186,7 +186,7 @@ const ManageCampaign = () => {
                                         <option value="">All Platforms</option>
                                         <option value="Instagram">Instagram</option>
                                         <option value="Facebook">Facebook</option>
-                                        <option value="Twitter">Twitter</option>
+                                        {/* <option value="Twitter">Twitter</option> */}
                                     </select>
                                 </div>
                             </div>

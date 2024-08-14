@@ -185,7 +185,7 @@ const Influencers = () => {
                     loading ?
                         <>
                             <div className="my-12 mx-4 md:mx-8 lg:mx-8">
-                                {[...Array(3)].map((_, index) => (
+                                {[...Array(1)].map((_, index) => (
                                     <div key={index} className="border cursor-pointer border-slate-200 my-5 rounded-md bg-slate-100">
                                         <div className="m-2 p-2 font-medium bg-white rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
                                             <div className="flex flex-col">

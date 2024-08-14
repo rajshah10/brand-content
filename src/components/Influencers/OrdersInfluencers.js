@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem, Skeleton } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import axios from "axios";
@@ -19,7 +19,7 @@ const OrdersInfluencers = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [sending, setSending] = useState(false);
-    const [statusFilter, setStatusFilter] = useState('');
+    const [statusFilter, setStatusFilter] = useState('pending');
     const [error, setError] = useState(null);
     const [messages, setMessages] = useState([]);
     const [selectedCampaigns, setSelectedCampaigns] = useState([]); // State for selected campaign IDs
@@ -170,54 +170,83 @@ const OrdersInfluencers = () => {
                                 onChange={handleFilterChange}
                                 className="block rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
                             >
-                                <option value="">All</option>
+                               
                                 <option value="pending">Pending</option>
                                 <option value="Hired">Hired</option>
                             </select>
                         </div>
                     </div>
-
-                    <div className="relative overflow-x-auto my-6">
-                        <table className="w-full text-sm text-left text-gray-500">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                                <tr>
-                                    <th scope="col" className="px-6 py-3">ID</th>
-                                    <th scope="col" className="px-6 py-3">Name</th>
-                                    <th scope="col" className="px-6 py-3">Email</th>
-                                    <th scope="col" className="px-6 py-3">Niche</th>
-                                    <th scope="col" className="px-6 py-3">Followers</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredInfluencers?.length > 0 ? (
-                                    filteredInfluencers.map((influencer) => (
-                                        <tr className="bg-white border-b cursor-pointer" key={influencer._id} onClick={() => handleRowClick(influencer)}>
-                                            <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</th>
-                                            <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
-                                                {influencer.firstName} {influencer.lastName}
-                                            </td>
-                                            <td className="px-6 py-4 text-slate-500">{influencer.email}</td>
-                                            <td className="px-6 py-4 text-slate-500">{influencer.niche.join(', ')}</td>
-                                            <td className="px-6 py-4 text-slate-500">
-                                                {influencer.socialMediaLinks.map(link => (
-                                                    <div key={link.id} className="flex items-center gap-2 mb-2">
-                                                        <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                                                            {link.link.split('/')[2]}
-                                                        </a>
-                                                        <span className="text-gray-500">{link.followerCount}</span>
-                                                    </div>
-                                                ))}
-                                            </td>
-                                        </tr>
-                                    ))) : (
+                    {loading && (
+                        <div className="relative overflow-x-auto my-6">
+                            <table className="w-full text-sm text-left text-gray-500 table-auto">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
-                                        <td colSpan="5" className="text-black">
-                                            <NoFound />
-                                        </td>
-                                    </tr>)}
-                            </tbody>
-                        </table>
-                    </div>
+                                        <th scope="col" className="px-6 py-3">ID</th>
+                                        <th scope="col" className="px-6 py-3">Name</th>
+                                        <th scope="col" className="px-6 py-3">Email</th>
+                                        <th scope="col" className="px-6 py-3">Niche</th>
+                                        <th scope="col" className="px-6 py-3">Followers</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[...Array(1)].map((_, index) => (
+                                        <tr className="bg-white border-b" key={index}>
+                                            <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="150px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="80px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="120px" height={20} /></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+
+
+                    {
+                        !loading && <div className="relative overflow-x-auto my-6">
+                            <table className="w-full text-sm text-left text-gray-500">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3">ID</th>
+                                        <th scope="col" className="px-6 py-3">Name</th>
+                                        <th scope="col" className="px-6 py-3">Email</th>
+                                        <th scope="col" className="px-6 py-3">Niche</th>
+                                        <th scope="col" className="px-6 py-3">Followers</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredInfluencers?.length > 0 ? (
+                                        filteredInfluencers.map((influencer) => (
+                                            <tr className="bg-white border-b cursor-pointer" key={influencer._id} onClick={() => handleRowClick(influencer)}>
+                                                <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</th>
+                                                <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
+                                                    {influencer.firstName} {influencer.lastName}
+                                                </td>
+                                                <td className="px-6 py-4 text-slate-500">{influencer.email}</td>
+                                                <td className="px-6 py-4 text-slate-500">{influencer.niche.join(', ')}</td>
+                                                <td className="px-6 py-4 text-slate-500">
+                                                    {influencer.socialMediaLinks.map(link => (
+                                                        <div key={link.id} className="flex items-center gap-2 mb-2">
+                                                            <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                                                {link.link.split('/')[2]}
+                                                            </a>
+                                                            <span className="text-gray-500">{link.followerCount}</span>
+                                                        </div>
+                                                    ))}
+                                                </td>
+                                            </tr>
+                                        ))) : (
+                                        <tr>
+                                            <td colSpan="5" className="text-black">
+                                                <NoFound />
+                                            </td>
+                                        </tr>)}
+                                </tbody>
+                            </table>
+                        </div>
+                    }
 
                     {/* Dialog for displaying influencer details */}
                     <Dialog open={dialogOpen} onClose={handleCloseDialog} maxWidth="md" fullWidth>
@@ -307,27 +336,27 @@ const OrdersInfluencers = () => {
                                     }
                                     {
                                         combinedMessages?.length > 0 && selectedInfluencer?.status !== "pending" && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
-                                        <div>
-                                            <h6>Messages</h6>
-                                            <div className="mt-2 flex flex-col gap-2">
-                                                {combinedMessages.length > 0 ? (
-                                                    combinedMessages.map((message, index) => (
-                                                        <div
-                                                            key={index}
-                                                            className={`p-2 rounded-md ${message.from === selectedInfluencer?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
-                                                        >
-                                                            <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
-                                                            <h6>{message.content}</h6>
+                                            <div>
+                                                <h6>Messages</h6>
+                                                <div className="mt-2 flex flex-col gap-2">
+                                                    {combinedMessages.length > 0 ? (
+                                                        combinedMessages.map((message, index) => (
+                                                            <div
+                                                                key={index}
+                                                                className={`p-2 rounded-md ${message.from === selectedInfluencer?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
+                                                            >
+                                                                <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
+                                                                <h6>{message.content}</h6>
+                                                            </div>
+                                                        ))
+                                                    ) : (
+                                                        <div>
+                                                            <h6>No messages found</h6>
                                                         </div>
-                                                    ))
-                                                ) : (
-                                                    <div>
-                                                        <h6>No messages found</h6>
-                                                    </div>
-                                                )}
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     }
 
                                     {/* Message Form */}
@@ -347,7 +376,7 @@ const OrdersInfluencers = () => {
                                     }
 
                                     {
-                                        selectedInfluencer?.status === "pending" && 
+                                        selectedInfluencer?.status === "pending" &&
                                         <Typography sx={{ margin: "10px 0px" }}>
                                             Messages can be sent to Hired Influencers only
                                         </Typography>

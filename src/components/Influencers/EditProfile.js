@@ -177,7 +177,7 @@ const EditProfile = () => {
                                                     id="firstName"
                                                     value={formDatas.firstName}
                                                     className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 outline-none sm:text-sm sm:leading-6"
-                                                    placeholder="Jane"
+                                                   
                                                 />
                                             </div>
                                         </div>
@@ -193,7 +193,7 @@ const EditProfile = () => {
                                                     id="lastName"
                                                     value={formDatas.lastName}
                                                     className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 outline-none sm:text-sm sm:leading-6"
-                                                    placeholder="Smith"
+                                                    
                                                 />
                                             </div>
                                         </div>

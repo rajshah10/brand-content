@@ -116,7 +116,8 @@ const Brands = (props) => {
     const handleSendCode = async () => {
         setLoadingCode(true)
         try {
-            const response = await axios.post(`${api_url}/api/influencers/sendcode`, formData);
+            const { password,companyName,brandAddress,brandDescription,collaborationType,fullName,payment,phone,influencerType,subscription,auth, ...formDataWithoutPassword } = formData;
+            const response = await axios.post(`${api_url}/api/influencers/sendcode`,formDataWithoutPassword);
             if (response) {
                 toast.success(response.data);
                 setLoadingCode(false)

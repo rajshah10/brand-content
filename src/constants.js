@@ -1,4 +1,5 @@
-export const api_url = "http://localhost:5000"
+// export const api_url = "http://localhost:5000"
+export const api_url = "https://brands-backend-6a1k.onrender.com"
 
 export const niches = [
     { id: 'niche1', name: 'Fashion' },
