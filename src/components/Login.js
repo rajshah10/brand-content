@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { CircularProgress, DialogContent, Dialog, DialogTitle,Typography } from '@mui/material';
+import { CircularProgress, DialogContent, Dialog, DialogTitle, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -125,7 +125,7 @@ const Login = () => {
                 <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
                     <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
                         <img
-                            onClick={()=>navigate("/")}
+                            onClick={() => navigate("/")}
                             className="mx-auto w-48 cursor-pointer"
                             src={require("../assets/images/Logo.png")}
                             alt="Your Company"
@@ -226,6 +226,7 @@ const Login = () => {
                                         </Dialog>
                                     </div>
                                 </div>
+
                                 <div className="mt-2">
                                     <input
                                         id="password"
@@ -236,6 +237,25 @@ const Login = () => {
                                         className="block px-2 outline-none w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                     />
                                 </div>
+                                {
+                                    selectedOption !== 'brand' && <div className='mt-4'>
+                                        <label
+                                            htmlFor="email"
+                                            className="block text-sm font-medium leading-6 text-gray-900"
+                                        >
+                                            Code (Pls enter the code sent to your email)
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                                id="email"
+                                                name="code"
+                                                type="text"
+                                                required
+                                                className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>
+                                }
                             </div>
 
                             <div>

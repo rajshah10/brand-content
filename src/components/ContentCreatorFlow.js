@@ -352,7 +352,7 @@ const ContentCreatorFlow = (props) => {
                             </div>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <div>
                                 <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
                                     Auth Code {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> Send code</a>}
@@ -369,7 +369,7 @@ const ContentCreatorFlow = (props) => {
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div>
 
