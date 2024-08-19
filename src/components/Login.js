@@ -20,6 +20,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [open, setOpen] = useState(false);
     const [fpemail, setEmail] = useState('');
+    const [authcode, setAuthcode] = useState('');
 
     const images = {
         brand: [
@@ -237,25 +238,26 @@ const Login = () => {
                                         className="block px-2 outline-none w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                     />
                                 </div>
-                                {
+                                {/* {
                                     selectedOption !== 'brand' && <div className='mt-4'>
                                         <label
-                                            htmlFor="email"
+                                            htmlFor="authcode"
                                             className="block text-sm font-medium leading-6 text-gray-900"
                                         >
                                             Code (Pls enter the code sent to your email)
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                id="email"
-                                                name="code"
+                                                id="authcode"
+                                                name="authcode"
                                                 type="text"
                                                 required
+                                                onChange={(e) => setAuthcode(e.target.value)}
                                                 className="block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                             />
                                         </div>
                                     </div>
-                                }
+                                } */}
                             </div>
 
                             <div>
