@@ -87,8 +87,8 @@ const ContentCreatorFlow = (props) => {
             }
 
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.message === "Invalid authentication code") {
-                toast.error('Invalid authentication code. Please try again.');
+            if (error.response && error.response.data && error.response.data.message === "Invalid authentication code or email") {
+                toast.error('Invalid authentication code or email. Please try again.');
             }
             setLoading(false);
         }
@@ -107,7 +107,7 @@ const ContentCreatorFlow = (props) => {
     const handleSendCode = async () => {
         setLoadingCode(true)
         try {
-            const { password,phoneNumber,niche,socialMediaLinks,lastName,firstName,bio,auth, ...formDataWithoutPassword } = formData;
+            const { password, phoneNumber, niche, socialMediaLinks, lastName, firstName, bio, auth, ...formDataWithoutPassword } = formData;
             const response = await axios.post(`${api_url}/api/influencers/sendcode`, formDataWithoutPassword);
             if (response) {
                 toast.success(response.data);
@@ -352,10 +352,10 @@ const ContentCreatorFlow = (props) => {
                             </div>
                         </div>
 
-                        {/* <div>
+                        <div>
                             <div>
                                 <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Auth Code {loadingCode ? <CircularProgress size={"22px"} sx={{ color: "indigo" }} /> : <a onClick={handleSendCode} className="cursor-pointer text-indigo-600"> Send code</a>}
+                                    Auth Code
                                 </label>
                                 <div className="mt-1">
                                     <input
@@ -369,7 +369,7 @@ const ContentCreatorFlow = (props) => {
                                     />
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
 
                         <div>
 
