@@ -22,8 +22,7 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        emailjs.sendForm('service_5x9p46j', 'template_f2bmz86', form.current, '0XPOiHoM1DL0BaJFZ').then((result) => {
-            console.log(result.text);
+        emailjs.sendForm('service_w7y93bh', 'template_5b6xeau', form.current, 'Qp9LV90EBm8pL3_p4').then((result) => {
             toast.success('Email sent successfully!');
             setLoading(false);
 

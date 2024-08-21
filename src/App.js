@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/about" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/faq" element={<FAQ />} />
@@ -40,6 +40,13 @@ function App() {
           element={
             <ProtectedRoute requiredUserType="contentCreator">
               <Influencers />
+            </ProtectedRoute>} />
+
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute requiredUserType="brand">
+              <Contact />
             </ProtectedRoute>} />
         <Route
           path="/orders"

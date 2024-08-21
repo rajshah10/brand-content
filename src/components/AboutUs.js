@@ -4,6 +4,8 @@ import Footer from './common/Footer';
 import { Container } from '@mui/material';
 import horse2 from "../assets/images/horse2.jpg"
 import horse3 from "../assets/images/horse3.jpg"
+import owner from "../assets/images/owner.jpg"
+import owner1 from "../assets/images/owner1.jpg"
 const AboutUs = () => {
     return (
         <div className="relative">
@@ -119,7 +121,7 @@ const AboutUs = () => {
                                     <img
                                         alt="..."
                                         className="w-full h-96 rounded-lg shadow-md"
-                                        src="http://www.equellence.com/uploads/4/0/0/4/40049961/rni-films-img-682d4af5-353d-499a-b12f-4650294f7df0_orig.jpg"
+                                        src={owner}
                                     />
                                 </div>
                             </div>
@@ -148,7 +150,7 @@ const AboutUs = () => {
                                     <img
                                         alt="..."
                                         className="w-full h-96 rounded-lg shadow-md"
-                                        src="http://www.equellence.com/uploads/4/0/0/4/40049961/4aa56a43-1720-4192-840a-67543ce563fd_orig.jpg"
+                                        src={owner1}
                                     />
                                 </div>
                                 <div className="w-full ml-auto mr-auto px-4">
