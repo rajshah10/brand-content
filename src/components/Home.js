@@ -134,10 +134,12 @@ const Home = () => {
 
 
 
-                            <p className="text-2xl font-bold  mx-auto px-4">Featured</p>
-                            <p className="text-gray-600 font-sm mx-auto px-4">Hire top influencers across all platforms</p>
+
                             <div className="container mx-auto px-4 my-2">
+                                <p className="text-2xl font-bold ">Featured</p>
+                                <p className="text-gray-600 font-sm">Hire top influencers across all platforms</p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
                                     {featuredItems.map(item => (
                                         <div key={item.id} className="relative group">
                                             <div className="relative">
