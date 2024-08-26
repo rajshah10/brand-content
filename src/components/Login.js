@@ -6,8 +6,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import horse6 from "../assets/images/horse6.jpeg"
-import horse7 from "../assets/images/horse7.jpeg"
+
 import { api_url } from '../constants';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -22,17 +21,6 @@ const Login = () => {
     const [fpemail, setEmail] = useState('');
     const [authcode, setAuthcode] = useState('');
 
-    const images = {
-        brand: [
-            'https://c0.wallpaperflare.com/preview/943/758/422/person-recreation-jumping-horse.jpg',
-            horse6
-        ],
-        contentCreator: [
-            'https://www.itl.cat/pngfile/big/210-2106332_photo-wallpaper-rider-horse-horse-riding-horse-riding.jpg',
-            horse7,
-
-        ],
-    };
 
     const handleClickOpen = () => {
         setOpen(true);
