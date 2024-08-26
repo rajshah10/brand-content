@@ -6,8 +6,8 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import horse6 from "../assets/images/horse6.JPEG"
-import horse7 from "../assets/images/horse7.JPEG"
+import horse6 from "../assets/images/horse6.jpeg"
+import horse7 from "../assets/images/horse7.jpeg"
 import { api_url } from '../constants';
 import CloseIcon from '@mui/icons-material/Close';
 
