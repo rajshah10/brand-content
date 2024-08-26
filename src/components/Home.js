@@ -51,7 +51,7 @@ const Home = () => {
 
                         </div>
                     </div>
-                    
+
                 </div>
                 <section className="relative">
 
@@ -65,7 +65,7 @@ const Home = () => {
 
                             <div className="flex justify-center mb-8">
                                 <div
-                                    className="flex items-center rounded-lg shadow-md p-2 w-full max-w-5xl"
+                                    className="flex items-center rounded-lg shadow-sm border p-2 w-full max-w-5xl"
                                     style={{ borderRadius: "5rem", width: "85%" }} // Adjusted container width
                                 >
                                     <Autocomplete
@@ -148,7 +148,7 @@ const Home = () => {
                                                     src={item.image}
                                                     className="w-full h-72 object-cover rounded-lg shadow-md transition-transform transform group-hover:scale-105"
                                                 />
-                                                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent rounded-b-lg">
+                                                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t  rounded-b-lg">
                                                     <h4 className="text-white text-lg font-semibold">{item.name}</h4>
                                                     <p className="text-gray-300 text-sm">{item.subname}</p>
                                                 </div>
