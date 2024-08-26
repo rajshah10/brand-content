@@ -96,7 +96,7 @@ const Home = () => {
                         <Container>
                             <div className="text-center mb-8">
                                 <p className="text-2xl font-bold heading-home-featured">Influencer Marketing Made Easy</p>
-                                <p className="text-lg text-gray-600 mt-2">Find and hire top Instagram, TikTok, YouTube, and UGC influencers to create unique content for your brand</p>
+                                <p className="text-lg text-gray-600 mt-4">Find and hire top Instagram, TikTok, YouTube, and UGC influencers to create unique content for your brand</p>
                             </div>
 
 
@@ -183,7 +183,7 @@ const Home = () => {
                                                     src={item.image}
                                                     className="w-full h-72 object-cover rounded-lg shadow-md transition-transform transform group-hover:scale-105"
                                                 />
-                                                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent rounded-b-lg">
+                                                <div className="absolute bottom-0 left-0 right-0 p-4  rounded-b-lg">
                                                     <h4 className="text-white text-lg font-semibold">{item.name}</h4>
                                                     <p className="text-gray-300 text-sm">{item.subname}</p>
                                                 </div>
@@ -201,7 +201,7 @@ const Home = () => {
 
 
                     <Container>
-                        <div className="container mx-auto px-4">
+                        <div className="container mx-auto px-4 mt-4">
                             <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div className="w-full  ml-auto mr-auto px-4">
                                     <img
