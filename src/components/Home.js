@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import horse1 from "../assets/images/horse1.jpg"
-
+import h2 from "../assets/images/h2.JPG"
 
 import Navbar from './common/Navbar';
 import { Container } from '@mui/material';
@@ -86,25 +86,21 @@ const Home = () => {
                                     <img
                                         alt="..."
                                         className="w-full h-96 rounded-lg shadow-md object-cover"
-                                        src="https://img.freepik.com/premium-photo/woman-riding-gray-horse-field-sunset-walking-horseback-riding-rental-beautiful-background-nature-outdoor-equestrian-sport-training-copy-space-love-animal-friendship_287527-1193.jpg"
+                                        src={h2}
                                     />
                                 </div>
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <div className="md:pr-12">
-                                        <h3 className="text-3xl font-semibold">
-                                            A New Equestrian World.
+                                        <h3 className="text-3xl font-semibold lowercase">
+                                            WHY SHOULD YOU BE USING EQUESTRIAN CONTENT CREATORS?
                                         </h3>
                                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                            Equellence is the new way for Equestrians to achieve their goals and reach the top of the sport.<br />
-
-                                            What was once a sport where someone needed sheer luck to succeed, now, through hard work and  creative talent via social media, any equestrian can acheive their goals.<br />
-
-                                            Equellence fosters Equestrian Excellence through content creation.
+                                            Equestrianism is a unique niche that blends luxury, fashion, authenticity, and creativity. Our influencers don’t just create content with their equine partners—they represent the essence of the sport, where elegance meets passion, and tradition harmonizes with innovation. Whether you're looking to elevate your brand, showcase a refined lifestyle, or connect with an audience that values sophistication and authenticity, our creators are at the forefront of the equestrian world, seamlessly merging style and substance.
                                         </p>
-                                        <ul className='list-disc text-gray-600 text-left ml-10 mt-6 text-lg'>
+                                        {/* <ul className='list-disc text-gray-600 text-left ml-10 mt-6 text-lg'>
                                             <li>Network with industry professionals and peers to expand your opportunities.</li>
                                             <li>Engage with your audience to build a loyal following and enhance your personal brand.</li>
-                                        </ul>
+                                        </ul> */}
 
                                     </div>
                                 </div>

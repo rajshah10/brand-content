@@ -27,8 +27,8 @@ const BrandHome = () => {
     const [selectedNiches, setSelectedNiches] = useState([]);
     const [selectedFollowers, setSelectedFollowers] = useState([]);
     const [expandedSections, setExpandedSections] = useState({
-        category: true,
-        followers: true
+        category: false,
+        followers: false
     });
 
     const toggleSection = (section) => {
@@ -211,7 +211,8 @@ const BrandHome = () => {
                 <div className="my-6 mx-4 md:mx-4 lg:mx-4">
                     <div className="flex flex-col justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Influencers</h6>
-                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-2 gap-8'>
+                        <div className='flex justify-end w-full'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-2 gap-8'>
                             <div class=" border-gray-200 py-6">
                                 <h3 class="-mx-2 -my-3 flow-root">
 
@@ -284,6 +285,7 @@ const BrandHome = () => {
                                         </div>
                                     </div>}
                             </div>
+                        </div>
                         </div>
                     </div>
                     <div className="my-5">

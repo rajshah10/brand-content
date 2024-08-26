@@ -4,4 +4,11 @@ export const isAuthenticated = (requiredUserType) => {
     
     return token && userType === requiredUserType;
   };
+
+  export const isLoggedIn = () => {
+    const token = localStorage.getItem('token');
+    return token
+  }; 
+
+
   

@@ -6,8 +6,8 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import horse6 from "../assets/images/horse6.jpeg"
-import horse7 from "../assets/images/horse7.jpeg"
+import horse6 from "../assets/images/horse6.JPEG"
+import horse7 from "../assets/images/horse7.JPEG"
 import { api_url } from '../constants';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -122,9 +122,9 @@ const Login = () => {
     return (
         <>
             <Toaster position="top-right" reverseOrder={false} />
-            <div className="flex flex-col md:flex-row lg:flex-row h-screen">
-                <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
-                    <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
+            <div className="flex flex-col lg:flex-row h-screen">
+                <div className="flex flex-col justify-center w-full  px-6 py-6">
+                    <div >
                         <img
                             onClick={() => navigate("/")}
                             className="mx-auto w-48 cursor-pointer"
@@ -281,7 +281,7 @@ const Login = () => {
                         </p>
                     </div>
                 </div>
-                <div className="relative w-full h-screen md:w-2/4">
+                {/* <div className="relative w-full h-screen md:w-2/4">
                     <Carousel
                         showArrows={false}
                         showIndicators={true}
@@ -301,32 +301,29 @@ const Login = () => {
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                             {selectedOption === "brand" && (
                                 <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
-                                    <h1 className="text-white text-4xl">Brands & Organizations</h1>
-                                    <p className='text-slate-200 text-lg'>Are you a brand or an organization looking to work with Equellence? Please fill out your brand/company organization information out below</p>
-                                    <p className='text-slate-200 text-left text-lg'>We hope we can satisfy your brand's needs!</p>
+                                    <h1 className="text-white text-4xl">Brands</h1>
+                                    <p className='text-slate-200 text-lg'>Equellence is a platform where brands can connect with Equestrian-specific influencers. Brands will be able to communicate a campaign, and Equellence will do the rest by allowing our Influencers to apply to your campaign. The brand can then select the influencer to make engaging content for the brand.
+                                    </p>
+                                    <p className='text-slate-200 text-left text-lg'>With your subscription, you’ll unlock exclusive access to our powerhouse network of influencers and content creators. But that’s just the beginning—enjoy personal, one-on-one mentorship designed to elevate your marketing game and ignite your brand’s potential. Plus, you’ll be seamlessly connected to key industry insiders, unlocking doors you didn’t even know existed.</p>
+                                    <p className='text-slate-200 text-left text-lg'>Ready to level up?
+                                    </p>
+                                    <p className='text-slate-200 text-left text-lg'>Sign up with Equellence now!</p>
                                 </div>
 
                             )}
                             {selectedOption === "contentCreator" && (
-
                                 <div className='bg-slate-800 rounded-md bg-opacity-50 flex flex-col justify-center gap-4 py-4 px-4'>
+
                                     <h1 className="text-white text-4xl">Join Equellence</h1>
-                                    <p className='text-slate-200 text-lg'>EQUELLENCE APPLICATIONS ARE BACK OPEN! You can apply</p>
-                                    <p className='text-slate-200 text-left text-lg'>Here are some ways you can work on your content and grow so that when applications open, you are ready for the club: </p>
-                                    <ul className='list-disc text-slate-200 text-left ml-10 text-lg'>
-                                        <li>Post frequently</li>
-                                        <li>Have a common goal or inspiring social media message</li>
-                                        <li>Good video content</li>
-                                        <li>High quality content</li>
-                                        <li>Engaging social media presence</li>
-                                    </ul>
+                                    <p className='text-slate-200 text-lg'>Equellence carefully chooses the best equestrian content creators. If you’re wanting to join our website, please apply using this application:
+                                    </p>
                                 </div>
 
                             )}
                         </h1>
 
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     );

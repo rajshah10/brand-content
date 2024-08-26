@@ -5,6 +5,14 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
 import { useNavigate } from "react-router-dom";
+import { Carousel } from 'react-responsive-carousel';
+import horse6 from "../assets/images/horse6.JPEG"
+import horse7 from "../assets/images/horse7.JPEG"
+import horse8 from "../assets/images/horse8.JPEG"
+import horse9 from "../assets/images/horse9.JPEG"
+import horse10 from "../assets/images/horse10 (1).jpg"
+import horse11 from "../assets/images/horse10 (2).jpg"
+import horse12 from "../assets/images/horse10 (3).JPEG"
 
 
 const Join = () => {
@@ -14,6 +22,20 @@ const Join = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const navigate = useNavigate();
 
+    const images = {
+        brand: [
+            horse8,
+            horse9,
+            horse6,
+            horse12
+
+        ],
+        contentCreator: [
+            horse10,
+            horse7,
+            horse11,
+        ],
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -39,7 +61,7 @@ const Join = () => {
                         </div>
                     )}
                     <img
-                        onClick={()=>navigate("/")}
+                        onClick={() => navigate("/")}
                         className="mx-auto w-48 cursor-pointer"
                         src={require("../assets/images/Logo.png")}
                         alt="Your Company"
@@ -87,7 +109,7 @@ const Join = () => {
                                         className="font-semibold  leading-6 text-indigo-600 hover:text-indigo-500"
                                     >
 
-                                        <span className='text-slate-800 font-medium'>Already a member? </span><span onClick={() => navigate("/login")} className='cursor-pointer'>Login</span>
+                                        <span className='text-slate-800 font-medium'>Already a member? </span><span onClick={() => navigate("/login")} className='cursor-pointer'>Login here</span>
 
                                     </a>
                                 </p>
@@ -105,40 +127,58 @@ const Join = () => {
                 }
 
             </div>
-            <div className="relative w-full h-full md:w-3/5 lg:w-3/5 md:h-auto lg:h-auto bg-cover bg-center"
-                style={{
-                    backgroundImage:
-                        selectedOption === "brand" ? "url('https://c0.wallpaperflare.com/preview/943/758/422/person-recreation-jumping-horse.jpg')" : "url('https://www.itl.cat/pngfile/big/210-2106332_photo-wallpaper-rider-horse-horse-riding-horse-riding.jpg",
-                }}>
-                {
-                    selectedOption === "brand" &&
-                    <div className="md:absolute lg:absolute inset-0 py-24  md:py-0lg:py-0 bg-black bg-opacity-30 flex flex-col px-8  justify-center">
-                        <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
-                            <h1 className="text-white text-4xl">Brands & Organizations</h1>
-                            <p className='text-slate-200 text-lg'>Are you a brand or an organization looking to work with Equellence? Please fill out your brand/company organization information out below</p>
-                            <p className='text-slate-200 text-left text-lg'>We hope we can satisfy your brand's needs!</p>
+            <div className="relative w-full h-screen md:w-2/4">
+                <Carousel
+                    showArrows={false}
+                    showIndicators={true}
+                    showStatus={false}
+                    autoPlay={true}
+                    interval={5000}
+                    infiniteLoop={true}
+                    showThumbs={false}
+                >
+                    {images[selectedOption].map((url, index) => (
+                        <div key={index}>
+                            <img src={url} className="object-cover w-full h-screen" alt={`Slide ${index}`} />
                         </div>
-                    </div>
-                }
-                {
-                    selectedOption === "contentCreator" &&
-                    <div className="md:absolute lg:absolute inset-0 py-24  md:py-0lg:py-0 bg-black bg-opacity-30 px-8 flex flex-col justify-center">
-                        <div className='bg-slate-800 rounded-md bg-opacity-50 flex flex-col justify-center gap-4  py-4 px-4'>
-                            <h1 className="text-white text-4xl">Join Equellence</h1>
-                            <p className='text-slate-200 text-lg'>EQUELLENCE APPLICATIONS ARE BACK OPEN! You can apply</p>
-                            <p className='text-slate-200 text-left text-lg'>Here are some ways you can work on your content and grow so that when applications open, you are ready for the club: </p>
-                            <ul className='list-disc text-slate-200 text-left ml-10 text-lg'>
-                                <li>Post frequently</li>
-                                <li>Have a common goal or inspiring social media message</li>
-                                <li>Good video content</li>
-                                <li>High quality content </li>
-                                <li>Engaging social media presence</li>
-                            </ul>
-                        </div>
+                    ))}
+                </Carousel>
+                <div className="absolute bottom-12 left-8 right-8 md:left-8 md:bottom-16">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+                        {selectedOption === "brand" && (
+                            <div className='bg-slate-800 rounded-md bg-opacity-50 py-4 px-4 flex flex-col justify-center gap-4'>
+                                <h1 className="text-white text-4xl">Brands</h1>
+                                <p className='text-slate-200 text-lg'>Equellence is a platform where brands can connect with Equestrian-specific influencers. Brands will be able to communicate a campaign, and Equellence will do the rest by allowing our Influencers to apply to your campaign. The brand can then select the influencer to make engaging content for the brand.
+                                </p>
+                                <p className='text-slate-200 text-left text-lg'>With your subscription, you’ll unlock exclusive access to our powerhouse network of influencers and content creators. But that’s just the beginning—enjoy personal, one-on-one mentorship designed to elevate your marketing game and ignite your brand’s potential. Plus, you’ll be seamlessly connected to key industry insiders, unlocking doors you didn’t even know existed.</p>
+                                <p className='text-slate-200 text-left text-lg'>Ready to level up?
+                                </p>
+                                <p className='text-slate-200 text-left text-lg'>Sign up with Equellence now!</p>
+                            </div>
 
-                    </div>
-                }
+                        )}
+                        {selectedOption === "contentCreator" && (
+                            <div className='bg-slate-800 rounded-md bg-opacity-50 flex flex-col justify-center gap-4 py-4 px-4'>
 
+                                <h1 className="text-white text-4xl">Join Equellence</h1>
+                                <p className='text-slate-200 text-lg'>Equellence carefully chooses the best equestrian content creators. If you’re wanting to join our website, please apply using this application:
+                                </p>
+                                <p className='text-slate-200 text-lg'>
+                                Not only do you gain access to our website and brand database, but also when you join the Equellence club, you receive….
+                                </p>
+                                <ul className='list-disc text-slate-200 text-left ml-10 text-lg'>
+                                    <li>Automatic website approval </li>
+                                    <li>Account boosting</li>
+                                    <li>Individual account growth and help</li>
+                                    <li>Masterclass</li>
+                                    <li>Paid/unpaid opportunities and special perks</li>
+                                </ul>
+                            </div>
+
+                        )}
+                    </h1>
+
+                </div>
             </div>
         </div>
     )

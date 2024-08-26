@@ -57,7 +57,7 @@ const Influencers = () => {
                 const response = await axios.get(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}/status`);
 
                 if (response.data.hasApplied) {
-                    toast.error('You have already applied to this campaign.');
+                    toast.error('You have already assigned or applied to this campaign.');
                     return
                 } else {
                     await axios.post(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}`);

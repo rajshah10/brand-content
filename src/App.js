@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import Home from "./components/Home";
 import Influencers from "./components/Influencers";
 import BrandHome from "./components/BrandHome";
@@ -17,6 +17,8 @@ import FAQ from "./components/FAQ";
 import Login from "./components/Login";
 import OrdersInfluencers from "./components/Influencers/OrdersInfluencers";
 import ProtectedRoute from "./components/ProtectedRoute.js/ProtectedRoute";
+import { isLoggedIn } from "./utils/auth";
+import { useEffect, useState } from "react";
 
 
 
@@ -24,14 +26,25 @@ import ProtectedRoute from "./components/ProtectedRoute.js/ProtectedRoute";
 
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const status = isLoggedIn();
+    setLoggedIn(status); // Update state based on login status
+  }, [loggedIn]);
+
   return (
     <>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/join" element={<Join />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        {!loggedIn && (
+          <>
+            <Route path="/join" element={<Join />} />
+            <Route path="/login" element={<Login />} />
+          </>
+        )}
+        <Route path="*" element={<Navigate to="/" />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/faq" element={<FAQ />} />

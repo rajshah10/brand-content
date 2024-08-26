@@ -7,7 +7,6 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import PhoneEnabledOutlinedIcon from '@mui/icons-material/PhoneEnabledOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
-import UnsubscribeOutlinedIcon from '@mui/icons-material/UnsubscribeOutlined';
 
 const MenuComponent = (props) => {
     const { anchorEl, handleClose, open } = props
