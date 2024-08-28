@@ -73,7 +73,7 @@ const Home = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-5">
 
                                     {featuredItems.map(item => (
-                                        <div onClick={()=>navigate("/brands")} key={item.id} className="relative group">
+                                        <div onClick={()=>navigate("/brands")} key={item.id} className="relative group cursor-pointer">
                                             <div className="relative">
                                                 <img
                                                     alt={item.name}

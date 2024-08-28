@@ -164,7 +164,7 @@ const Join = () => {
                                 <p className='text-slate-200 text-lg'>Equellence carefully chooses the best equestrian content creators. If you’re wanting to join our website, please apply using this application:
                                 </p>
                                 <p className='text-slate-200 text-lg'>
-                                Not only do you gain access to our website and brand database, but also when you join the Equellence club, you receive….
+                                    Not only do you gain access to our website and brand database, but also when you join the Equellence club, you receive….
                                 </p>
                                 <ul className='list-disc text-slate-200 text-left ml-10 text-lg'>
                                     <li>Automatic website approval </li>
