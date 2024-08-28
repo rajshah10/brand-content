@@ -12,7 +12,7 @@ const FAQ = () => {
             <main>
                 <div className="relative pt-16 pb-32 flex content-center items-center justify-center"
                     style={{
-                        minHeight: "75vh"
+                        minHeight: "40vh"
                     }}>
                     <div className="absolute top-0 w-full h-full bg-center bg-cover"
                         style={{
@@ -34,25 +34,7 @@ const FAQ = () => {
                             </div>
                         </div>
                     </div>
-                    <div
-                        className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-                        style={{ height: "70px" }}
-                    >
-                        <svg
-                            className="absolute bottom-0 overflow-hidden"
-                            xmlns="http://www.w3.org/2000/svg"
-                            preserveAspectRatio="none"
-                            version="1.1"
-                            viewBox="0 0 2560 100"
-                            x="0"
-                            y="0"
-                        >
-                            <polygon
-                                className="text-white fill-current"
-                                points="2560 0 2560 100 0 100"
-                            ></polygon>
-                        </svg>
-                    </div>
+
                 </div>
                 <Container>
                     <section className="relative py-20">
@@ -62,7 +44,7 @@ const FAQ = () => {
                                     <h3 className="text-3xl mb-8 font-semibold">
                                         Frequently Asked Questions
                                     </h3>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1a-content"
@@ -76,7 +58,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel2a-content"
@@ -90,7 +72,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel3a-content"
@@ -115,7 +97,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel4a-content"
@@ -126,14 +108,14 @@ const FAQ = () => {
                                         <AccordionDetails>
                                             <Typography className='text-lg leading-relaxed text-gray-600'>
                                                 Equellence as a whole gains more brand deals and exposure through the collective effort of each individual in the club. Therefore, as a member, content creators are expected to produce content to be used on the official Equellence Instagram. Brands and prominent equestrians follow the official Equellence Instagram, therefore from there they are able to scout out members they want to work with. Creating exclusive content for the Equellence social media pages benefits our content creators as an individual in the long run and helps them grow their individual platforms as well. Equellence also has "creators of the month", who receive special benefits. The more you post, the more you gain!
-                                                <br/><br/>
+                                                <br /><br />
                                                 Individually, creators must continue to grow their accounts as well. Members will also be expected to promote the charities Equellence partners with, as well as Equellence (Equfest) events.
-                                                <br/><br/>
+                                                <br /><br />
                                                 To reiterate, Equellence is a club where you do need to put in the work. However, that is the amazing part about Equellence. Now, opportunities to reach the top in the horse world can finally be gained through hard work instead of sheer luck.
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel5a-content"
@@ -147,7 +129,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel6a-content"
@@ -161,7 +143,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel7a-content"
@@ -175,7 +157,7 @@ const FAQ = () => {
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion className="mt-3" style={{border:"0.02rem solid #ededed"}}>
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel8a-content"
@@ -194,7 +176,7 @@ const FAQ = () => {
                         </div>
                     </section>
                 </Container>
-{/*               
+                {/*               
                 <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-8">Choose Your Subscription Plan</h2>
@@ -256,7 +238,7 @@ const FAQ = () => {
         </div>
       </div>
     </div> */}
-              
+
             </main>
             <Footer />
         </div>
