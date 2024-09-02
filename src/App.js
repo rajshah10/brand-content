@@ -19,6 +19,7 @@ import OrdersInfluencers from "./components/Influencers/OrdersInfluencers";
 import ProtectedRoute from "./components/ProtectedRoute.js/ProtectedRoute";
 import { isLoggedIn } from "./utils/auth";
 import { useEffect, useState } from "react";
+import Club from "./Club";
 
 
 
@@ -46,7 +47,7 @@ function App() {
         )}
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/events" element={<Events />} />
+        <Route path="/club" element={<Club />} />
         <Route path="/faq" element={<FAQ />} />
         <Route
           path="/contentCreator"

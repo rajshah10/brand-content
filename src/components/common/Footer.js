@@ -30,8 +30,8 @@ export default function Footer() {
                 <li onClick={() => navigate("/join")} class="mb-4">
                   <a class="hover:underline cursor-pointer">Join</a>
                 </li>
-                <li onClick={() => navigate("/events")}>
-                  <a class="hover:underline cursor-pointer">Events</a>
+                <li>
+                  <a href= "https://climate.stripe.com/0iuCZl" class="hover:underline cursor-pointer">Carbon Renewal</a>
                 </li>
               </ul>
             </div>

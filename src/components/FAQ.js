@@ -41,8 +41,8 @@ const FAQ = () => {
                         <div className="container mx-auto px-4 text-center">
                             <div className="w-full mx-auto px-4">
                                 <div className="md:pr-12">
-                                    <h3 className="text-3xl mb-8 font-semibold">
-                                        Frequently Asked Questions
+                                    <h3 className="text-3xl mb-8 font-medium text-left">
+                                    These are the most Frequently asked questions about the Equellence club experience.
                                     </h3>
                                     <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
                                         <AccordionSummary
@@ -53,7 +53,7 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>WHAT IS EQUELLENCE?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
                                                 The main objective of Equellence is to bridge the gap between the equestrian and the non-horse world by connecting equestrians, brands, barns, and events while promoting all individual content creation and social media through a specifically curated equestrian network.
                                             </Typography>
                                         </AccordionDetails>
@@ -67,8 +67,9 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>WHAT CAN I DO TO JOIN AS A CONTENT CREATOR?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
-                                                To join Equellence, you can submit an application here. To increase your chances of acceptance into the Equellence group, upload impressive social media content, be: daring, bold and original, and try to have a message that stands out. Whether or not you get accepted into Equellence, you can always re-apply so continue to grow your platform to the best of your abilities!
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
+                                                To join Equellence, you can submit an application here. To increase your chances of acceptance into the Equellence group, upload impressive social media content, be: daring, bold and original, and try to have a message that stands out. Whether or not you get accepted into Equellence, you can always re-apply so continue to grow your platform to the best of your abilities!<br />
+                                                <a href="https://forms.gle/b6na3zsAyujFoD3eA "><span className='text-blue-400'>https://forms.gle/b6na3zsAyujFoD3eA </span></a>
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
@@ -81,7 +82,7 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>WHAT DO I GET WHEN I JOIN?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
                                                 When you become a member of Equellence, you are not just joining a club. You are joining a lifelong Equestrian family. Therefore, like family, we take care of you. You receive a lot:
                                                 <ul>
                                                     <li>Free VIP access to Equfest and all Equellence related events all around the world</li>
@@ -106,12 +107,8 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>WHAT IS MY EXPECTATION AS A MEMBER?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
-                                                Equellence as a whole gains more brand deals and exposure through the collective effort of each individual in the club. Therefore, as a member, content creators are expected to produce content to be used on the official Equellence Instagram. Brands and prominent equestrians follow the official Equellence Instagram, therefore from there they are able to scout out members they want to work with. Creating exclusive content for the Equellence social media pages benefits our content creators as an individual in the long run and helps them grow their individual platforms as well. Equellence also has "creators of the month", who receive special benefits. The more you post, the more you gain!
-                                                <br /><br />
-                                                Individually, creators must continue to grow their accounts as well. Members will also be expected to promote the charities Equellence partners with, as well as Equellence (Equfest) events.
-                                                <br /><br />
-                                                To reiterate, Equellence is a club where you do need to put in the work. However, that is the amazing part about Equellence. Now, opportunities to reach the top in the horse world can finally be gained through hard work instead of sheer luck.
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
+                                                As a member of Equellence, you are expected to embody the values of luxury, professionalism, and creativity in everything you do. This means maintaining the highest standards of excellence in your work, upholding a respectful and polished demeanor in all interactions, and contributing to the growth of the community with innovative ideas and a collaborative spirit. Your commitment to these principles will ensure that Equellence remains a space of inspiration, connection, and success for all involved.
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
@@ -124,7 +121,7 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>DO I NEED TO PAY ANYTHING?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
                                                 To fund the club and all the amazing activities, we do have a monthly membership fee of $19.99. You can pay this monthly, or select yearly membership with a discount.
                                             </Typography>
                                         </AccordionDetails>
@@ -138,7 +135,7 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>WHERE CAN I BUY TICKETS FOR EQUELLENCE EVENTS?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
                                                 You can find more about Equfest, the festival for equestrians, run by Equellence, on the official Equfest website here.
                                             </Typography>
                                         </AccordionDetails>
@@ -152,8 +149,8 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>DO I NEED TO BE AN EQUESTRIAN TO JOIN?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
-                                                Equellence is an agency for creators making content with any types of Equines. You don't have to ride, however, your content does have to stand out.
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
+                                                Equellence is a club for creators making content with any types of Equines. You don't have to ride, however, your content does have to stand out.
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
@@ -166,10 +163,36 @@ const FAQ = () => {
                                             <Typography className='text-2xl leading-relaxed text-gray-700'>DO YOU ACCEPT EQUESTRIANS OF ALL BACKGROUNDS?</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography className='text-lg leading-relaxed text-gray-600'>
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
                                                 Absolutely! We pride ourselves in diversity and make an effort to select Equestrians with not a lot of opportunity and backgrounds. In our selection process, we also do try to select Equestrians we know will also match the resources and the connections we have, so please also do keep that in mind when applying.
                                             </Typography>
                                         </AccordionDetails>
+                                    </Accordion>
+
+                                    <Accordion className="mt-3" style={{ border: "0.02rem solid #ededed" }}>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel8a-content"
+                                            id="panel8a-header"
+                                        >
+                                            <Typography className='text-2xl leading-relaxed text-gray-700'>WHAT GOES INTO MY CLUB DUES?</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography className='text-lg leading-relaxed text-gray-600 text-left'>
+                                                Equellence may be a new club, but a lot actually goes into the subscription. In the Equellence club, the network and community is our biggest perk, but besides that, within the club you get special benefits such as:
+
+                                                <ul className='list-disc pl-5 text-left'>
+                                                    <li><strong>Club meetings:</strong> Our club meetings tend to be bi-weekly, and this is where you can connect with other members of the group, but also receive weekly trend updates, new growth strategies, and receive account help.</li>
+                                                    <li><strong>Account boosting:</strong> As you’ve seen on our social media page, we oftentimes post videos and photos of our members. These reels/images boost your account and engagement, and also help curate your feed as a content creator. You can upload images/videos to our group forum for us to edit and post for you.</li>
+                                                    <li><strong>Individual account growth and help:</strong> New members get individual club meetings from our founder on strategies with how to grow your account, and personal assistance.</li>
+                                                    <li><strong>Masterclass:</strong> Our masterclass aids you on specific content trends, goals, strategies and more on how to grow your page and personal brand!</li>
+                                                    <li><strong>Paid/unpaid opportunities and special perks:</strong> There are fun perks that happen in the club. We have collaborations between members, paid and unpaid opportunities, traveling opportunities, brand partnerships and more.</li>
+                                                </ul>
+
+                                                Of course, Equellence again is a community, so you don’t have to even participate in the content creator side. Some members just enjoy having a network. But if content creation is something you’d like to explore full time, Equellence strategies are best to follow and keep up with!
+                                            </Typography>
+                                        </AccordionDetails>
+
                                     </Accordion>
                                 </div>
                             </div>

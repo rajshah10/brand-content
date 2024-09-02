@@ -116,8 +116,8 @@ const Brands = (props) => {
     const handleSendCode = async () => {
         setLoadingCode(true)
         try {
-            const { password,companyName,brandAddress,brandDescription,collaborationType,fullName,payment,phone,influencerType,subscription,auth, ...formDataWithoutPassword } = formData;
-            const response = await axios.post(`${api_url}/api/influencers/sendcode`,formDataWithoutPassword);
+            const { password, companyName, brandAddress, brandDescription, collaborationType, fullName, payment, phone, influencerType, subscription, auth, ...formDataWithoutPassword } = formData;
+            const response = await axios.post(`${api_url}/api/influencers/sendcode`, formDataWithoutPassword);
             if (response) {
                 toast.success(response.data);
                 setLoadingCode(false)
@@ -473,66 +473,82 @@ const Brands = (props) => {
                                 </DialogTitle>
                                 <DialogContent>
 
-                                    <div className="py-3 bg-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-                                        <div className="max-w-7xl mx-auto">
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                                                <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-500 flex flex-col">
-                                                    <div className="flex-grow">
-                                                        <h3 className="text-xl font-bold text-gray-800 mb-2">Small Business</h3>
-                                                        <p className="text-2xl font-semibold text-gray-800 mb-4">$79.99</p>
-                                                        <p className="text-gray-600 mb-4">Best for small businesses, startups, or companies with a limited budget.</p>
-                                                        <ul className="text-gray-600 space-y-2 mb-4">
-                                                            <li>✔️ Paid campaigns</li>
-                                                            <li>✔️ Work with 3 Influencer Campaigns per month</li>
-                                                            <li>✔️ Assigned Influencer per Campaign</li>
-                                                        </ul>
-                                                    </div>
-                                                    {/* <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+
+
+                                    <div className="bg-[#F8FAFC] mx-4">
+                                        <div className="py-3  flex items-center justify-center px-4 sm:px-6 lg:px-8">
+                                            <div className="max-w-7xl mx-auto">
+                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                                                    <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-500 flex flex-col">
+                                                        <div className="flex-grow">
+                                                            <h3 className="text-xl font-bold text-gray-800 mb-2">Small Business</h3>
+                                                            <p className="text-2xl font-semibold text-gray-800 mb-4">$79.99/month</p>
+                                                            <p className="text-gray-600 mb-4"> Brands with minimal following and exposure, general brands, brands that will mostly do gift exchange, commissions, ambassador or unpaid opportunities. This tier will attract lower influencers from our site due to the mid paid campaign size (1K-10K)
+                                                            </p>
+                                                            <ul className="text-gray-600 space-y-2 mb-4">
+                                                                <li>✔️ Gifted Campaigns</li>
+                                                                <li>✔️ PR Campaigns</li>
+                                                                <li>✔️ Work with 3 Influencer Campaigns per month</li>
+                                                                <li>✔️ Assigned Influencer per Campaign</li>
+                                                            </ul>
+                                                        </div>
+                                                        {/* <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
                                                         Choose Plan
                                                     </button> */}
-                                                </div>
-
-
-                                                <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-green-500 flex flex-col">
-                                                    <div className="flex-grow">
-                                                        <h3 className="text-xl font-bold text-gray-800 mb-2">Standard Business</h3>
-                                                        <p className="text-2xl font-semibold text-gray-800 mb-4">$199.99</p>
-                                                        <p className="text-gray-600 mb-4">Best for all types of Businesses looking to expand their outreach.</p>
-                                                        <ul className="text-gray-600 space-y-2 mb-4">
-                                                            <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
-                                                            <li>✔️ Gifted Campaigns</li>
-                                                            <li>✔️ PR Campaigns</li>
-                                                            <li>✔️ 2 Influencer Campaigns per month</li>
-                                                            <li>✔️ Ability to select up to 3 Influencers per Campaign</li>
-                                                        </ul>
                                                     </div>
-                                                    {/* <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+
+
+                                                    <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-green-500 flex flex-col">
+                                                        <div className="flex-grow">
+                                                            <h3 className="text-xl font-bold text-gray-800 mb-2">Standard Business</h3>
+                                                            <p className="text-2xl font-semibold text-gray-800 mb-4">$199.99/month</p>
+                                                            <p className="text-gray-600 mb-4">
+                                                                Brands with average following and exposure, general brands, brands that will mostly do gift exchange, commissions, ambassador and some paid campaigns with a limited budget. This tier will attract lower midinfluencers from our site due to the mid paid campaign size (10K-50K)
+
+                                                            </p>
+                                                            <ul className="text-gray-600 space-y-2 mb-4">
+                                                                <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
+                                                                <li>✔️ Gifted Campaigns</li>
+                                                                <li>✔️ 5 Influencer Campaigns per month</li>
+                                                                <li>✔️ Ability to select Influencers per Campaign</li>
+                                                            </ul>
+                                                        </div>
+                                                        {/* <button className="mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
                                                         Choose Plan
                                                     </button> */}
-                                                </div>
-
-
-                                                <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-indigo-500 flex flex-col">
-                                                    <div className="flex-grow">
-                                                        <h3 className="text-xl font-bold text-gray-800 mb-2">Professionals Business</h3>
-                                                        <p className="text-2xl font-semibold text-gray-800 mb-4">$399.99</p>
-                                                        <p className="text-gray-600 mb-4">Best for Corporations or big companies looking to expand their outreach.</p>
-                                                        <ul className="text-gray-600 space-y-2 mb-4">
-                                                            <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
-                                                            <li>✔️ PR Campaigns</li>
-                                                            <li>✔️ Gifted Campaigns</li>
-                                                            <li>✔️ Unlimited Influencer Campaigns per month</li>
-                                                            <li>✔️ Ability to select Influencer per Campaign</li>
-                                                        </ul>
                                                     </div>
-                                                    {/* <button className="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded">
+
+
+                                                    <div className="bg-white shadow-md rounded-lg p-6 border-t-4 border-indigo-500 flex flex-col">
+                                                        <div className="flex-grow">
+                                                            <h3 className="text-xl font-bold text-gray-800 mb-2">Professionals Business</h3>
+                                                            <p className="text-2xl font-semibold text-gray-800 mb-4">$399.99/month</p>
+                                                            <p className="text-gray-600 mb-4">Brands with high following and exposure, general brands, brands that will mostly do PR and paid campaigns. This tier will attract upper midinfluencers from our site due to the paid campaigns (50K+) Best for all types of Corporations or big companies looking to expand their outreach.</p>
+                                                            <ul className="text-gray-600 space-y-2 mb-4">
+                                                                <li>✔️ Paid Campaigns (disclose budget per Campaign)</li>
+                                                                <li>✔️ PR Campaigns</li>
+                                                                <li>✔️ Gifted Campaigns</li>
+                                                                <li>✔️ 5 Influencer Campaigns per month</li>
+                                                                <li>✔️ Unlimited Influencer Campaigns per month</li>
+                                                                <li>✔️ Ability to select Influencer per Campaign</li>
+                                                                <li>✔️ Highlighted campaigns</li>
+                                                                <li>✔️ Campaigns boosted to the top of the page for increased visibility </li>
+                                                                <li>✔️ Priority for Events</li>
+                                                                <li>✔️ Newsletter inclusion</li>
+                                                            </ul>
+                                                        </div>
+                                                        {/* <button className="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded">
                                                         Choose Plan
                                                     </button> */}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+
                                 </DialogContent>
 
                             </Dialog>
