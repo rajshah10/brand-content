@@ -57,7 +57,9 @@ const Home = () => {
                     <section className="relative py-20 bg-gray-100">
                         <Container>
                             <div className="text-center mb-8">
-                                <p className="text-2xl font-bold heading-home-featured">Influencer Marketing Simplified</p>
+                                <p className="text-yellow-500 text-2xl font-bold heading-home-featured">
+                                    Influencer Marketing Simplified
+                                </p>
                                 <p className="text-lg text-gray-600 mt-4">Find and hire top Instagram, TikTok, YouTube, and UGC influencers to create unique content for your brand</p>
                             </div>
 
@@ -73,7 +75,7 @@ const Home = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-5">
 
                                     {featuredItems.map(item => (
-                                        <div onClick={()=>navigate("/brands")} key={item.id} className="relative group cursor-pointer">
+                                        <div onClick={() => navigate("/brands")} key={item.id} className="relative group cursor-pointer">
                                             <div className="relative">
                                                 <img
                                                     alt={item.name}
@@ -127,7 +129,7 @@ const Home = () => {
                         </div>
                     </Container>
 
-                   
+
 
                     <Container>
                         <div className="bg-[#F8FAFC] py-10 my-10 mx-4">

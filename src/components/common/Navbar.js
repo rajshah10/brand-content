@@ -84,7 +84,21 @@ export default function Navbar(props) {
                 }
               >
 
-                <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join</span>
+                <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join as Influencer</span>
+              </a>
+            </li>
+
+            <li className="flex items-center">
+              <a
+                className={
+                  (props.transparent
+                    ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
+                    : "text-gray-800 hover:text-gray-600") +
+                  " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                }
+              >
+
+                <span  onClick={() => navigate("/join", { state: { type: 'brand' } })} className=" inline-block ml-2 cursor-pointer">Join as Brand</span>
               </a>
             </li>
 
@@ -113,7 +127,7 @@ export default function Navbar(props) {
                 }
 
               >
-                <span onClick={() => navigate("/club")} className="inline-block ml-2 cursor-pointer">Join Club</span>
+                <span onClick={() => navigate("/join")} className="inline-block ml-2 cursor-pointer">Join Club</span>
               </a>
             </li>
             <li className="flex items-center cursor-pointer">

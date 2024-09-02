@@ -73,8 +73,8 @@
   cursor: pointer;
 }
 
-.heading-home-featured{
-  background: linear-gradient(90deg, rgb(255 132 160) 0%, rgb(251 102 157) 20%, rgb(179 45 194) 95%, rgb(136, 95, 183) 100%);
+.heading-home-featured {
+  background: linear-gradient(90deg, #f7e8a8 0%, #f2c56f 50%, #e5b041 100%);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   font-size: 2rem;

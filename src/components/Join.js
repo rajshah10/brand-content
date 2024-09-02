@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Container, IconButton } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import horse6 from "../assets/images/horse6.JPEG"
 import horse7 from "../assets/images/horse7.JPEG"
@@ -16,6 +16,9 @@ import horse12 from "../assets/images/horse10 (3).JPEG"
 
 
 const Join = () => {
+
+    const location = useLocation();
+    const type = location.state?.type;
 
     const [step, setStep] = useState(1);
     const [selectedOption, setSelectedOption] = useState('contentCreator');
@@ -43,6 +46,12 @@ const Join = () => {
             setFormSubmitted(true);
         }
     };
+
+    useEffect(() => {
+        if (type === "brand") {
+            setSelectedOption("brand")
+        }
+    }, [])
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
@@ -145,8 +154,11 @@ const Join = () => {
                 </Carousel>
                 <div className="absolute bottom-12 left-8 right-8 md:left-8 md:bottom-16">
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-                        {selectedOption === "brand" && (
+                        {(selectedOption === "brand" || type === "brand") && (
                             <div className='bg-slate-800 rounded-md bg-opacity-80 py-4 px-4 flex flex-col justify-center gap-4'>
+                                <h3 className="text-3xl font-semibold uppercase">
+                                    Brands
+                                </h3>
                                 <p className="mt-4 text-lg leading-relaxed text-white">
                                     Equellence is a platform where brands can connect with Equestrian-specific influencers. Brands will be able to communicate a campaign, and Equellence will do the rest by allowing our Influencers to apply to your campaign. The brand can then select the influencer to make engaging content for the brand.
                                 </p>
@@ -166,7 +178,7 @@ const Join = () => {
                             </div>
 
                         )}
-                        {selectedOption === "contentCreator" && (
+                        {(selectedOption === "contentCreator" && type !== "brand") && (
                             <div className='bg-slate-800 rounded-md bg-opacity-80 flex flex-col justify-center gap-4 py-4 px-4'>
 
                                 <div className="w-full ml-auto mr-auto px-4">
