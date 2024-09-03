@@ -7,6 +7,7 @@ import owner from "../assets/images/owner.PNG"
 import owner1 from "../assets/images/owner1.jpeg"
 import horse6 from "../assets/images/horse10 (4).JPEG"
 import horse2 from "../assets/images/IMG_0931_edited - Arianna Ames.jpg"
+import StripePricingTable from './StripPricingTable';
 const AboutUs = () => {
     return (
         <div className="relative">
@@ -126,14 +127,14 @@ const AboutUs = () => {
                 <section className="relative py-20">
                     <Container>
                         <div className="container mx-auto">
-                            <div className="items-center grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-                                <div className="w-full  ml-auto mr-auto px-4">
+                            <div className="items-center grid md:grid-cols-1 lg:grid-cols-1 gap-4">
+                                {/* <div className="w-full  ml-auto mr-auto px-4">
                                     <img
                                         alt="..."
                                         className="w-full h-96 rounded-lg shadow-md object-cover"
                                         src={owner1}
                                     />
-                                </div>
+                                </div> */}
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <div className="md:pr-12">
                                         <p className='mt-4 text-lg  text-gray-600'>
@@ -141,7 +142,6 @@ const AboutUs = () => {
                                         </p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </Container>

@@ -10,14 +10,16 @@ import c4 from "../assets/images/carryminati.png"
 import owner from "../assets/images/in1.jpg"
 import c2 from "../assets/images/in2.jpg"
 import c3 from "../assets/images/in3.jpg"
+import c5 from "../assets/images/in4.jpg"
 
 const Home = () => {
     const navigate = useNavigate()
     const featuredItems = [
         { id: 1, image: c2, name: 'Skylynn Flod', price: "835K", media: "TikTok" },
-        { id: 2, image: c3, name: 'iamKC', price: "10K", media: "TikTok" },
+        { id: 2, image: c3, name: 'Maggie Dale', price: "42.4K", media: "Instagram" },
         { id: 3, image: owner, name: 'Nana.sfo', price: "134K", media: "TikTok" },
-        { id: 4, image: c4, name: 'Carryminati', media: "Youtube", price: "43.1M" }
+        { id: 4, image: c4, name: 'Claire Tucker', media: "Instagram", price: "15.1K" },
+        { id: 5, image: c5, name: 'Gray Clink ', media: "Instagram", price: "2.6K" }
     ];
 
 
@@ -72,7 +74,7 @@ const Home = () => {
                             <div className="container mx-auto px-4 my-2">
                                 <p className="text-2xl font-bold ">Featured</p>
                                 <p className="text-gray-600 font-sm">Hire top influencers across all platforms</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 my-5">
 
                                     {featuredItems.map(item => (
                                         <div onClick={() => navigate("/brands")} key={item.id} className="relative group cursor-pointer">
