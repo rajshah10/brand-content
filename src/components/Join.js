@@ -113,9 +113,9 @@ const Join = () => {
 
 
                                     </form>
-                                   {
-                                    selectedOption !== "brand" &&  <p className='text-sm text-gray-600 mt-4'>This registration is through invite only. Pls write to  equellence@gmail.com to get an invite</p>
-                                   }
+                                    {
+                                        selectedOption !== "brand" && <p className='text-sm text-gray-600 mt-4'>This registration is through invite only. Pls write to  equellence@gmail.com to get an invite</p>
+                                    }
                                     {/* {error && <p className="mt-2 text-sm text-red-600">{error}</p>} */}
 
                                     <p className="mt-4 text-sm text-gray-500">
@@ -160,7 +160,7 @@ const Join = () => {
                     </Carousel>
                     <div className="lg:absolute bottom-12 lg:bottom-12 left-4 right-4 md:left-8 md:bottom-16">
                         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
-                            {(selectedOption === "brand" || type === "brand") && (
+                            {((selectedOption === "brand" && type === "brand") || (selectedOption === "brand" && type !== "brand")) && (
                                 <div className='bg-slate-800 lg:rounded-md bg-opacity-80 py-4 px-2 lg:px-4 lg:flex flex-col justify-center gap-4'>
                                     <h3 className="text-3xl font-semibold uppercase">
                                         Brands
@@ -175,7 +175,7 @@ const Join = () => {
                                 </div>
 
                             )}
-                            {(selectedOption === "contentCreator" && type !== "brand") && (
+                            {((selectedOption === "contentCreator" && type === "brand") || (selectedOption !== "brand" && type !== "brand")) && (
                                 <div className='bg-slate-800 lg:rounded-md bg-opacity-80  lg:flex flex-col justify-center gap-4 py-4 px-2'>
                                     <div className="w-full ml-auto mr-auto px-4">
                                         <div className="md:pr-12">
