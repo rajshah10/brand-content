@@ -12,6 +12,8 @@ const Header = (props) => {
     const [type, setType] = useState()
     const navigate = useNavigate()
 
+    console.log("profile",profile)
+
     const getProfile = async () => {
         const token = localStorage.getItem('token');
         const type = localStorage.getItem('type')
