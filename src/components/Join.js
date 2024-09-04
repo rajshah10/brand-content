@@ -6,8 +6,8 @@ import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
-import horse6 from "../assets/images/horse6.jpeg"
-import horse7 from "../assets/images/horse7.jpeg"
+import horse6 from "../assets/images/horse6.JPEG"
+import horse7 from "../assets/images/horse7.JPEG"
 import horse8 from "../assets/images/horse8.JPEG"
 import horse9 from "../assets/images/horse9.JPEG"
 import horse10 from "../assets/images/horse10 (1).jpg"
@@ -61,6 +61,7 @@ const Join = () => {
 
     return (
         <>
+
             <div className="flex flex-col md:flex-row lg:flex-row h-screen">
                 <div className="flex flex-col justify-center w-full md:w-2/4 px-6 py-6 lg:px-8">
                     <div className="sm:mx-auto sm:w-full md:max-w-sm lg:max-w-lg">
@@ -158,7 +159,7 @@ const Join = () => {
                             </div>
                         ))}
                     </Carousel>
-                    <div className="lg:absolute bottom-12 lg:bottom-12 left-4 right-4 md:left-8 md:bottom-16">
+                    <div className={`${selectedOption === "brand" ? "absolute" : "lg:absolute"} bottom-12 lg:bottom-12 left-4 right-4 md:left-8 md:bottom-16`}>
                         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
                             {((selectedOption === "brand" && type === "brand") || (selectedOption === "brand" && type !== "brand")) && (
                                 <div className='bg-slate-800 lg:rounded-md bg-opacity-80 py-4 px-2 lg:px-4 lg:flex flex-col justify-center gap-4'>
@@ -212,14 +213,15 @@ const Join = () => {
                         </h1>
 
                     </div>
-                    {
-                        selectedOption === "brand" && <div>
-                            <StripePricingTable />
-                        </div>
-                    }
+
                 </div>
 
             </div>
+            {
+                selectedOption === "brand" && <div className='mt-96 md:mt-0 lg:mt-0'>
+                    <StripePricingTable />
+                </div>
+            }
 
         </>
     )
