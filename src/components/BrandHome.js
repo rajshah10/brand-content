@@ -16,6 +16,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkIcon from '@mui/icons-material/Link';
 import { api_url, follower, niches } from '../constants';
 import NoFound from './common/NoFound';
+import brand from "../assets/images/brands.jpg"
 
 const BrandHome = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -194,8 +195,8 @@ const BrandHome = () => {
                 <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
                 <Header handleClick={handleClick} />
             </div>
-            <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)` }}>
-                <div className="absolute flex flex-col inset-0 bg-black bg-opacity-50 items-center justify-center">
+            <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(${brand})`,backgroundPosition: 'center' }}>
+                <div className="absolute flex flex-col inset-0 bg-black bg-opacity-25 items-center justify-center">
                     <h1 className="text-white text-4xl font-bold text-center">
                         Brands
                     </h1>

@@ -25,6 +25,7 @@ const MenuComponent = (props) => {
         localStorage.removeItem('type')
         localStorage.removeItem('id')
         navigate("/login");
+        window.location.reload()
     }
 
     const getProfile = async () => {

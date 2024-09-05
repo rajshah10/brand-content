@@ -17,6 +17,7 @@ const Brands = (props) => {
     const { setStep, step } = props;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+
     const [loadingCode, setLoadingCode] = useState(false)
     const [subscripnDialog, setSubscripnDialog] = useState(false)
     const [formData, setFormData] = useState({
@@ -67,22 +68,22 @@ const Brands = (props) => {
             }
         });
     };
-    const handleCollaborationType = (e) => {
-        const { value, checked } = e.target;
-        setFormData((prevState) => {
-            if (checked) {
-                return {
-                    ...prevState,
-                    collaborationType: [...prevState.collaborationType, value],
-                };
-            } else {
-                return {
-                    ...prevState,
-                    collaborationType: prevState.collaborationType.filter((collaborationType) => collaborationType !== value),
-                };
-            }
-        });
-    };
+    // const handleCollaborationType = (e) => {
+    //     const { value, checked } = e.target;
+    //     setFormData((prevState) => {
+    //         if (checked) {
+    //             return {
+    //                 ...prevState,
+    //                 collaborationType: [...prevState.collaborationType, value],
+    //             };
+    //         } else {
+    //             return {
+    //                 ...prevState,
+    //                 collaborationType: prevState.collaborationType.filter((collaborationType) => collaborationType !== value),
+    //             };
+    //         }
+    //     });
+    // };
 
 
 
@@ -96,11 +97,12 @@ const Brands = (props) => {
                 setLoading(true);
                 const response = await axios.post(`${api_url}/api/brands`, formData);
                 if (response.status === 201) {
-                    toast.success('Form submitted successfully!');
+                    toast.success('Brand registration completed successfully!');
                     setLoading(false);
+                    props.setShowPricingTable(true);
                     setTimeout(() => {
-                        navigate("/login");
-                    }, 3000);
+                        toast.success('You can now secure your account by making payment !');
+                    }, 2000);
                 }
 
             }
@@ -117,7 +119,7 @@ const Brands = (props) => {
     const handleSendCode = async () => {
         setLoadingCode(true)
         try {
-            const { password, companyName, brandAddress, brandDescription, collaborationType, fullName, payment, phone, influencerType, subscription, auth, ...formDataWithoutPassword } = formData;
+            const { password, companyName, brandAddress, brandDescription, fullName, payment, phone, influencerType, subscription, auth, ...formDataWithoutPassword } = formData;
             const response = await axios.post(`${api_url}/api/influencers/sendcode`, formDataWithoutPassword);
             if (response) {
                 toast.success("Auth code has been sent to your email address.");
@@ -357,7 +359,7 @@ const Brands = (props) => {
             case 4:
                 return (
                     <>
-                        <div>
+                        {/* <div>
                             <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
                                 Type of Equellence collaboration (Check all that apply)
                                 *
@@ -424,7 +426,7 @@ const Brands = (props) => {
 
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div>
                             <div>
                                 <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
@@ -475,13 +477,10 @@ const Brands = (props) => {
                                 </DialogTitle>
                                 <DialogContent>
 
-
-
-
                                     <div className="bg-[#F8FAFC] mx-0">
                                         <div className="lg:py-3 flex items-center justify-center sm:px-6 lg:px-8">
                                             <div className="mx-auto">
-                                            <StripePricingTable />
+                                                <StripePricingTable />
                                             </div>
                                         </div>
 

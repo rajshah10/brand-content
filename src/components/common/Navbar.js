@@ -30,7 +30,7 @@ export default function Navbar(props) {
             }
           // href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
           >
-            <img src={logo} alt='...' style={{height:"5rem"}}/>
+            <img src={logo} alt='...' style={{ height: "5rem" }} />
           </a>
           {
             !navbarOpen && <button
@@ -98,7 +98,7 @@ export default function Navbar(props) {
                 }
               >
 
-                <span  onClick={() => navigate("/join", { state: { type: 'brand' } })} className=" inline-block ml-2 cursor-pointer">Join as Brand</span>
+                <span onClick={() => navigate("/join", { state: { type: 'brand' } })} className=" inline-block ml-2 cursor-pointer">Join as Brand</span>
               </a>
             </li>
 
@@ -169,7 +169,7 @@ export default function Navbar(props) {
                 type="button"
                 style={{ transition: "all .15s ease" }}
               >
-                {type}
+                {type !== "brand" ? "Content Creator" : type}
               </button>
             </li>}
           </ul>

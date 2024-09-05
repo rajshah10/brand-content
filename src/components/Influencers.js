@@ -15,6 +15,7 @@ import { Facebook } from "@mui/icons-material";
 import { useLocation } from "react-router";
 import { api_url } from "../constants";
 import NoFound from "../components/common/NoFound"
+import infl from "../assets/images/influencer.jpg"
 
 
 const Influencers = () => {
@@ -144,10 +145,11 @@ const Influencers = () => {
                 <Header handleClick={handleClick} />
             </div>
             <div className="relative pt-16 pb-32 flex content-center items-center justify-center" style={{ minHeight: "58vh" }}>
-                <div className="absolute top-0 w-full h-full bg-cover" style={{
-                    backgroundImage: `url('https://plus.unsplash.com/premium_photo-1684581969889-67d386781d37?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
+                <div className="absolute top-0 w-full h-full" style={{
+                    backgroundImage: `url(${infl})`,
+                     backgroundPosition: 'center'
                 }}>
-                    <span id="blackOverlay" className="w-full h-full absolute opacity-75 bg-black"></span>
+                    <span id="blackOverlay" className="w-full h-full absolute opacity-25 bg-black"></span>
                 </div>
                 <div className="container relative mx-auto">
                     <div className="items-center flex flex-wrap">

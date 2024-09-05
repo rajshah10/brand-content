@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Container, IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
@@ -17,14 +17,21 @@ import StripePricingTable from './StripPricingTable';
 
 
 const Join = () => {
-
+    const pricingRef = useRef(null);
     const location = useLocation();
     const type = location.state?.type;
-
+    const [showPricingTable, setShowPricingTable] = useState(false);
     const [step, setStep] = useState(1);
     const [selectedOption, setSelectedOption] = useState('contentCreator');
     const [formSubmitted, setFormSubmitted] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (showPricingTable) {
+            pricingRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [showPricingTable]);
+
 
     const images = {
         brand: [
@@ -138,7 +145,7 @@ const Join = () => {
                         <>
                             {formSubmitted && selectedOption === "contentCreator" &&
                                 <ContentCreatorFlow setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
-                            {formSubmitted && selectedOption === "brand" && <Brands setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
+                            {formSubmitted && selectedOption === "brand" && <Brands setShowPricingTable={setShowPricingTable} setFormSubmitted={setFormSubmitted} step={step} setStep={setStep} />}
                         </>
                     }
 
@@ -218,7 +225,7 @@ const Join = () => {
 
             </div>
             {
-                selectedOption === "brand" && <div className='mt-96 md:mt-0 lg:mt-0'>
+                selectedOption === "brand" && <div ref={pricingRef} className='mt-96 md:mt-0 lg:mt-0'>
                     <StripePricingTable />
                 </div>
             }
