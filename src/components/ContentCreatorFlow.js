@@ -367,6 +367,7 @@ const ContentCreatorFlow = (props) => {
                                         required
                                         className="block outline-none px-2 w-full rounded-md border-0 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                     />
+                                    <p className='text-sm text-gray-600 mt-4 italic'>This registration is through invite only. Auth code will be sent to your email.</p>
                                 </div>
                             </div>
                         </div>

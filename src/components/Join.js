@@ -65,6 +65,9 @@ const Join = () => {
         setSelectedOption(option);
         localStorage.setItem('selected_partner', option)
     };
+    const handleNavigate = () => {
+        navigate("/")
+    }
 
     return (
         <>
@@ -80,7 +83,7 @@ const Join = () => {
                             </div>
                         )}
                         <img
-                            onClick={() => navigate("/")}
+                            onClick={handleNavigate}
                             className="mx-auto w-48 cursor-pointer"
                             src={require("../assets/images/Logo.png")}
                             alt="Your Company"

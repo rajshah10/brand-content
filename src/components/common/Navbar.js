@@ -11,6 +11,7 @@ export default function Navbar(props) {
   const token = localStorage.getItem('token');
   const type = localStorage.getItem('type');
   const navigate = useNavigate()
+  
 
   return (
     <nav
@@ -84,7 +85,7 @@ export default function Navbar(props) {
                 }
               >
 
-                <span onClick={() => navigate("/join")} className=" inline-block ml-2 cursor-pointer">Join as Influencer</span>
+                <span onClick={() =>!token && navigate("/join")} className={`inline-block ml-2 cursor-pointer ${token ? "text-slate-500":""}`}>Join as Influencer</span>
               </a>
             </li>
 
@@ -98,7 +99,7 @@ export default function Navbar(props) {
                 }
               >
 
-                <span onClick={() => navigate("/join", { state: { type: 'brand' } })} className=" inline-block ml-2 cursor-pointer">Join as Brand</span>
+                <span onClick={() =>!token && navigate("/join", { state: { type: 'brand' } })} className={`inline-block ml-2 cursor-pointer ${token ? "text-slate-500":""}`}>Join as Brand</span>
               </a>
             </li>
 
@@ -127,7 +128,7 @@ export default function Navbar(props) {
                 }
 
               >
-                <span onClick={() => navigate("/join")} className="inline-block ml-2 cursor-pointer">Join Club</span>
+                <span onClick={() =>!token && navigate("/join")} className={`inline-block ml-2 cursor-pointer ${token ? "text-slate-500":""}`}>Join Club</span>
               </a>
             </li>
             <li className="flex items-center cursor-pointer">

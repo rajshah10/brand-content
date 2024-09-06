@@ -37,6 +37,10 @@ const Header = (props) => {
         getProfile()
     }, [type, token])
 
+    const handleNavigate = () => {
+        navigate("/")
+    }
+
     return (
         <div className="bg-white shadow-sm w-full px-3 sm:px-4 md:px-8 lg:px-8 flex justify-between items-center">
             <div>
@@ -44,7 +48,7 @@ const Header = (props) => {
                     className="h-24 cursor-pointer"
                     src={require("../../assets/images/Logo.png")}
                     alt="Your Company"
-                    onClick={() => navigate('/')}
+                    onClick={handleNavigate}
                 />
             </div>
             {/* <div className="relative">
