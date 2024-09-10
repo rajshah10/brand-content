@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { api_url } from '../constants';
 import { Link } from 'react-router-dom';
+import BreadCrumb from './common/BreadCrumb';
 
 const CampaignCreation = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -136,19 +137,7 @@ const CampaignCreation = () => {
             <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
 
                 <div className="my-12">
-                    <div className='mb-6'>
-                        <Breadcrumbs aria-label="breadcrumb">
-
-                            <Link
-                                underline="hover"
-                                color="inherit"
-                                to="/brands"
-                            >
-                                Brand Home
-                            </Link>
-                            {/* <Typography sx={{ color: 'text.primary' }}></Typography> */}
-                        </Breadcrumbs>
-                    </div>
+                    <BreadCrumb />
                     <h2 className="font-bold text-lg">Create New Campaign</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
 

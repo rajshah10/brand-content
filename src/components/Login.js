@@ -48,7 +48,6 @@ const Login = () => {
             const { token } = response.data;
             if (token) {
                 const tokenParts = token.split('.');
-                console.log("Tokenparts", tokenParts)
                 if (tokenParts.length !== 3) return null;
                 const payload = JSON.parse(atob(tokenParts[1]));
                 const type = payload.type;

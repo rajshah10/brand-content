@@ -8,6 +8,7 @@ import axios from "axios";
 import { api_url } from "../../constants";
 import toast, { Toaster } from "react-hot-toast";
 import NoFound from "../common/NoFound";
+import BreadCrumb from "../common/BreadCrumb";
 
 const OrdersInfluencers = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -19,7 +20,7 @@ const OrdersInfluencers = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [sending, setSending] = useState(false);
-    const [statusFilter, setStatusFilter] = useState('pending');
+    const [statusFilter, setStatusFilter] = useState('Hired');
     const [error, setError] = useState(null);
     const [messages, setMessages] = useState([]);
     const [selectedCampaigns, setSelectedCampaigns] = useState([]); // State for selected campaign IDs
@@ -149,7 +150,7 @@ const OrdersInfluencers = () => {
         ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
     ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-    console.log("COmbined messages: ", selectedInfluencer)
+
     const id = localStorage.getItem('id')
 
     return (
@@ -161,19 +162,33 @@ const OrdersInfluencers = () => {
             </div>
             <Container>
                 <div className="my-12 mx-8">
+                    <BreadCrumb />
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                         <h6 className="font-bold text-lg">Influencers</h6>
                         <div className="flex gap-2 items-center">
                             <h6>Status:</h6>
-                            <select
-                                value={statusFilter}
-                                onChange={handleFilterChange}
-                                className="block rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none"
-                            >
-                               
-                                <option value="pending">Pending</option>
-                                <option value="Hired">Hired</option>
-                            </select>
+                            <div className="flex gap-4">
+                                <label className="flex items-center gap-1">
+                                    <input
+                                        type="radio"
+                                        value="pending"
+                                        checked={statusFilter === "pending"}
+                                        onChange={handleFilterChange}
+                                        className="text-gray-900 shadow-sm  sm:text-sm sm:leading-6"
+                                    />
+                                    Pending
+                                </label>
+                                <label className="flex items-center gap-1">
+                                    <input
+                                        type="radio"
+                                        value="Hired"
+                                        checked={statusFilter === "Hired"}
+                                        onChange={handleFilterChange}
+                                        className="text-gray-900 shadow-sm  sm:text-sm sm:leading-6"
+                                    />
+                                    Hired
+                                </label>
+                            </div>
                         </div>
                     </div>
                     {loading && (

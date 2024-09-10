@@ -151,7 +151,6 @@ const BrandHome = () => {
                         case "700k-800k":
                             return followersCount > 700000 && followersCount <= 800000;
                         case "800k+":
-                            console.log("Followers count", followersCount)
                             return followersCount > 800000;
                         default:
                             return false;

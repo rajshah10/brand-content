@@ -16,6 +16,7 @@ import { useLocation } from "react-router";
 import { api_url } from "../constants";
 import NoFound from "../components/common/NoFound"
 import infl from "../assets/images/influencer.jpg"
+import BreadCrumb from "./common/BreadCrumb";
 
 
 const Influencers = () => {

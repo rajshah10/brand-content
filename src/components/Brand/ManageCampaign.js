@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
-import { Container, Skeleton } from "@mui/material";
+import { Breadcrumbs, Container, Skeleton } from "@mui/material";
 import axios from "axios";
 import { Facebook } from "@mui/icons-material";
 import Header from "../common/Header";
@@ -11,6 +11,8 @@ import DrawerForInfluencers from "../common/DrawerForInfluencers";
 import { api_url } from "../../constants";
 import toast, { Toaster } from "react-hot-toast";
 import NoFound from "../common/NoFound";
+import { Link } from "react-router-dom";
+import BreadCrumb from "../common/BreadCrumb";
 
 const ManageCampaign = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -49,7 +51,7 @@ const ManageCampaign = () => {
                 params: {
                     type: filterType,
                     platform: filterPlatform,
-                    brandid:id
+                    brandid: id
                 },
             });
             if (response.data) {
@@ -70,14 +72,14 @@ const ManageCampaign = () => {
 
 
 
-
-
-    const handleButtonClick = async (campaignId, influencerId) => {
+    const handleButtonClick = async (campaignId, influencerId, email, campaignTitle, companyName) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/campaign/${campaignId}/hire`, { influencerId });
+            const response = await axios.post(`${api_url}/api/campaign/${campaignId}/hire`, { influencerId, email, campaignTitle, companyName });
             if (response.data.success) {
                 getAllCampaigns();
-                toast.success('Hired successfully!');
+                toast.success('Hired successfully!', {
+                    duration: 10000  // 120 seconds
+                });
             }
         } catch (error) {
             console.error('Error hiring influencer:', error);
@@ -95,6 +97,8 @@ const ManageCampaign = () => {
     const handleFilterPlatformChange = (e) => {
         setFilterPlatform(e.target.value);
     };
+
+
 
 
 
@@ -174,6 +178,7 @@ const ManageCampaign = () => {
                         :
 
                         <div className="my-12 mx-8">
+                            <BreadCrumb/>
                             <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">
                                 <h6 className="font-bold text-lg">All Campaign</h6>
                                 <div className="flex gap-3">
@@ -238,7 +243,7 @@ const ManageCampaign = () => {
                                                                         data?.status === "Hired" ? <>
                                                                             <button
                                                                                 className={` bg-teal-500 hover:bg-teal-500 cursor-not-allowed rounded-md px-6 py-1.5 text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 `}
-                                                                                onClick={() => handleButtonClick(camp._id, data.influencerId._id)}
+                                                                                onClick={() => handleButtonClick(camp._id, data.influencerId._id, data.influencerId.email, camp.campaignTitle, camp.companyName)}
 
                                                                             >
                                                                                 Hired
@@ -255,7 +260,7 @@ const ManageCampaign = () => {
                                                                             {
                                                                                 data?.status !== "Not Applied" && <button
                                                                                     className={` bg-teal-700 hover:bg-teal-600 cursor-pointer rounded-md px-6 py-1.5 text-sm text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 `}
-                                                                                    onClick={() => handleButtonClick(camp._id, data.influencerId._id)}
+                                                                                    onClick={() => handleButtonClick(camp._id, data.influencerId._id, data.influencerId.email, camp.campaignTitle, camp.companyName)}
 
                                                                                 >
                                                                                     Hire

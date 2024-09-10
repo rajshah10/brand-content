@@ -5,7 +5,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
 const DrawerForInfluencers = ({ openDraw, closeDrawer, selectedData, hiredCounts }) => {
-    console.log("Selected", selectedData)
     const hiredCount = hiredCounts.find(count => count.campaignTitle === selectedData.campaignTitle)?.hiredCount || 0;
     const truncateString = (str, num) => {
         if (str?.length <= num) {
