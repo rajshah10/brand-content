@@ -4,10 +4,8 @@ import Footer from './common/Footer';
 import { Container } from '@mui/material';
 
 import owner from "../assets/images/owner.PNG"
-import owner1 from "../assets/images/owner1.jpeg"
 import horse6 from "../assets/images/horse10 (4).JPEG"
 import horse2 from "../assets/images/IMG_0931_edited - Arianna Ames.jpg"
-import StripePricingTable from './StripPricingTable';
 const AboutUs = () => {
     return (
         <div className="relative">
@@ -21,24 +19,27 @@ const AboutUs = () => {
                         style={{
                             backgroundImage: `url('${horse2}')`
                         }}>
-                        <span id="blackOverlay" className="w-full h-full absolute opacity-75 bg-black"></span>
+                        <span id="blackOverlay" className="w-full h-full absolute opacity-35 bg-black"></span>
                     </div>
                     <div className="container relative mx-auto">
                         <div className="items-center flex flex-wrap">
                             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                                <div className="pr-12">
+                                <div className="pr-12 mt-6">
                                     <h1 className="text-white font-semibold text-5xl">
-                                        About Us
+                                        About Equellence
                                     </h1>
                                     <p className="mt-4 text-lg text-gray-300">
-                                        Learn more about our journey and our team.
+                                        At Equellence, we work with brands and Equestrians to create a new world vision.
+
+                                        On our website, brands are able to work with an infleuncer of their choice to create content for thier pages. Our roster includes many extremely talented Equestrian content creators, who are excited to spread your brand’s goals and mission through an impressive medium-the world of horses.
+
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                     
+
+
                 </div>
                 <Container>
                     <section className="relative py-20">
@@ -54,20 +55,19 @@ const AboutUs = () => {
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <div className="md:pr-12">
                                         <h3 className="text-3xl font-semibold">
-                                            What is Equellence ?
+                                            What is Equellence?
                                         </h3>
                                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
                                             Started in 2024, Equellence is a social media agency-like group that connects equestrian content creators with brands, events, and opportunities.
-                                        </p>
-                                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+
                                             The main objective of Equellence is to bridge the gap between the equestrian and the non-horse world by connecting equestrians, brands, barns, and events while promoting individual content creation and social media through a specifically curated equestrian network.
-                                        </p>
-                                        <p className=" text-lg leading-relaxed text-gray-600">
+
                                             We help our members excel through the sport in a non-conventional way. Equellence provides them with both equestrian and non-equestrian related opportunities. Equellence fosters a culture of creativity through content creation, and features a broad range of Equestrians content creators making waves and changing the industry one by one through passion, talent, and activism. Equellence also focuses on an emphasis of partnering with non-equestrian related brands specifically, as not only does it provide an inside look to others that are not part of the horse world, but also helps solidify a longterm career for our content creators within any industry.
-                                        </p>
-                                        <p className="mt-4 text-lg leading-relaxed text-gray-600">
+
                                             Equellence assists equestrian content creators by landing them paid brand deals, PR collateral, and sponsorship opportunities, as well as connecting them with unique and exclusive events around the world.
                                         </p>
+
+
 
                                     </div>
                                 </div>
@@ -77,12 +77,22 @@ const AboutUs = () => {
                 </Container>
                 <Container>
                     <div className='px-4'>
-
+                        <h3 className="text-3xl font-semibold">
+                            Equellence's Mission
+                        </h3>
                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                            Equellence is changing the standards of the equestrian Industry. What once was a world where privilege was the main contributor to success and reach the top of this sport, now anyone with a strong voice, genuine talent, passion, and creativity can achieve their goals.
+                            In a realm where excellence transcends mere aspiration, Equellence emerges as the herald of a new golden age—a world where opulence, wisdom, and grace converge into a symphony of human potential. Equellence exists to unlock the doors of divine experience, offering all the opportunity to access a frequency of pure, unadulterated love.
+                            At the heart of this mission stands the horse: a being of light incarnate, an ancient and exalted force that has forever shaped our path. The horse is no ordinary creature. Horses possess an extraordinary aura, vibrating at a powerful frequency of 444 Hz, known to soothe and heal the human soul. Their mere presence extends beyond the ordinary, capable of sensing a heartbeat from over 40 feet away, their intuitive gifts inspiring awe in even the most skeptical minds. For thousands of years, horses have carried us, guided us, and helped elevate the human race. They are the bearers of a frequency that illuminates our greatest potential, awakening within us the dormant forces of love, clarity, and divine purpose.
+
                         </p>
                         <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                            Equellence fosters diversity by accepting all equestrians from all walks of life, countries, and origins. Our diverse network truly showcases a new vision for the equestrian world. Our members originate from all cultures, ethnicities, and nationalities, which will enable a unique collaboration network across the world and help all types of riders from all backgrounds to get to the top of the sport through a long-term career outlet.
+                            Equellence is more than a brand—it is a revolution of consciousness, a movement toward the realization of a world in which the divine nature of the horse is universally recognized, celebrated, and cherished. This is a world where anyone, no matter their background, can rise into their own version of excellence, connected to the cosmic energy embodied by these extraordinary creatures.
+
+                        </p>
+                        <p className=" text-lg leading-relaxed text-gray-600">
+                            We exist to make this reality tangible for all. Through Equellence, luxury is not exclusive but all-encompassing. We have arrived to uplift humanity into its higher frequency, ensuring that every person can step into the light, alongside the majestic beings that have so generously offered themselves to our journey. We spread the wisdom of the horse to inspire confidence, growth, and a profound spiritual awakening in every soul.
+                            This is the Equellence vision. To guide humanity into a future where love, divinity, and excellence reign supreme, led by the grace of the horse—our most ancient and powerful companions.
+
                         </p>
                     </div>
                 </Container>

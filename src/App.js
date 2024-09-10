@@ -20,6 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute.js/ProtectedRoute";
 import { isLoggedIn } from "./utils/auth";
 import { useEffect, useState } from "react";
 import Club from "./Club";
+import Joinclub from "./components/Joinclub";
 
 
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/club" element={<Club />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/joinclub" element={<Joinclub />} />
         <Route
           path="/contentCreator"
           element={

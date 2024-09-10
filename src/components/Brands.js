@@ -101,7 +101,7 @@ const Brands = (props) => {
                     setLoading(false);
                     props.setShowPricingTable(true);
                     setTimeout(() => {
-                        toast.success('You can now secure your account by making payment !');
+                        toast.success('Please make sure to secure your account by clicking on View Business plans below and complete the payment to access the site.');
                     }, 2000);
                 }
 
@@ -448,7 +448,7 @@ const Brands = (props) => {
                         </div>
                         <div>
                             <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
-                                Subscription - <span className="cursor-pointer text-blue-700" onClick={handleSubscription}>View Subscripn Plans</span>
+                                Subscription - <span className="cursor-pointer text-blue-700" onClick={handleSubscription}>View Business Plans</span>
                             </label>
                             <select
                                 required
@@ -493,9 +493,9 @@ const Brands = (props) => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium leading-6 text-gray-900">
-                                Confirmation
-                            </label>
+                            {/* <p className="block text-xs font-medium leading-6 text-gray-900 italic">
+                            Make sure to click 'View Business Plans' and complete the payment. After that, you will be able to access the site.
+                            </p> */}
                             <div className="mt-1">
                                 <p className="text-slate-900 text-sm">
                                     Please review all the information you have provided.

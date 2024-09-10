@@ -22,7 +22,7 @@ export default function Footer() {
               <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">Resources</h2>
               <ul class="text-gray-500  font-medium">
                 <li onClick={() => navigate("/about")} class="mb-4 cursor-pointer">
-                  <a class="hover:underline">About Us</a>
+                  <a class="hover:underline">About Equellence’s</a>
                 </li>
                 <li onClick={() => navigate("/faq")} class="mb-4 cursor-pointer">
                   <a class="hover:underline">FAQ</a>

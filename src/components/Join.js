@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Container, IconButton } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react'
@@ -169,7 +170,7 @@ const Join = () => {
                             </div>
                         ))}
                     </Carousel>
-                    <div className={`${selectedOption === "brand" ? "absolute" : "lg:absolute"} bottom-12 lg:bottom-12 left-4 right-4 md:left-8 md:bottom-16`}>
+                    <div className={`${selectedOption === "brand" ? "absolute" : "lg:absolute"} bottom-12 lg:bottom-2 left-4 right-4 md:left-8 md:bottom-16`}>
                         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
                             {((selectedOption === "brand" && type === "brand") || (selectedOption === "brand" && type !== "brand")) && (
                                 <div className='bg-slate-800 lg:rounded-md bg-opacity-80 py-4 px-2 lg:px-4 lg:flex flex-col justify-center gap-4'>
@@ -193,14 +194,25 @@ const Join = () => {
                                             <h3 className="text-3xl font-semibold uppercase">
                                                 Influencers
                                             </h3>
-                                            <p className="mt-4 text-lg leading-relaxed text-white-600">
-                                                Equellence carefully chooses the best equestrian content creators. If you’re wanting to join our website, please apply using this application:
+                                            <p className="mt-4 text-sm leading-relaxed text-white-600">
+                                                At Equellence, we offer much more than just travel opportunities and collaborations with prestigious brands—though, yes, those are certainly part of the experience. What truly sets Equellence apart is the unparalleled community and network that our members become a part of. When you join Equellence, you enter a realm of kindred spirits—a collective of creators bound not just by their love for the equestrian world but by a shared vision to elevate humanity and themselves to new heights.
 
                                             </p>
-                                            <p className="mt-4 text-lg leading-relaxed text-white-600">
-                                                Not only do you gain access to our website and brand database, but also when you join the Equellence club, you receive….
+                                            <p className="mt-4 text-sm leading-relaxed text-white-600">
+                                                We are more than a club; we are a movement, a network of excellence that will amplify your voice and propel your message to the farthest reaches of your potential.
+                                                Our creators are not only gifted with opportunities but equipped with the strategies necessary to become masters of their own story. Through our specialized mentorship, you will learn how to channel your message into a powerful force, honing your influence to resonate deeply with your audience. At Equellence, we believe that your personal narrative, when aligned with the wisdom and majesty of the horse, has the power to transcend the ordinary and impact lives. We will teach you how to make this a reality through social media mastery, storytelling techniques, and the secrets to sustainable growth in the content creator space.
                                             </p>
-                                            <ul className='list-disc ml-5 mt-4 text-sm'>
+
+                                            <p className="mt-4 text-sm leading-relaxed text-white-600">
+                                                Equellence is not just fostering collaborations; we are fostering equestrian excellence. By joining us, you are aligning yourself with a legacy—a network that will guide, support, and uplift you as you ascend to your highest potential. You’ll be surrounded by others who, like you, have defied the odds, remaining steadfast in their authenticity and light. Together, we will craft a future where your voice, your vision, and your story can truly soar.
+
+                                            </p>
+                                            <p className="mt-4 text-sm leading-relaxed text-white-600">This is your chance to not only elevate your brand but to become part of a collective consciousness—one that recognizes the beauty, strength, and transformative power of the horse. Step into your greatness. With Equellence, you are not just a content creator; you are a beacon of influence, a force of nature, and a beacon of excellence.
+                                            </p>
+                                            <p className="mt-4 text-sm leading-relaxed text-white-600">
+                                                If you’re interested in joining our club, please <a className='text-blue-400' href="https://docs.google.com/forms/d/1uWacTgHxrDFmpJEP1VFdcyGVNdHmTRZMsw6ePEpkrx8/edit#response=ACYDBNjsSqBPLzOk-L9_yNfEJ_MChTgJZrmRJeoy-UK5flZoeQgMdQNs9ZIhyxviE5h249U" target="_blank">apply here</a>
+                                            </p>
+                                            {/* <ul className='list-disc ml-5 mt-4 text-sm'>
                                                 <li>
                                                     <span className='text-cyan-300 font-semibold mr-1'>Automatic website approval</span>
                                                 </li>
@@ -214,7 +226,7 @@ const Join = () => {
                                                     <span className='text-cyan-300 font-semibold mr-1'>Paid/unpaid opportunities and special perks:</span>
                                                     There are fun perks that happen in the club. We have collaborations between members, paid and unpaid opportunities, traveling opportunities, brand partnerships and more
                                                 </li>
-                                            </ul>
+                                            </ul> */}
                                         </div>
                                     </div>
                                 </div>

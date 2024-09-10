@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import MenuComponent from "./common/MenuComponent";
-import { CircularProgress } from '@mui/material';
+import { Breadcrumbs, CircularProgress, Typography } from '@mui/material';
 import Header from './common/Header';
 import toast, { Toaster } from 'react-hot-toast';
 
 import axios from 'axios';
 import { api_url } from '../constants';
+import { Link } from 'react-router-dom';
 
 const CampaignCreation = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -36,7 +37,7 @@ const CampaignCreation = () => {
         social_media: 'Instagram',
         images: [],
         influencerdata: "",
-        brandid:id
+        brandid: id
     });
 
 
@@ -48,12 +49,12 @@ const CampaignCreation = () => {
     };
     useEffect(() => {
         if (influencerData && influencerData.length > 0) {
-          setCampaign(prevState => ({
-            ...prevState,
-            influencerdata: influencerData[0]._id
-          }));
+            setCampaign(prevState => ({
+                ...prevState,
+                influencerdata: influencerData[0]._id
+            }));
         }
-      }, [influencerData]);
+    }, [influencerData]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -98,7 +99,7 @@ const CampaignCreation = () => {
                 // await axios.post(`${api_url}/api/campaign/${response?.data?._id}/influencer/${influencerData[0]._id}`);
                 setLoading(false);
             }
-           
+
         } catch (error) {
             console.error('Error submitting the form:', error);
             setLoading(false);
@@ -135,6 +136,19 @@ const CampaignCreation = () => {
             <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
 
                 <div className="my-12">
+                    <div className='mb-6'>
+                        <Breadcrumbs aria-label="breadcrumb">
+
+                            <Link
+                                underline="hover"
+                                color="inherit"
+                                to="/brands"
+                            >
+                                Brand Home
+                            </Link>
+                            {/* <Typography sx={{ color: 'text.primary' }}></Typography> */}
+                        </Breadcrumbs>
+                    </div>
                     <h2 className="font-bold text-lg">Create New Campaign</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
 
@@ -300,7 +314,7 @@ const CampaignCreation = () => {
                                     <label htmlFor="images" className="block text-sm font-medium leading-6 text-gray-900">Campaign Images</label>
                                     <div className="mt-2">
                                         <input
-                                        required
+                                            required
                                             type="file"
                                             name="images"
                                             id="images"

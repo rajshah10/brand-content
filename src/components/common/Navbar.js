@@ -114,7 +114,8 @@ export default function Navbar(props) {
 
               >
 
-                <span onClick={() => navigate("/about")} className="inline-block ml-2 cursor-pointer">About Us</span>
+                <span onClick={() => navigate("/about")} className="inline-block ml-2 cursor-pointer">About Equellence’s
+                </span>
               </a>
             </li>
 
@@ -128,7 +129,7 @@ export default function Navbar(props) {
                 }
 
               >
-                <span onClick={() =>!token && navigate("/join")} className={`inline-block ml-2 cursor-pointer ${token ? "text-slate-500":""}`}>Join Club</span>
+                <span onClick={() =>!token && navigate("/joinclub")} className={`inline-block ml-2 cursor-pointer ${token ? "text-slate-500":""}`}>Join Club</span>
               </a>
             </li>
             <li className="flex items-center cursor-pointer">

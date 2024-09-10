@@ -145,7 +145,7 @@ const MenuComponent = (props) => {
                         <ListItemIcon style={{ color: "slategray" }}>
                             <LockOpenOutlinedIcon />
                         </ListItemIcon>
-                        Orders
+                        Influencer List
                     </MenuItem>
                 }
 

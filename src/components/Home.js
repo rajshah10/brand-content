@@ -18,7 +18,7 @@ const Home = () => {
         { id: 1, image: c2, name: 'Skylynn Floyd', price: "835K", media: "TikTok" },
         { id: 2, image: c3, name: 'Maggie Dale', price: "42.4K", media: "Instagram" },
         { id: 3, image: owner, name: 'Nana.sfo', price: "134K", media: "TikTok" },
-        { id: 4, image: c4, name: 'Claire Tucker', media: "Instagram", price: "15.1K" },
+        // { id: 4, image: c4, name: 'Claire Tucker', media: "Instagram", price: "15.1K" },
         { id: 5, image: c5, name: 'Gray Clink ', media: "Instagram", price: "2.6K" }
     ];
 
@@ -45,7 +45,7 @@ const Home = () => {
                                         EQUELLENCE
                                     </h1>
                                     <p className="mt-4 text-lg text-gray-300">
-                                        Fostering Equestrian Excellence.
+                                    Fostering Excellence through Equestrianism
                                     </p>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ const Home = () => {
                             <div className="container mx-auto px-4 my-2">
                                 <p className="text-2xl font-bold ">Featured</p>
                                 <p className="text-gray-600 font-sm">Hire top influencers across all platforms</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 my-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-5">
 
                                     {featuredItems.map(item => (
                                         <div onClick={() => navigate("/brands")} key={item.id} className="relative group cursor-pointer">

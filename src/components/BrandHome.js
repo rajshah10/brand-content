@@ -179,7 +179,7 @@ const BrandHome = () => {
                     return
                 } else {
                     await axios.post(`${api_url}/api/campaign/${selectedCampaign?._id}/influencer/${influencerId}`);
-                    toast.success('Assigned successful!');
+                    toast.success('Invitation sent successfully . Please check your messages and email frequently to see if they approve the invitation. Invitations will be received and approved within 1-3 business days.');
                 }
             }
         } catch (error) {
@@ -421,7 +421,7 @@ const BrandHome = () => {
                                                                 className="bg-[#4F46E5] text-white'  rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                                                 onClick={() => handleButtonClick(influencer?._id)}
                                                             >
-                                                                Assign Now
+                                                                Invite / Assign
                                                             </button>
                                                         </div>
                                                     </div>
