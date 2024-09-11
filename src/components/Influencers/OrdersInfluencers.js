@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem, Skeleton } from "@mui/material";
+import { Container, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem, Skeleton, Badge } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { api_url } from "../../constants";
 import toast, { Toaster } from "react-hot-toast";
 import NoFound from "../common/NoFound";
 import BreadCrumb from "../common/BreadCrumb";
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 const OrdersInfluencers = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -94,7 +95,7 @@ const OrdersInfluencers = () => {
         getAllCampaigns();
     }, []);
 
-    const handleRowClick = (influencer) => {
+    const handleRowClick = async (influencer) => {
         setSelectedInfluencer(influencer);
         setDialogOpen(true);
     };
@@ -229,6 +230,7 @@ const OrdersInfluencers = () => {
                                         <th scope="col" className="px-6 py-3">Email</th>
                                         <th scope="col" className="px-6 py-3">Niche</th>
                                         <th scope="col" className="px-6 py-3">Followers</th>
+                                        <th scope="col" className="px-6 py-3">Notifications</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -250,6 +252,11 @@ const OrdersInfluencers = () => {
                                                             <span className="text-gray-500">{link.followerCount}</span>
                                                         </div>
                                                     ))}
+                                                </td>
+                                                <td className="px-6 py-4 text-slate-500">
+                                                    <Badge color="secondary" variant={influencer.notificationSent ? `dot` : ''} >
+                                                        <NotificationsNoneIcon />
+                                                    </Badge>
                                                 </td>
                                             </tr>
                                         ))) : (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Skeleton, Dialog, DialogTitle, DialogContent, IconButton, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, DialogActions, TextField } from "@mui/material";
+import { Container, Skeleton, Dialog, DialogTitle, DialogContent, IconButton, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, DialogActions, TextField, Badge } from "@mui/material";
 import Header from "../common/Header";
 import MenuComponent from "../common/MenuComponent";
 import { useNavigate } from "react-router";
@@ -8,6 +8,7 @@ import { api_url } from "../../constants";
 import CloseIcon from "@mui/icons-material/Close";
 import NoFound from "../common/NoFound";
 import toast, { Toaster } from "react-hot-toast";
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -54,7 +55,7 @@ const Orders = () => {
         }
     };
 
- 
+
 
     useEffect(() => {
         fetchOrders();
@@ -121,6 +122,8 @@ const Orders = () => {
         ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
     ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
+    console.log("Orders", orders)
+
     return (
         <>
             <div>
@@ -144,6 +147,7 @@ const Orders = () => {
                                         <th scope="col" className="px-6 py-3">Company Name</th>
                                         <th scope="col" className="px-6 py-3">Compensation</th>
                                         <th scope="col" className="px-6 py-3">Deadlines</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -172,6 +176,7 @@ const Orders = () => {
                                         <th scope="col" className="px-6 py-3">Company Name</th>
                                         <th scope="col" className="px-6 py-3">Compensation</th>
                                         <th scope="col" className="px-6 py-3">Deadlines</th>
+                                        <th scope="col" className="px-6 py-3">Notifications</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -183,6 +188,11 @@ const Orders = () => {
                                                 <td className="px-6 py-4 text-slate-500">{order.companyName}</td>
                                                 <td className="px-6 py-4 text-slate-500">{order.compensation}</td>
                                                 <td className="px-6 py-4 text-slate-500">{order.deadlines}</td>
+                                                <td className="px-6 py-4 text-slate-500">
+                                                    <Badge color="secondary" variant={order.notificationSent ? `dot` : ''} >
+                                                        <NotificationsNoneIcon />
+                                                    </Badge>
+                                                </td>
                                             </tr>
                                         ))
                                     ) : (
