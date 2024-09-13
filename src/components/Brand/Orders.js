@@ -12,17 +12,14 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 const Orders = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [sending, setSending] = useState(false);
+    const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
-    const [messages, setMessages] = useState([]);
-    const [messagesOther, setMessagesOther] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [selectedCampaign, setSelectedCampaign] = useState(null);
     const [dialogOpen, setDialogOpen] = useState(false);
     const influencerId = localStorage.getItem('id');
-    const [message, setMessage] = useState('');
-    const navigate = useNavigate();
+
+   
     const openMenu = Boolean(anchorEl);
 
     const fetchOrders = async () => {
@@ -40,23 +37,6 @@ const Orders = () => {
         }
     };
 
-    const fetchMessages = async (influencerId, campaignId) => {
-        setLoading(true);
-        setError(null);
-
-        try {
-            const response = await axios.get(`${api_url}/api/messages/message-influencer/${influencerId}/${campaignId}`);
-            setMessages(response.data);
-        } catch (error) {
-            setError('Error fetching messages');
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
-
     useEffect(() => {
         fetchOrders();
     }, [influencerId]);
@@ -70,59 +50,19 @@ const Orders = () => {
     };
 
     const handleCampaignClick = (campaign) => {
-        setSelectedCampaign(campaign);
-        fetchMessages(influencerId, campaign?._id);
-        fetchMessagesOther(influencerId, campaign?._id)
-        setDialogOpen(true);
+        // setSelectedCampaign(campaign);
+        navigate(`/orders/${campaign._id}`, { state: { campaign } });
+        // fetchMessages(influencerId, campaign?._id);
+        // fetchMessagesOther(influencerId, campaign?._id)
+        // setDialogOpen(true);
     };
 
     const handleDialogClose = () => {
-        setDialogOpen(false);
-        setSelectedCampaign(null);
-        setMessages([]);
-        setMessagesOther()
+       
+        // setSelectedCampaign(null);
+        // setMessages([]);
+        // setMessagesOther()
     };
-
-    const fromId = localStorage.getItem("id")
-    const handleSendMessage = async () => {
-        if (!selectedCampaign || !message.trim()) return;
-
-        setSending(true);
-        try {
-            await axios.post(`${api_url}/api/messages/sendbrand`, {
-                from: fromId,
-                to: selectedCampaign._id,
-                content: message,
-                campaignIds: null,
-            });
-            setMessage('');
-            setDialogOpen(false);
-            toast.success('Message sent successfully!');
-        } catch (error) {
-            console.error('Error sending message:', error);
-        } finally {
-            setSending(false);
-        }
-    };
-    const fetchMessagesOther = async (influencerId, campaignId) => {
-
-        setError(null);
-
-        try {
-            const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}/${campaignId}`);
-            setMessagesOther(response.data);
-        } catch (error) {
-            setError('No Messages Found');
-            console.error(error);
-        }
-    };
-
-    const combinedMessages = [
-        ...(Array.isArray(messages?.messages) ? messages.messages : []),
-        ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
-    ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-
-
     return (
         <>
             <div>
@@ -207,97 +147,8 @@ const Orders = () => {
                         </div>
                     )}
 
-                    <Dialog open={dialogOpen} onClose={handleDialogClose} fullWidth maxWidth="md">
-                        <DialogTitle>
-                            Campaign Details
-                        </DialogTitle>
-                        <DialogContent >
-                            {selectedCampaign && (
-                                <div>
-                                    <TableContainer component={Paper}>
-                                        <Table>
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell colSpan={2} align="left">
-                                                        <h4>Campaign Details</h4>
-                                                    </TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                <TableRow>
-                                                    <TableCell><strong>Order Id:</strong></TableCell>
-                                                    <TableCell>{selectedCampaign._id}</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell><strong>Email:</strong></TableCell>
-                                                    <TableCell>{selectedCampaign.COEmail}</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell><strong>Company Name:</strong></TableCell>
-                                                    <TableCell>{selectedCampaign.companyName}</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell><strong>Compensation:</strong></TableCell>
-                                                    <TableCell>{selectedCampaign.compensation}</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell><strong>Deadlines:</strong></TableCell>
-                                                    <TableCell>{selectedCampaign.deadlines}</TableCell>
-                                                </TableRow>
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    {
-                                        combinedMessages?.length > 0 && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
-                                            <div>
-                                                <h6>Messages</h6>
-                                                <div className="mt-2 flex flex-col gap-2">
-                                                    {combinedMessages.length > 0 ? (
-                                                        combinedMessages.map((message, index) => (
-                                                            <div
-                                                                key={index}
-                                                                className={`p-2 rounded-md ${message.from === selectedCampaign?._id ? "bg-green-200 self-end" : "bg-blue-200 self-start"}`}
-                                                            >
-                                                                <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
-                                                                <h6>{message.content}</h6>
-                                                            </div>
-                                                        ))
-                                                    ) : (
-                                                        <div>
-                                                            <h6>No messages found</h6>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    <div className="mt-6">
-                                        <TextField
-                                            fullWidth
-                                            multiline
-                                            rows={4}
-                                            variant="outlined"
-                                            label="Write a message"
-                                            value={message}
-                                            onChange={(e) => setMessage(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                            )}
-                        </DialogContent>
-                        <DialogActions>
-                            <button className={`px-4 py-1 rounded-md ${sending || message?.length === 0
-                                ? 'bg-gray-400 cursor-not-allowed'
-                                : 'bg-[#4F46E5] text-white'
-                                }`} onClick={handleSendMessage} color="primary" >
-                                {sending ? 'Sending...' : 'Send Message'}
-                            </button>
-                            <button className="px-4 py-1 bg-slate-200 text-black rounded-md" onClick={handleDialogClose} color="primary">
-                                Close
-                            </button>
-                        </DialogActions>
 
-                    </Dialog>
+                    
                 </div>
             </Container>
         </>

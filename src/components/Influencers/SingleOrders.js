@@ -10,7 +10,6 @@ import BreadCrumb from '../common/BreadCrumb';
 
 const SingleOrders = () => {
     const location = useLocation();
-    const navigate = useNavigate()
     const [campaigns, setCampaigns] = useState([])
     const [campaignsInfluencers, setCampaignsForInfluencers] = useState([]);
     const { influencer } = location.state || {};
@@ -20,6 +19,7 @@ const SingleOrders = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [sending, setSending] = useState(false);
+    const [attachments, setAttachments] = useState([]);
 
     const combinedMessages = [
         ...(Array.isArray(messages?.messages) ? messages.messages : []),
@@ -30,28 +30,23 @@ const SingleOrders = () => {
 
     const fetchMessages = async (influencerId, campaignId) => {
         setLoading(true);
-        setError(null);
+       
 
         try {
             const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}/${campaignId}`);
             setMessages(response.data);
         } catch (error) {
-            setError('No Messages Found');
-            console.error(error);
+           
         } finally {
             setLoading(false);
         }
     };
 
     const fetchMessagesOther = async (influencerId, campaignId) => {
-
-
         try {
             const response = await axios.get(`${api_url}/api/messages/message-influencer/${influencerId}/${campaignId}`);
             setMessagesOther(response.data);
-        } catch (error) {
-            setError('Error fetching messages');
-            console.error(error);
+        } catch (error) {    
         }
     };
 
@@ -82,26 +77,39 @@ const SingleOrders = () => {
     }, [])
 
     const handleSendMessage = async () => {
-        if (!influencer || !message.trim()) return;
+        if (!influencer || !message.trim() || !selectedCampaigns.length) return;
 
         setSending(true);
         try {
-            await axios.post(`${api_url}/api/messages/send`, {
-                from: selectedCampaigns,
-                to: influencer._id,
-                content: message,
-                campaignIds: selectedCampaigns,
+            const formData = new FormData();
+            formData.append('from', selectedCampaigns);
+            formData.append('to', influencer._id);
+            formData.append('content', message);
+
+            attachments.forEach((file, index) => {
+                formData.append(`attachments`, file);
             });
+
+            await axios.post(`${api_url}/api/messages/send`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+
             setMessage('');
             setSelectedCampaigns([]);
+            setAttachments([]);
             toast.success('Message sent successfully!');
         } catch (error) {
-            console.error('Error sending message:', error);
+            const errorMessage = error.response?.data?.message || 'Failed to send message';
+            setError(errorMessage);
+            toast.error(errorMessage);
         } finally {
             setSending(false);
         }
     };
 
+    const handleFileChange = (e) => {
+        setAttachments([...e.target.files]);
+    };
 
     useEffect(() => {
         if (campaigns?.length > 0) {
@@ -113,7 +121,7 @@ const SingleOrders = () => {
     return (
         <Container>
             <div style={{ marginTop: "20px" }}>
-                <BreadCrumb title={"Influencer List"}/>
+                <BreadCrumb title={"Influencer List"} />
             </div>
             <div className='my-6'>
                 <Toaster position="top-right" reverseOrder={false} />
@@ -212,6 +220,22 @@ const SingleOrders = () => {
                                                 >
                                                     <div className="text-sm text-gray-600">{new Date(message.timestamp).toLocaleString()}</div>
                                                     <h6>{message.content}</h6>
+                                                    {message.attachments && message.attachments.length > 0 && (
+                                                        <div className="my-2">
+                                                            {message.attachments.map((file, idx) => (
+                                                                <div key={idx}>
+                                                                    {file.endsWith('.mp4') || file.endsWith('.mov') ? (
+                                                                        <video width="320" height="240" controls>
+                                                                            <source src={file} type="video/mp4" />
+                                                                            Your browser does not support the video tag.
+                                                                        </video>
+                                                                    ) : (
+                                                                        <img className='cursor-pointer' onClick={() => window.open(file, '_blank')} src={file} alt="attachment" style={{ maxWidth: '100%', maxHeight: '300px' }} />
+                                                                    )}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             ))
                                         ) : (
@@ -239,6 +263,9 @@ const SingleOrders = () => {
                             />
 
                         }
+                        <div className="my-4">
+                            <input type="file" multiple onChange={handleFileChange} />
+                        </div>
 
                         {
                             influencer?.status === "pending" &&

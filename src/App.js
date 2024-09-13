@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import Club from "./Club";
 import Joinclub from "./components/Joinclub";
 import SingleOrders from "./components/Influencers/SingleOrders";
+import SingleOrderInfluencer from "./components/Brand/SingleOrderInfluencer";
 
 
 
@@ -64,6 +65,13 @@ function App() {
           element={
             <ProtectedRoute requiredUserType="brand">
               <SingleOrders />
+            </ProtectedRoute>} />
+
+        <Route
+          path="/orders/:id"
+          element={
+            <ProtectedRoute requiredUserType="contentCreator">
+              <SingleOrderInfluencer />
             </ProtectedRoute>} />
 
         <Route
