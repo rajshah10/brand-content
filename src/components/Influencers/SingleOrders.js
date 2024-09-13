@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Checkbox, Container, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import { Button, Checkbox, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router';
@@ -21,6 +21,17 @@ const SingleOrders = () => {
     const [sending, setSending] = useState(false);
     const [attachments, setAttachments] = useState([]);
 
+    const [openDialog, setOpenDialog] = useState(false);
+    const [statusToUpdate, setStatusToUpdate] = useState('');
+    const [comment, setComment] = useState('');
+
+    const openStatusDialog = (status) => {
+        setStatusToUpdate(status);
+        setOpenDialog(true);
+    };
+
+
+
     const combinedMessages = [
         ...(Array.isArray(messages?.messages) ? messages.messages : []),
         ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
@@ -30,13 +41,13 @@ const SingleOrders = () => {
 
     const fetchMessages = async (influencerId, campaignId) => {
         setLoading(true);
-       
+
 
         try {
             const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}/${campaignId}`);
             setMessages(response.data);
         } catch (error) {
-           
+
         } finally {
             setLoading(false);
         }
@@ -46,7 +57,7 @@ const SingleOrders = () => {
         try {
             const response = await axios.get(`${api_url}/api/messages/message-influencer/${influencerId}/${campaignId}`);
             setMessagesOther(response.data);
-        } catch (error) {    
+        } catch (error) {
         }
     };
 
@@ -77,7 +88,9 @@ const SingleOrders = () => {
     }, [])
 
     const handleSendMessage = async () => {
-        if (!influencer || !message.trim() || !selectedCampaigns.length) return;
+        if (!openDialog) {
+            if (!influencer || !message.trim() || !selectedCampaigns.length) return;
+        }
 
         setSending(true);
         try {
@@ -85,6 +98,9 @@ const SingleOrders = () => {
             formData.append('from', selectedCampaigns);
             formData.append('to', influencer._id);
             formData.append('content', message);
+            if (openDialog) {
+                formData.append('status', statusToUpdate);
+            }
 
             attachments.forEach((file, index) => {
                 formData.append(`attachments`, file);
@@ -95,8 +111,9 @@ const SingleOrders = () => {
             });
 
             setMessage('');
-            setSelectedCampaigns([]);
+            // setSelectedCampaigns([]);
             setAttachments([]);
+            setOpenDialog(false)
             toast.success('Message sent successfully!');
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Failed to send message';
@@ -250,7 +267,7 @@ const SingleOrders = () => {
 
                         {/* Message Form */}
                         {
-                            influencer?.status !== "pending" &&
+                           ( influencer?.status !== "pending" && !openDialog) &&
                             <TextField
                                 label="Message"
                                 multiline
@@ -275,10 +292,63 @@ const SingleOrders = () => {
                         }
                     </>
                 )}
+                <div className='flex justify-center gap-4'>
+                    <div>
+                        <button
+                            disabled={sending || selectedCampaigns?.length === 0}
+                            className={`px-4 py-1 rounded-md bg-blue-400`}
+                            onClick={() => openStatusDialog('Partially Approved')}
+                        >
+                            Partially Approved
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                            disabled={sending || selectedCampaigns?.length === 0}
+                            className={`px-4 py-1 rounded-md bg-blue-400`}
+                            onClick={() => openStatusDialog('Approved')}
+                        >
+                            Approved
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                            disabled={sending || selectedCampaigns?.length === 0}
+                            className={`px-4 py-1 rounded-md bg-blue-400`}
+                            onClick={() => openStatusDialog('Closed')}
+                        >
+                            Closed
+                        </button>
+                    </div>
+                </div>
 
+                <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+                    <DialogTitle>{`Add Comment for ${statusToUpdate}`}</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            label="Comment"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => {setOpenDialog(false);setMessage("")}}>Cancel</Button>
+                        <Button
+                            onClick={handleSendMessage}
+                            color="primary"
 
+                        >
+                            Submit
+                        </Button>
+                    </DialogActions>
+                </Dialog>
 
-                <button
+                {!openDialog && <button
                     className={`px-4 py-1 rounded-md ${sending || selectedCampaigns?.length === 0 || message?.length === 0
                         ? 'bg-gray-400 cursor-not-allowed'
                         : 'bg-[#4F46E5] text-white'
@@ -287,7 +357,7 @@ const SingleOrders = () => {
                     disabled={sending || selectedCampaigns?.length === 0 || message?.length === 0}
                 >
                     {sending ? 'Sending...' : 'Send Message'}
-                </button>
+                </button>}
 
 
             </div>
