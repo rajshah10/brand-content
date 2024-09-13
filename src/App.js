@@ -21,6 +21,7 @@ import { isLoggedIn } from "./utils/auth";
 import { useEffect, useState } from "react";
 import Club from "./Club";
 import Joinclub from "./components/Joinclub";
+import SingleOrders from "./components/Influencers/SingleOrders";
 
 
 
@@ -56,6 +57,13 @@ function App() {
           element={
             <ProtectedRoute requiredUserType="contentCreator">
               <Influencers />
+            </ProtectedRoute>} />
+
+        <Route
+          path="/orders-influencer/:id"
+          element={
+            <ProtectedRoute requiredUserType="brand">
+              <SingleOrders />
             </ProtectedRoute>} />
 
         <Route

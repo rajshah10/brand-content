@@ -122,7 +122,6 @@ const Orders = () => {
         ...(Array.isArray(messagesOther?.messages) ? messagesOther.messages : [])
     ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-    console.log("Orders", orders)
 
     return (
         <>
