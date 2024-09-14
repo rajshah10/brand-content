@@ -61,7 +61,9 @@ const BrandHome = () => {
         setLoading(true);
         try {
             const response = await axios.get(`${api_url}/api/campaign`,{
+               params:{
                 brandid:id
+               }
             });
             if (response.data) {
                 setCampaign(response.data);
