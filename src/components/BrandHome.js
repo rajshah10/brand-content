@@ -19,7 +19,7 @@ import NoFound from './common/NoFound';
 import brand from "../assets/images/brands.jpg"
 
 const BrandHome = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
+    
     const [loading, setLoading] = useState(true);
     const [campaign, setCampaign] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -39,14 +39,7 @@ const BrandHome = () => {
         }));
     };
 
-    const openMenu = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
+   
     const handleDrawerOpen = (influencer) => {
         setSelectedInfluencer(influencer);
         setDrawerOpen(true);
@@ -191,8 +184,8 @@ const BrandHome = () => {
         <>
             <div>
                 <Toaster position="top-right" reverseOrder={false} />
-                <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick} />
+                {/* <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+                <Header handleClick={handleClick} /> */}
             </div>
             <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: `url(${brand})`,backgroundPosition: 'center' }}>
                 <div className="absolute flex flex-col inset-0 bg-black bg-opacity-25 items-center justify-center">

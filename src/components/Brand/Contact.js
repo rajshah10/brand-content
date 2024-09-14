@@ -39,8 +39,8 @@ const Contact = () => {
                 position="top-right"
                 reverseOrder={false}
             />
-            <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-            <Header handleClick={handleClick} search={false} />
+            {/* <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+            <Header handleClick={handleClick} search={false} /> */}
             <Container>
                 <div className="my-12 mx-8">
                     <div className="flex justify-between flex-wrap gap-3 md:gap:0 lg:gap-0">

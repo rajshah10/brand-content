@@ -72,8 +72,8 @@ const OrdersInfluencers = () => {
     return (
         <>
             <div>
-                <MenuComponent open={Boolean(anchorEl)} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick} />
+                {/* <MenuComponent open={Boolean(anchorEl)} anchorEl={anchorEl} handleClose={handleClose} />
+                <Header handleClick={handleClick} /> */}
             </div>
             <Container>
                 <div className="my-12 mx-8">

@@ -23,6 +23,8 @@ import Club from "./Club";
 import Joinclub from "./components/Joinclub";
 import SingleOrders from "./components/Influencers/SingleOrders";
 import SingleOrderInfluencer from "./components/Brand/SingleOrderInfluencer";
+import MenuComponent from "./components/common/MenuComponent";
+import Header from "./components/common/Header";
 
 
 
@@ -31,6 +33,15 @@ import SingleOrderInfluencer from "./components/Brand/SingleOrderInfluencer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   useEffect(() => {
     const status = isLoggedIn();
@@ -39,7 +50,12 @@ function App() {
 
   return (
     <>
-
+      {
+        loggedIn && <>
+          <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+          <Header handleClick={handleClick} />
+        </>
+      }
       <Routes>
         <Route path="/" element={<Home />} />
         {!loggedIn && (

@@ -108,8 +108,8 @@ const ManageCampaign = () => {
             <div>
                 <Toaster position="top-right" reverseOrder={false} />
                 <DrawerForInfluencers openDraw={openDraw} closeDrawer={closeDrawer} selectedData={selectedData} hiredCounts={hiredCounts} />
-                <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick} />
+                {/* <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+                <Header handleClick={handleClick} /> */}
             </div>
             <Container>
                 {

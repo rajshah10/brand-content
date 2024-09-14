@@ -131,8 +131,8 @@ const CampaignCreation = () => {
                 reverseOrder={false}
             />
             <div>
-                <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
-                <Header handleClick={handleClick} search={false} />
+                {/* <MenuComponent open={openMenu} anchorEl={anchorEl} handleClose={handleClose} />
+                <Header handleClick={handleClick} search={false} /> */}
             </div>
             <div className="mx-auto px-4 sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
 
