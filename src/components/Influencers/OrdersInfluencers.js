@@ -116,6 +116,7 @@ const OrdersInfluencers = () => {
                                         <th scope="col" className="px-6 py-3">Email</th>
                                         <th scope="col" className="px-6 py-3">Niche</th>
                                         <th scope="col" className="px-6 py-3">Followers</th>
+                                        <th scope="col" className="px-6 py-3">Notifications</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -125,6 +126,7 @@ const OrdersInfluencers = () => {
                                             <td className="px-6 py-4"><Skeleton width="150px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="80px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="120px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="120px" height={20} /></td>
                                         </tr>
                                     ))}
@@ -151,7 +153,7 @@ const OrdersInfluencers = () => {
                                     {filteredInfluencers?.length > 0 ? (
                                         filteredInfluencers.map((influencer) => (
                                             <tr className="bg-white border-b cursor-pointer" key={influencer._id} onClick={() => handleRowClick(influencer)}>
-                                                <th className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</th>
+                                                <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">{influencer._id}</td>
                                                 <td className="px-6 py-4 font-medium text-slate-500 whitespace-nowrap">
                                                     {influencer.firstName} {influencer.lastName}
                                                 </td>

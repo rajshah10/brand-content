@@ -86,6 +86,7 @@ const Orders = () => {
                                         <th scope="col" className="px-6 py-3">Company Name</th>
                                         <th scope="col" className="px-6 py-3">Compensation</th>
                                         <th scope="col" className="px-6 py-3">Deadlines</th>
+                                        <th scope="col" className="px-6 py-3">Notifications</th>
 
                                     </tr>
                                 </thead>
@@ -96,6 +97,7 @@ const Orders = () => {
                                             <td className="px-6 py-4"><Skeleton width="150px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="80px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="100px" height={20} /></td>
+                                            <td className="px-6 py-4"><Skeleton width="120px" height={20} /></td>
                                             <td className="px-6 py-4"><Skeleton width="120px" height={20} /></td>
                                         </tr>
                                     ))}
