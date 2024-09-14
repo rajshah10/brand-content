@@ -7,8 +7,8 @@ import ContentCreatorFlow from "./ContentCreatorFlow";
 import Brands from "./Brands";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
-import horse6 from "../assets/images/horse6.jpeg"
-import horse7 from "../assets/images/horse7.jpeg"
+import horse6 from "../assets/images/horse6.JPEG"
+import horse7 from "../assets/images/horse7.JPEG"
 import horse8 from "../assets/images/horse8.JPEG"
 import horse9 from "../assets/images/horse9.JPEG"
 import horse10 from "../assets/images/horse10 (1).jpg"

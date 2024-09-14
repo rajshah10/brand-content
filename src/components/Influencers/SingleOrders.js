@@ -1,17 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Checkbox, Container, Dialog, InputAdornment, DialogActions, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router';
 import { api_url } from '../../constants';
 import toast, { Toaster } from 'react-hot-toast';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import BreadCrumb from '../common/BreadCrumb';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { makeStyles } from '@mui/styles';
 
 const SingleOrders = () => {
     const location = useLocation();
+    const fileInputRef = useRef(null);
     const [campaigns, setCampaigns] = useState([])
     const [campaignsInfluencers, setCampaignsForInfluencers] = useState([]);
     const { influencer } = location.state || {};
@@ -30,9 +33,34 @@ const SingleOrders = () => {
     const openStatusDialog = (status) => {
         setStatusToUpdate(status);
         setOpenDialog(true);
+        setMessage("")
     };
 
+    const useStyles = makeStyles((theme) => ({
+        container: {
+            marginTop: "15px",
+            // display: 'flex',
+            flexDirection: 'column',
+            transition: 'transform 0.3s ease',
+            display: (props) => props.isSlid ? 'none' : 'flex',
+        },
+        buttonContainer: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+        },
+        iconButton: {
+            transition: 'opacity 0.3s ease',
+        },
+    }));
 
+    const [isSlid, setIsSlid] = useState(false);
+    const classes = useStyles({ isSlid });
+
+    const handleSlide = () => {
+        setIsSlid(prev => !prev);
+    };
 
     const combinedMessages = [
         ...(Array.isArray(messages?.messages) ? messages.messages : []),
@@ -43,8 +71,6 @@ const SingleOrders = () => {
 
     const fetchMessages = async (influencerId, campaignId) => {
         setLoading(true);
-
-
         try {
             const response = await axios.get(`${api_url}/api/messages/message-brand/${influencerId}/${campaignId}`);
             setMessages(response.data);
@@ -67,14 +93,15 @@ const SingleOrders = () => {
         setSelectedCampaigns(prev => (prev === campaignId ? null : campaignId));
         setMessages([])
         setMessagesOther([])
-        fetchMessages(influencer?._id, campaignId)
-        fetchMessagesOther(influencer?._id, campaignId)
+        if (!selectedCampaigns?.includes(campaignId)) {
+            fetchMessages(influencer?._id, campaignId)
+            fetchMessagesOther(influencer?._id, campaignId)
+        }
+
     };
 
     const id = localStorage.getItem('id')
 
-    console.log("campaignsInfluencers", campaignsInfluencers)
-    console.log("id", id)
 
     const getAllCampaigns = async () => {
 
@@ -120,6 +147,7 @@ const SingleOrders = () => {
             setAttachments([]);
             setOpenDialog(false)
             toast.success('Message sent successfully!');
+            fetchMessages(selectedCampaigns, influencer._id)
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Failed to send message';
             setError(errorMessage);
@@ -131,7 +159,15 @@ const SingleOrders = () => {
 
     const handleFileChange = (e) => {
         setAttachments([...e.target.files]);
+        // Reset the file input value
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
     };
+
+    const fileNamesArray = attachments.length > 0
+        ? Array.from(attachments).map(file => file.name)
+        : [];
 
     useEffect(() => {
         if (campaigns?.length > 0) {
@@ -149,53 +185,71 @@ const SingleOrders = () => {
             {influencer && (
                 <div className="flex flex-col lg:flex-row gap-8 px-4">
                     {/* Left Side - Details Section */}
-                    <div className="w-full lg:w-1/3">
-                        <Paper elevation={3} className="p-6">
-                            <Typography variant="h5" className="mb-4 font-bold text-gray-800">Influencer Details</Typography>
-                            <img className="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src={influencer.media} alt="Influencer" />
-                            <TableContainer>
-                                <Table>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell className="font-semibold">Name:</TableCell>
-                                            <TableCell>{influencer.firstName} {influencer.lastName}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="font-semibold">Bio:</TableCell>
-                                            <TableCell>{influencer.bio}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="font-semibold">Email:</TableCell>
-                                            <TableCell>{influencer.email}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="font-semibold">Niche:</TableCell>
-                                            <TableCell>{influencer.niche.join(', ')}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="font-semibold">Phone:</TableCell>
-                                            <TableCell>{influencer.phoneNumber}</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                            <Typography variant="h6" className="mt-4 mb-2 font-semibold">Social Media Links</Typography>
-                            <ul className="list-disc pl-5">
-                                {influencer.socialMediaLinks.map(link => (
-                                    <li key={link.id}>
-                                        <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                                            {link.link.split('/')[2]}: {link.followerCount}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+
+                    <div>
+                        <Paper elevation={3} className={`p-6`} >
+                            <div className='flex justify-between items-center'>
+                                {
+                                    !isSlid && <IconButton className={classes.iconButton} onClick={handleSlide}>
+                                        <KeyboardArrowLeftIcon />
+                                    </IconButton>
+                                }
+                                {
+                                    isSlid && <IconButton className={classes.iconButton} onClick={handleSlide}>
+                                        <KeyboardArrowRightIcon />
+                                    </IconButton>
+                                }
+                            </div>
+                            <div className={classes.container}>
+                                <Typography variant="h5" className="mb-4 font-bold text-gray-800">Influencer Details</Typography>
+                                <img className="w-48 h-48 mt-4 rounded-full mx-auto mb-4 object-cover" src={influencer.media} alt="Influencer" />
+                                <TableContainer >
+                                    <Table>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell className="font-semibold">Name:</TableCell>
+                                                <TableCell>{influencer.firstName} {influencer.lastName}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell className="font-semibold">Bio:</TableCell>
+                                                <TableCell>{influencer.bio}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell className="font-semibold">Email:</TableCell>
+                                                <TableCell>{influencer.email}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell className="font-semibold">Niche:</TableCell>
+                                                <TableCell>{influencer.niche.join(', ')}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell className="font-semibold">Phone:</TableCell>
+                                                <TableCell>{influencer.phoneNumber}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell className="font-semibold">Socials:</TableCell>
+                                                <TableCell><ul className="list-disc pl-5">
+                                                    {influencer.socialMediaLinks.map(link => (
+                                                        <li key={link.id}>
+                                                            <a href={link.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                                                {link.link.split('/')[2]}: {link.followerCount}
+                                                            </a>
+                                                        </li>
+                                                    ))}
+                                                </ul></TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+
+                            </div>
                         </Paper>
                     </div>
 
                     {/* Right Side - Messages and Campaigns Section */}
-                    <div className="w-full lg:w-2/3">
+                    <div className={`w-full`}>
                         <Paper elevation={3} className="p-6">
-                            <Typography variant="h5" className="mb-4 font-bold text-gray-800">Campaigns and Messages</Typography>
+                            {/* <Typography variant="h5" className="mb-4 font-bold text-gray-800">Campaigns and Messages</Typography> */}
 
                             {influencer?.status !== "pending" && (
                                 <div className="mb-6">
@@ -231,7 +285,7 @@ const SingleOrders = () => {
                             {combinedMessages?.length > 0 && influencer?.status !== "pending" && (
                                 <div className="mb-6">
                                     <Typography variant="h6" gutterBottom className="font-semibold">Messages</Typography>
-                                    <div className="max-h-64 overflow-y-auto border rounded-md p-4">
+                                    <div className="h-96 overflow-y-auto border rounded-md p-4">
                                         {combinedMessages.map((message, index) => (
                                             <div
                                                 key={index}
@@ -273,7 +327,7 @@ const SingleOrders = () => {
                                     <TextField
                                         label="Message"
                                         multiline
-                                        maxRows={4}  // Limits the text box to expand up to 4 rows
+                                        maxRows={4}
                                         fullWidth
                                         variant="outlined"
                                         value={message}
@@ -287,6 +341,7 @@ const SingleOrders = () => {
                                                     >
                                                         <AttachFileIcon />
                                                         <input
+                                                            ref={fileInputRef}
                                                             type="file"
                                                             hidden
                                                             multiple
@@ -310,6 +365,15 @@ const SingleOrders = () => {
                                     />
                                 </div>
                             )}
+                            {fileNamesArray.length > 0 && (
+                                <Typography
+                                    variant="body2"
+                                    color="textSecondary"
+                                    style={{ marginTop: '8px', whiteSpace: 'pre-line' }} // Ensure new lines are respected
+                                >
+                                    {fileNamesArray.join('\n')}
+                                </Typography>
+                            )}
 
                             {influencer?.status === "pending" && (
                                 <Typography variant="body1" className="my-4 text-red-500">
@@ -324,7 +388,7 @@ const SingleOrders = () => {
                                     disabled={sending || selectedCampaigns?.length === 0}
                                     onClick={() => openStatusDialog('Partially Approved')}
                                 >
-                                    Partially Approved
+                                    Partially Approve
                                 </Button>
                                 <Button
                                     variant="contained"
@@ -332,7 +396,7 @@ const SingleOrders = () => {
                                     disabled={sending || selectedCampaigns?.length === 0}
                                     onClick={() => openStatusDialog('Approved')}
                                 >
-                                    Approved
+                                    Approve
                                 </Button>
                                 <Button
                                     variant="contained"
@@ -340,7 +404,7 @@ const SingleOrders = () => {
                                     disabled={sending || selectedCampaigns?.length === 0}
                                     onClick={() => openStatusDialog('Closed')}
                                 >
-                                    Closed
+                                    Close
                                 </Button>
                             </div>
 
@@ -361,7 +425,7 @@ const SingleOrders = () => {
             )}
 
             <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-                <DialogTitle>Add Comment for {statusToUpdate}</DialogTitle>
+                <DialogTitle>Add Comment</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus

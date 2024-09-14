@@ -1,10 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router';
 import { api_url } from '../../constants';
 import toast, { Toaster } from 'react-hot-toast';
-import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@mui/material';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import SendIcon from '@mui/icons-material/Send';
+import { Container, IconButton, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import BreadCrumb from '../common/BreadCrumb';
+import { makeStyles } from '@mui/styles';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const SingleOrderInfluencer = () => {
     const [sending, setSending] = useState(false);
@@ -16,6 +21,7 @@ const SingleOrderInfluencer = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [attachments, setAttachments] = useState([]);
+    const fileInputRef = useRef(null);
 
 
     const location = useLocation();
@@ -70,6 +76,7 @@ const SingleOrderInfluencer = () => {
             setMessage('');
             setAttachments([]);
             toast.success('Message sent successfully!');
+            fetchMessagesOther(fromId,campaign?._id)
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Failed to send message';
             setError(errorMessage);
@@ -85,52 +92,109 @@ const SingleOrderInfluencer = () => {
 
     const handleFileChange = (e) => {
         setAttachments([...e.target.files]);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+    const fileNamesArray = attachments.length > 0
+        ? Array.from(attachments).map(file => file.name)
+        : [];
+
+    const useStyles = makeStyles((theme) => ({
+        container: {
+            marginTop: "15px",
+            // display: 'flex',
+            flexDirection: 'column',
+            transition: 'transform 0.3s ease',
+            display: (props) => props.isSlid ? 'none' : 'flex',
+        },
+        buttonContainer: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+        },
+        iconButton: {
+            transition: 'opacity 0.3s ease',
+        },
+    }));
+
+    const [isSlid, setIsSlid] = useState(false);
+    const classes = useStyles({ isSlid });
+
+    const handleSlide = () => {
+        setIsSlid(prev => !prev);
     };
 
     return (
-        <Container>
-             <Toaster position="top-right" reverseOrder={false} />
-            <div style={{ marginTop: "20px" }}>
+        <Container maxWidth="xl" className="py-4"> 
+            <Toaster position="top-right" reverseOrder={false} />
+            <div style={{ margin: "10px 20px" }}>
                 <BreadCrumb title={"Orders"} />
             </div>
-            <div>
-                {campaign && (
-                    <div>
-                        <TableContainer component={Paper}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell colSpan={2} align="left">
-                                            <h4>Campaign Details</h4>
-                                        </TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell><strong>Order Id:</strong></TableCell>
-                                        <TableCell>{campaign._id}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell><strong>Email:</strong></TableCell>
-                                        <TableCell>{campaign.COEmail}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell><strong>Company Name:</strong></TableCell>
-                                        <TableCell>{campaign.companyName}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell><strong>Compensation:</strong></TableCell>
-                                        <TableCell>{campaign.compensation}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell><strong>Deadlines:</strong></TableCell>
-                                        <TableCell>{campaign.deadlines}</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+            <div className="flex flex-col lg:flex-row gap-8 px-4">
+                <Paper elevation={3} className={`p-6`} >
+                    <div className='flex justify-between items-center'>
                         {
-                            combinedMessages?.length > 0 && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-64 message-overflow">
+                            !isSlid && <IconButton className={classes.iconButton} onClick={handleSlide}>
+                                <KeyboardArrowLeftIcon />
+                            </IconButton>
+                        }
+                        {
+                            isSlid && <IconButton className={classes.iconButton} onClick={handleSlide}>
+                                <KeyboardArrowRightIcon />
+                            </IconButton>
+                        }
+                    </div>
+
+
+                    <div className={classes.container}>
+                        {campaign && (
+                            <div>
+                                <TableContainer >
+                                    <Table>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell colSpan={2} align="left">
+                                                    <Typography variant="h5" className="mb-4 font-bold text-gray-800">Campaign Details</Typography>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell><strong>Order Id:</strong></TableCell>
+                                                <TableCell>{campaign._id}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell><strong>Email:</strong></TableCell>
+                                                <TableCell>{campaign.COEmail}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell><strong>Company Name:</strong></TableCell>
+                                                <TableCell>{campaign.companyName}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell><strong>Compensation:</strong></TableCell>
+                                                <TableCell>{campaign.compensation}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell><strong>Deadlines:</strong></TableCell>
+                                                <TableCell>{campaign.deadlines}</TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+
+                            </div>
+
+                        )}
+                    </div>
+                </Paper>
+
+                <div className={`w-full`}>
+                    <Paper elevation={3} className="p-6">
+                        {
+                            combinedMessages?.length > 0 && <div className="mt-6 grid grid-cols-1 border p-2 rounded-sm overflow-y-auto h-96 message-overflow">
                                 <div>
                                     <h6>Messages</h6>
                                     <div className="mt-2 flex flex-col gap-2">
@@ -173,31 +237,69 @@ const SingleOrderInfluencer = () => {
                             <TextField
                                 fullWidth
                                 multiline
-                                rows={4}
+                                maxRows={4}
                                 variant="outlined"
                                 label="Write a message"
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <IconButton
+                                                component="label"
+                                                color="primary"
+                                            >
+                                                <AttachFileIcon />
+                                                <input
+                                                    ref={fileInputRef}
+                                                    type="file"
+                                                    hidden
+                                                    multiple
+                                                    onChange={handleFileChange}
+                                                />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                color="primary"
+                                                disabled={sending || message?.length === 0}
+                                                onClick={handleSendMessage}
+                                            >
+                                                <SendIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
                             />
                         </div>
-                        <div className="my-4">
+                        {fileNamesArray.length > 0 && (
+                            <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                style={{ marginTop: '8px', whiteSpace: 'pre-line' }} // Ensure new lines are respected
+                            >
+                                {fileNamesArray.join('\n')}
+                            </Typography>
+                        )}
+                        {/* <div className="my-4">
                             <input type="file" multiple onChange={handleFileChange} />
-                        </div>
-                    </div>
-                )}
+                        </div> */}
+                    </Paper>
+                </div>
+            </div>
 
-                <button className={`px-4 py-1 rounded-md ${sending || message?.length === 0
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-[#4F46E5] text-white'
-                    }`} onClick={handleSendMessage} color="primary" >
-                    {sending ? 'Sending...' : 'Send Message'}
-                </button>
-                {/* <button className="px-4 py-1 bg-slate-200 text-black rounded-md"  color="primary">
+            {/* <button className={`px-4 py-1 rounded-md ${sending || message?.length === 0
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-[#4F46E5] text-white'
+                }`} onClick={handleSendMessage} color="primary" >
+                {sending ? 'Sending...' : 'Send Message'}
+            </button> */}
+            {/* <button className="px-4 py-1 bg-slate-200 text-black rounded-md"  color="primary">
                 Close
             </button> */}
-
-            </div>
-        </Container>
+        </Container >
     )
 }
 
