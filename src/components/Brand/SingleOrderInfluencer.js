@@ -76,7 +76,7 @@ const SingleOrderInfluencer = () => {
             setMessage('');
             setAttachments([]);
             toast.success('Message sent successfully!');
-            fetchMessagesOther(fromId,campaign?._id)
+            fetchMessagesOther(fromId, campaign?._id)
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Failed to send message';
             setError(errorMessage);
@@ -127,13 +127,13 @@ const SingleOrderInfluencer = () => {
     };
 
     return (
-        <Container maxWidth="xl" className="py-4"> 
+        <Container maxWidth="xl" className="py-4">
             <Toaster position="top-right" reverseOrder={false} />
             <div style={{ margin: "10px 20px" }}>
                 <BreadCrumb title={"Orders"} />
             </div>
             <div className="flex flex-col lg:flex-row gap-8 px-4">
-                <Paper elevation={3} className={`p-6`} >
+                <Paper elevation={3} className={`p-6 sm:w-full ${isSlid ? "" : "lg:w-96"}`} >
                     <div className='flex justify-between items-center'>
                         {
                             !isSlid && <IconButton className={classes.iconButton} onClick={handleSlide}>

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Checkbox, Container, Dialog, InputAdornment, DialogActions, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import { Button, Checkbox, Container, Dialog, InputAdornment, DialogActions, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Avatar } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router';
@@ -187,7 +187,7 @@ const SingleOrders = () => {
                     {/* Left Side - Details Section */}
 
                     <div>
-                        <Paper elevation={3} className={`p-6`} >
+                        <Paper elevation={3} className={`p-6 sm:w-full ${isSlid ? "" : "lg:w-96"}`} >
                             <div className='flex justify-between items-center'>
                                 {
                                     !isSlid && <IconButton className={classes.iconButton} onClick={handleSlide}>
@@ -202,7 +202,7 @@ const SingleOrders = () => {
                             </div>
                             <div className={classes.container}>
                                 <Typography variant="h5" className="mb-4 font-bold text-gray-800">Influencer Details</Typography>
-                                <img className="w-48 h-48 mt-4 rounded-full mx-auto mb-4 object-cover" src={influencer.media} alt="Influencer" />
+                                <Avatar sx={{ width: "48px", height: "48px" }} className="mt-4 rounded-full mx-auto mb-4 object-cover" src={influencer.media} alt={""} />
                                 <TableContainer >
                                     <Table>
                                         <TableBody>
