@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import horse2 from "../assets/images/horse2.jpg"
+import horse2 from "../assets/images/horse12.jpg"
 
 const Joinclub = () => {
     return (
         <div>
             <div className="relative pt-16 pb-32 flex content-center items-center justify-center"
                 style={{
-                    minHeight: "40vh"
+                    minHeight: "70vh"
                 }}>
                 <div className="absolute top-0 w-full h-full bg-center bg-cover"
                     style={{
@@ -35,12 +35,39 @@ const Joinclub = () => {
                         Equellence’s Mission
                     </h3>
                     <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                        In a realm where excellence transcends mere aspiration, Equellence emerges as the herald of a new golden age—a world where opulence, wisdom, and grace converge into a symphony of human potential. Equellence exists to unlock the doors of divine experience, offering all the opportunity to access a frequency of pure, unadulterated love.
-                        At the heart of this mission stands the horse: a being of light incarnate, an ancient and exalted force that has forever shaped our path. The horse is no ordinary creature. Horses possess an extraordinary aura, vibrating at a powerful frequency of 444 Hz, known to soothe and heal the human soul. Their mere presence extends beyond the ordinary, capable of sensing a heartbeat from over 40 feet away, their intuitive gifts inspiring awe in even the most skeptical minds. For thousands of years, horses have carried us, guided us, and helped elevate the human race. They are the bearers of a frequency that illuminates our greatest potential, awakening within us the dormant forces of love, clarity, and divine purpose.
+                        At Equellence, we offer much more than just travel opportunities and collaborations with prestigious brands—though, yes, those are certainly part of the experience. What truly sets Equellence apart is the unparalleled community and network that our members become a part of. When you join Equellence, you enter a realm of kindred spirits—a collective of creators bound not just by their love for the equestrian world but by a shared vision to elevate humanity and themselves to new heights
 
                     </p>
                     <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                        Equellence is more than a brand—it is a revolution of consciousness, a movement toward the realization of a world in which the divine nature of the horse is universally recognized, celebrated, and cherished. This is a world where anyone, no matter their background, can rise into their own version of excellence, connected to the cosmic energy embodied by these extraordinary creatures.
+                        We are more than a club; we are a movement, a network of excellence that will amplify your voice and propel your message to the farthest reaches of your potential. Our creators are not only gifted with opportunities but equipped with the strategies necessary to become masters of their own story. Through our specialized mentorship, you will learn how to channel your message into a powerful force, honing your influence to resonate deeply with your audience. At Equellence, we believe that your personal narrative, when aligned with the wisdom and majesty of the horse, has the power to transcend the ordinary and impact lives. We will teach you how to make this a reality through social media mastery, storytelling techniques, and the secrets to sustainable growth in the content creator space.
+
+
+                    </p>
+                    <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                        Equellence is not just fostering collaborations; we are fostering equestrian excellence. By joining us, you are aligning yourself with a legacy—a network that will guide, support, and uplift you as you ascend to your highest potential. You’ll be surrounded by others who, like you, have defied the odds, remaining steadfast in their authenticity and light. Together, we will craft a future where your voice, your vision, and your story can truly soar.
+                        .
+
+
+                    </p>
+                    <p className='mt-4 text-lg  text-gray-600'>
+                       <p className='font-bold'> WHEN YOU JOIN THE EQUELLENCE CLUB YOU RECEIVE:</p>
+                        <ul class="list-disc pl-5 mt-4 space-y-2 text-gray-700">
+                            <li>Access to our club forum with our vast equestrian content creator network consisting of riders, barns, and trainers</li>
+                            <li>Collaboration and content opportunities</li>
+                            <li>Travel opportunities (lodging included)</li>
+                            <li>VIP Passes to various events and horse shows</li>
+                            <li>Exclusive networking events</li>
+                            <li>Access to collaborate with our brands, including paid, gifted, and modeling opportunities</li>
+                            <li>Extra account help and boosting</li>
+                            <li>Masterclass sessions and tutorials to help grow a following</li>
+                            <li>Plus many more perks!</li>
+                        </ul>
+
+                    </p>
+                    <p className='mt-4 text-lg leading-relaxed text-gray-600'>
+                        This is your chance to not only elevate your brand but to become part of a new change to the horse world—one that recognizes the beauty, strength, love and diversity through horses.
+
+                        Step into your greatness. With Equellence, you are not just a content creator; you are a beacon of influence, a force of nature, and a beacon of excellence.
 
                     </p>
                     <p className="mt-4 text-lg leading-relaxed text-gray-600">

@@ -15,9 +15,9 @@ import c5 from "../assets/images/in4.jpg"
 const Home = () => {
     const navigate = useNavigate()
     const featuredItems = [
-        { id: 1, image: c2, name: 'Skylynn Floyd', price: "835K", media: "TikTok" },
+        { id: 1, image: c2, name: 'Skylynn Floyd', price: "835K", media: "Instagram" },
+        { id: 3, image: owner, name: 'Nana.sfo', price: "140k", media: "TikTok" },
         { id: 2, image: c3, name: 'Maggie Dale', price: "42.4K", media: "Instagram" },
-        { id: 3, image: owner, name: 'Nana.sfo', price: "134K", media: "TikTok" },
         // { id: 4, image: c4, name: 'Claire Tucker', media: "Instagram", price: "15.1K" },
         { id: 5, image: c5, name: 'Gray Clink ', media: "Instagram", price: "2.6K" }
     ];

@@ -114,7 +114,7 @@ export default function Navbar(props) {
 
               >
 
-                <span onClick={() => navigate("/about")} className="inline-block ml-2 cursor-pointer">About Equellence’s
+                <span onClick={() => navigate("/about")} className="inline-block ml-2 cursor-pointer">About Us
                 </span>
               </a>
             </li>

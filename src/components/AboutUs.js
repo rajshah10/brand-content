@@ -26,7 +26,7 @@ const AboutUs = () => {
                             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                                 <div className="pr-12 mt-6">
                                     <h1 className="text-white font-semibold text-5xl">
-                                        About Equellence
+                                        About Us
                                     </h1>
                                     <p className="mt-4 text-lg text-gray-300">
                                         At Equellence, we work with brands and Equestrians to create a new world vision.
@@ -148,7 +148,7 @@ const AboutUs = () => {
                                 <div className="w-full ml-auto mr-auto px-4">
                                     <div className="md:pr-12">
                                         <p className='mt-4 text-lg  text-gray-600'>
-                                            Nana’s long-term goals as an Equestrian are to become an industry professional, open her stable, and compete at the Grand prix level. Nana also plans to open a nonprofit to help Ghanaian Equestrians succeed through horses, handwork, and passion. Nana also has dreams in the fashion, acting, modeling, and influencer world. Nana also has big ambitions and wants to create an environment where every rider can succeed through talent and passion, so Equellence was formed. She has over 137K followers across all her social platforms and is committed to diversifying the horse world one hoof at a time.
+                                            Nana’s long-term goals as an Equestrian are to become an industry professional, open her stable, and compete at the Grand prix level. Nana also plans to open a nonprofit to help Ghanaian Equestrians succeed through horses, handwork, and passion. Nana also has dreams in the fashion, acting, modeling, and influencer world. Nana also has big ambitions and wants to create an environment where every rider can succeed through talent and passion, so Equellence was formed. She has over 207,000 followers across all her social platforms and is committed to diversifying the horse world one hoof at a time.
                                         </p>
                                     </div>
                                 </div>

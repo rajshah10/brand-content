@@ -21,6 +21,8 @@ import brand from "../assets/images/brands.jpg"
 const BrandHome = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [token, setToken] = useState()
+    const [type, setType] = useState()
     const [campaign, setCampaign] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [selectedInfluencer, setSelectedInfluencer] = useState(null);
@@ -56,8 +58,8 @@ const BrandHome = () => {
         setDrawerOpen(false);
         setSelectedInfluencer(null);
     };
-    const id = localStorage.getItem('id')
-    const getAllCampaigns = async () => {
+
+    const getAllCampaigns = async (id) => {
         setLoading(true);
         try {
             const response = await axios.get(`${api_url}/api/campaign`,{
@@ -75,6 +77,23 @@ const BrandHome = () => {
         }
     };
 
+    const getProfile = async () => {
+        const token = localStorage.getItem('token');
+        const type = localStorage.getItem('type')
+        setToken(token)
+        setType(type)
+        try {
+            const response = await axios.get(`${api_url}/api/${type === "brand" ? "brands" : "influencers"}/profile`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            getAllCampaigns(response.data._id)
+        } catch (error) {
+            throw error;
+        }
+    }
+
     const getInfluencerData = async () => {
         const response = await axios.get(`${api_url}/api/influencers`)
         if (response.data) {
@@ -86,7 +105,7 @@ const BrandHome = () => {
     }, [])
 
     useEffect(() => {
-        getAllCampaigns()
+        getProfile()
     }, [])
 
 
