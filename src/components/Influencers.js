@@ -16,7 +16,6 @@ import { useLocation } from "react-router";
 import { api_url } from "../constants";
 import NoFound from "../components/common/NoFound"
 import infl from "../assets/images/influencer.jpg"
-import BreadCrumb from "./common/BreadCrumb";
 
 
 const Influencers = () => {
@@ -24,7 +23,6 @@ const Influencers = () => {
     const [campaign, setCampaign] = useState([]);
     const [openDraw, setOpenDrawer] = useState(false);
     const [selectedData, setSelectedData] = useState({});
-    const buttonColor = 'bg-[#4F46E5]';
     const [clickedButtons, setClickedButtons] = useState({});
     const [filterType, setFilterType] = useState('');
     const [filterPlatform, setFilterPlatform] = useState('');
@@ -53,7 +51,8 @@ const Influencers = () => {
         setCampaignId(location.state?.campaignId || '');
     }, [location.state?.campaignId]);
 
-    const handleButtonClick = async (campaignId, influencerId) => {
+    const handleButtonClick = async (campaignId, influencerId, camp) => {
+        const firstName = localStorage.getItem('firstName')
         try {
             if (influencerId) {
                 const response = await axios.get(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}/status`);
@@ -62,7 +61,7 @@ const Influencers = () => {
                     toast.error('You have already assigned or applied to this campaign.');
                     return
                 } else {
-                    await axios.post(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}`);
+                    await axios.post(`${api_url}/api/campaign/${campaignId}/influencer/${influencerId}`, { firstName, email: camp?.COEmail, cname: camp?.companyName });
                     toast.success('Application submitted successfully. Please wait for brands to hire you.!');
                 }
 
@@ -148,7 +147,7 @@ const Influencers = () => {
             <div className="relative pt-16 pb-32 flex content-center items-center justify-center" style={{ minHeight: "58vh" }}>
                 <div className="absolute top-0 w-full h-full" style={{
                     backgroundImage: `url(${infl})`,
-                     backgroundPosition: 'center'
+                    backgroundPosition: 'center'
                 }}>
                     <span id="blackOverlay" className="w-full h-full absolute opacity-25 bg-black"></span>
                 </div>
@@ -284,7 +283,7 @@ const Influencers = () => {
                                                         </div>
                                                         <button
                                                             className={`${!clickedButtons[camp._id] ? 'bg-[#4F46E5] text-white' : 'bg-indigo-500 text-white'} rounded-md px-6 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-                                                            onClick={() => handleButtonClick(camp._id, influencerId)}
+                                                            onClick={() => handleButtonClick(camp._id, influencerId, camp)}
                                                         >
                                                             {!clickedButtons[camp._id] ? 'Apply Now' : 'Applied'}
                                                         </button>

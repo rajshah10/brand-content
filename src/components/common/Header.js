@@ -26,6 +26,7 @@ const Header = (props) => {
             setProfile(response.data)
             if (response.data) {
                 localStorage.setItem('id', response?.data?._id)
+                localStorage.setItem('firstName',response?.data?.firstName)
             }
         } catch (error) {
             throw error;
