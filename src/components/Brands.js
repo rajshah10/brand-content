@@ -101,8 +101,11 @@ const Brands = (props) => {
                     setLoading(false);
                     props.setShowPricingTable(true);
                     setTimeout(() => {
-                        toast.success('Please make sure to secure your account by clicking on View Business plans below and complete the payment to access the site.');
+                        toast.success('Book a call to secure ur subscription')
                     }, 2000);
+                    setTimeout(() => {
+                        toast.success('Please make sure to secure your account by clicking on View Business plans below and complete the payment to access the site.');
+                    }, 4000);
                 }
 
             }
@@ -446,7 +449,7 @@ const Brands = (props) => {
                                 <p className='text-sm text-gray-600 mt-1 italic'>Pls check your email for the auth code.</p>
                             </div>
                         </div>
-                        <div>
+                        {/* <div>
                             <label htmlFor="auth" className="block text-sm font-medium leading-6 text-gray-900">
                                 Subscription - <span className="cursor-pointer text-blue-700" onClick={handleSubscription}>View Business Plans</span>
                             </label>
@@ -490,7 +493,7 @@ const Brands = (props) => {
                                 </DialogContent>
 
                             </Dialog>
-                        </div>
+                        </div> */}
 
                         <div>
                             {/* <p className="block text-xs font-medium leading-6 text-gray-900 italic">
