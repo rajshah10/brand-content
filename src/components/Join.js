@@ -240,8 +240,12 @@ const Join = () => {
 
             </div>
             {
-                selectedOption === "brand" && <div ref={pricingRef} className='mt-96 md:mt-0 lg:mt-0'>
-                    <StripePricingTable />
+                selectedOption === "brand" && 
+                <div ref={pricingRef} className='mt-96 pyu-8 md:mt-0 lg:mt-0 flex flex-col items-center'>
+                    <div className='my-24'>
+                    <p>Brands, want to join Equellence? Book a call with us to get signed up!</p>
+                    <a href="https://calendly.com/meetingswithnana/discovery-call" class="button">Book a call</a>
+                    </div>
                 </div>
             }
 

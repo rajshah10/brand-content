@@ -120,7 +120,7 @@ function App() {
         <Route
           path="/orders-influencer"
           element={
-            <ProtectedRoute requiredUserType="brand" >
+            <ProtectedRoute requiredUserType="brand">
               <OrdersInfluencers />
             </ProtectedRoute>
           } />
