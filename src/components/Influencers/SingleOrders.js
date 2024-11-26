@@ -171,11 +171,14 @@ const SingleOrders = () => {
 
     useEffect(() => {
         if (campaigns?.length > 0) {
-            const influencerDetails = campaigns?.find(influencer => influencer._id === influencer?._id);
-            setCampaignsForInfluencers(influencerDetails.campaigns)
+            const influencerDetails = campaigns.find(inf => inf._id === influencer?._id);
+            if (influencerDetails) {
+                setCampaignsForInfluencers(influencerDetails.campaigns);
+            } else {
+                setCampaignsForInfluencers([]); // or handle it as you prefer if no match is found
+            }
         }
     }, [influencer, campaigns]);
-
     return (
         <Container maxWidth="xl" className="py-4">
             <div style={{ margin: "10px 20px" }}>
