@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import horse1 from "../assets/images/horse1.jpg"
@@ -45,7 +46,7 @@ const Home = () => {
                                         EQUELLENCE
                                     </h1>
                                     <p className="mt-4 text-lg text-gray-300">
-                                    Fostering Excellence through Equestrianism
+                                        Fostering Excellence through Equestrianism
                                     </p>
                                 </div>
                             </div>
@@ -64,8 +65,6 @@ const Home = () => {
                                 </p>
                                 <p className="text-lg text-gray-600 mt-4">Find and hire top Instagram, TikTok, YouTube, and UGC influencers to create unique content for your brand</p>
                             </div>
-
-
 
 
 
@@ -131,7 +130,18 @@ const Home = () => {
                         </div>
                     </Container>
 
+                    <Container>
 
+                        <div className="container mx-auto px-4 my-4">
+                            <p className="text-2xl font-bold ">How it works</p>
+                            <div className="relative h-96 my-5">
+                                <iframe src="https://www.loom.com/embed/64db2a19b21b48a68b00d2e0818ca544?sid=8af3fa5a-b818-440b-ae24-e599fca2982d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
+                            </div>
+
+
+                        </div>
+
+                    </Container>
 
                     <Container>
                         <div className="bg-[#F8FAFC] py-10 my-10 mx-4">
