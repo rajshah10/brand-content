@@ -1,5 +1,5 @@
 // export const api_url = "http://localhost:5000"
-export const api_url = "https://brands-backend-6a1k.onrender.com"
+export const api_url = "https://p7v0saajpc.execute-api.eu-north-1.amazonaws.com/custom"
 
 export const niches = [
     { id: 'niche1', name: 'Fashion' },
